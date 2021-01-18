@@ -1,0 +1,549 @@
+\documentclass[b5paper,10pt]{book}
+\usepackage{graphicx} %package used to import graphics of all standard types 
+\graphicspath{{./figures/}}
+
+\usepackage[new]{old-arrows}
+\usepackage{epigraph}
+\usepackage{phdthesis}
+\usepackage[paperwidth=17cm  ,paperheight=24cm  ,inner=2.5cm  ,outer=2.0cm  ,top=2.5cm  ,bottom=2.0cm]{geometry}
+\usepackage{pdfpages}
+
+% deal with badness in references
+%\usepackage{etoolbox}
+%\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
+
+\newcommand{\references}{
+    \begingroup
+    \let\clearpage\relax
+    \let\chapter\section
+
+    \bibliography{/home/wessel/uva_thesis/references}{}
+    \addcontentsline{toc}{section}{References}
+    \bibliographystyle{/home/wessel/uva_thesis/bibstyle}
+    
+    \endgroup
+}
+% theorems
+\usepackage{amsthm}
+
+% proof environment uses slanted instead of italic
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \slshape
+    #1\@addpunct{.}]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+
+\makeatother
+% theorem style which uses slanted instead of italic, otherwise identical to usual theorem style
+\newtheoremstyle{sltheoremstyle}
+    {\topsep}
+    {\topsep}
+    {\slshape}
+    {}
+    {\bfseries}
+    {.}
+    {.5em}
+    {}
+
+\newtheoremstyle{questiontheoremstyle}
+    {\topsep}
+    {\topsep}
+    {\color{red}}
+    {}
+    {\bfseries}
+    {.}
+    {.5em}
+    {}
+
+\theoremstyle{sltheoremstyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemme}[theorem]{Lemme}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{propdef}[theorem]{Definition-Proposition}
+\newtheorem{thmdef}[theorem]{Definition-Theorem}
+\newtheorem*{conjecture}{Conjecture}
+
+\theoremstyle{questiontheoremstyle}
+\newtheorem{question}[theorem]{Question}
+
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{situation}[theorem]{Situation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+%%%% Document managment %%%%
+\usepackage{booktabs}
+\usepackage{appendix}
+\usepackage{changepage}
+\usepackage{lscape}
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+	
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}	
+
+%%%% Appendix per chapter %%%%
+\usepackage{etoolbox}
+\pretocmd{\chapter}{\renewcommand\thesection{\thechapter.\arabic{section}}}{}{}
+
+\newcommand\appsection{%
+  \setcounter{section}{0}%
+  \renewcommand\thesection{\thechapter.\Alph{section}}}
+
+
+%%%% Text managment %%%%
+%\usepackage{multirow}
+%\usepackage{hyphenat}
+\usepackage{amssymb,amsmath}  % For math
+\usepackage{enumerate}
+%\usepackage{lineno}
+
+\setlength{\headheight}{24pt} 
+
+%%%% Tables managment %%%%
+\usepackage{multicol,tabularx}
+
+%%%% Graphics managment %%%%
+\usepackage{epstopdf} % For images
+
+%\usepackage{subfigure}
+%\usepackage{array}
+%\usepackage{setspace}
+\usepackage{lscape}
+%\usepackage{rotating}
+\usepackage{tikz}
+%\usetikzlibrary{bayesnet}
+
+%%%%%% reference managment
+%\usepackage{chapterbib}
+%\usepackage[square,numbers,sectionbib]{natbib}
+%
+%%\usepackage{footnote}
+%
+\usepackage[english]{babel}
+%\interfootnotelinepenalty=10000
+%
+%\renewcommand{\bibname}{References}
+
+\usepackage{hyperref}
+% Some PDF metadata
+\hypersetup{
+pdfborder   = {0 0 0},
+pdftitle    = {Hyperk\"ahler varieties and their relation to Shimura stacks},
+pdfsubject  = {PhD Thesis},
+pdfkeywords = {},
+pdfauthor   = {Wessel Pieter Bindt}
+}
+
+%%% math markup
+\usepackage{amsfonts,amsmath,amssymb,mathtools,mathrsfs,turnstile}
+\usepackage{cases}
+
+% GIT slash
+\usepackage{stmaryrd}
+
+% show labels
+%\usepackage[inline]{showlabels}
+
+% tikz and tikz-related macros
+\usepackage{tikz} % necessary for title page, alternatively, graphicx
+\usepackage{tikz-cd} % needed for snakey diagrams like one in K3
+\usetikzlibrary{calc,arrows,automata,matrix,decorations.markings,positioning,decorations.pathreplacing}
+
+
+
+% Macros
+
+\DeclareMathOperator{\CC}{\mathbf{C}}
+\DeclareMathOperator{\FFF}{\mathbf{F}}
+\DeclareMathOperator{\LLambda}{\mathbf{\Lambda}}
+\DeclareMathOperator{\D}{\mathbb{D}}
+\DeclareMathOperator{\1}{\mathbf{1}}
+\DeclareMathOperator{\SSS}{\mathbf{S}}
+\DeclareMathOperator{\CCC}{\mathcal{C}}
+\DeclareMathOperator{\UUU}{\mathbb{U}}
+\DeclareMathOperator{\LS}{\mathsf{LS}}
+\DeclareMathOperator{\AAA}{\mathsf{A}}
+\DeclareMathOperator{\DDD}{\mathsf{D}}
+\DeclareMathOperator{\DD}{\mathcal{D}}
+\DeclareMathOperator{\A}{\mathcal{A}}
+\DeclareMathOperator{\KK}{\mathcal{K}}
+\DeclareMathOperator{\B}{\textnormal{B}}
+\DeclareMathOperator{\DR}{\textnormal{DR}}
+\DeclareMathOperator{\BB}{\mathcal{B}}
+\DeclareMathOperator{\LLL}{\mathcal{L}}
+\DeclareMathOperator{\XX}{\mathcal{X}}
+\DeclareMathOperator{\TT}{\textnormal{T}}
+\DeclareMathOperator{\T}{\mathbf{T}}
+\let\L\relax
+\DeclareMathOperator{\L}{\mathbf{L}}
+\DeclareMathOperator{\XXX}{\mathfrak{X}}
+\DeclareMathOperator{\YYY}{\mathfrak{Y}}
+\DeclareMathOperator{\GGG}{\mathcal{G}}
+\DeclareMathOperator{\YY}{\mathcal{Y}}
+\DeclareMathOperator{\OO}{\mathcal{O}}
+\DeclareMathOperator{\OOO}{\mathcal{O}}
+\let\vphi\varphi
+\DeclareMathOperator{\FF}{\mathcal{F}}
+\let\top\relax
+\DeclareMathOperator{\top}{\textnormal{top}}
+\DeclareMathOperator{\bs}{\overline{\emph{s}}}
+\DeclareMathOperator{\gr}{\textnormal{gr}}
+\DeclareMathOperator{\hol}{\textnormal{hol}}
+\DeclareMathOperator{\even}{\textnormal{ev}}
+\DeclareMathOperator{\CH}{\textnormal{CH}}
+\DeclareMathOperator{\EE}{\mathcal{E}}
+\DeclareMathOperator{\F}{\textnormal{F}}
+\DeclareMathOperator{\Hmuk}{\wtilde{H}}
+\DeclareMathOperator{\MT}{\textnormal{MT}}
+\DeclareMathOperator{\Hg}{\textnormal{Hdg}}
+\DeclareMathOperator{\UU}{\mathcal{U}}
+\DeclareMathOperator{\VV}{\mathcal{V}}
+\DeclareMathOperator{\VVV}{\text{\rotatebox[origin=c]{180}{$\mathbb{V}$}}}
+\DeclareMathOperator{\HH}{\mathcal{H}}
+\DeclareMathOperator{\HHH}{\textnormal{H}}
+\DeclareMathOperator{\PPP}{\textnormal{P}}
+\DeclareMathOperator{\RRR}{\textnormal{R}}
+\DeclareMathOperator{\K}{\textnormal{K}}
+\DeclareMathOperator{\diff}{\textnormal{diff}}
+\DeclareMathOperator{\dd}{\textnormal{d}}
+\DeclareMathOperator{\MM}{\mathcal{M}}
+\DeclareMathOperator{\MMM}{\mathbf{M}}
+\DeclareMathOperator{\wtMM}{\wtilde{\mathcal{M}}}
+\DeclareMathOperator{\tMM}{\widetilde{\mathcal{M}}}
+\DeclareMathOperator{\QQ}{\mathbf{Q}}
+\DeclareMathOperator{\PP}{\mathbf{P}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathcal{P}}
+\DeclareMathOperator{\GG}{\mathbf{G}}
+\DeclareMathOperator{\PGL}{\textnormal{PGL}}
+\DeclareMathOperator{\Gr}{\textnormal{Gr}}
+\DeclareMathOperator{\LaGr}{\textnormal{LaGr}}
+\DeclareMathOperator{\an}{\textnormal{an}}
+\DeclareMathOperator{\ori}{\textnormal{or}}
+\DeclareMathOperator{\diag}{\textnormal{diag}}
+\DeclareMathOperator{\Hilb}{\textnormal{Hilb}}
+\DeclareMathOperator{\OG}{\textnormal{OG}}
+\DeclareMathOperator{\Grnegor}{\textnormal{Gr}_2^{<0,+}}
+\DeclareMathOperator{\Def}{\textnormal{Def}}
+\DeclareMathOperator{\Sym}{\textnormal{Sym}}
+\DeclareMathOperator{\Tr}{\textnormal{Tr}}
+\DeclareMathOperator{\Trd}{\textnormal{Trd}}
+\DeclareMathOperator{\ord}{\textnormal{ord}}
+\DeclareMathOperator{\disc}{\textnormal{disc}}
+\DeclareMathOperator{\hw}{\textnormal{hw}}
+\DeclareMathOperator{\ob}{\textnormal{ob}}
+\DeclareMathOperator{\ab}{\textnormal{ab}}
+\DeclareMathOperator{\gal}{\textnormal{Gal}}
+\DeclareMathOperator{\rec}{\textnormal{rec}}
+\DeclareMathOperator{\et}{\textnormal{\'et}}
+\DeclareMathOperator{\nr}{\textnormal{nr}}
+\DeclareMathOperator{\trd}{\textnormal{trd}}
+\DeclareMathOperator{\trdeg}{\textnormal{tr.deg}}
+\DeclareMathOperator{\nrd}{\textnormal{nrd}}
+\DeclareMathOperator{\lcm}{\textnormal{lcm}}
+\DeclareMathOperator{\td}{\textnormal{td}}
+\DeclareMathOperator{\ch}{\textnormal{ch}}
+\DeclareMathOperator{\Hdg}{\textnormal{Hdg}_{\textnormal{an}}}
+\DeclareMathOperator{\GL}{\textnormal{GL}}
+\DeclareMathOperator{\SO}{\textnormal{SO}}
+\DeclareMathOperator{\GSO}{\textnormal{GSO}}
+\DeclareMathOperator{\GSpin}{\textnormal{GSpin}}
+\DeclareMathOperator{\GPin}{\textnormal{GPin}}
+\DeclareMathOperator{\Nu}{\textnormal{N}}
+\DeclareMathOperator{\GSp}{\textnormal{GSp}}
+\DeclareMathOperator{\SL}{\textnormal{SL}}
+\DeclareMathOperator{\ev}{\textnormal{ev}}
+\DeclareMathOperator{\length}{\textnormal{length}}
+\DeclareMathOperator{\RR}{\mathbf{R}}
+\DeclareMathOperator{\ZZ}{\mathbf{Z}}
+\DeclareMathOperator{\ZZh}{\what{\mathbf{Z}}}
+\DeclareMathOperator{\AAf}{\mathbf{A}_{f}}
+\DeclareMathOperator{\Lambdah}{\what{\Lambda}}
+\DeclareMathOperator{\LLambdah}{\what{\mathbf{\Lambda}}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\N}{\textnormal{N}}
+\DeclareMathOperator{\ZZZ}{\mathcal{Z}}
+\DeclareMathOperator{\mm}{\mathfrak{m}}
+\DeclareMathOperator{\pp}{\mathfrak{p}}
+\DeclareMathOperator{\qq}{\mathfrak{q}}
+\DeclareMathOperator{\CQ}{\CC \! Q}
+\DeclareMathOperator{\vep}{\varepsilon}
+\DeclareMathOperator{\cyc}{\textnormal{cyc}}
+\DeclareMathOperator{\Ch}{\textnormal{Ch}}
+\DeclareMathOperator{\Der}{\textnormal{Der}}
+\DeclareMathOperator{\Div}{\textnormal{Div}}
+\DeclareMathOperator{\Pic}{\textnormal{Pic}}
+\DeclareMathOperator{\PicStack}{\mathcal{P}\emph{ic}}
+\DeclareMathOperator{\Ric}{\textnormal{Ric}}
+\DeclareMathOperator{\Vol}{\textnormal{Vol}}
+\DeclareMathOperator{\coker}{\textnormal{coker}}
+\DeclareMathOperator{\Ker}{\textnormal{Ker}}
+\DeclareMathOperator{\NS}{\textnormal{NS}}
+\DeclareMathOperator{\nil}{\textnormal{nil}}
+\DeclareMathOperator{\Tors}{\textnormal{Tors}}
+\DeclareMathOperator{\rk}{\textnormal{rk}}
+\DeclareMathOperator{\fd}{\textnormal{f.d.}}
+\DeclareMathOperator{\height}{\textnormal{ht}}
+\DeclareMathOperator{\mult}{\textnormal{mult}}
+\DeclareMathOperator{\id}{\textnormal{id}}
+\DeclareMathOperator{\im}{\textnormal{im}}
+\DeclareMathOperator{\fg}{\textnormal{f.g.}}
+\DeclareMathOperator{\depth}{\textnormal{depth}}
+\DeclareMathOperator{\orb}{\textnormal{orb}}
+\DeclareMathOperator{\Ref}{\textnormal{ref}}
+\DeclareMathOperator{\Chi}{\textnormal{X}}
+\DeclareMathOperator{\opp}{\textnormal{opp}}
+\DeclareMathOperator{\qu}{\textnormal{qu}}
+\DeclareMathOperator{\lcpt}{\textnormal{lcpt}}
+\DeclareMathOperator{\colim}{\textnormal{colim}}
+\DeclareMathOperator{\gldim}{\textnormal{gl.dim}}
+\DeclareMathOperator{\pdim}{\textnormal{pdim}}
+\DeclareMathOperator{\add}{\textnormal{add}}
+\DeclareMathOperator{\art}{\textnormal{art}}
+\DeclareMathOperator{\der}{\textnormal{der}}
+\DeclareMathOperator{\inn}{\textnormal{inn}}
+\DeclareMathOperator{\spin}{\textnormal{sp}}
+\DeclareMathOperator{\siegel}{\textnormal{Si}}
+\DeclareMathOperator{\PEL}{\textnormal{PEL}}
+\DeclareMathOperator{\pt}{\textnormal{pt}}
+\DeclareMathOperator{\idim}{\textnormal{idim}}
+\DeclareMathOperator{\Hom}{\textnormal{Hom}}
+\DeclareMathOperator{\Ell}{\mathbf{Ell}}
+\DeclareMathOperator{\Art}{\mathbf{Art}}
+\DeclareMathOperator{\Germs}{\mathbf{Germs}}
+\DeclareMathOperator{\inv}{\textnormal{inv}}
+\DeclareMathOperator{\scale}{\textnormal{scale}}
+\DeclareMathOperator{\mon}{\textnormal{mon}}
+\DeclareMathOperator{\abs}{\textnormal{abs}}
+\DeclareMathOperator{\mot}{\textnormal{mot}}
+\DeclareMathOperator{\Frob}{\textnormal{Frob}}
+\DeclareMathOperator{\StackHom}{\textnormal{{\bfseries Hom}}}
+\DeclareMathOperator{\Corr}{\textnormal{Corr}}
+\DeclareMathOperator{\BBF}{\textnormal{BBF}}
+\DeclareMathOperator{\dR}{\textnormal{dR}}
+\DeclareMathOperator{\Et}{\textnormal{Et}}
+\DeclareMathOperator{\red}{\textnormal{red}}
+\DeclareMathOperator{\Stab}{\textnormal{Stab}}
+\DeclareMathOperator{\Res}{\textnormal{Res}}
+\DeclareMathOperator{\symm}{\textnormal{symm}}
+\DeclareMathOperator{\iHom}{\underline{\textnormal{Hom}}}
+\DeclareMathOperator{\iEnd}{\underline{\textnormal{End}}}
+\DeclareMathOperator{\iAut}{\underline{\textnormal{Aut}}}
+\DeclareMathOperator{\Mat}{\textnormal{Mat}}
+\DeclareMathOperator{\Br}{\textnormal{Br}}
+\DeclareMathOperator{\torsion}{\textnormal{torsion}}
+\DeclareMathOperator{\Eq}{\textnormal{Eq}}
+\DeclareMathOperator{\KKKK}{\mathbf{K3}}
+\DeclareMathOperator{\KKKKK}{\text{K3}}
+\DeclareMathOperator{\euc}{\textnormal{euc}}
+\DeclareMathOperator{\alg}{\textnormal{alg}}
+\DeclareMathOperator{\tr}{\textnormal{tr}}
+\DeclareMathOperator{\topo}{\textnormal{top}}
+\DeclareMathOperator{\tw}{\textnormal{tw}}
+\DeclareMathOperator{\lft}{\textnormal{lft}}
+\DeclareMathOperator{\ad}{\textnormal{ad}}
+\DeclareMathOperator{\Lie}{\textnormal{Lie}}
+\DeclareMathOperator{\Ad}{\textnormal{Ad}}
+\DeclareMathOperator{\ft}{\textnormal{ft}}
+\DeclareMathOperator{\HomAV}{\mathcal{H}\textnormal{om}_{\AV}}
+\DeclareMathOperator{\Isom}{\textnormal{Isom}}
+\DeclareMathOperator{\uIsom}{\underline{\textnormal{Isom}}}
+\DeclareMathOperator{\Mon}{\textnormal{Mon}}
+\DeclareMathOperator{\SMon}{\textnormal{SMon}}
+\DeclareMathOperator{\Par}{\textnormal{Par}}
+\DeclareMathOperator{\pr}{\textnormal{pr}}
+\DeclareMathOperator{\Cov}{\textnormal{Cov}}
+\DeclareMathOperator{\sHom}{\mathcal{H}\textnormal{om}}
+\DeclareMathOperator{\Polarized}{\mathcal{P}\emph{olarized}}
+\DeclareMathOperator{\sEnd}{\mathscr{E}\text{\kern -1.5pt {\emph{nd}}}}
+\DeclareMathOperator{\Sh}{\textnormal{Sh}}
+\DeclareMathOperator{\RHom}{\textnormal{RHom}}
+\DeclareMathOperator{\End}{\textnormal{End}}
+\DeclareMathOperator{\sig}{\textnormal{sig}}
+\DeclareMathOperator{\uEnd}{\underline{\textnormal{End}}}
+\DeclareMathOperator{\Supp}{\textnormal{Supp}}
+\DeclareMathOperator{\Ext}{\textnormal{Ext}}
+\DeclareMathOperator{\Pos}{\textnormal{Pos}}
+\DeclareMathOperator{\Aut}{\textnormal{Aut}}
+\DeclareMathOperator{\Pin}{\textnormal{Pin}}
+\DeclareMathOperator{\Spin}{\textnormal{Spin}}
+\DeclareMathOperator{\fppf}{\textnormal{fppf}}
+\DeclareMathOperator{\sh}{\textnormal{sh}}
+\DeclareMathOperator{\Spec}{\textnormal{Spec}}
+\DeclareMathOperator{\Span}{\textnormal{Span}}
+\DeclareMathOperator{\Sp}{\textnormal{Sp}}
+\DeclareMathOperator{\Proj}{\textnormal{Proj}}
+\DeclareMathOperator{\proj}{\textnormal{proj}}
+\DeclareMathOperator{\Sing}{\textnormal{Sing}}
+\DeclareMathOperator{\Tau}{\textnormal{T}}
+\newcommand{\wtilde}[1]{\widetilde{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\KKK}[1]{\textrm{K3}^{[#1]}}
+\newcommand{\LH}[1]{{\mathbf{LH}/{#1}}}
+\DeclareMathOperator{\ssslash}{\!\sslash\!}
+
+% restricted product (mathop attempt didn't work)
+
+\DeclareMathOperator*{\resprod}{\mathop{\mathrlap{\coprod}{\prod}}}
+%\newcommand{\resprod}[1]{
+%    \ifthenelse{\isempty{#1}}
+%    {
+%        \mathrlap{\coprod}{\prod}
+%    }
+%    {
+%        \mathrlap{\coprod}{\prod_{\mathclap{#1}}}
+%    }
+%}
+
+
+%algebraic closure
+\newcommand{\aclos}[1]{\overline{#1}}
+\newcommand{\sclos}[1]{\overline{#1}}
+
+
+% undefine \AA
+\let\AA\relax
+\DeclareMathOperator{\AA}{\mathbf{A}}
+
+% undefine \O
+\let\O\relax
+\DeclareMathOperator{\O}{\textnormal{O}}
+\DeclareMathOperator{\wO}{\wtilde{\O}}
+
+% undefine \SS
+\let\SS\relax
+\DeclareMathOperator{\SS}{\mathfrak{S}}
+
+% semicolon for use in theorem statements (roman)
+\def\semicolon{{\/\rm; }}
+
+%\let\int\relax
+%\DeclareMathOperator{\int}{\textnormal{int}}
+
+%\let\ss\relax
+%\DeclareMathOperator{\ss}{\textnormal{ss}}
+\DeclareMathOperator{\s}{\textnormal{s}}
+\DeclareMathOperator{\sep}{\textnormal{s}}
+% stuff to get lowercase blackboard k
+\DeclareSymbolFont{bbm}{U}{bbm}{m}{n}
+\DeclareSymbolFontAlphabet{\mathbbm}{bbm}
+\DeclareMathOperator{\kk}{\mathbbm{k}}
+
+% categories
+\DeclareMathOperator{\Sch}{\mathbf{Sch}}
+\DeclareMathOperator{\SmPr}{\mathbf{SmPr}}
+\DeclareMathOperator{\Vect}{\!\textnormal{-}\mathbf{Vect}}
+\DeclareMathOperator{\KS}{\mathbf{KS}}
+\DeclareMathOperator{\Gab}{\mathcal{G}_{\textnormal{ab}}}
+\DeclareMathOperator{\GHdg}{\mathcal{G}_{\textnormal{Hdg}}}
+\DeclareMathOperator{\CF}{\mathbf{CF}}
+\DeclareMathOperator{\HK}{\mathbf{HK}}
+\DeclareMathOperator{\Var}{\mathbf{Var}}
+\DeclareMathOperator{\AV}{\mathbf{AV}}
+\DeclareMathOperator{\Alg}{\!\textnormal{-}\mathbf{Alg}}
+\DeclareMathOperator{\Mod}{\!\textnormal{-}\mathbf{Mod}}
+\DeclareMathOperator{\FVec}{\mathbf{FVec}}
+\DeclareMathOperator{\GVec}{\mathbf{GVec}}
+\DeclareMathOperator{\CMan}{\textnormal{$C^{\infty}$}\!\textnormal{-}\mathbf{Man}}
+\DeclareMathOperator{\Coh}{\mathbf{Coh}}
+\DeclareMathOperator{\CohTw}{\mathbf{CohTw}}
+\DeclareMathOperator{\ASt}{\mathbf{ASt}}
+\DeclareMathOperator{\Comp}{\mathbf{Comp}}
+\DeclareMathOperator{\Grp}{\mathbf{Grp}}
+\DeclareMathOperator{\Ring}{\mathbf{Ring}}
+\DeclareMathOperator{\RingR}{{\mathbf{Ring}}/{\!\emph{R}}}
+\DeclareMathOperator{\Frm}{\mathbf{Frm}}
+\DeclareMathOperator{\LRS}{\mathbf{LRS}}
+\DeclareMathOperator{\Diff}{\textnormal{Diff}}
+\DeclareMathOperator{\Top}{\mathbf{Top}}
+\DeclareMathOperator{\hTop}{\mathbf{hTop}}
+\DeclareMathOperator{\Set}{\mathbf{Set}}
+\DeclareMathOperator{\fSet}{\mathbf{fSet}}
+\DeclareMathOperator{\Ab}{\mathbf{Ab}}
+\DeclareMathOperator{\QCoh}{\mathbf{QCoh}}
+\DeclareMathOperator{\frep}{\mathbf{fRep}}
+\DeclareMathOperator{\She}{\mathbf{Sh}}
+\DeclareMathOperator{\VHS}{\mathbf{VHS}}
+\DeclareMathOperator{\Mot}{\mathbf{Mot}}
+\DeclareMathOperator{\HS}{\mathbf{-HS}}
+\DeclareMathOperator{\Rep}{\mathbf{-Rep}}
+\DeclareMathOperator{\PSh}{\mathbf{PSh}}
+\DeclareMathOperator{\h}{\mathfrak{h}}
+\DeclareMathOperator{\p}{\mathfrak{p}}
+
+% colon for maps in opposite direction
+\newcommand*\cocolon{%
+    \nobreak
+    \mskip6mu plus1mu
+    \mathpunct{}%
+    \nonscript
+    \mkern-\thinmuskip
+    {:}%
+    \mskip2mu
+    \relax
+}
+
+\newcommand{\Gal}[1]{
+    \ifthenelse{\isempty{#1}}{
+    \textnormal{Gal}(\sclos{#1}/#1)
+}{
+    \text{Gal}(\sclos{#1}/#1)
+}
+}
+
+% Roman numerals in equations
+\newcommand{\RN}[1]{%
+    \textup{\uppercase\expandafter{\romannumeral#1}}
+    }
+
+% big slant
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\frontmatter
+\includepdf[pages=-]{assets/title-page.pdf}
+\include{copyright/copyright}
+\tableofcontents
+
+\hypersetup{pageanchor=true}
+\mainmatter
+\foreach \chapdir in {
+    01-introduction/,
+    02-shimura-varieties-motives/,
+    03-moduli-hyperkahler-varieties/,
+    04-period-maps-hyperkahler-varieties/,
+    05-spinor-norm-monodromy-operators/,
+}{
+    \include{\chapdir content}
+}
+
+\references
+
+\foreach \chapdir in {
+    06-summary/,
+    07-acknowledgements/,
+}{
+    \include{\chapdir content}
+}
+
+%\input{thesis-back}
+
+\end{document}

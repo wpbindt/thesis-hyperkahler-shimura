@@ -1,0 +1,416 @@
+\chapter{Moduli of polarized hyperk\"ahler varieties}
+%\epigraph{\emph{Modern man must descend the spiral of his own absurdity to the lowest point; only then can he look beyond it. It is obviously impossible to get around it, jump over it, or simply avoid it.}}{V\'aclav Havel}
+The main result of this chapter is that the moduli stack of polarized hyperk\"ahler varieties is a separated Deligne-Mumford stack over $\QQ$ (Theorem~\ref{thm:moduli_dm}). In a later chapter we will also see that it is smooth (Corollary~\ref{cor:moduli_smooth}). This result is well known to the experts. Our account closely follows that in~\cite{RizovModuli} and~\cite[Chapter~5]{HuybrechtsK3}, where the same result is proved for polarized K3 surfaces (that is, for two-dimensional polarized hyperk\"ahler varieties) in mixed characteristic.
+
+The first section collects the basic definitions and facts about hyperk\"ahler varieties. The second section is about polarizations on hyperk\"ahler varieties, and Picard schemes. We also state some important results by Matsusaka and Mumford on the moduli of polarized varieties. The final section contains the main result and its proof.
+
+\section{Hyperk\"ahler varieties}
+\begin{definition}\label{def:hk_mfold}
+A complex scheme $X$ is called a {\bfseries hyperk\"ahler variety} if the following conditions hold:
+\begin{enumerate}
+\item $X$ is connected, smooth, and projective,
+\item $\HHH^0(X,\Omega^2_X)$ is spanned by a nowhere degenerate $2$-form,
+\item $\pi_1(X) = 1$.
+\end{enumerate}
+\end{definition}
+\begin{remark}
+Since the Hodge--de~Rham spectral sequence degenerates at the $E_1$-page for compact K\"ahler manifolds (and in particular for smooth projective complex varieties), the $2$-form in the definition is automatically closed. For this reason, hyperk\"ahler varieties are sometimes called irreducible holomorphic symplectic varieties.
+\end{remark}
+
+\begin{lemma}\label{lem:equivalence_manifold_variety}
+Let $X$ be a smooth projective connected complex scheme for which there exists a nowhere degenerate $2$-form in $\HHH^0(X,\Omega^2_X)$. The \'etale fundamental group $\pi_1^{\et}(X)$ is trivial if and only if $\pi_1(X)$ is.
+\end{lemma}
+\begin{proof}
+By~\cite[Corollaire~XII.5.2]{SGA1}, $\pi_1^{\et}(X)$ is the profinite completion of $\pi_1(X)$. In particular, if $\pi_1(X)$ is trivial, then so is $\pi_1^{\et}(X)$.
+
+For the converse, note that the Bogomolov decomposition theorem implies that there exists an exact sequence $1 \rightarrow \ZZ^{2k} \rightarrow \pi_1(X) \rightarrow G \rightarrow 1$, with $G$ a finite group (this is explained in the statement immediately following~\cite[Th\'eor\`eme~1]{Beauville}). Since the profinite completion $\pi_1^{\et}(X)$ of $\pi_1(X)$ is trivial, the group $G$ is trivial. Now $\pi_1(X) \cong \ZZ^{2k}$, so that $\pi_1^{\et}(X) = 1$ implies that $k = 0$, showing that $\pi_1(X) = 1$.
+\end{proof}
+
+\begin{definition}\label{def:hk_variety}
+Let $K$ be a field of characteristic $0$, and let $\overline{K}$ be an algebraic closure of $K$. A scheme ${X}$ over ${K}$ is called a {\bfseries hyperk\"ahler variety} if the following conditions hold:
+    \begin{enumerate}
+        \item $X$ is geometrically connected, smooth, and projective,
+        \item $\HHH^0(X,\Omega^2_{{X}/{K}})$ is spanned by a nowhere degenerate $2$-form,
+        \item $\pi_1^{\textrm{\'et}}(X_{\overline{K}}) = 1$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+Since $K$ has characteristic $0$, the degeneration of the Hodge--de~Rham spectral sequence at $E_1$ again shows that the $2$-form is closed.
+\end{remark}
+
+\begin{remark}
+Lemma~\ref{lem:equivalence_manifold_variety} shows that when $K = \CC$, Definitions~\ref{def:hk_mfold} and~\ref{def:hk_variety} agree. This allows us to apply the results of~\cite{Beauville}, which use definition~\ref{def:hk_mfold}.
+\end{remark}
+
+\begin{example}\label{exa:hk_1}
+Two-dimensional hyperk\"ahler varieties are K3 surfaces. Conversely, every K3 surface over a field of characteristic $0$ is a hyperk\"ahler variety.
+\end{example}
+
+\begin{example}\label{exa:hk_2}
+For higher-dimensional examples, consider a K3 surface $S$ over a field $K$ of characteristic $0$, and $n$ an integer greater than or equal to $2$. Then by~\cite[Th\'eor\`eme~3]{Beauville} and the Lefschetz principle, the Hilbert scheme $S^{[n]}$ of $n$ points on $S$ is a $2n$-dimensional hyperk\"ahler variety over $K$. Deformations of hyperk\"ahler varieties of this type are also hyperk\"ahler varieties, known as {\bfseries $\text{K3}^{[n]}$-type hyperk\"ahler varieties}. We will return to these varieties in Section~\ref{sec:k3n}.
+\end{example}
+
+\begin{example}\label{exa:hk_3}
+    The only other known examples are the so-called generalized Kummer varieties (\cite[{\S~7}]{Beauville}), which are higher-dimensional analogues of Kummer K3 surfaces, and the more recent examples in dimension $6$ and $10$ constructed by O'Grady as symplectic desingularizations of certain moduli spaces of sheaves on abelian surfaces and K3 surfaces (\cite{OGradyAbelian} and \cite{OGradyK3}).
+\end{example}
+
+\begin{proposition}\label{prop:basicpropshkvar}
+If ${X}/{K}$ is a hyperk\"ahler variety of dimension $2n$, then
+\begin{enumerate}
+\item for every prime $\ell$, $\HHH^1_{\et}(X_{\overline{K}},\ZZ_{\ell}) = 0$, and $\HHH^2_{\et}(X_{\overline{K}},\ZZ_{\ell})$ is a free $\ZZ_{\ell}$-module\semicolon
+\item $\dim_K \HHH^i(X,\OO_X) = \dim_K \HHH^0(X,\Omega^i_{{X}/{K}}) = {(1 + (-1)^{i})}/{2}$, and $\chi(X,\OO_X) = n + 1$\semicolon
+\item $\Pic(X)$ is torsion-free\semicolon
+\item the Kodaira dimension of $X$ is $0$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    The first point follows from the \'etale analogues of Hurewicz' theorem and the universal coefficient theorem. Point 2 follows from \cite[Proposition 3]{Beauville} and the Lefschetz principle. The torsion-freeness of $\Pic(X)$ follows from Point 1 and the Kummer sequence. The fourth point follows immediately from the triviality of the canonical sheaf, which is due to the existence of a non-degenerate $2$-form. %Hurewicz is 5.7.20 in Lei Fu, Stack Project has remark about universal coefficient
+\end{proof}
+
+%\section{Moduli of polarized schemes}
+%\begin{definition}
+%We denote by $\underline{\MM}$ the stack over $\ZZ$ of pairs $(X \rightarrow S, \LLL)$, where $X \rightarrow S$ is a morphism of schemes which is proper, flat, of finite presentation, and which has geometrically reduced fibers, and $\LLL \in \Pic(X)$ is relatively ample. A morphism $(X \rightarrow S, \LLL) \rightarrow (X' \rightarrow S,\LLL')$ is a pair $(\vphi,\psi)$, where $\vphi$ is an $S$-isomorphism $X \rightarrow X'$ and $\psi$ an isomorphism of line bundles $\vphi^* \LLL' \rightarrow \LLL$.
+%\end{definition}
+%
+%By combining~\cite[Tag~0D4X, Tag~0DPU]{SP} with~\cite[Th\'eor\`eme~12.2.4.v]{EGAIV}, we find that the stack $\underline{\MM}$ is algebraic, quasi-separated, and locally of finite presentation over $\ZZ$.
+%
+%\begin{definition}
+%We denote by $\MM$ the groupoid fibration over $\ZZ$ of pairs $(X \rightarrow S, \lambda)$, where $X \rightarrow S$ is a morphism of algebraic spaces which is proper, flat, of finite presentation, and which has geometrically reduced fibers, and $\lambda \in \Pic_{X/S}(S)$ is ample on the geometric fibers. A morphism $(X \rightarrow S, \lambda) \rightarrow (X' \rightarrow S,\lambda')$ consists of an $S$-isomorphism $\vphi\colon X \rightarrow X'$ for which $\vphi^* \lambda' = \lambda$.
+%\end{definition}
+%
+%We will show that $\MM$ is obtained from $\underline{\MM}$ via rigidification, hence proving its algebraicity, {\color{red} Reference to tame DM stack in pos char by Abramovich}.
+%
+%\begin{lemma}
+%The groupoid fibration $\MM$ is a stack for the fppf topology on $\ZZ$.
+%\end{lemma}
+%\begin{proof}
+%    The main problem is to show that an algebraic space $X/S$ endowed with a fiberwise ample $\lambda \in \Pic_{X/S}(S)$ is actually a scheme.
+%\end{proof}
+%
+%For an object $(f\colon X \rightarrow S, \LLL) \in \underline{\MM}$, let $G|_{S}$ be the sheaf of groups on $S$ given as the kernel of $\Aut_S(X/S,\LLL) \rightarrow \Aut_S(X/S,[\LLL])$. Then $G|_S = f_* \GG_m$, and the $G|_S$ define a subgroup stack of the inertia stack of $\underline{\MM}$.
+%
+%\begin{lemma}
+%The stack $G$ is flat and finitely presented over $\underline{\MM}$.
+%\end{lemma}
+%\begin{proof}
+%This amounts to showing that the Weil restriction of $\GG_m$ along a flat proper finitely presented morphism of algebraic spaces is flat and finitely presented. Maybe something along these lines can be found in literature about the Picard sheaf. \\
+%    Let $f\colon X \rightarrow Y$ be such a morphism, and let $X \xrightarrow{f'} Y' \xrightarrow{\pi} Y$ be its Stein factorization~\cite[Tag~0A1C]{SP}. Then all we have to show that the pushforward of $\GG_m$ under $\pi\colon Y' = \Spec(f_* \OOO_X) \rightarrow Y$ is flat and of finite presentation. Some notes of note: $\pi$ is integral, which is weaker than finite. I'm not sure if it's flat and of finite presentation, but surely this should be implied by the flatness and finite presentedness of $f_* \OOO_X$.
+%\end{proof}
+%
+%It is easily verified that $\MM$ is the rigidification of $\underline{\MM}$ by $G$. That is to say, $\underline{\MM} \rightarrow \MM$ is a gerbe for the fppf topology and for $(X/S,\LLL) \in \underline{\MM}$, the sequence
+%$$
+%1 \rightarrow G|_S \longrightarrow \Aut_S(X/S,\LLL) \longrightarrow \Aut_S(X/S,[\LLL]) \rightarrow 1
+%$$
+%is exact for the fppf topology. From {\color{red} Reference} we obtain the following.
+%\begin{lemma}
+%$\MM$ is an algebraic stack locally of finite presentation over $\ZZ$, with finitely presented diagonal.
+%\end{lemma}
+%
+%\begin{proposition}
+%Let $\MM_{sm,gif,DM}$ be the substack of $\MM$ of pairs $(X \rightarrow S, \lambda)$ such that $X \rightarrow S$ is smooth, proper, has geometrically integral fibers, and such that $f_* T_X = 0$. Then $\MM_{sm,gif,DM}$ is a Deligne-Mumford stack locally of finite presentation over $\ZZ$, with finitely presented diagonal.
+%\end{proposition}
+%\begin{proof}
+%    From~\cite[Th\'eor\`eme~12.2.4.iii,viii]{EGAIV} and the fact that the support of a coherent sheaf is closed, it follows that $\MM_{sm,gif,DM}$ is an open substack of $\MM$, and hence algebraic over $\ZZ$.
+%\end{proof}
+%
+%
+
+The following lemma states that small deformations of hyperk\"ahler varieties are hyperk\"ahler varieties, which will be useful in the sequel.
+\begin{lemma}\label{lem:hkopen}
+Let $S$ be a scheme over $\QQ$, and suppose $f\colon X \rightarrow S$ is a proper smooth morphism of schemes with projective and geometrically connected fibers. If $s \in S$ is a point for which $X_{s}$ is a hyperk\"ahler variety, then there exists a open neighborhood $U$ of $s$ in $S$ such that all fibers of $X_{U} \rightarrow U$ are hyperk\"ahler varieties.
+\end{lemma}
+\begin{proof}
+First assume $S$ is reduced and locally Noetherian. Corollaire~X.3.9 in~\cite{SGA1} shows that the fundamental group of the geometric fibers of $f$ is constant on the connected components of $S$, which are open because $S$ is locally Noetherian, and hence locally connected \!\cite[Tag 04MF]{SP}.
+
+Let $2n$ be the relative dimension of $f$. The sets $\{t \in S \mid \chi(X_t, \OO_{X_t}) = n + 1\}$ and $\{t \in S \mid h^i(X_{t}, \OO_{X_t}) \leq \tfrac{1}{2}(1 + (-1)^i), i = 0,1,\ldots,2n\}$ are open and both contain $s$ by Part~2 of Proposition~\ref{prop:basicpropshkvar}. Their intersection is $\{t \in S \mid h^i(X_t,\OO_{X_t}) = \tfrac{1}{2}(1 + (-1)^i), i = 0,1,\ldots,2n \}$. It follows from this and Hodge symmetry that $h^0\left(X_{t},\Omega^2_{{X_t}/{\kk(t)}}\right) = 1$ for all $t$ in an open neighborhood of $s$.
+
+The constancy of $t \mapsto h^0\left(X_t,\Omega^2_{{X_t}/{\kk(t)}}\right)$ near $s$ allows us to apply Grauert's direct image theorem (which uses the reducedness of $S$) to extend a symplectic form on $X_{s}$ to nearby fibers, proving the lemma for reduced and locally Noetherian $S$.  %(28.1.5 in~\cite{Vakil})
+
+For not necessarily reduced $S$, we obtain the result by applying the reduced case to $S_{\red}$. A standard limit argument gets rid of the Noetherian hypothesis, see for instance~\cite[Theorem~10.66]{GW}. % just apply GW theorem 10.66
+\end{proof}
+
+\section{Polarizations on hyperk\"ahler varieties}
+We need some properties of the Picard sheaf of smooth proper morphisms whose fibers are hyperk\"ahler varieties. For an algebraic space $X$ over a scheme $S$, let $\Pic_{{X}/{S}}$ denote the fppf sheafification of the presheaf $T \mapsto \Pic(X_T)$ on $(\Sch/S)_{\fppf}$.
+
+\begin{remark}\label{rem:etalecover}
+When $S$ is a scheme over $\QQ$, and $f\colon X \rightarrow S$ a smooth proper morphism of schemes whose fibers are hyperk\"ahler varieties, $f_* \OO_X \cong \OO_S$ holds universally because $f$ is proper and has geometrically connected fibers. It follows that the \'etale sheafification of $T \mapsto \Pic(X_T)$ is equal to $\Pic_{{X}/{S}}$ \cite[pg.\ 257]{FGAex}. Moreover, for every $S$-scheme $T$ there is an exact sequence~\cite[Proposition 8.4]{BLR}
+\begin{equation*}
+    0 \rightarrow \Pic(T) \rightarrow \Pic(X_T) \rightarrow \Pic_{{X_T}/{T}}(T) \textrm{.}
+\end{equation*}
+So given a section $\lambda \in \Pic_{{X}/{S}}(S)$, we can find an \'etale cover $S' \rightarrow S$ such that the pullback of $\lambda$ to $X_{S'}$ lies in ${\Pic(X_{S'})}/{\Pic(S')} \subseteq \Pic_{{X_{S'}}/{S'}}(S')$.
+\end{remark}
+
+Following~\cite{BLR}, we call a morphism $X \rightarrow S$ strongly projective if it is finitely presented and there exists a locally free sheaf $E$ on $S$ of constant finite rank and a closed immersion $X \rightarrow \PP(E)$ over $S$. Let $S$ be a quasi-compact scheme. For a strongly projective flat morphism $X \rightarrow S$ with geometrically integral fibers, $\Pic_{{X}/{S}}$ is a scheme \cite[Theorem~8.2.5]{BLR}.
+
+The following proposition is proved for families of K3 surfaces in~\cite[Lemma~3.1.6]{RizovModuli}. The proof applies verbatim to families of hyperk\"ahler varieties of higher dimension.
+
+\begin{proposition}\label{prop:torsionfreepic}
+Let $S$ be a quasi-compact scheme over $\QQ$, and $X/S$ a strongly projective smooth morphism whose fibers are hyperk\"ahler varieties. Then multiplication by $n \in \ZZ_{> 0}$ is a closed immersion $[n]\colon \Pic_{{X}/{S}} \rightarrow \Pic_{{X}/{S}}$.
+\end{proposition}
+%\begin{proof}
+%    Since $X$ is strongly projective over $S$, $\Pic_{{X}/{S}}$ is a scheme. For smooth commutative group schemes over a base scheme of characteristic $0$,  $[n]$ is always \'etale. Part~3 of Proposition~\ref{prop:basicpropshkvar} shows that $[n]$ is universally injective (see~\cite[Tag 01S4]{SP}), and hence an open immersion. {\color{red} problem: $[n]$ is \'etale for {\itshape smooth} group schemes, which we don't know abt $\Pic_{{X}/{S}}$, in fact the fact that the Picard rank jumps in families of K3s shows that it is not.}
+%\end{proof}
+
+\begin{definition}\label{def:polarization}
+Let $S$ be a $\QQ$-scheme, and let $X \rightarrow S$ be a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. A {\bfseries polarization} on $X/S$ is an element $\lambda \in \Pic_{{X}/{S}}(S)$ such that for every geometric point $\overline{s}$ of $S$, the pullback $\lambda_{\overline{s}} \in \Pic(X_{\overline{s}})$ is ample.  %It is called {\bfseries primitive} if for all geometric points $\overline{s} \rightarrow S$, $\LLL_{\overline{s}}$ is not a non-trivial positive tensor power of a line bundle on $X_{\overline{s}}$.
+
+Let $P \in \QQ[t]$ be a polynomial. A polarized morphism of algebraic spaces $(X \rightarrow S, \lambda)$ is said to have Hilbert polynomial $P$ if every geometric fiber $(X_{\overline{s}}, \lambda_{\overline{s}})$ has Hilbert polynomial $P$.
+\end{definition}
+
+\begin{remark}\label{rk:local_polarizability} 
+Polarizations always exist, \'etale locally. To see this, let $X/S$ be as in Definition~\ref{def:polarization}, let $\overline{s}$ be a geometric point of $S$, and pick an ample line bundle $L_0$ on $X_{\overline{s}}$. Then $L_0$ is an element of the stalk of the sheaf $\Pic_{X/S}$ on $S_{\et}$, and therefore extends to a section $\lambda \in \Pic_{X/S}(U)$, where $U$ is an \'etale neighborhood of $\overline{s}$. Since ampleness is open on the base, we can find an \'etale neighborhood $V \rightarrow U$ of $\overline{s}$ on which $\lambda$ is a polarization.
+\end{remark}
+
+\begin{lemma}\label{lem:bigmatsusaka}
+Let $P \in \QQ[t]$ be a polynomial. There exists an integer $m \in \ZZ_{\geq 0}$ such that the following holds. For any scheme $S$ over $\QQ$ and any smooth proper morphism of schemes $X \rightarrow S$ whose fibers are hyperk\"ahler varieties endowed with a polarization $\lambda \in \Pic_{X/S}(S)$ with Hilbert polynomial $P$, there exists an \'etale cover $U \rightarrow S$ such that 
+\begin{itemize}
+\item $(f\colon X_U \rightarrow U, \lambda_U)$ is a polarized proper smooth morphism of schemes whose fibers are hyperk\"ahler varieties with Hilbert polynomial $P$,
+\item $\lambda_U$ is the image under $\Pic(X_U) \rightarrow \Pic_{{X_U}/{U}}(U)$ of a line bundle $L$ on $X_U$,
+\item $f_* (L^{\otimes m})$ is free of rank $P(m)$,
+\item $L^{\otimes m}$ is relatively very ample.
+\end{itemize}
+%There is an $m \in \ZZ_{> 0}$ depending only on $P$ such that for any polarized hyperk\"ahler scheme $(f{:}X \rightarrow S,\LLL)$ with Hilbert polynomial $P$, $\LLL^{\otimes m}$ comes from a relatively very ample line bundle on $X$. Moreover, $f_* \LLL^{\otimes m}$ is a locally free sheaf of rank $P(m)$. {\bfseries This phrasing, though probably true, is stronger than what is actually needed; phrasing as in Rizov is sufficient.}
+\end{lemma}
+\begin{proof}
+    Matsusaka's big theorem~\cite{BigMatsusaka} gives an integer $m \in \ZZ_{\geq 0}$ such that if $K$ is a field of characteristic $0$ and $({X}/{K},\lambda)$ is a polarized hyperk\"ahler variety with Hilbert polynomial $P$, then $m \lambda \in \Pic_{X/K}(K)$ is the class of a very ample line bundle on $X_{\overline{K}}$.
+
+Let $(X \rightarrow S, \lambda)$ be a polarized smooth proper morphism of schemes whose fibers are hyperk\"ahler varieties with Hilbert polynomial $P$. Using Remark~\ref{rem:etalecover}, we find an \'etale cover $U \rightarrow S$ such that the first two conditions of the lemma are satisfied.
+
+Kodaira vanishing and the triviality of the canonical sheaf of $X$ imply that $\HHH^1(X_s,L^{\otimes m}_s) = 0$ for all $s \in U$, so from~\cite[Chapter~0, \S5, a)]{GIT} it follows that $f_*(L^{\otimes m})$ is locally free. The statement about the rank follows from Kodaira vanishing and the definition of the Hilbert polynomial. By further refining the cover $U \rightarrow S$ we can globally liberate $f_*(L^{\otimes m})$.
+
+The fact that $L^{\otimes m}$ is relatively very ample follows from the choice of $m$.
+%    Recall the exact sequence
+%    \begin{equation*}
+%        \Pic(X) \rightarrow \Pic_{{X}/{S}}(S) \rightarrow H^2_{\et}(S,\GG_m) \textrm{.}
+%    \end{equation*}
+%    The Brauer class associated to $\LLL$ is an Azumaya algebra of rank $P(1)$, so by Tag~0A2L in~\cite{SP} $\LLL^{\otimes P(1)}$ yields a trivial Brauer class, and therefore comes from an honest line bundle on $X$. \\
+%    Proceeding as in Section~2.3 of~\cite{Andre} and Lemma~1.2.5 in~\cite{RizovModuli} proves the lemma.
+\end{proof}
+
+We will need the following results on moduli of non-ruled polarized varieties, due to Matsusaka and Mumford. See also~\cite[Theorem~4.3, Proposition~4.4]{Popp}. Note that ruled varieties have Kodaira dimension $-\infty$, so by Point~4 of Proposition~\ref{prop:basicpropshkvar}, the lemmas apply to hyperk\"ahler varieties.
+
+\begin{lemma}[Matsusaka-Mumford, {\cite[Chapter 1, Theorem 2]{MatsusakaMumford}}]\label{lem:separatedmoduli}
+Let $R$ be a dvr with fraction field $K$, and $X_1$, $X_2$ smooth proper $R$-schemes with non-ruled special fibers, equipped with relatively ample line bundles $L_1$ and $L_2$. Any isomorphism $f\colon X_{1,K} \rightarrow X_{2,K}$ with $f^* [L_{2,K}] = [L_{1,K}]$ extends uniquely to an isomorphism $X_1 \rightarrow X_2$ with $f^*[L_2] = [L_1]$.
+\end{lemma}
+
+\begin{lemma}[Matsusaka-Mumford, {\cite[Chapter 1, Corollary 2]{MatsusakaMumford}}]\label{lem:finiteautom}
+Let $X$ be a non-ruled variety over an algebraically closed field $K$ with $\HHH^0(X,\Omega^1_{{X}/{K}}) = 0$, equipped with an ample line bundle $L$. Then the number of automorphisms of $X$ preserving the class of $L$ in $\Pic(X)$ is finite.
+\end{lemma}
+
+\section{The moduli stack of polarized hyperk\"ahler varieties}
+In this section we define the stack of polarized hyperk\"ahler varieties, and prove some of its properties.
+We closely follow~\cite{RizovModuli} and~\cite[Chapter~5]{HuybrechtsK3}.
+
+\begin{definition}
+The {\bfseries moduli stack of polarized hyperk\"ahler varieties} is defined as the groupoid fibration $\HK \rightarrow {\Sch}/{\QQ}$ whose objects are pairs $(X \rightarrow S, \lambda \in \Pic_{X/S}(S))$ where $S$ is a $\QQ$-scheme, $X \rightarrow S$ is a smooth proper morphisms of algebraic spaces whose fibers are hyperk\"ahler varieties, and $\lambda$ is a polarization on $X$. Morphisms $(X' \rightarrow S', \lambda') \to (X \rightarrow S, \lambda)$ are those cartesian squares
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+        { X' & X \\
+          S' & S \\ };
+
+        \path[>=angle 90, ->] (m-1-1) edge node[above]{$f$} (m-1-2)
+                                      edge (m-2-1)
+                              (m-1-2) edge (m-2-2)
+                              (m-2-1) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+for which $f^* \! \lambda = \lambda'$ in $\Pic_{X'/S'}(S')$. The functor $\HK \rightarrow {\Sch}/{\QQ}$ maps $(X \rightarrow S, \lambda)$ to $S$, and a cartesian square as above to the morphism $S' \rightarrow S$.
+\end{definition}
+
+%\begin{remark}
+%    {\color{red} Something about $X$ being a scheme because of an embedding into a Brauer-Severi scheme. Actually, if we include the remark at all it could be better to state it at a later point, because it delays the main theorem statement.}
+%\end{remark}
+
+The following is the main theorem of this chapter. See also Lemma~\ref{lem:moduli_loc_ft}, Lemma~\ref{lem:moduli_separated}, and Corollary~\ref{cor:moduli_smooth} in the next chapter.
+\begin{theorem}\label{thm:moduli_dm}
+The groupoid fibration $\HK$ is a smooth separated Deligne-Mumford stack over $\QQ$. Its dimension at a $\CC$-point $(X,\lambda)$ is equal to $b_2(X) - 3$.
+\end{theorem}
+
+\begin{remark}
+In this section we will only prove that $\HK$ is a separated Deligne-Mumford stack, locally of finite type over $\QQ$. The assertion about the smoothness and dimension of $\HK$ will be proved in a later chapter and is a consequence of the local Torelli theorem for complex hyperk\"ahler varieties~\cite[Th\'eor\`eme~5]{Beauville}. See Corollary~\ref{cor:moduli_smooth}.
+\end{remark}
+
+\begin{lemma}
+    The groupoid fibration $\HK$ is a stack on $(\Sch/\QQ)_{\et}$.
+\end{lemma}
+\begin{proof}
+This follows immediately from the fact that the groupoid fibration of algebraic spaces is a stack \cite[Tag 04UA]{SP}. %, the Picard sheaf is a sheaf, and because being a hyperk\"ahler space is by definition \'etale local on the base.
+\end{proof}
+
+
+%\begin{remark}
+%{\color{red} Look into this remark. Written very long ago, is likely wrong.}
+%If we were to take hyperk\"ahler schemes as the objects of $\MM$, one would be tempted to use Proposition~VIII.7.8 in~\cite{SGA1} to prove effectiveness of descent data. However, this does not seem to work. The reason is that our polarizations are sections of the Picard sheaf, and not actual relatively ample line bundles. This means that the isomorphism of line bundles is not part of the descent datum, and moreover, it only exists after possibly twisting by a line bundle on the base.
+%That isomorphisms are a sheaf follows from Proposition~4.31 in~\cite{FGAex} and the fact that $\Pic_{{X}/{S}}$ is a sheaf. Effectiveness of descent data is Theorem~7 in Chapter~6 of~\cite{BLR} (or Proposition~VIII.7.8 in~\cite{SGA1}) combined with the fact that being a hyperk\"ahler scheme is fppf local on the target. {\bfseries NOOOPE: the isomorphism of line bundles in the descent datum comes with a twist by a line bundle from downstairs; the BLR result is NOT directly applicable. This seems to be a fundamental flaw in Huybrechts' proof of Proposition~5.4.2. in~\cite{HuybrechtsK3}.}
+%\end{remark}
+
+Fix a polynomial $P \in \QQ[t]$ and an integer $m, \in \ZZ_{\geq 0}$, and define $N := P(m) - 1$. Denote by $\Hilb$ the Hilbert scheme $\Hilb_{\PP^N}^{P(mt)}$, which parametrizes closed subschemes $Z$ of $\PP^N$ such that $\OO(1)|_Z$ has Hilbert polynomial $P(mt)$. Let $\ZZZ \subseteq \PP^N\!\times \Hilb$ be the universal family.
+
+Let $H_{m,P}\colon \left({\Sch}/{\QQ}\right)^{\opp} \rightarrow \Set$ be the subfunctor of $\Hilb$ sending a $\QQ$-scheme $S$ to the set of those $Z \in \Hilb(S)$ satisfying
+\begin{enumerate}
+\item $Z \rightarrow S$ is smooth, and its fibers are hyperk\"ahler varieties,
+\item there exists an $L \in \Pic(Z)$ such that $\OO(1)|_{Z} = mL$ in $\Pic(Z)/\Pic(S)$,
+\item for any geometric point $\overline{s}$ of $S$, the restriction map
+$$
+\HHH^0(\PP^N_{\overline{s}}, \OO(1)) \rightarrow \HHH^0(Z_{\overline{s}},L_{\overline{s}}^{\otimes m})
+$$
+is an isomorphism.
+\end{enumerate}
+
+\begin{lemma}\label{lem:hilbert}
+The functor $H_{m,P}$ is representable by a scheme, and the inclusion $H_{m,P} \rightarrow \Hilb$ is an immersion.
+\end{lemma}
+%\begin{lemma}\label{lem:hilbert}
+%    There exists a locally closed subscheme $H \rightarrow \Hilb$ (resp.\ $H^p \rightarrow \Hilb$) such that a morphism $S \rightarrow \Hilb$ factors through $H$ (resp.\ $H^p$) if and only if
+%    \begin{enumerate}
+%        \item the pullback $f{:}\ZZZ_S \rightarrow S$ is a hyperk\"ahler scheme;
+%        \item if $p{:}\ZZZ_S \rightarrow \PP^M$ is the natural projection, then there exist $L \in \Pic(\ZZZ_S)$ and $L_0 \in \Pic(S)$ such that $p^* \OO(1)$ is equal to $L^{\otimes m} \otimes f^* L_0$ in $\Pic(\ZZZ_S)$; 
+%        \item for all points $s \rightarrow S$, the restriction
+%            \begin{equation*}
+%                H^0(\PP^M_{\kk(s)}, \OO(1)) \rightarrow H^0(\ZZZ_s,L_s^{\otimes m})
+%            \end{equation*}
+%            is an isomorphism;
+%        \item[(4.)] $L$ is primitive on all geometric fibers.
+%    \end{enumerate}
+%    The right action of $\PGL := \PGL(M + 1)$ on $\Hilb$ restricts to an action on~$H$ (resp.\ $H^p$).
+%\end{lemma}
+\begin{proof}
+We need to show that the locus in $\Hilb$ over which $\ZZZ$ satisfies the given properties is a locally closed subscheme.
+
+Let $H_1$ be the set of $s \in \Hilb$ such that $\ZZZ_s$ is a hyperk\"ahler variety over $\kk(s)$. This is an open set by the fact that smoothness is an open condition and Lemma~\ref{lem:hkopen}.  % reference for openness of smoothness?
+
+Consider the cartesian square
+    \begin{equation*}
+      \begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+   \matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+              { \Pic_{{\ZZZ_{H_1}}/{H_1}}  & \Pic_{{\ZZZ_{H_1}}/{H_1}} \\
+                H_2  & H_1 \\ };
+
+              \path[>=angle 90, ->] (m-1-1) edge node[above]{$[m]$} (m-1-2)
+                              (m-2-2) edge node[right]{$i^* \OO(1)$} (m-1-2)
+                              (m-2-1) edge (m-1-1)
+                                      edge (m-2-2);
+
+      \end{tikzpicture} \end{matrix} \textrm{.}
+    \end{equation*}
+Then $H_2 \rightarrow H_1$ is a closed immersion by Proposition~\ref{prop:torsionfreepic}. Since $\Pic_{{\ZZZ_{H_2}}/{H_2}}$ is a scheme by Theorem~8.2.5 in~\cite{BLR}, there exists a Poincar\'e bundle on $\Pic_{{\ZZZ_{H_2}}/{H_2}} \times_{H_2} \ZZZ_{H_2}$. This, combined with the fact that by construction $\OO(1)|_{\ZZZ_{H_2}} \in m \Pic_{{\ZZZ_{H_2}}/{H_2}}(H_2)$, shows that Property~2 holds over $H_2$.
+
+That Property~3 defines a locally closed subscheme $H_{m,P}$ of $H_2$ is proved exactly as in the final part of the proof of Proposition~5.1 in~\cite{GIT}.
+\end{proof}
+
+%Since from this point onward the arguments for $\MM^P$ and $\FF^P$ are the same, we restrict our attention to $\MM^P$.
+
+Now pick $m \in \ZZ_{\geq 0}$ associated with $P$ as in Lemma~\ref{lem:bigmatsusaka}, and let $\HK^P \subseteq \HK$ be the open substack of pairs $(X \rightarrow S, \lambda)$ with Hilbert polynomial $P$. Note that the action of the group scheme $\PGL := \underline{\Aut}(\PP^N_{\QQ})$ on $\Hilb$ restricts to an action on $H_{m,P}$.
+
+\begin{lemma}\label{lem:hilb_algebraic}
+    The universal family $\ZZZ_{H_{m,P}} \rightarrow H_{m,P}$ yields a $\PGL$-invariant morphism $H_{m,P} \rightarrow \HK^P$, which in turn induces an equivalence $\left[{H_{m,P}}/{\PGL}\right] \xrightarrow{\sim} \HK^P$. In particular, $\HK^P$ is an algebraic stack.
+\end{lemma}
+\begin{proof}
+To simplify the notation, we define $H = H_{m,P}$.
+
+The natural relatively very ample line bundle on $\ZZZ_H \rightarrow H$ is of the form $m \lambda$ for exactly one $\lambda \in \Pic_{{\ZZZ_H}/H}(H)$ by the definition of $H$ and Proposition~\ref{prop:torsionfreepic}. This defines the morphism $(\ZZZ_H,\lambda)\colon H \rightarrow \HK^P$.
+
+To establish the required equivalence, we use \cite[Proposition~3.8]{LMB}. This proposition states that it suffices to show
+    \begin{enumerate}
+        \item for every $\QQ$-scheme $U$ and every morphism $\xi\colon U \rightarrow \HK^P$ there exists an \'etale cover $f\colon V \rightarrow U$ such that $f^* \xi$ is in the essential image of $H \rightarrow \HK^P$;
+        \item $H \times_{\HK^P} H$ is equivalent to $H \times \PGL$ as an $(H \times H)$-stack, where $H \times \PGL \rightarrow H \times H$ is given by $(h,g) \mapsto (h,hg)$.
+    \end{enumerate}
+For Point $1$, let $(X, \lambda)\colon U \rightarrow \HK^P$, and take an \'etale cover $V \rightarrow U$ as in Lemma~\ref{lem:bigmatsusaka}. That is, there exists a line bundle $L$ on $X_V$ such that $\lambda_V$ is the class of $L$ in $\Pic_{X/U}(V)$, the line bundle $L^{\otimes m}$ is relatively very ample, and $f_* L$ is free of rank $N + 1$. It follows that $L^{\otimes m}$ gives rise to a closed immersion $X_V \rightarrow \PP f_*(L^{\otimes m})$ satisfying the Conditions $1$, $2$, and $3$ preceding Lemma~\ref{lem:hilbert}, so that we have a morphism $V \rightarrow H$. In particular, $(X_V,\lambda_V)$ is in the essential image of $H \rightarrow \HK^P$.
+
+To prove Point 2, define $\Phi\colon H \times \PGL \rightarrow H \times_{\HK^P} H$ by $(h,g) \mapsto (h,hg,g^{-1}|_{h})$. This is a morphism of $(H \times H)$-stacks which is clearly fully faithful. We want to see that it is an equivalence. %By \cite[Tags~046N, 003Z]{SP} we need to show that this morphism is fiberwise fully faithful and \'etale locally essentially surjective. \\
+
+    To see the essential surjectivity of $\Phi$, consider $Z_1, Z_2 \in H(U)$ and an isomorphism $\phi\colon (Z_1, L_1 ) \rightarrow (Z_1, L_2 )$, where $L_1$ and $L_2$ are as in the second point of Lemma~\ref{lem:hilbert}. There is a commutative diagram
+    \begin{equation*}
+      \begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+   \matrix (m) [matrix of math nodes, row sep=1em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+              { & \PP(f_{1,*}L_1^{\otimes m})  & \PP(f_{2,*}L_2^{\otimes m}) & \\
+              \PP^N_{U} & & & \PP_U^N \\
+                & Z_1  & Z_2 & \\ };
+
+              \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                              (m-1-2) edge (m-1-3)
+                              (m-1-3) edge (m-2-4)
+                              (m-3-3) edge (m-2-4)
+                                      edge (m-1-3)
+                              (m-3-2) edge node[below]{$\phi$} (m-3-3)
+                                      edge (m-1-2)
+                                      edge (m-2-1);
+
+      \end{tikzpicture} \end{matrix} \textrm{.}
+    \end{equation*}
+The top arrow is the isomorphism induced by the fact that $\phi^*(L_2) \cong f_1^*(M) \otimes L_1$ for some $M \in \Pic(U)$, and the morphisms $\PP(f_{i,*} L^{\otimes m}_i) \longleftrightarrow \PP^N_U$ are the isomorphisms induced by Point $3$ of Lemma~\ref{lem:hilbert}. All other morphisms are the obvious ones. The composition of the top arrows is now an element $g \in \PGL(U) = \Aut_U(\PP^N_U)$ with $Z_1 g^{-1} = Z_2$, proving the essential surjectivity of $\Phi$.
+%    We keep the notation from Lemma~\ref{lem:hilbert}. By the definition of $H$, $\ZZZ_H \rightarrow H$ comes with a relatively very ample line bundle $p^* \OO(1)$, which allows us to apply Proposition~\ref{prop:torsionfreepic} and the definition of $H$ to conclude the uniqueness and existence of an element $\LLL \in \Pic_{{\ZZZ_H}/{H}}(H)$ with $\LLL^{\otimes m} = p^*\OO(1)$. Clearly $(\ZZZ_T,\LLL)$ defines a morphism $H \rightarrow \MM^P$. Since it is $\PGL$-equivariant, we get a morphism $\left[{H}/{\PGL}\right] \rightarrow \MM^P$. {\bfseries verify strong projectivity, PGL-equivariance} \\
+%    To get a quasi-inverse, we need to associate to every $(X \xrightarrow{f} S,\LLL){:}S \rightarrow \MM^P$ a $\PGL$-torsor $T \rightarrow S$ equipped with a $\PGL$-equivariant morphism $T \rightarrow H$. For $T$ we take the isomorphism sheaf $\uIsom_S(\PP(\OO_S^{\oplus(M + 1)}), \PP(f_* \LLL^{\otimes m}))$ with the obvious right $\PGL$-action. The pullback of $(X,\LLL)$ to $T$ comes with a canonical isomorphism 
+%    \begin{equation*}
+%        \PP^{M}_T = \PP \OO_T^{\oplus (M + 1)} \rightarrow \PP(f_{T,*} \LLL^{\otimes m}) \textrm{,}
+%    \end{equation*}
+%    which gives us a closed immersion $i{:}X_T \rightarrow \PP^n_T$ for which $i^* \OO(1) = \LLL^{\otimes m}$ in $\Pic(X_T)$. This defines a morphism $T \rightarrow \Hilb$, and we claim it factors through $H$.
+\end{proof}
+
+\begin{lemma}\label{lem:moduli_hilb_pol_ft}
+The stack $\HK^P$ is of finite type over $\QQ$.
+\end{lemma}
+\begin{proof}
+Since the Hilbert scheme is of finite type $\QQ$, it follows that $H$ is of finite type over $\QQ$. Using \cite[Tags~06U8, 050X]{SP}, we find that $\HK^P$ is of finite type over $\QQ$.
+\end{proof}
+
+\begin{lemma}\label{lem:moduli_hilb_pol_dm}
+The stack $\HK$ is a Deligne-Mumford stack, locally of finite type over $\QQ$.
+\end{lemma}
+\begin{proof}
+Since $\HK$ is the disjoint union of all $\HK^P$, where $P$ ranges over all polynomials $P \in \QQ[t]$, Lemmas~\ref{lem:hilb_algebraic} and~\ref{lem:moduli_hilb_pol_ft} show that $\HK^P$ is an algebraic stack, locally of finite type over $\QQ$.
+
+To show that $\HK$ is a Deligne-Mumford stack, it suffices to show that the diagonal $\Delta\colon \HK \rightarrow \HK \times_{\QQ} \HK$ is of finite type and that the geometric points of $\HK$ have finite and reduced automorphism groups~\cite[Remark~8.3.4]{OlssonStacks}.
+
+By Lemma~\ref{lem:finiteautom}, and because group schemes over a field of characteristic $0$ are reduced~\cite[Corollaire~$\text{VI}_{\B}$.1.6.1]{SGA3} (see also \cite[Corollaire~4.2.8]{Perrin}), the automorphism group of a geometric point of $\HK$ is finite and reduced.
+
+By~\cite[Tag~04XS]{SP}, the diagonal $\Delta$ is locally of finite type. Since $\HK$ is the disjoint union of the Noetherian stacks $\HK^P$, and since morphisms between Noetherian stacks are quasi-compact, $\Delta$ is also compact, and hence of finite type.
+%Applying \cite[Proposition~5.27]{BehrendConrad} shows that $[{H}/{\PGL}]$ is a Deligne-Mumford stack\footnote{In~\cite{BehrendConrad}, a Deligne-Mumford stack is defined to be an \'etale stack with representable separated diagonal and an \'etale presentation. To see that $\HK^P$ is a Deligne-Mumford stack in the sense of~\cite{LMB}, simply note that any morphism between Noetherian schemes is quasi-compact and apply \cite[Proposition~5.21]{BehrendConrad} to obtain that the diagonal is quasi-compact. {\color{red} Replace with reference to Olsson's book on stacks.}}. In particular, the map $H \rightarrow \HK^P$ is an \'etale presentation.
+\end{proof}
+
+
+\begin{lemma}\label{lem:moduli_loc_ft}
+The stack $\HK$ is a Deligne-Mumford stack, locally of finite type over $\QQ$.
+\end{lemma}
+\begin{proof}
+    This follows immediately from the fact that $\HK$ is the disjoint union of all $\HK^P$, where $P$ ranges over all of $\QQ[t]$, Lemma~\ref{lem:moduli_hilb_pol_dm}, and Lemma~\ref{lem:moduli_hilb_pol_ft}.
+\end{proof}
+
+\begin{lemma}\label{lem:moduli_separated}
+The Deligne-Mumford stack $\HK$ is separated over $\QQ$.
+\end{lemma}
+\begin{proof}
+Since $\HK$ is locally of finite type over $\QQ$ by Lemma~\ref{lem:moduli_loc_ft}, we can apply the valuative criterion for separatedness of morphisms of locally Noetherian stacks~\cite[Proposition~7.8]{LMB}. That is, we need to show that for a complete dvr $R$ over $\QQ$ with fraction field $K$ and algebraically closed residue field, and two points $(X_1,\lambda_1)$, $(X_2,\lambda_2) \in \HK(R)$, any isomorphism $f\colon (X_1,\lambda_1)_K \rightarrow (X_2,\lambda_2)_K$ over $K$ extends uniquely to an isomorphism $(X_1,\lambda_1) \rightarrow (X_2,\lambda_2)$ over $R$.
+
+Since $R$ is complete and has algebraically closed residue field, the \'etale covers of $R$ are all trivial. Therefore, by Remark~\ref{rem:etalecover}, the $\lambda_i$ are the classes of relatively ample line bundles on $X_1$ and $X_2$, respectively. This allows us to apply Lemma~\ref{lem:separatedmoduli}, which says that the isomorphism $f$ extends uniquely to an isomorphism $(X_1,\lambda_1) \rightarrow (X_2,\lambda_2)$, proving the lemma.
+\end{proof}
+
+%\section{Moduli of lattice-polarized hyperk\"ahler varieties}
+%Throughout this section, let $\Lambda$ be a $\ZZh$-lattice, and $L$ a $\ZZ$-lattice of signature $(1,n)$ endowed with an isometric embedding $L \rightarrow \Lambda$. We fix a primitive element $\ell \in L$ of positive length.
+%\begin{definition}
+%A {\bfseries family of $L$-polarized hyperk\"ahler varieties with BBF lattice $\Lambda$} over a $\QQ$-scheme $S$ consists of a hyperk\"ahler scheme $f\colon X \rightarrow S$ and a homomorphism $\vphi\colon \underline{L} \rightarrow \Pic_{X/S}$ such that $\vphi(\ell)$ is a polarization and such that, \'etale locally on $S$, there exists an isometry $\underline{\Lambda} \rightarrow R^2_{\et} f_* \ZZh(1)$ making the diagram
+%$$
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { \underline{L} & \underline{\Lambda} \\
+%             \Pic_{X/S} & R^2_{\et}f_* \ZZh(1) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                         (m-2-1) edge node[below]{$c_1$} (m-2-2)
+%                         (m-1-1) edge node[left]{$\vphi$} (m-2-1);
+%                         \path[>=angle 90, ->, dashed] (m-1-2) edge (m-2-2);
+%
+%\end{tikzpicture}\end{matrix}
+%$$
+%commute. This gives rise to a groupoid fibration $\HK^{\Lambda,L,\ell}$ over $\QQ$.
+%\end{definition}
+%
+%\begin{proposition}
+%The groupoid fibration $\HK^{\Lambda,L,\ell}$ is a smooth separated Deligne-Mumford stack over $\QQ$. If it is non-empty, it has dimension $\rk \Lambda - \rk L - 2$.
+%\end{proposition}
+%\begin{proof}
+%We work over $S = \HK$, and look at the Hom-sheaf (preserving quadratic forms) $\Hom(\underline{L},\Pic)$, which should be representable by representability and separatedness of $\Pic$. Then $\HK^{\Lambda,L,\ell}$ should be the image of $\Isom_{\Hom(\underline{L},\Pic)}((\Lambda,L),(L,\Pic)) \rightarrow \Hom(\underline{L},\Pic)$. And this is representable because it should be a clopen substack.
+%\end{proof}

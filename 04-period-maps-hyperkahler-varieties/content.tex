@@ -1,0 +1,1397 @@
+\chapter{Period maps for hyperk\"ahler varieties}\label{cha:period_map}
+It is well-known that the canonical model of a Siegel Shimura stack is the moduli stack of principally polarized abelian varieties over $\QQ$ (see~\cite{DeligneShimura}). This follows almost immediately from Deligne's definition of canonical models. An analogue of this result for polarized K3 surfaces over $\QQ$ was initially proved by Rizov in~\cite{RizovCM}, then via a different argument by Madapusi-Pera in~\cite{MadapusiPera}, and finally a slightly stronger version was proved by Taelman in~\cite{TaelmanShimuraStacks}. In this chapter, we extend this result to higher-dimensional polarized hyperk\"ahler varieties over $\QQ$. More precisely, we will construct a degree $2$ \'etale cover $\HK_{\ori}$ of the moduli stack $\HK$ of polarized hyperk\"ahler varieties over $\QQ$, and then give an \'etale morphism from $\HK_{\ori}$ to an orthogonal Shimura stack, known as the period map.
+
+In the first section we collect some important results from the literature on hyperk\"ahler varieties over $\CC$. In particular, we recall some basic facts about a quadratic form on the second cohomology of a hyperk\"ahler variety known as the Beauville-Bogomolov-Fujiki form (the BBF form), and state the global Torelli theorem of Verbitsky, which roughly says that the geometry of a hyperk\"ahler variety is largely determined by its second cohomology endowed with the BBF form (Theorem~\ref{thm:unpolarized_global_torelli}). We also show that $\HK$ is smooth (Corollary~\ref{cor:moduli_smooth}).
+
+In the next section, we define a BBF form for hyperk\"ahler varieties over non-closed fields of characteristic $0$. The most important result in this section is the \'etale monodromy invariance of this form (Theorem~\ref{thm:mon_et_bbf}). The third section introduces the notion of an orientation on a hyperk\"ahler variety, which yields the degree $2$ \'etale cover $\HK_{\ori}$ of $\HK$ on which we will construct the period map.
+
+Section~\ref{sec:shimura_stacks} is an introduction to Shimura stacks, following~\cite{TaelmanShimuraStacks}. It is also shown that, over $\CC$, orthogonal Shimura stacks are moduli stacks of Hodge structures endowed with a bilinear pairing and a trivialization of the determinant, known as an orientation. Then, in Section~\ref{sec:period_maps}, we use this modular interpretation to give a morphism from $\HK_{\ori,\CC}$ to an orthogonal Shimura stack, mapping a hyperk\"ahler variety endowed with an orientation to its second cohomology, endowed with the BBF form and the orientation. We then use the results in Chapter~\ref{cha:shimura_varieties} to prove the main theorem of this chapter, which states that this morphism descends to $\QQ$ (Theorem~\ref{thm:main_theorem_1}).
+
+The final two sections give stronger versions of this result for specific examples of hyperk\"ahler varieties. Following~\cite{TaelmanShimuraStacks}, Section~\ref{sec:period_map_k3} shows that we can in fact obtain a period map on the moduli stack of polarized K3 surfaces, rather than on the stack of oriented polarized K3 surfaces (Theorem~\ref{thm:period_k3}). In Section~\ref{sec:k3n}, we consider hyperk\"ahler varieties deformation equivalent to the Hilbert scheme of points on a K3 surface, known as $\KKKKK^{[n]}$-type hyperk\"ahler varieties. We extend a result of Markman on the monodromy of $\KKKKK^{[n]}$-type varieties to $\KKKKK^{[n]}$-type varieties over non-closed fields of characteristic $0$ (Theorem~\ref{thm:k3n_monodromy}), and combine this with Verbitsky's Torelli theorem to give a period map for such varieties over $\QQ$ which is actually an open immersion (Theorem~\ref{thm:main_thm_k3n}).
+
+
+%{\color{red} Maybe this can go in the chapter on K3 surfaces}
+%More precisely, the arguments in {\color{red} Rizov} show that there is an open immersion from a two-fold \'etale cover of the moduli stack of polarized K3 surfaces over $\QQ$ to an orthogonal Shimura stack $\Sh_{\KK}[G,X]$, see~\cite[Theorem~5.13]{TaelmanShimuraStacks}. In~\cite{MadapusiPera}, Madapusi-Pera later proved the same result using a different, more motivic argument. The double cover in Rizov's result parametrizes polarized K3 surfaces endowed with a so-called orientation. In~\cite{TaelmanShimuraStacks}, Taelman showed that by choosing a suitable $\KK$, one could get rid of the orientations, yielding an open immersion from the moduli stack of polarized K3 surfaces over $\QQ$ to a Shimura stack.
+
+
+
+
+\section{The global Torelli theorem}
+In this section, we recall the definition of a quadratic form on the second cohomology of a complex hyperk\"ahler variety, known as the Beauville-Bogomolov-Fujiki form. Endowed with this form and its natural Hodge structure, the second cohomology captures much of the geometry of a hyperk\"ahler variety. This is Verbitsky's global Torelli theorem, which we state in the first subsection, see Theorem~\ref{thm:unpolarized_global_torelli}. In the second subsection we show that the moduli stack of polarized hyperk\"ahler varieties is smooth, see Corollary~\ref{cor:moduli_smooth}.
+
+\subsection{The global Torelli theorem}
+In this subsection we define the Beauville-Bogomolov-Fujiki form, state some of its properties, and state the global Torelli theorem. We will call a complex K\"ahler manifold $X$ a {\bfseries hyperk\"ahler manifold} if it is compact, simply connected, and if $\HHH^0(X,\Omega^1_X)$ is spanned by a nowhere degenerate $2$-form.
+
+\begin{theorem}\label{thm:bbbf_uniqueness}
+Let $X$ be a hyperk\"ahler manifold. Then there exists a unique primitive quadratic form $q\colon \HHH^2(X,\ZZ(1)) \rightarrow \ZZ$ such that
+\begin{enumerate}
+\item $q$ is a $\QQ$-multiple of the quadratic form
+$$
+Q\colon \alpha \longmapsto \int_X \sqrt{\td_X} \, \alpha^2
+$$
+on $\HHH^2(X,\QQ(1))$,
+\item there exists a K\"ahler class $\omega \in \HHH^2(X,\RR(1))$ with $q(\omega) > 0$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+In \cite[Th\'eor\`eme 5]{Beauville}, Beauville defines a primitive quadratic form $q_X$ on $\HHH^2(X,\ZZ(1))$ which is positive on all K\"ahler classes. Moreover, it is shown in~\cite[Remark 4.12]{Fujiki} that $q_X$ is a multiple of $Q$.
+
+Now suppose $q$ is another primitive quadratic form on $\HHH^2(X,\ZZ(1))$ satisfying the two conditions, and let $\omega \in \HHH^2(X,\RR(1))$ be a K\"ahler class on which $q$ is positive. Then by the first condition, $q$ is equal to $c q_X$, where $c \in \QQ^{\times}$. Since $q$ is primitive, $c \in \{\pm 1\}$. Moreover, $c = q_X(\omega)/q(\omega)$ is positive because $q_X(\omega)$ is positive on all K\"ahler classes. It follows that $q = q_X$.
+\end{proof}
+
+\begin{definition}\label{def:bbbf}
+Let $X$ be a hyperk\"ahler manifold. The quadratic form on $\HHH^2(X,\ZZ(1))$ given in Theorem~\ref{thm:bbbf_uniqueness} is called the {\bfseries Beauville-Bogomolov-Fujiki form} or {\bfseries BBF form} of $X$, which we denote $q_X$.
+
+Occasionally it will be more convenient to work with the {\bfseries BBF pairing}
+$$
+b_X\colon \Sym^2 \HHH^2(X,\ZZ(1)) \longrightarrow \ZZ,
+$$
+which is defined by
+$$
+b_X(v,w) := q_X(v + w) - q_X(v) - q_X(w).
+$$
+\end{definition}
+
+\begin{remark}\label{rk:positive_on_amples}
+As is noted in the proof of Theorem~\ref{thm:bbbf_uniqueness}, there holds $q_X(\omega) > 0$ for every K\"ahler class. In particular, if $L$ is an ample line bundle on $X$, we have $q_X(c_1(L)) \in \ZZ_{> 0}$.
+\end{remark}
+
+\begin{example}\label{exa:bbf_k3}
+When $S$ is a complex K3 surface, the BBF form on $\HHH^2(S,\ZZ(1))$ is simply the quadratic form induced by the cup product. In particular, it is an even self-dual $\ZZ$-lattice of signature $(3,19)$. These properties determine the isometry class of $\HHH^2(S,\ZZ(1))$ by~\cite[Chapter~V, Theorem~5]{SerreCourse}.
+\end{example}
+
+In general, the BBF form is not necessarily self-dual, as the following example shows.
+
+\begin{example}\label{exa:bbf_k3n}
+Let $S$ be a K3 surface, $X = S^{[n]}$ be the Hilbert scheme of $n$ points on $S$. In~\cite{Beauville}, Beauville gives the following description of the BBF form on $X$. Let $S^{(n)}$ be the $n$th symmetric product of $S$. That is, $S^{(n)}$ is the quotient of $S^n$ by the action of $S_n$ given by permuting the coordinates. Then there is a natural map $S^{[n]} \rightarrow S^{(n)}$, and the inverse image of the singular locus of $S^{(n)}$ is a divisor $E$ on $S^{[n]}$. There exists a $\delta \in \HHH^2(X,\ZZ(1))$ with $2 \delta = E$, and such that
+$$
+\HHH^2(S^{[n]},\ZZ(1)) \cong \HHH^2(S,\ZZ(1)) \oplus \ZZ\delta
+$$
+as quadratic spaces. There holds $q(\delta) = 2 - 2n$. In particular, the discriminant 
+$$
+\Delta(\HHH^2(X,\ZZ(1))) := \HHH^2(X,\ZZ(1))^{\vee}/\HHH^2(X,\ZZ(1))
+$$
+is isomorphic to $\ZZ/(2n - 2)\ZZ$, and is generated by $\delta$.
+\end{example}
+
+\begin{example}
+For the remaining known examples of complex hyperk\"ahler varieties as in Example~\ref{exa:hk_3}, the BBF form has also been computed. They can all be found in the table in~\cite{Rapagnetta}.
+\end{example}
+
+Let $(\Lambda,b\colon \Sym^2 \Lambda \rightarrow \ZZ)$ be a $\ZZ$-lattice of signature $(3,n)$, and suppose that $\Lambda$ is endowed with a $\ZZ$-Hodge structure. Then $(\Lambda,b)$ is called a {\bfseries Hodge lattice of K3 type} if the pairing $b\colon \Sym^2 \Lambda \rightarrow \ZZ(0)$ is a morphism of Hodge structures, $\Lambda$ has type $(-1,1),(0,0),(1,-1)$, the spaces $\Lambda^{1,-1}$ and $\Lambda^{-1,1}$ are one-dimensional and orthogonal to $\Lambda^{0,0}$, and the space $(\Lambda \otimes \RR) \cap (\Lambda^{1,-1} \oplus \Lambda^{-1,1})$ is positive-definite.
+\begin{proposition}[{\cite[Section~22.3]{GrossHuybrechtsJoyce}}]\label{prop:bbf_k3_type}
+    Let $X$ be a hyperk\"ahler manifold. Then the BBF form has signature $(3,b_2(X)-3)$, and it endows $\HHH^2(X,\ZZ(1))$ with the structure of a Hodge lattice of K3 type.
+\end{proposition}
+
+The following proposition is a consequence of Point~2 in Theorem~\ref{thm:bbbf_uniqueness}.
+\begin{proposition}\label{prop:bbbf_monodromy}
+Let $X/S$ be a proper smooth map of complex analytic spaces whose fibers are hyperk\"ahler manifolds. Then there exists a unique quadratic form
+$$
+q_{X/S}\colon \RRR^2 f_* \ZZ(1) \longrightarrow \ZZ
+$$ 
+such that for every $s \in S$, the form $q_{X/S}$ restricts to the BBF form on $\HHH^2(X_s,\ZZ(1))$.
+\end{proposition}
+
+\begin{definition}
+The quadratic form $q_{X/S}$ in Proposition~\ref{prop:bbbf_monodromy} is called the {\bfseries BBF form} of $X/S$. The associated morphism of variations of Hodge structures
+$$
+b_{X/S}\colon \Sym^2 \RRR^2 f_* \ZZ(1) \longrightarrow \ZZ(0)
+$$
+given by
+$$
+b_{X/S}(v,w) = q_{X/S}(v + w) - q_{X/S}(v) - q_{X/S}(w).
+$$
+is known as the {\bfseries BBF pairing} of $X/S$.
+\end{definition}
+%\begin{proof}
+%{\color{red} Oops this entire proof is unnecessary:} \\
+%Let $\gamma\colon I \rightarrow S$ be a path in $S$, where $I = [0,1]$. We want to show that the parallel transport $\gamma q_X$ of $q_{X_s}$ along $\gamma$ is still the BBF form on $X_{s}$. According to Theorem~\ref{thm:bbbf_uniqueness}, it suffices to show that $\gamma q_X$ is positive on some K\"ahler class, and that it is a $\QQ$-multiple of the form $Q$ in~\ref{thm:bbbf_uniqueness}.
+%
+%The fact that $\gamma q_X$ is a $\QQ$-multiple follows immediately from the monodromy invariance of $Q$.
+%
+%Suppose we have a finite partition $t_0 = 0 < t_1 < ... < t_{k} = 1$ of $I = [0,1]$, and continuous families of K\"ahler classes $\omega^i_t$ on $X_{\gamma(t)}$ for $t \in [t_i,t_{i+1}]$. Then $q_X$ is positive on $\omega^0_0$, since it is positive on all K\"ahler classes. Let $q'\colon \HHH^2(X_{\gamma(t_1)},\ZZ(1)) \rightarrow \ZZ$ be the parallel transport of $q_X$ along $\gamma$ to $X_{\gamma(t)}$. Then by continuity of the family $\omega^0_t$, the form $q'$ is positive on $\omega^0_{t_1}$. Since $q'$ also satisfies condition 1 in Theorem~\ref{thm:bbbf_uniqueness}, it follows that $q'$ is the BBF form on $X_{\gamma(t_1)}$. This implies that $q'$ is positive on all K\"ahler classes, and in particular on $\omega^1_{t_1}$. By induction one concludes that $\gamma q_X(\omega^{k-1}_{t_k})$ is positive, and hence that $\gamma q_X = q_X$.
+%
+%We now go on to prove the existence of the finite partition of $I$ and the continuous families of K\"ahler classes.
+%
+%It is proved in~\cite[Theorem 15]{KodairaSpencerIII} that for any $s \in S$ we can find an open neighborhood $U$ of $s$ and a family of K\"ahler classes $\omega^t$ on $X_t$ depending differentiably on $t \in U$. For every $s \in \gamma(I)$, fix such a neighborhood $U_s$ of $s$ and such a family $\omega^t_s$. By making the $U_s$ smaller if necessary, we can guarantee that $\gamma^{-1}(U_s)$ is connected. Now take a finite subcover $U_{s_1},\ldots, U_{s_k}$ of $\gamma(I)$. Then $\gamma^{-1}(U_{s_i})$ is the required partition of $I$, and the $\omega_{s_i}^t$ the required families. {\color{red} To apply the theorem, we may need to assume that the underlying real manifold of $S$ is smooth. This is no real restriction, since deformations of hyperk\"ahler manifolds are unobstructed.}
+%\end{proof}
+
+Before we can state the global Torelli theorem, we need the notion of a parallel transport operator.
+\begin{definition}\label{def:pto}
+Let $X_0$ and $X_1$ be hyperk\"ahler manifolds. Suppose we have
+\begin{itemize}
+\item a smooth proper morphism of complex analytic spaces $f\colon \XXX \rightarrow T$,
+\item $0,1 \in T(\CC)$, 
+\item a path $\gamma$ in $T$ from $0$ to $1$,
+\item isomorphisms $\psi_0\colon \XXX_0 \rightarrow X_0$ and $\psi_1\colon X_1 \rightarrow \XXX_1$, where $\XXX_0$ and $\XXX_1$ are the fibers of $f$ over $0$ and $1$, respectively.
+\end{itemize}
+Then the induced homomorphism
+$$
+\HHH^2(X_0,\ZZ(1)) \xrightarrow{\ \psi_0^* \ } \HHH^2(\XXX_0,\ZZ(1)) \xrightarrow{\ \, \gamma \, \ } \HHH^2(\XXX_1,\ZZ(1)) \xrightarrow{\ \psi_1^* \ } \HHH^2(X_1,\ZZ(1))
+$$
+is called a {\bfseries parallel transport operator}.
+\end{definition}
+
+\begin{remark}
+It is easy to verify that the composition of parallel transport operators is again a parallel transport operator. By Proposition~\ref{prop:bbbf_monodromy}, parallel transport operators preserve the BBF form.
+\end{remark}
+
+The following is known as the global Torelli theorem for hyperk\"ahler manifolds. It was originally proved by Verbitsky in~\cite{VerbitskyTorelli}. See also~\cite{MarkmanSurvey} and~\cite{HuybrechtsBourb}.
+\begin{theorem}\label{thm:unpolarized_global_torelli}
+Let $X_0$ and $X_1$ be hyperk\"ahler manifolds, and $\vphi\colon \HHH^2(X_0,\ZZ(1)) \rightarrow \HHH^2(X_1,\ZZ(1))$ a homomorphism of abelian groups. Then there exists an isomorphism $f\colon X_1 \rightarrow X_0$ with $\vphi = f^*$ if an only if $\vphi$ is a morphism of Hodge structures, an isometry, a parallel transport operator, and there exists a K\"ahler class $\omega$ on $X_0$ such that $\vphi(\omega)$ is a K\"ahler class on $X_1$.
+\end{theorem}
+
+\begin{remark}
+When $X_0$ and $X_1$ are complex K3 surfaces, the isomorphism $f$ in Theorem~\ref{thm:unpolarized_global_torelli} is unique by~\cite[Proposition~15.2.1]{HuybrechtsK3}. In general, the isomorphism $f$ is not unique. For example, if $X$ is a complex generalized Kummer variety of dimension $2n - 2$ with $n \geq 2$, then the kernel of $\Aut(X) \rightarrow \O(\HHH^2(X,\ZZ(1)))$ is isomorphic to a semidirect product of $\ZZ/2\ZZ$ with $(\ZZ/n\ZZ)^{\oplus 4}$, as is shown in~\cite[Corollary~3.3]{BoissiereNieperSartiEnriques}.
+\end{remark}
+
+\begin{corollary}\label{cor:global_torelli}
+Let $(X_0,\lambda_0)$ and $(X_1,\lambda_1)$ be polarized hyperk\"ahler varieties, and $\vphi\colon \HHH^2(X_1,\ZZ(1)) \rightarrow \HHH^2(X_0,\ZZ(1))$ a Hodge isometry mapping $c_1(\lambda_1)$ to $c_1(\lambda_0)$. If $\vphi$ is a parallel transport operator, then there exists an isomorphism $f\colon (X_0,\lambda_0) \rightarrow (X_1,\lambda_1)$ inducing $\vphi$.
+\end{corollary}
+\begin{proof}
+This follows immediately from Theorem~\ref{thm:unpolarized_global_torelli} and the fact that if $\lambda$ is an ample line bundle, then $c_1(\lambda)$ is a K\"ahler class.
+\end{proof}
+
+\subsection{Deformations of polarized hyperk\"ahler varieties}
+Let $(X_0,\lambda_0)$ be a polarized complex hyperk\"ahler variety. We are interested in the deformation theory of the pair $(X_0,\lambda_0)$. Let $\Art_{\CC}$ be the category of local Artinian $\CC$-algebras. We define a functor $\Def(X_0,\lambda_0)\colon \Art_{\CC} \rightarrow \Set$ by mapping a local Artinian $\CC$-algebra $A$ with maximal ideal $\mm$ to the set of equivalence classes of tuples
+$$
+(f\colon X \longrightarrow \Spec(A), \, \lambda \in \Pic_{X/A}(A), \, \vphi\colon X_0 \longrightarrow X_{\mm}).
+$$
+Here, $f$ is a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties, $\lambda \in \Pic_{X/A}(A)$ is a polarization, and $\vphi$ is an isomorphism of schemes mapping $\lambda_0$ to $\lambda_{\mm}$. Two such tuples $(f\colon X \rightarrow \Spec(A),\lambda,\vphi)$ and $(f'\colon X' \rightarrow \Spec(A),\lambda',\vphi')$ are said to be equivalent if there exists an isomorphism of algebraic spaces $X \rightarrow X'$ over $A$ mapping $\lambda$ to $\lambda'$, and such that the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { X_{\mm} & & X'_{\mm} \\
+             & X_0 & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-3)
+                                         edge node[left] (U) {$\vphi$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\vphi'$} (m-2-2);
+
+
+\end{tikzpicture}\end{matrix}
+$$
+commutes.
+
+\begin{theorem}\label{thm:deformations}
+Let $(X_0,\lambda_0)$ be a polarized complex hyperk\"ahler variety with second Betti number $b_2$. Then the functor $\Def(X_0,\lambda_0)\colon \Art_{\CC} \rightarrow \Set$ is prorepresented by the formal power series ring $\CC[\![t_1,\ldots,t_{b_2 - 3}]\!]$.
+\end{theorem}
+\begin{proof}
+Let $\Germs$ be the category of germs of complex analytic spaces. Its objects are pairs $(S,s)$, with $S$ a complex analytic space, and $s \in S$. A morphism $(S,s) \rightarrow (S',s')$ in $\Germs$ consists of an open neighborhood $U$ of $s$, and a morphism $\vphi\colon U \rightarrow S'$ mapping $s$ to $s'$. Define a functor $\Def_{\an}(X_0)\colon \Germs^{\opp} \rightarrow \Set$ by mapping a germ $(S,s)$ to equivalence classes of pairs $(f\colon X \rightarrow U, \vphi\colon X_0 \rightarrow X_s)$, where $U$ is a neighborhood of $s$, $f$ is a proper smooth map of complex analytic spaces, and $\vphi$ is an isomorphism. Two pairs $(f\colon X \rightarrow U, \vphi)$ and $(f'\colon X' \rightarrow U',\vphi')$ are equivalent if there exists a neighborhood $V \subseteq U \cap U'$ of $s$ and an isomorphism of complex spaces $X_V \rightarrow X'_V$ making the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { X_V & & X'_V \\
+             & X_0 & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-3)
+                                         edge node[left] (U) {$\vphi$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\vphi'$} (m-2-2);
+
+
+\end{tikzpicture}\end{matrix}
+$$
+commute. The Bogomolov-Tian-Todorov theorem states that since $X_0$ is a compact K\"ahler manifold with trivial canonical bundle, the functor $\Def_{\an}(X_0)$ is represented by the germ $(\CC^n, 0)$, for some $n \in \ZZ_{\geq 0}$.
+
+Let $\Omega^{\pm}_{\HHH^2(X_0,\RR(1))}$ be the complex manifold parametrizing Hodge structures of K3 type on $\HHH^2(X_0,\RR(1))$, and let $\XXX \rightarrow \Def_{\an}(X_0)$ be the universal deformation of $X_0$. Since $\Def_{\an}(X_0)$ is simply connected, we can canonically identify $\HHH^2(\XXX_s, \ZZ(1))$ with $\HHH^2(X_0,\ZZ(1))$ for each $s \in \Def_{\an}(X_0)$. This gives rise to a morphism $p\colon \Def_{\an}(X_0) \rightarrow \Omega^{\pm}_{\HHH^2(X_0,\ZZ(1))}$. The local Torelli theorem \cite[Th\'eor\`eme~5]{Beauville} states that $p$ is a local isomorphism. This implies that $n = b_2 - 2$.
+
+Let $\Def_{\an}(X_0,\lambda_0)\colon \Germs^{\opp} \rightarrow \Set$ be the functor parametrizing polarized deformations of $(X_0,\lambda_0)$, defined similarly to $\Def_{\an}(X_0)$ and $\Def(X_0,\lambda_0)$. Then $\Def_{\an}(X_0,\lambda_0)$ is a subfunctor of $\Def_{\an}(X_0)$, and is in fact the inverse image of $\Omega^{\pm}_{\HHH^2(X_0,\RR(1)) \cap \lambda_0^{\perp}}$ under $p$. In particular, $\Def_{\an}(X_0,\lambda_0)$ is represented by the germ $(\CC^{b_2 - 3},0)$.
+
+Let $\AA$ be the category of $\CC$-algebras which are isomorphic to quotients of $\OO_{\CC^n,0}^{\an}$ for some $n \in \ZZ_{\geq 0}$. Then $(S,s) \mapsto \OO_{S,s}^{\an}$ defines an equivalence $\Germs^{\opp} \rightarrow \AA$, where $\OO_S^{\an}$ denotes the structure sheaf of $S$. Since the analytification of a finite $\CC$-scheme is still finite, the category $\AA$ contains $\Art_{\CC}$ as a full subcategory, and there is a $2$-commutative diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { \Art_{\CC} &      & \AA \\
+                        & \Set &     \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-3)
+                                         edge node[left] (U) {$\Def(X_0,\lambda_0)\, $} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\, \Def_{\an}(X_0,\lambda_0)$} (m-2-2);
+
+
+\end{tikzpicture}\end{matrix}
+$$
+In particular, since the completion of $\OO^{\an}_{\CC^{b_2-3},0}$ is $\CC[\![t_1,\ldots,t_{b_2 - 3}]\!]$, and since Artinian algebras are complete, we have, for any $A \in \Art_{\CC}$
+$$
+\Def(X_0,\lambda_0)(A) = \Hom(\OO^{\an}_{\CC^n,0},A) = \Hom(\CC[\![t_1,\ldots,t_{b_2 - 3}]\!],A).
+$$
+\end{proof}
+
+The following corollary finishes the proof of Theorem~\ref{thm:moduli_dm}.
+\begin{corollary}\label{cor:moduli_smooth}
+The moduli stack $\HK$ of polarized hyperk\"ahler varieties over $\QQ$ is smooth. Its dimension at a $\CC$-point $(X,\lambda)$ is equal to $b_2(X) - 3$.
+\end{corollary}
+\begin{proof}
+For the smoothness assertion, it suffices to prove that $\HK_{\CC}$ is smooth over $\CC$. We already know that $\HK_{\CC}$ is locally of finite type. From~\cite[Tag~02HX]{SP} it follows that we need to check that if $A$ is an Artinian $\CC$-algebra, and $I \subseteq A$ an ideal with $I^2 = 0$, then for any morphism $\Spec(A/I) \rightarrow \HK$, there exists a $2$-commutative diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \Spec(A/I) & \HK \\
+             \Spec(A) & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge (m-1-2);
+
+
+\end{tikzpicture}\end{matrix}
+$$
+More concretely, this means that given a smooth proper morphism $X \rightarrow \Spec(A/I)$ whose fibers are hyperk\"ahler varieties and a polarization $\lambda \in \Pic_{X/\Spec(A/I)}(A/I)$, we want to find a smooth proper morphism $X' \rightarrow \Spec(A)$ whose fibers are hyperk\"ahler varieties and a polarization $\lambda' \in \Pic_{X/\Spec(A)}(A)$ such that the pullback of the pair $(X',\lambda')$ to $A/I$ is isomorphic to $(X,\lambda)$. This follows immediately from Theorem~\ref{thm:deformations}.
+
+Let $(X,\lambda)$ be a $\CC$-point of $\HK$, and let $\CC[\vep]$ be the ring of dual numbers over $\CC$. Then $\Def(X,\lambda)(\CC[\vep])$ is a finite-dimensional $\CC$-vector space, and the dimension of $\HK$ at the point $(X,\lambda)$ is equal to that of $\Def(X,\lambda)(\CC[\vep])$. It therefore follows from Theorem~\ref{thm:deformations} that the dimension of $\HK$ at $(X,\lambda)$ is $b_2(X) - 3$.
+\end{proof}
+
+\section{The BBF form on \'etale cohomology}
+In this section we extend the notion of BBF form to hyperk\"ahler varieties over arbitrary fields of characteristic $0$. The main result is the \'etale monodromy invariance of the BBF form, Theorem~\ref{thm:mon_et_bbf}.
+\begin{lemma}\label{lem:bbf_etale}
+Let $X$ be a hyperk\"ahler variety over a field $K$ of characteristic $0$. Then there exists a unique primitive quadratic form $q\colon \HHH_{\et}^2(X_{\overline{K}},\ZZh(1)) \rightarrow \ZZh$ such that
+\begin{enumerate}
+\item $q$ is a $\QQ$-multiple of the quadratic form
+$$
+Q_{X}\colon \alpha \longmapsto \int_X \sqrt{\td_{X_{\overline{K}}}} \, \alpha^2
+$$
+on $\HHH^2_{\et}(X_{\overline{K}},\AAf(1))$,
+\item there exists an ample line bundle $L$ on $X_{\overline{K}}$ for which $q(c_1(L)) \in \ZZ_{> 0}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+By a spreading out argument, we may assume that $K$ is of finite type over $\QQ$. We choose an embedding of $K$ into $\CC$. Now using Artin's comparison isomorphism and Theorem~\ref{thm:bbbf_uniqueness}, we obtain a primitive quadratic form on $\HHH^2_{\et}(X_{\overline{K}},\ZZh(1))$ satisfying the conditions of the lemma. In fact, by Remark~\ref{rk:positive_on_amples}, we obtain a quadratic form $q\colon \HHH^2_{\et}(X_{\overline{K}},\ZZh(1)) \rightarrow \ZZh$ satisfying the stronger condition that \emph{for every} ample line bundle $L \in \Pic(X_{\overline{K}})$ there holds $q(c_1(L)) \in \ZZ_{> 0}$.
+
+Now suppose $q'$ is another primitive quadratic form on $\HHH^2_{\et}(X_{\overline{K}},\ZZh(1))$ satisfying the conditions of the lemma. Let $L$ be an ample line bundle on $X_{\overline{K}}$ such that $q'(c_1(L)) \in \ZZ_{> 0}$. Since $q$ and $q'$ both satisfy condition~1, there exists a $c \in \QQ^{\times}$ with $q = c q'$. Because $q$ and $q'$ are primitive, we have $c \in \ZZh^{\times} \cap \QQ^{\times} = \{ \pm 1\}$. It now follows from the fact that $q'(c_1(L))$ and $q(c_1(L))$ are positive integers that $c = 1$, proving the uniqueness.
+\end{proof}
+
+\begin{definition}\label{def:etbbf}
+Let $X$ be a hyperk\"ahler variety over a field $K$ of characteristic $0$. The quadratic form on $\HHH^2_{\et}(X_{\overline{K}},\ZZh(1))$ given in Lemma~\ref{lem:bbf_etale} is called the {\bfseries Beauville-Bogomolov-Fujiki form} or {\bfseries BBF form} of $X$, and is denoted $q_X$. The bilinear pairing $b_X\colon \Sym^2 \HHH^2_{\et}(X_{\overline{K}},\ZZh(1)) \rightarrow \ZZh$ associated with $q_X$ is called the {\bfseries BBF pairing}.
+\end{definition}
+
+\begin{remark}
+The proof of Lemma~\ref{lem:bbf_etale} shows that if $X$ is a hyperk\"ahler variety over $\CC$, then the Artin comparison isomorphism between singular and \'etale cohomology gives an isometry from $\HHH^2(X,\ZZ(1)) \otimes \ZZh$ endowed with the BBF form from Definition~\ref{def:bbbf} to $\HHH^2_{\et}(X,\ZZh(1))$ endowed with the BBF form from Definition~\ref{def:etbbf}.
+\end{remark}
+
+
+\begin{theorem}\label{thm:mon_et_bbf}
+%Let $S$ be a $\QQ$-scheme, $X/S$ a proper smooth morphism of algebraic spaces whose fibers are hyperk\"ahler varieties, and let $\overline{s}$ be a geometric point of $S$. Then the monodromy representation
+%$$
+%\pi_1^{\et}(S,\overline{s}) \longrightarrow \GL(\HHH^2_{\et}(X_{\overline{s}}, \ZZh(1))
+%$$
+%factors through $\O(\HHH^2_{\et}(X_{\overline{s}},\ZZh(1)))$, where $\HHH^2_{\et}(X_{\overline{s}},\ZZh(1))$ is endowed with the \'etale BBF form.
+Let $S$ be a $\QQ$-scheme, $f\colon X \rightarrow S$ a proper smooth morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. Then there exists a unique quadratic form
+$$
+q_{X/S}\colon \RRR_{\et}^2 f_* \ZZh(1) \longrightarrow \ZZh(0)
+$$
+such that for every geometric point $\overline{s}$ of $S$, the form $q_{X/S}$ restricts to the BBF form on $\HHH^2_{\et}(X_{\overline{s}},\ZZh(1))$.
+\end{theorem}
+\begin{proof}
+%    It seems that this follows immediately from the monodromy invariance of $f$, up to an element of $\ZZh^{\times}$. I think we can get rid of polarizable by using the fact that \'etale locally on the base, $X/S$ is polarizable. {\color{red} and it's important that we get rid of polarizable, because we use it in the proof where we work with the stack of non-polarized hyperk\"ahlers}
+%
+%Locally polarizable: pick a polarization of one of the fibers. By definition of the stalk of a sheaf, we can find an \'etale neighborhood to which this polarization extends, as a section of $\Pic_{X/S}$. Over a Zariski open subset of this neighborhood, this extension will be ample (see Remark 1.7.3 in Lazarsfeld's book on positivity). Then we have an \'etale BBF form on this \'etale neighborhood. Use the fact that $\Hom(\RRR_{\et}^2 f_* \ZZh(1),\ZZh(0))$ is a sheaf to conclude.
+%{\color{red} Alternative proof which is way quicker:} Clearly the monodromy representation factors through
+%$$
+%\{g \in \GL(\HHH^2_{\et}(X_{\overline{s}},\ZZh(1))) \mid g Q = Q\},
+%$$
+%where $Q$ is as in Lemma~\ref{lem:bbf_etale}. Since the BBF form is a $\QQ$-multiple of $Q$, the theorem follows (their orthogonal groups coincide). 
+%
+%{\color{red} The reason why I think this is not sufficient:} What this argument proves is that there exists a quadratic form $q_{X/S}\colon \RRR_{\et}^2 f_* \ZZh(1) \rightarrow \ZZh$ which is the BBF form \emph{at precisely one point}. Whereas we want one which is the BBF on all fibers.
+%
+%{\color{red} But it is:} Every path $\gamma$ from $x$ to $y$ induces an isometry for the quadratic forms $\int_{X_x} \sqrt{\td_{X_x}} \alpha^2$ to $\int_{X_y} \sqrt{\td_{X_y}} \alpha^2$. Ah, but what's missing in this argument is that the factor of proportionality has to be constanst "along" $\gamma$ ({\color{red} this still has to be verified}). {\color{red} So it's not sufficient?}
+%
+The uniqueness is clear, so we go on to prove the existence of the form.
+
+First, we prove the existence for those $f\colon X \rightarrow S$ which admit a polarization $\lambda \in \Pic_{X/S}(S)$. We assume without loss of generality that $S$ is connected.
+
+Let $\overline{s}$ and $\overline{s}'$ be geometric points of $S$, and $\gamma$ a path in $S_{\et}$ from $\overline{s}$ to $\overline{s}'$. Then $\gamma$ induces an isomorphism of $\ZZh$-modules $\gamma_*\colon \HHH^2_{\et}(X_{\overline{s}},\ZZh(1)) \rightarrow \HHH^2_{\et}(X_{\overline{s}'},\ZZh(1))$. Let $q$ and $q'$ be the BBF forms on $\HHH^2_{\et}(X_{\overline{s}},\ZZh(1))$ and $\HHH^2_{\et}(X_{\overline{s}'},\ZZh(1))$, respectively. It suffices to show that $q\gamma_* = q'$. 
+
+For the forms $Q := Q_{X_{\overline{s}}}$ and $Q' := Q_{X_{\overline{s}'}}$ from Lemma~\ref{lem:bbf_etale} it is clear that $Q \gamma_* = Q'$. Since $q$ is a primitive $\QQ$-multiple of $Q$, it follows that the form $q\gamma_*$ is a primitive $\QQ$-multiple of $Q'$. Moreover, because $\lambda_{\overline{s}}$ extends to a section $\lambda$ of $\Pic_{X/S}$ over $S$, we have $(q\gamma_*)(c_1(\lambda_{\overline{s}})) = q(c_1(\lambda_{\overline{s}}))$, which is an element of $\ZZ_{> 0}$ by part $2$ of Lemma~\ref{lem:bbf_etale}. Since the BBF form is uniquely determined by the two conditions in Lemma~\ref{lem:bbf_etale}, it follows that $q \gamma_* = q'$, proving the theorem for polarizable families of hyperk\"ahler varieties.
+
+Now let $f\colon X \rightarrow S$ be as in the statement of the theorem. By Remark~\ref{rk:local_polarizability}, there exists an \'etale cover $U \rightarrow S$ and a polarization $\lambda \in \Pic_{X/S}(U)$. Let $f_U\colon X_U \rightarrow U$ be the pullback of $X$ to $U$. Then the first part of this proof shows that there exists a quadratic form
+$$
+q_{U}\colon \RRR_{\et}^2 f_{U,*} \ZZh(1) \longrightarrow \ZZh(0)
+$$
+in $U_{\et}$ which restricts to the \'etale BBF form on geometric fibers. It suffices to show that $q_U$ descends to $S$.
+
+Let $\pr_1$ and $\pr_2$ denote the projections $U \times_S U \rightarrow U$, and let $X_1$ and $X_2$ be the pullbacks of $X_U$ along $\pr_1$ and $\pr_2$, respectively. Then stalk-wise $\pr_1^* q_U$ and $\pr_2^* q_U$ are the BBF forms of the geometric fibers of $X_1$ and $X_2$, respectively. From $X_1 \cong X_2$ it follows that $\pr_1^* q_U = \pr_2^* q_U$, since isomorphisms of hyperk\"ahler varieties preserve the BBF form. In particular, $q_U$ descends to $S$, proving the theorem.
+%{\color{red} something that might matter for local polarizability: Rizov shows that fiberwise ample and relatively ample are the same for K3 surfaces}
+\end{proof}
+
+\begin{remark}\label{rk:etale_bbf}
+Let $S$ be a $\QQ$-scheme, and let $f\colon X \rightarrow S$ be a proper smooth morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. The quadratic form
+$$
+q_{X/S}\colon \RRR^2_{\et} f_* \ZZh(1) \longrightarrow \ZZh
+$$
+given in Theorem~\ref{thm:mon_et_bbf} is called the {\bfseries BBF form} of $X/S$. The associated bilinear pairing $b_{X/S}\colon \Sym^2 \RRR^2_{\et} f_* \ZZh(1) \rightarrow \ZZh$ is known as the {\bfseries BBF pairing} of $X/S$.
+
+This quadratic form is preserved under base change in the following sense. Suppose we are given a morphism $\vphi\colon S' \rightarrow S$ of $\QQ$-schemes. Define $f'\colon X' \rightarrow S'$ by the cartesian square
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { X' & X  \\
+             S' & S \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge node[left]{$f'$} (m-2-1)
+                                 (m-2-1) edge node[below]{$\vphi$} (m-2-2)
+                                 (m-1-2) edge node[right]{$f$} (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+Then $f'$ is a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. Smooth and proper base change for \'etale cohomology give an isomorphism
+$$
+\vphi^*\left( \RRR_{\et}^2 f_* \ZZh(1)\right) \longrightarrow \RRR_{\et}^2 f'_* \ZZh(1)
+$$
+of local systems on $S'_{\et}$ which is compatible with the BBF forms.
+\end{remark}
+
+\begin{remark}
+Let $X$ be a complex hyperk\"ahler variety, and $\sigma \in \Aut(\CC)$. It is not clear whether $X$ and $\sigma^* X$ have isometric BBF forms on their singular cohomology. However, it can be shown that they have the same genus, as follows. Remark~\ref{rk:etale_bbf} shows that $\HHH^2(X,\ZZ(1)) \otimes \ZZh$ and $\HHH^2(\sigma^* X,\ZZ(1)) \otimes \ZZh$ are isometric. In addition, by Proposition~\ref{prop:bbf_k3_type} they have the same signature, so they have the same genus.
+
+For all known examples of complex hyperk\"ahler varieties (see Examples~\ref{exa:hk_1} through~\ref{exa:hk_3}), the BBF form $\Lambda$ satisfies the inequality $\rk(\Lambda) \geq \length(\Delta(\Lambda)) + 2$, as can be seen in the table in~\cite{Rapagnetta}. Here, $\length(\Delta(\Lambda))$ denotes the minimal number of elements required to generate $\Delta(\Lambda)$. By~\cite[Theorem~1.14.2]{Nikulin}, this inequality and the indefiniteness of $\Lambda$ imply that the genus of $\Lambda$ contains exactly one isometry class. In particular, if $X$ is one of the known examples of complex hyperk\"ahler varieties, then $X$ and $\sigma^* X$ have isometric BBF forms on their singular cohomology. 
+\end{remark}
+
+\section{Orientations on hyperk\"ahler varieties}\label{sec:oriented_hks}
+This section serves to introduce the moduli stack $\HK_{\ori}$ of oriented polarized hyperk\"ahler varieties. The main result is the rather technical Theorem~\ref{thm:hk_orientations}, which we need to construct a morphism from a connected component of $\HK_{\ori}$ to an orthogonal Shimura stack.
+
+We will need to work with motives over a finitely generated field $k$ of characteristic $0$. Similarly to the algebraically closed case discussed in Section~\ref{sec:motives}, they form a semisimple Tannakian category $\Mot_k$. 
+
+Let $\overline{k}$ be an algebraic closure of $k$. Then the composition of the pullback functor $\Mot_k \rightarrow \Mot_{\overline{k}}$ with the fiber functor $\HHH_{\et}\colon \Mot_{\overline{k}} \rightarrow \AAf\Mod$ yields a fiber functor on $\Mot_k$, which we denote by~$\HHH_{\overline{k},\et}$. Equation~\eqref{eq:pullback_motives_bla} shows that $\HHH_{\overline{k},\et}$ gives rise to a functor $\Mot_k \rightarrow \gal_k\Rep_{\AAf}$, where $\gal_k\Rep_{\AAf}$ denotes the category of $\AAf$-modules endowed with a continuous $\AAf$-linear $\gal_k$-action. We will abusively denote this functor with $\HHH_{\overline{k},\et}$ as well. Similarly, an embedding $\iota\colon k \rightarrow \CC$ and the Betti realization functor give rise to a fiber functor $\HHH_{\iota}\colon \Mot_k \rightarrow \QQ\HS$. For a motive $M \in \Mot_k$, we denote by $M_{\et}$ and $M_{\iota}$ the images of $M$ under $\HHH_{\overline{k},\et}$ and $\HHH_{\iota}$, respectively.
+
+\begin{lemma}\label{lem:orientation_field}
+Let $k$ be a finitely generated field of characteristic $0$, let $X$ be a hyperk\"ahler variety over $k$ with $b_2(X) > 3$, and let $\omega_{[4]}\colon \ZZ/4\ZZ \rightarrow \det \HHH^2_{\et}(X_{\overline{k}},\mu_4)$ be a $\gal_k$-equivariant isomorphism. Then there exists an isomorphism of motives over $k$
+$$
+\omega\colon \1 \longrightarrow \det (\h^2(X)(1))
+$$
+    such that $\omega_{\et}\colon \AAf \rightarrow \det \HHH^2_{\et}(X_{\overline{k}},\AAf(1))$ of $\omega$ restricts to an isomorphism $\ZZh \rightarrow \det \HHH^2_{\et}(X_{\overline{k}}, \ZZh(1))$ satisfying $\omega_{\et}|_{\ZZh} \otimes \ZZ/4\ZZ = \omega_{[4]}$. Moreover, for every embedding $\iota\colon k \rightarrow \CC$, the map $\omega_{\iota}\colon \QQ \rightarrow \det \HHH^2(X \times_{k,\iota} \CC,\QQ(1))$ restricts to an isomorphism $\ZZ \rightarrow \det \HHH^2(\iota^* X, \ZZ(1))$.
+\end{lemma}
+\begin{proof}
+    We first show that $\det (\h^2(X)(1))$ is isomorphic to $\1$. Since $b_2(X) > 3$,~\cite[Theorem~1.5.1]{AndreTateShafarevich} shows that $\det(\h^2(X)(1))$ is an abelian motive over $k$ of rank $1$ and weight $0$. It follows that $\det(\h^2(X)(1))$ is an Artin motive. In particular, since its rank is $1$, it follows that $\det(\h^2(X)(1))$ is the motive associated with a quadratic character $\chi\colon \gal_k \rightarrow \{\pm 1\}$. For any prime number $\ell$, the character $\chi$ agrees with the composition
+$$
+    \gal_k \longrightarrow \O(\HHH^2_{\et}(X_{\overline{k}},\ZZ_{\ell}(1))) \xrightarrow{\det} \{\pm 1\}.
+$$
+The commutative diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { & \O(\HHH^2_{\et}(X_{\overline{k}},\ZZ_2(1))) &  \\
+           \gal_k & & \{\pm 1\} \\
+             & \GL(\HHH^2_{\et}(X_{\overline{k}}, \mu_4)) & \\ };
+
+           \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                                         edge (m-3-2)
+                                 (m-1-2) edge node[above]{$\ \det$} (m-2-3)
+                                         edge (m-3-2)
+                                 (m-3-2) edge node[below]{$\det$} (m-2-3);
+
+\end{tikzpicture}\end{matrix}
+$$
+and the existence of $\omega_{[4]}$ show that $\chi$ is trivial, and hence that there exists an isomorphism $\omega\colon \1 \cong \det(\h^2(X)(1))$.
+
+For $\iota\colon k \hookrightarrow \CC$, we endow $\det \HHH^2(X_{\iota,\CC},\ZZ(1))$ with the quadratic form induced by the BBF form. Similarly, $\det \HHH^2_{\et}(X_{\overline{k}},\ZZh(1))$ is also endowed with the quadratic form induced by the BBF form. Then, by Theorem~\ref{thm:mon_et_bbf}, $\det \HHH^2(X_{\iota,\CC},\ZZ(1)) \otimes \ZZh$ and $\det \HHH^2_{\et}(X_{\overline{k}},\ZZh(1))$ are isometric. In particular, since the genus of a rank $1$ lattice contains only one isometry class, the discriminant $d$ of $\det \HHH^2(X_{\iota,\CC},\ZZ(1))$ is independent of the choice of $\iota$.
+
+Endow $\1$ with the unique quadratic form $q$ such that for any $\iota\colon k \hookrightarrow \CC$, the quadratic form $q_{\iota}$ on $\QQ$ restricts to a quadratic form on $\ZZ$ with discriminant $d$. By rescaling the isomorphism $\omega\colon \1 \rightarrow \det(\h^2(X)(1))$, we may assume that it is an isometry with respect to $q$ and the BBF form. Let $\iota\colon k \hookrightarrow \CC$. Then, by construction, the two sublattices $\omega_{\iota}(\ZZ)$ and $\det \HHH^2(X_{\iota,\CC},\ZZ(1))$ of $\det \HHH^2(X_{\iota,\CC},\QQ(1))$ have the same discriminant, and are therefore equal. It follows that $\omega_{\iota}$ restricts to an isomorphism $\ZZ \rightarrow \det\HHH^2(X_{\iota,\CC},\ZZ(1))$. From the Artin comparison isomorphisms it now follows that $\omega_{\et}$ restricts to an isomorphism $\ZZh \rightarrow \det \HHH^2_{\et}(X_{\overline{k}},\ZZh(1))$.
+
+Multiplying $\omega$ with $-1$ if necessary guarantees that $\omega_{\et} \otimes \ZZ/4\ZZ = \omega_{[4]}$.
+\end{proof}
+
+\begin{lemma}\label{lem:orientations_normal_base}
+    Let $S$ be a normal $\QQ$-scheme of finite type, $f\colon X \rightarrow S$ a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties satisfying $b_2 > 3$, and let $\omega_{[4]}\colon \ZZ/4\ZZ \rightarrow \det \RRR^2_{\et} f_* \mu_4$ be an isomorphism of local systems on $S_{\et}$. Then there are unique isomorphisms of local systems
+$$
+\omega_{\et}\colon \ZZh \longrightarrow \det \RRR^2_{\et} f_* \ZZh(1)
+$$
+on $S_{\et}$ and
+$$
+\omega_{\an}\colon \ZZ \longrightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)
+$$
+    on $S_{\CC}$ satisfying $\omega_{\et}|_{S_{\CC}} = \omega_{\an} \otimes \ZZh$ and $\omega_{[4]} = \omega_{\et} \otimes \ZZ/4\ZZ$.
+\end{lemma}
+\begin{proof}
+The uniqueness of the isomorphisms is clear, so we go on to prove existence.
+
+Without loss of generality we may assume that $S$ is connected. Let $\eta$ be the generic point of $S$, and $\overline{\eta}$ an algebraic closure of $\eta$. Lemma~\ref{lem:orientation_field} shows that the restriction of the local system $\det \RRR_{\et}^2 f_* \ZZh(1)$ to $\eta$ is constant. Since $\pi_1^{\et}(\eta,\overline{\eta}) \rightarrow \pi_1^{\et}(S,\overline{\eta})$ is surjective by~\cite[Proposition~V.8.2]{SGA1}, we conclude that $\det \RRR_{\et}^2 f_* \ZZh(1)$ is constant.
+
+Let $s$ be a $\CC$-point of $S$. Then we have a commutative diagram
+\begin{equation}\label{eq:commu_diag_orientations_normal}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { & \GL(\HHH^2(X_s,\ZZ(1))) &  \\
+           \pi_1(S_{\CC},s) & & \{\pm 1\} \\
+             & \GL(\HHH^2(X_{s}, \mu_4)) & \\ };
+
+           \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                                         edge (m-3-2)
+                                 (m-1-2) edge node[above]{$\ \det$} (m-2-3)
+                                         edge (m-3-2)
+                                 (m-3-2) edge node[below]{$\det$} (m-2-3);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+By the existence of $\omega_{[4]}$, the composition $\pi_1(S_{\CC},s) \rightarrow \GL(\HHH^2(X_s,\mu_4)) \rightarrow \{\pm 1\}$ is trivial, so by~\eqref{eq:commu_diag_orientations_normal} we conclude that $\pi_1(S_{\CC},s) \rightarrow \GL(\HHH^2(X_s,\ZZ(1))) \rightarrow \{ \pm 1\}$ is trivial as well. It follows that the local system $\det \RRR^2 f_{\CC,*} \ZZ(1)$ is constant on $S_{\CC}$.
+
+Since the local systems $\det \RRR_{\et}^2 f_* \ZZh(1)$ and $\det \RRR^2 f_{\CC,*} \ZZ(1)$ are constant, the isomorphisms given in Lemma~\ref{lem:orientation_field}, applied to $\eta$, give the desired isomorphisms of local systems $\omega_{\et}$ and $\omega_{\an}$.
+\end{proof}
+
+\begin{definition}
+Let $S$ be a $\QQ$-scheme, and let $f\colon X \rightarrow S$ be a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. An {\bfseries orientation} on $X/S$ is an isomorphism of sheaves of finite abelian groups
+$$
+\omega\colon \ZZ/4\ZZ \longrightarrow \det \RRR_{\et}^2 f_* \mu_4
+$$
+on $S_{\et}$.
+
+The {\bfseries moduli stack of oriented polarized hyperk\"ahler varieties} $\HK_{\ori}$ is defined to be the stack parameterizing tuples $(X/S,\lambda,\omega)$, where $(X/S,\lambda) \in \HK$ is an element such that the fibers of $X/S$ have second Betti number greater than $3$, and $\omega$ is an orientation on $X/S$. Let $f\colon \XXX \rightarrow \HK_{\ori}$ be the universal hyperk\"ahler variety. We denote by $\omega_{[4]}$ the universal orientation $\ZZ/4\ZZ \rightarrow \det \RRR^2_{\et} f_* \mu_4$.
+\end{definition}
+
+\begin{remark}
+Since $\HK_{\ori}$ is a degree $2$ \'etale cover of $\HK$, it is itself a smooth separated Deligne-Mumford stack over $\QQ$.
+\end{remark}
+
+\begin{remark}
+The condition on the second Betti number of the hyperk\"ahler varieties parameterized by $\HK_{\ori}$ is there to ensure that their motives are abelian, cf.\ Remark~\ref{rk:hk_motives_abelian}. This will allow us to apply Lemma~\ref{lem:orientations_normal_base}.
+\end{remark}
+
+\begin{theorem}\label{thm:hk_orientations}
+There are unique isomorphisms of local systems
+$$
+\omega_{\et}\colon \ZZh \longrightarrow \det \RRR^2_{\et} f_* \ZZh(1)
+$$
+on $\HK_{\ori,\et}$ and
+$$
+\omega_{\an}\colon \ZZ \longrightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)
+$$
+on $\HK_{\ori,\CC}$ such that $\omega_{\et}|_{\HK_{\ori,\CC}} = \omega_{\an} \otimes \ZZh$ and such that $\omega_{[4]} = \omega_{\et} \otimes \ZZ/4\ZZ$.
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{cor:moduli_smooth}, $\HK_{\ori}$ is smooth, and in particular normal and of finite type over $\QQ$. It follows that we can apply Lemma~\ref{lem:orientations_normal_base} to conclude the proof.
+\end{proof}
+
+The following lemma will be useful in our treatment of the moduli stack of polarized K3 surfaces.
+\begin{lemma}\label{lem:d_lemma}
+There is a rank $1$ local $\ZZ$-system $D$ on $\HK_{\et}$, endowed with an injective morphism of sheaves $D \rightarrow \det \RRR^2_{\et} f_* \ZZh(1)$ on $\HK_{\et}$ and an isomorphism of sheaves $D|_{\HK_{\CC}} \rightarrow \det \RRR^2 f_{\CC,*}\ZZ(1)$ on $\HK_{\CC}$ such that the diagram
+\begin{equation}\label{eq:d_lemma}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+             {  & \det \RRR^2 f_{\CC,*} \ZZ(1) \\
+             D|_{\HK_{\CC}} &   \\
+            &  \det \RRR^2_{\et} f_{\CC,*} \ZZh(1) \\};
+
+           \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                                         edge (m-3-2)
+                                 (m-1-2) edge node[right]{$\otimes \ZZh$} (m-3-2);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+commutes.
+\end{lemma}
+\begin{proof}
+    Being a degree $2$ \'etale cover of $\HK$, the stack $\HK_{\ori}$ comes with a natural $\{\pm 1\}$-action making it a $\{\pm 1\}$-torsor on $\HK_{\et}$. In addition to this, we have a $\ZZ^{\times}\!$-torsor $\Isom(\ZZ,\det \RRR^2 f_{\CC,*} \ZZ(1))$ on $\HK_{\CC}$, and a $\ZZh^{\times}\!$-torsor $\Isom(\ZZh,\det \RRR^2_{\et} f_* \ZZh(1))$. Theorem~\ref{thm:hk_orientations} gives morphisms of sheaves
+\begin{equation}\label{eq:d_lemma_1}
+\omega_{\et}\colon \HK_{\ori} \longrightarrow \Isom\!\left(\ZZh,\det \RRR^2_{\et} f_* \ZZh(1)\right)
+\end{equation}
+on $\HK_{\et}$ and
+\begin{equation}\label{eq:d_lemma_2}
+\omega_{\an}\colon \HK_{\ori,\CC} \longrightarrow \Isom\!\left(\ZZ,\det \RRR^2 f_{\CC,*} \ZZ(1)\right)
+\end{equation}
+on $\HK_{\CC}$ such that the diagram
+\begin{equation}\label{eq:d_lemma_3}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=0.7em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+             {  & \Isom(\ZZ,\det \RRR^2 f_{\CC,*} \ZZ(1))\phantom{\!|_{\HK}}\\
+             \HK_{\ori,\CC} &   \\
+            &  \Isom(\ZZh,\det \RRR^2_{\et} f_* \ZZh(1))|_{\HK_{\CC}} \\};
+
+           \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                                         edge (m-3-2)
+                                 (m-1-2) edge node[right]{$\otimes \ZZh$} (m-3-2);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+    commutes. It is easily verified that the maps $\omega_{\et}$ and $\omega_{\an}$ are $\{\pm 1\}$-equivariant. In particular, $\omega_{\an}$ is an isomorphism, since its source and target are torsors under the same group $\ZZ^{\times} = \{\pm 1\}$.
+
+There is an equivalence from the groupoid of rank $1$ local $\ZZ$-systems on $\HK_{\et}$ (respectively $\HK_{\CC}$) to the groupoid of $\{\pm 1\}$-torsors on $\HK_{\et}$ (respectively $\HK_{\CC}$) given by mapping a local system $L$ to $\Isom(\ZZ,L)$. Similarly, $\Isom(\ZZh,-)$ gives an equivalence from the groupoid of rank $1$ local $\ZZh$-systems on $\HK_{\et}$ to the groupoid of $\ZZh^{\times}\!$-torsors on $\HK_{\et}$.
+
+    It follows that $\HK_{\ori}$ gives rise to a rank $1$ local $\ZZ$-system on $\HK_{\et}$. Equations~\eqref{eq:d_lemma_1} and~\eqref{eq:d_lemma_2} yield injective morphisms of sheaves $D \rightarrow \det \RRR^2_{\et} f_* \ZZh(1)$ and $D|_{\HK_{\CC}} \rightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)$. The commutativity of the diagram in~\eqref{eq:d_lemma_3} shows that the diagram in~\eqref{eq:d_lemma} commutes, proving the lemma.
+\end{proof}
+\begin{corollary}
+%Let $S$ be a $\QQ$-scheme, $\overline{s}$ a geometric point of $S$, and $X/S$ a smooth proper morphism of schemes whose fibers are hyperk\"ahler varieties with $b_2 > 3$, endowed with a polarization $\lambda \in \Pic_{X/S}(S)$. Then the monodromy action of $\pi_1^{\et}(S,\overline{s})$ on $\det \HHH^2_{\et}(X_{\overline{s}},\ZZh(1))$ has image in $\{\pm 1\} \subseteq \ZZh^{\times}$.
+Let $S$ be a $\QQ$-scheme, $\overline{s}$ a geometric point of $S$, and $X/S$ a smooth proper morphism of schemes whose fibers are hyperk\"ahler varieties with $b_2 > 3$, endowed with a polarization $\lambda \in \Pic_{X/S}(S)$. For every prime number $\ell$, consider the monodromy representation $\rho_{\ell}\colon \pi^{\et}_1(S,\overline{s}) \rightarrow  \O(\HHH^2_{\et}(X_{\overline{s}},\ZZ_{\ell}(1)))$. Then the composition $\det \rho_{\ell}\colon \pi_1^{\et}(S,\overline{s}) \rightarrow \{\pm 1\}$ is independent of $\ell$.%{\color{red} This is the statement that Lenny prefers without any context. It also relates better to the remark following the corollary. If we use this corollary later on in the thesis, the form most convenient for the later usage should be kept.}
+%{\color{red} Or:} \\
+%Let $S$ be a $\QQ$-scheme, $\overline{s}$ a geometric point of $S$, and $X/S$ a smooth proper morphism whose fibers are hyperk\"ahler varieties with $b_2 > 3$, endowed with a polarization $\lambda \in \Pic_{X/S}(S)$. Then the monodromy representation $\pi_1^{\et}(S,\overline{s}) \rightarrow \O(\HHH^2_{\et}(X_{\overline{s}},\ZZh(1)))$ factors through the subgroup
+%$$
+%\O^{\pm}(\HHH^2_{\et}(X_{\overline{s}},\ZZh(1)),\lambda_{\overline{s}}) := \left\{g \in \O(\HHH^2_{\et}(X_{\overline{s}},\ZZh(1))) \mid g(\lambda_{\overline{s}}) = \lambda_{\overline{s}}, \ \det(g) \in \{\pm 1\} \subseteq \mu_2(\ZZh)\right\}.
+%$$
+\end{corollary}
+
+\begin{remark}\label{rk:orientations_k3}
+When the base scheme is normal, and the fibers of $f$ are K3 surfaces, this result holds in mixed characteristic, and without the existence of a polarization. We sketch a proof. By first spreading out and using Chebotarev density we reduce to the case of a K3 surface $X$ over a finite field. Over a finite field, the Weil conjectures~\cite[Th\'eor\`eme~1.3]{DeligneK3} imply that the determinant of the Frobenius on $\HHH^2$ can be expressed in terms of the zeta function of $X$, which is independent of $\ell$.
+
+Saito uses this argument to prove an analogous result for the middle cohomology of any even-dimensional proper smooth variety, see~\cite[Lemma~3.2]{Saito}.
+\end{remark}
+
+\section{Shimura stacks}\label{sec:shimura_stacks}
+In this section, we introduce Shimura stacks (following~\cite{TaelmanShimuraStacks}), and we give a modular interpretation of orthogonal Shimura stacks over $\CC$ in terms of variations of $\ZZ$-Hodge structures.
+
+\subsection{General Shimura stacks}\label{sec:general_shimura_vhs}
+Let $(G,X)$ be a Shimura datum with reflex field $E$. As in Chapter~\ref{cha:shimura_varieties}, we assume that $Z(\QQ)$ is discrete in $G(\AAf)$, where $Z$ denotes the center of $G$. Let $\KK$ be a profinite group, and let $i\colon \KK \rightarrow G(\AAf)$ be a continuous homomorphism with finite kernel and open image (for example, $\KK \subseteq G(\AAf)$ a compact open subgroup).
+
+We define the {\bfseries Shimura stack} $\Sh_{\KK}[G,X]$ as follows. Let $\KK' \subseteq \KK$ be an open normal subgroup such that $i|_{\KK'}\colon \KK' \rightarrow G(\AAf)$ is injective and has neat image (see~\cite{MilneShimura} for the definition of a neat compact open subgroup of $G(\AAf)$). Then the Shimura \emph{variety} $\Sh_{i(\KK')}(G,X)$ is smooth and defined over $E$. Moreover, the finite group $\KK/\KK'$ acts on $\Sh_{i(\KK')}(G,X)$ via right multiplication, and we let $\Sh_{\KK}[G,X]$ be the quotient stack
+$$
+\Sh_{\KK}[G,X] := \left[ \Sh_{i(\KK')}(G,X)/(\KK/\KK') \right].
+$$
+
+Now $\Sh_{\KK}[G,X]$ is a smooth separated Deligne-Mumford stack over $E$, whose coarse moduli space $\Sh_{\KK}(G,X)$ is isomorphic to the Shimura variety $\Sh_{i(\KK)}(G,X)$. The $G(\AAf)$-action on $\Sh(G,X)$ endows it with the structure of a $\KK$-torsor on $\Sh_{\KK}[G,X]_{\et}$.
+
+\begin{example}
+    Let $(G,X)$ be the Siegel Shimura datum associated with a symplectic $\QQ$-vector space of dimension $2$, that is, $(G,X) = (\GL_2,\HH)$. For $\KK = \GL_2(\ZZh)$, the stack $\Sh_{\KK}[G,X]$ is equivalent to the moduli stack of elliptic curves over $\QQ$. More generally, for $(G,X) = (\GSp_{2g},\HH)$ and $\KK = \GSp_{2g}(\ZZh)$, the stack $\Sh_{\KK}[G,X]$ is equivalent to the moduli stack of principally polarized abelian varieties of dimension $g$ over $\QQ$.
+\end{example}
+
+\begin{lemma}\label{lem:baily_borel}
+Let $S$ be a smooth separated $\CC$-scheme. Then the functor
+$$
+    \Hom(S,\Sh_{\KK}[G,X]_{\CC}) \longrightarrow \Hom(S^{\an},\Sh_{\KK}[G,X]_{\CC}^{\an})
+$$
+given by analytification is an equivalence of groupoids.
+\end{lemma}
+\begin{proof}
+First suppose $\KK$ is a neat compact open subgroup of $G(\AAf)$, so that $\Sh_{\KK}[G,X] = \Sh_{\KK}(G,X)$. Then the lemma is well known and a consequence of~\cite[Lemma~5.13]{MilneShimura} and Borel's theorem~\cite[Theorem 3.14]{MilneShimura}.
+
+For more general $i\colon \KK \rightarrow G(\AAf)$, let $\KK'$ be a open normal subgroup of $\KK$ such that $i|_{\KK'}$ is injective, and such that $i(\KK')$ is neat. Then $\Sh_{\KK}[G,X]_{\CC}^{\an}$ is the quotient stack
+$$
+\left[ \Sh_{i(\KK')}(G,X)_{\CC}^{\an}/(\KK/\KK') \right],
+$$
+so a morphism $\psi\colon S^{\an} \rightarrow \Sh_{\KK}[G,X]_{\CC}^{\an}$ corresponds to a $(\KK/\KK')$-torsor $P$ on $S^{\an}$ and a $(\KK/\KK')$-equivariant holomorphic map $\vphi\colon P \rightarrow \Sh_{i(\KK')}(G,X)_{\CC}^{\an}$. By~\cite[Corollaire~XII.5.2]{SGA1}, the torsor $P$ is the analytification of a $(\KK/\KK')$-torsor $P_{\text{alg}}$ on $S$. Moreover, by the case of the lemma for neat compact open subgroups of $G(\AAf)$, the map $\vphi$ is the analytification of a $(\KK/\KK')$-equivariant morphism $\vphi_{\text{alg}}\colon P \rightarrow \Sh_{i(\KK')}(G,X)_{\CC}$. It follows that $\psi$ is the analytification of a morphism $S \rightarrow \Sh_{\KK}[G,X]_{\CC}$.
+\end{proof}
+
+The analytification of $\Sh_{\KK}[G,X]_{\CC}$ can be identified with the quotient stack
+$$
+\left[ G(\QQ) \backslash X \times G(\AAf) / \KK \right]
+$$
+Its groupoid of $\CC$-points has as objects pairs $(h,g)$, with $h \in X$ and $g \in G(\AAf)$. A morphism $(h,g) \rightarrow (h',g')$ consists of $\gamma \in G(\QQ)$ and $k \in \KK$ with $\gamma h = h'$ and $\gamma g i(k) = g'$.
+
+Let $V$ be a finite-dimensional $\QQ$-vector space, endowed with a homomorphism $\rho\colon G \rightarrow \GL(V)$ and a continuous linear right $\KK$-action, and assume that these two actions commute. Then the quotient stack
+$$
+\Big[ G(\QQ) \backslash X \times V \times G(\AAf) / \KK \Big]
+$$
+is a variation of $\QQ$-Hodge structures on $\Sh_{\KK}[G,X]_{\CC}^{\an}$. Its fiber over a point $(h,g) \in \Sh_{\KK}[G,X]_{\CC}^{\an}$ is $V$, endowed with the Hodge structure $\rho h$.
+
+Now consider a full $\ZZh$-lattice $L \subseteq V \otimes \AAf$ such that for all $v \in L$ and $k \in \KK$ we have $ i (k) v k^{-1} \in L$. Then the quotient
+\begin{equation}\label{eq:vhs_on_shimura}
+\Big[ G(\QQ) \backslash X \times \{(v, g) \in V \times G(\AAf) \mid v \in g(L) \cap V \}/\KK \Big]
+\end{equation}
+is a variation of $\ZZ$-Hodge structures on $\Sh_{\KK}[G,X]^{\an}_{\CC}$. The stalk over a point $(h,g)$ of $\Sh_{\KK}[G,X]_{\CC}^{\an}$ is the finitely generated free abelian group $g(L) \cap V$, endowed with the Hodge structure given by $\rho h$.
+
+\subsection{Orthogonal Shimura stacks}\label{sec:orthogonal_shimura_vhs}
+We now apply the constructions of Section~\ref{sec:general_shimura_vhs} to give a modular interpretation of orthogonal Shimura stacks in terms of variations of $\ZZ$-Hodge structures. We will do this for various choices of $\KK$, which arise naturally from the moduli stacks of hyperk\"ahler varieties that we consider in later sections.
+
+Let $(\Lambda_0,b_0)$ be a $\ZZ$-lattice of signature $(3,n)$ with $n \geq 1$, let $\lambda_0 \in \Lambda_0$ be an element with $b_0(\lambda_0,\lambda_0) > 0$, and let $\omega_0\colon \ZZ \rightarrow \det \Lambda_0$ be an isomorphism of abelian groups. Define $V$ to be the signature $(2,n)$ quadratic space $(\QQ \lambda_0)^{\perp} \subseteq \Lambda_0 \otimes \QQ$, and let $(\SO,\Omega)$ be the Shimura datum associated with $V$ as in Section~\ref{sec:orthogonal_shimura_varieties}. Define $\KK_0$ to be the profinite group
+$$
+\KK_0 := \big\{ g \in \SO(\Lambda_0)(\ZZh) \mid g(\lambda_0) = \lambda_0 \big\},
+$$
+which we endow with the injective map $i\colon \KK_0 \rightarrow \SO(\AAf)$ sending $g$ to the restriction of $g \otimes \AAf$ to $V \otimes \AAf \subseteq \Lambda_0 \otimes \AAf$. The image $i(\KK_0)$ is a compact open subgroup of $\SO(\AAf)$, so we have a Shimura stack $\Sh_{\KK_0}[\SO,\Omega]$.
+
+Let $\SO$ act on $\Lambda_0 \otimes \QQ = V \oplus \QQ \lambda_0$ by having $g$ act as $g \oplus \id$, and let $\KK_0$ act trivially on $\Lambda_0 \otimes \QQ$. Then $\Lambda_0 \otimes \QQ$ and the $\ZZh$-sublattice $\Lambda_0 \otimes \ZZh$ of $\Lambda_0 \otimes \AAf$ induce a variation of $\ZZ$-Hodge structures $\VVV$ on $\Sh_{\KK_0}[\SO,\Omega]^{\an}_{\CC}$, as in~\eqref{eq:vhs_on_shimura}. The stalk of $\VVV$ over a point $(h,g) \in \Sh_{\KK_0}[\SO,\Omega]_{\CC}^{\an}$ is the finitely generated free abelian group $g(\Lambda_0 \otimes \ZZh) \cap \Lambda_0 \otimes \QQ$, endowed with the Hodge structure given by $h$.
+
+The pairing on $\Lambda_0$, the element $\lambda_0 \in \Lambda_0$, and the isomorphism $\omega_0\colon \ZZ \rightarrow \det \Lambda_0$ induce the following morphisms of $\ZZ$-VHS:
+\begin{itemize}
+    \item $b\colon \Sym^2 \VVV \longrightarrow \ZZ(0)$,
+    \item $\lambda\colon \ZZ(0) \longrightarrow \VVV$,
+    \item $\omega\colon \ZZ(0) \longrightarrow \det \VVV$.
+\end{itemize}
+The following lemma gives a universal property for the tuple $(\VVV,b,\lambda,\omega)$.
+
+\begin{lemma}\label{lem:moduli_vhs}
+    Let $S$ be a complex analytic space. Pulling back the tuple $(\VVV,b,\lambda,\omega)$ induces an equivalence of groupoids from $\Hom(S,\Sh_{\KK_0}[\SO,\Omega]_{\CC}^{\an})$ to the groupoid of tuples $(\Lambda,b,\lambda,\omega)$ where
+\begin{itemize}
+\item $\Lambda$ is a $\ZZ$-VHS on $S$,
+\item $b\colon \Sym^2 \Lambda \rightarrow \ZZ(0)$ is a morphism of $\ZZ$-VHS making the stalks of $\Lambda$ K3-type Hodge lattices of signature $(3,n)$,
+\item $\lambda$ is a positive global section of $\Lambda$ of type $(0,0)$,
+\item $\omega\colon \ZZ(0) \rightarrow \det \Lambda$ is an isomorphism of $\ZZ$-VHS,
+\end{itemize}
+such that for every $s \in S$, there exists an isometry $\Lambda_s \otimes \ZZh \rightarrow \Lambda_0 \otimes \ZZh$ mapping $\lambda_{s}$ and $\omega_{s}$ to $\lambda_0$ and $\omega_0$, respectively.
+\end{lemma}
+\begin{proof}
+We construct a quasi-inverse of the natural functor from $\Hom(S,\Sh_{\KK_0}[\SO,\Omega])$ to the groupoid of tuples $(\Lambda,b,\lambda,\omega)$. Without loss of generality we may assume that $S$ is connected.
+
+We first show that the fibers of $\Lambda \otimes \QQ$ are isomorphic to the tuple $(\Lambda_0 \otimes \QQ,b_0,\lambda_0,\omega_0)$. Let $s \in S$, and let $\psi_s\colon \Lambda_0 \otimes \ZZh \rightarrow \Lambda_s \otimes \ZZh$ be an isometry mapping $\lambda_0$ to $\lambda_s$ and $\omega_0$ to $\omega_s$. The quadratic spaces $\Lambda_s \otimes \QQ$ and $\Lambda_0 \otimes \QQ$ have the same signature, and $\psi_s$ induces an isometry $\Lambda_s \otimes \AAf \cong \Lambda_0 \otimes \AAf$, so by the Hasse-Minkowski theorem~\cite[Chapter~IV, Theorem~9]{SerreCourse}, there is an isometry $\vphi_s\colon \Lambda_s \otimes \QQ \rightarrow \Lambda_0 \otimes \QQ$. By an argument similar to that in the proof of Lemma~\ref{lem:mot(SO)_ito_motives}, we can use the existence of $\psi_s$ to modify $\vphi_s$ so as to ensure that it maps $\lambda_s$ to $\lambda_0$ and $\omega_s$ to $\omega_0$.
+
+Let $\KK \subseteq \KK_0$ be a neat open normal subgroup, so that $H := \KK_0/\KK$ is a finite group, and $\Sh_{\KK}[\SO,\Omega]_{\CC}$ is equal to the Shimura variety $\Sh_{\KK}(\SO,\Omega)_{\CC}$. Define $S'$ to be the quotient sheaf
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,b_0,\lambda_0,\omega_0),(\Lambda \otimes \ZZh,b,\lambda,\omega)\right)\!/\KK
+$$
+on $S$. Then $S'$ is an $H$-torsor on $S$. We will construct an $H$-equivariant map $S' \rightarrow \Sh_{\KK}(\SO,\Omega)_{\CC}$. Since $\Sh_{\KK_0}[\SO,\Omega]$ is by definition the quotient stack $[\Sh_{\KK}(\SO,\Omega)/H]$, this induces a morphism $S \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$.
+
+Let $U \subseteq S'$ be a connected open set on which the local system underlying $\Lambda$ is constant, and let $\vphi\colon \Lambda_U \otimes \QQ \rightarrow \Lambda_0 \otimes \QQ$ be an isometry mapping $\lambda$ to $\lambda_0$ and $\omega$ to $\omega_0$. By the constancy of $\Lambda$, we can also find an isometry $\psi\colon \Lambda_0 \otimes \ZZh \rightarrow \Lambda \otimes \ZZh$ representing the universal section of
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,b_0,\lambda_0,\omega_0),(\VVV \otimes \ZZh,b,\lambda,\omega)\right)\!/\KK
+$$
+over $S'$.
+
+By definition of variations of Hodge structures, there is a holomorphic map $f\colon U \rightarrow X$ mapping $s \in U$ to the image under $\vphi_s$ of the Hodge structure on $\Lambda_s \otimes \QQ$. Note that for any $s \in U$, the composition $\vphi_s \circ \psi_s$ defines an element of $\SO(\AAf)$. The constancy of $\Lambda_U$ and the connectedness of $U$ imply that this element does not depend on the choice of $s$, and we will denote it with $g$. Now define $U \rightarrow \Sh_{\KK}(\SO,\Omega)_{\CC}$ by mapping a point $s \in U$ to $(f(s), g)$. Since
+$$
+\Sh_{\KK}(\SO,\Omega)_{\CC} = \SO(\QQ) \backslash X \times \SO(\AAf) / \KK,
+$$
+this map does not depend on the choice of $\vphi$ and $\psi$, and it is clearly $H$-equivariant. Moreover,~\cite[Lemma~5.13]{MilneShimura} gives a decomposition of $\Sh_{\KK}(\SO,\Omega)_{\CC}$ into quotients of the form $\Gamma \backslash X$, with $\Gamma$ a discrete group acting properly discontinuously on $X$. This decomposition can be used to show that $U \rightarrow \Sh_{\CC}(\SO,\Omega)_{\CC}$ is holomorphic.
+
+Applying this construction to an open cover of $S'$ on which the local system underlying $\Lambda$ is constant gives an $H$-equivariant holomorphic map $S' \rightarrow \Sh_{\KK}[\SO,\Omega]_{\CC}$, and hence a morphism $S \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$.
+%Let $(\Lambda,b,\lambda,\omega) \in C$, and let $\{U_i\}_{i \in I}$ be a open cover of $S$ such that the restriction to $U_i$ of the local system underlying $\Lambda$ is constant.
+%This gives a map $f\colon S \rightarrow X$, which maps a point $t \in S$ to the image under $\vphi_t$ of the Hodge structure on $\Lambda_t \otimes \QQ$. By the definition of variations of Hodge structures, $f$ is holomorphic. Note that for all $t \in S$, the map $\vphi_t \circ \psi_t$ is an element of $G(\AAf)$. By the constancy of the local system underlying $\Lambda$, this element does not depend on the choice of $t$, and will be denoted $g$.
+\end{proof}
+
+Consider an open subgroup $\KK \subseteq \KK_0$. We will generalize Lemma~\ref{lem:moduli_vhs} to give a modular interpretation of $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$.
+
+The group $\KK$ acts from the right on the isomorphism sheaf
+$$
+I := \Isom\left((\Lambda_0 \otimes \ZZh,b_0,\lambda_0,\omega_0),(\VVV \otimes \ZZh,b,\lambda,\omega)\right)
+$$
+on $\Sh_{\KK_0}[\SO,\Omega]_{\CC}^{\an}$. In the proof of the following lemma we will construct a section $\alpha$ of the quotient sheaf $I/\KK$ over $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$. We will refer to $\alpha$ as the {\bfseries universal level-$\KK$ structure} on $\VVV$ over $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$. The following lemma says that $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$ is a moduli stack for $\ZZ$-VHS endowed with a level $\KK$-structure.
+
+\begin{lemma}\label{lem:moduli_vhs_k}
+Let $S$ be a complex analytic space. There exists a section $\alpha$ of the quotient sheaf $I/\KK$ over $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$ such that pulling back the tuple $(\VVV,b,\lambda,\omega,\alpha)$ induces an equivalence of groupoids from $\Hom(S,\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an})$ to the groupoid of tuples $(\Lambda,b,\lambda,\omega,\alpha)$ where $(\Lambda,b,\lambda,\omega)$ is as in Lemma~\ref{lem:moduli_vhs}, and $\alpha$ is a global section of the quotient sheaf
+$$
+\Isom\left((\Lambda_0 \otimes \ZZh,b_0,\lambda_0,\omega_0),(\Lambda \otimes \ZZh,b,\lambda,\omega)\right)/\KK.
+$$
+\end{lemma}
+\begin{proof}
+We will only construct the universal level $\KK$-structure on the restriction of $\VVV$ to $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$. The rest of the proof is similar to that of Lemma~\ref{lem:moduli_vhs}, and therefore omitted.
+
+Let $\Omega^+$ be a connected component of $\Omega$, and let $\SO(\QQ)_+ \subseteq \SO(\QQ)$ be the stabilizer of this component with respect to the action of $\SO(\QQ)$ on $\pi_0(\Omega)$. Let $\CCC$ be a set of representatives of the quotient set $\SO(\QQ)_+\backslash \SO(\AAf) /\KK$, and for $g \in \SO(\AAf)$, let $\Gamma_g$ be the group $\SO(\QQ)_+ \cap g \KK g^{-1}$. Then the stack $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$ is equivalent to the disjoint union
+\begin{equation}\label{eq:decomposition_shan}
+\coprod_{g \in \CCC} \left[ \Gamma_g \backslash \Omega^+ \right],
+\end{equation}
+as can be seen in~\cite[Lemma~5.13]{MilneShimura}. Since $\Omega^+$ is simply connected, the analytic stack $\left[ \Gamma_g \backslash \Omega^+ \right]$ is connected, and its fundamental group is $\Gamma_g$.
+
+For $g \in \CCC$, let $\Lambda_g$ be the $\ZZ$-lattice $g(\Lambda_0 \otimes \ZZh) \cap \Lambda_0 \otimes \QQ$. Then $\lambda_0 \in \Lambda_g$, and $\omega_0$ induces an isomorphism $\omega_g\colon \ZZ \rightarrow \det \Lambda_g$. The pullback of $\VVV$ to $[\Gamma_g \backslash \Omega^+]$ is $[\Gamma_g \backslash \left( \Omega^+ \times \Lambda_g \right)]$. To give a section of $I/\KK$ over $[\Gamma_g \backslash \Omega^+]$ is therefore equivalent to giving an isometry $\psi\colon \Lambda_0 \otimes \ZZh \rightarrow \Lambda_g \otimes \ZZh$ preserving $\lambda_0$ and mapping $\omega_0$ to $\omega_g$ such that for every $\gamma \in \Gamma_g$, there exists a $k \in \KK$ with $\gamma \psi = \psi k$. Since $\Lambda_g \otimes \ZZh = g(\Lambda_0 \otimes \ZZh)$, the choice $\psi = g$ gives an isometry satisfying these conditions. 
+
+It can be checked that this defines a section
+$$
+\alpha\colon \Sh_{\KK}[\SO,\Omega]_{\CC} \longrightarrow I/\KK,
+$$
+completing the proof of the lemma.
+\end{proof}
+
+We now introduce a compact open subgroup $\KK_F$ of $\SO(\AAf)$ that will play an important role in our treatment of the moduli stack of polarized hyperk\"ahler varieties which are deformation equivalent to a Hilbert scheme of points on a K3 surface. The group $\KK_0$ acts on the discriminant group $\Delta(\Lambda_0) := \Lambda_0^{\vee}/\Lambda_0$. This induces an action on the quotient set $F(\Lambda_0) := \Delta(\Lambda_0)/\{\pm 1\}$, where $-1$ acts as $-\id_{\Delta(\Lambda_0)}$. We define the group $\KK_F \subseteq \KK_0$ as
+$$
+\KK_F := \left\{g \in \KK_0 \mid \Delta(g) = \pm \id_{\Delta(\Lambda_0)}\right\}.
+$$
+The universal level-$\KK_F$ structure $\alpha$ on the restriction of $\VVV$ to $\Sh_{\KK_F}[\SO,\Omega]_{\CC}^{\an}$ induces an isomorphism of sheaves of finite sets $\overline{\alpha}\colon F(\Lambda_0) \rightarrow F(\VVV)$ on $\Sh_{\KK_F}[\SO,\Omega]_{\CC}$.
+
+The next lemma follows almost immediately from Lemma~\ref{lem:moduli_vhs_k}.
+\begin{lemma}\label{lem:moduli_vhs_k3n}
+    Let $S$ be a complex analytic space. Pulling back the tuple $(\VVV,b,\lambda,\omega,\overline{\alpha})$ induces an equivalence of groupoids from $\Hom(S,\Sh_{\KK_F}[\SO,\Omega]_{\CC}^{\an})$ to the groupoid of tuples $(\Lambda,b,\lambda,\omega,\overline{\alpha})$ where $(\Lambda,b,\lambda,\omega)$ is as in Lemma~\ref{lem:moduli_vhs}, and $\overline{\alpha}\colon F(\Lambda_0) \rightarrow F(\Lambda)$ is an isomorphism of sheaves of sets on $S$ such that for every $s \in S$, there exists an isometry $\psi\colon \Lambda_0 \otimes \ZZh \rightarrow \Lambda_s \otimes \ZZh$ mapping $\lambda_0$ and $\omega_0$ to $\lambda$ and $\omega$, and such that $\overline{\alpha}_s$ is induced by $\psi$.
+\end{lemma}
+
+Now suppose that the rank of $\Lambda_0$ is even. Taelman showed in~\cite{TaelmanShimuraStacks} that we can find a Shimura stack parametrizing Hodge lattices of K3 type in the same genus as $\Lambda_0$, without the need for adding an orientation.
+
+Let $\KK$ be the profinite group
+\begin{equation}\label{eq:lennys_group}
+\left\{ g \in \O(\Lambda_0)(\ZZh) \mid g(\lambda_0) = \lambda_0\ \text{ and } \det(g) \in \{\pm 1\} \right\}.
+\end{equation}
+The requirement that $\det g \in \{\pm 1\}$ says that for every prime $p$ the determinant $\det g_p \in \{\pm 1\} \subseteq \ZZ_p^{\times}$ is the same. That is, $\det g_p$ is either $1$ for all $p$ or $-1$ for all $p$. Consider the continuous homomorphism
+$$
+i\colon \KK \longrightarrow \SO(\AAf),\quad g\longmapsto \det(g) g|_{V \otimes \AAf},
+$$
+where as before $V$ denotes the orthogonal complement of $\lambda_0$ in $\Lambda_0 \otimes \QQ$. Note that the determinant of $\det(g) g|_{V \otimes \AAf}$ is $1$ by the evenness of $\rk \Lambda_0$, so that $i$ indeed lands in $\SO(\AAf)$. Moreover, $i$ has open image and a finite kernel (of order $\leq 2$), so this gives rise to a Shimura stack $\Sh_{\KK}[\SO,\Omega]$.
+
+We construct a universal $\ZZ$-VHS on $\Sh_{\KK}[\SO,\Omega]_{\CC}$. As above, let $g \in \SO$ act on $\Lambda_0 \otimes \QQ$ as $g \oplus \id$, and let $\KK$ act from the right on $\Lambda_0 \otimes \QQ$ via the determinant on $V$, and as the identity on $\QQ \lambda_0$. Then these actions and the $\ZZh$-lattice $\Lambda_0 \otimes \ZZh$ in $\Lambda_0 \otimes \AAf$ give rise to a $\ZZ$-VHS $\VVV$ as in~\eqref{eq:vhs_on_shimura}. As before, the pairing $b_0\colon \Sym^2 \Lambda_0 \rightarrow \ZZ$ and the element $\lambda_0$ give rise to
+\begin{itemize}
+\item a morphism of $\ZZ$-VHS $b_0\colon \Sym^2 \VVV \rightarrow \ZZ(0)$,
+\item a global section $\lambda$ of $\VVV$ of type $(0,0)$ satisfying $b(\lambda,\lambda) > 0$.
+\end{itemize}
+The following lemma states that the tuple $(\VVV,b,\lambda)$ is universal.
+\begin{lemma}\label{lem:moduli_vhs_even}
+Let $S$ be a complex analytic space. Pulling back the tuple $(\VVV,b,\lambda)$ induces an equivalence of groupoids from $\Hom(S,\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an})$ to the groupoid of tuples $(\Lambda,b,\lambda)$ where
+\begin{itemize}
+\item $\Lambda$ is a $\ZZ$-VHS on $S$,
+\item $b\colon \Sym^2 \Lambda \rightarrow \ZZ(0)$ is a morphism of $\ZZ$-VHS making the stalks of $\Lambda$ K3-type Hodge lattices of signature $(3,n)$,
+\item $\lambda$ is a global section of $\Lambda$ of type $(0,0)$ satisfying $b(\lambda,\lambda) > 0$,
+\end{itemize}
+    such that for every $s \in S$, there exists an isometry $\psi\colon \Lambda_s \otimes \ZZh \rightarrow \Lambda_0 \otimes \ZZh$ mapping $\lambda_{s}$ to $\lambda_0$, and mapping the rank $1$ free abelian group $\det(\Lambda_s)$ to $\det(\Lambda_0)$.
+\end{lemma}
+\begin{proof}
+We prove the lemma for the case $S = \Spec(\CC)$. The additional details needed to prove the lemma for more general complex analytic spaces are similar to the proof of Lemma~\ref{lem:moduli_vhs}, and are therefore omitted.
+
+The statement of the lemma gives a functor $F$ from the groupoid
+$$
+\Sh_{\KK}[\SO,\Omega](\CC) = \left[ \SO(\QQ) \backslash \Omega \times \SO(\AAf) / \KK \right]
+$$
+    to the groupoid of tuples $(\Lambda,b,\lambda)$ on $\Spec(\CC)$. On objects, $F$ is defined by mapping an object $(h,g)$ to the $\ZZ$-lattice $\Lambda_g := g(\Lambda_0 \otimes \ZZh) \cap \Lambda_0 \otimes \QQ$ endowed with the Hodge structure $h$, and the positive type $(0,0)$ element $\lambda_0$. A morphism from $(h,g)$ to $(h',g')$ in consists of $\gamma \in \SO(\QQ)$ and $k \in \KK$ with $\gamma h = h'$ and $\gamma g k = g'$. Then $F$ maps $(\gamma,k)$ to the restriction of $(\det(k) \gamma) \oplus \id_{\QQ\lambda_0}$ to $\Lambda_g$.
+
+To see that $F$ is faithful, suppose we have $(\gamma_0,k_0)$ and $(\gamma_1,k_1)$ in $\SO(\QQ) \times \KK$ giving morphisms from $(h,g)$ to $(h',g')$. If $F(\gamma_0,k_0) = F(\gamma_1,k_1)$, then in particular $\det(k_0) \gamma_0 = \det(k_1) \gamma_1$. Since $\det(\gamma_0) = \det(\gamma_1) = 1$, this implies that $\gamma_0 = \gamma_1$, and $\det(k_0) = \det(k_1)$. Moreover, we have $\gamma_0 g i(k_0) = g' = \gamma_1 g i(k_1)$, so that $i(k_0) = i(k_1)$. Since
+    $$
+    k_0 \otimes \AAf = (\det(k_0) i(k_0)) \oplus \id_{\AAf \lambda_0} = (\det(k_1) i(k_1)) \oplus \id_{\AAf \lambda_0} = k_1 \otimes \AAf,
+    $$
+we obtain $k_0 = k_1$.
+
+For the fullness of $F$, let $(h,g)$ and $(h',g')$ be points of $\Sh_{\KK}[\SO,\Omega]_{\CC}^{\an}$, and suppose we have a Hodge isometry $\vphi\colon \Lambda_g \rightarrow \Lambda_{g'}$ preserving $\lambda_0$. Since $\Lambda_g \otimes \QQ$ and  $\Lambda_{g'} \otimes \QQ$ are equal to $\Lambda_0 \otimes \QQ$, the isometry $\gamma := \det(\vphi) \vphi|_{\QQ \lambda_0^{\perp}}$ is an element of $\SO(\QQ)$. Note that $\Lambda_g \otimes \ZZh = g(\Lambda_0 \otimes \ZZh)$, and $\Lambda_{g'} = g'(\Lambda_0 \otimes \ZZh)$, so we define $k$ to be the composition
+$$
+\Lambda_0 \otimes \ZZh \xrightarrow{\ g\ } g\!\left(\Lambda_0 \otimes \ZZh\right) \xrightarrow{\, \vphi \otimes \ZZh\, } g'\!\left(\Lambda_0 \otimes \ZZh\right) \xrightarrow{(g')^{-1}} \Lambda_0 \otimes \ZZh.
+$$
+Then $k$ satisfies $\det(k) = \det(\vphi) \in \{\pm 1\}$ so that $k \in \KK$. It can be verified that $(\gamma,k)$ is a morphism from $(h,g)$ to $(h',g')$ with $\vphi = F(\gamma,k)$.
+
+To prove the essential surjectivity, consider a tuple $(\Lambda,b,\lambda)$ on $\Spec(\CC)$. Let $\psi\colon \Lambda_0 \otimes \ZZh \rightarrow \Lambda \otimes \ZZh$ be an isometry mapping $\lambda_0$ to $\lambda$ and $\det(\Lambda_0)$ to $\det(\Lambda)$. It follows that if we endow $\det(\Lambda_0)$ and $\det(\Lambda)$ with the pairings induced by $b_0$ and $b$, then the lattices $\det(\Lambda_0)$ and $\det(\Lambda)$ have the same discriminant $d \in \ZZ$.
+
+By the existence of $\psi$ and the fact that $\Lambda$ and $\Lambda_0$ have the same signature, the Hasse-Minkowski theorem~\cite[Chapter~IV, Theorem~9]{SerreCourse} gives an isometry $\vphi\colon \Lambda \otimes \QQ \rightarrow \Lambda_0 \QQ$ mapping $\lambda$ to $\lambda_0$. The sublattices $\det(\Lambda_0)$ and $\vphi \det(\Lambda)$ have the same discriminant $d$, so it follows that $\vphi$ maps $\det(\Lambda)$ to $\det(\Lambda_0)$.
+
+    Define $h \in \Omega$ as the image under $\vphi$ of the Hodge structure on $\QQ \lambda^{\perp} \subseteq \Lambda \otimes \QQ$. Consider the composition $g := \vphi|_{\AAf \lambda^{\perp}} \psi|_{V \otimes \AAf}\colon V \otimes \AAf \rightarrow V \otimes \AAf$, where $V$ denotes the orthogonal complement of $\lambda_0$ in $\Lambda_0 \otimes \QQ$. Since $\vphi$ and $\psi$ map the $\ZZ$-lattices $\det(\Lambda_0)$ and $\det(\Lambda)$ into each other, $\det g$ is an element of $\{\pm 1\}$. By composing $\vphi$ with $-\id_{V} \oplus \id_{\QQ\lambda_0}$ if necessary, we ensure that $\det(g) = 1$, so that $g \in \SO(\AAf)$. Note that even after this modification, $\vphi\colon \Lambda \otimes \QQ \rightarrow \Lambda_0 \otimes \QQ$ is still a Hodge isometry mapping $\lambda$ to $\lambda_0$.
+
+With these choices it can be checked that $\vphi$ induces a Hodge isometry $\Lambda \rightarrow \Lambda_g$ mapping $\lambda$ to $\lambda_0$, where $\Lambda_g$ is endowed with the Hodge structure given by $h$. This shows that $F$ is essentially surjective, completing the proof of the lemma.
+\end{proof}
+
+%Let $N$ be an integer greater than or equal to $3$, and define $\KK_N$ as the kernel of $\KK \rightarrow \GL(\Lambda/N\Lambda)$. Then $\KK_N$ is a neat compact open subgroup of $G(\AAf)$, as is shown, for example, in~\cite[{\S~0.1}]{PinkThesis}, so that $\Sh_{\KK_N}[G,X]$ is a variety over $\QQ$. The proof of the following lemma is very similar to that of Lemma~\ref{lem:moduli_vhs}, and therefore omitted.
+%\begin{lemma}\label{lem:moduli_vhs_n}
+%    Let $S$ be a complex analytic space. Then the groupoid $\Hom(S,\Sh_{\KK_N}[G,X]_{\CC})$ is equivalent to the groupoid of tuples $(V,b_V,\lambda_V,\omega_V) \in \Sh_{\KK}[G,X]_{\CC}(S)$ endowed with an isomorphism of local $(\ZZ/N\ZZ)$-systems $\underline{\Lambda/N\Lambda} \rightarrow V/NV$ mapping $b$, $\lambda$, and $\omega$ to $b_V$, $\lambda_V$, and $\omega_V$.
+%\end{lemma}
+%
+%\begin{lemma}
+%    {\color{red} Something similar for K3n stuff.}
+%\end{lemma}
+\section{Period maps}\label{sec:period_maps}
+Let $\MMM/\QQ$ be a connected component of the moduli stack $\HK_{\ori}$ of oriented polarized hyperk\"ahler varieties over $\QQ$. In this section, we will associate to $\MMM$ an orthogonal Shimura stack $\Sh_{\KK_0}[\SO,\Omega]$ over $\QQ$, and we will construct an \'etale morphism $\MMM_{\CC} \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$, called the {\bfseries period map}. The main result of this section is that this period map descends to a morphism $\MMM \rightarrow \Sh_{\KK_0}[\SO,\Omega]$, defined over $\QQ$. This is a generalization of a result of Rizov (\cite[Theorem~3.16]{RizovCM}). Our treatment closely follows the proof of that result given by Madapusi-Pera in~\cite{MadapusiPera}.
+
+Let $f\colon \XXX \rightarrow \MMM$ be the universal hyperk\"ahler variety, $\lambda$ the universal polarization on $\XXX$, and $\omega_{[4]}\colon \ZZ/4\ZZ \rightarrow \det \RRR^2_{\et} f_* \mu_4$ the universal orientation. As we saw in Theorem~\ref{thm:hk_orientations}, $\omega_{[4]}$ gives rise to isomorphisms of local systems
+$$
+\omega_{\et}\colon \ZZh \longrightarrow \det \RRR^2_{\et} f_* \ZZh(1)
+$$
+on $\MMM_{\ori,\et}$
+$$
+\omega_{\an}\colon \ZZ \longrightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)
+$$
+on $\MMM_{\ori,\CC}$.
+
+Let $x_0 := (X_0,\lambda_{x_0},\omega_{[4],x_0})$ be a $\CC$-point of $\MMM$. Then $\Lambda_0 := \HHH^2(X_0,\ZZ(1))$ endowed with the BBF pairing $b_0$ is a $\ZZ$-lattice of signature $(3,n)$, for some $n \geq 1$, and $\lambda_0 := c_1(\lambda_{x_0})$ is a positive element of $\Lambda_0$. Moreover, $\omega_0 := \omega_{\an,x_0}$ is an isomorphism $\ZZ \rightarrow \det \Lambda_0$. Let $V$ be the orthogonal complement of $\QQ \lambda_0$ in $\Lambda_0 \otimes \QQ$. Then as in Section~\ref{sec:orthogonal_shimura_vhs}, the tuple $(\Lambda_0,\lambda_0,b_0,\omega_0)$ gives rise to an orthogonal Shimura datum
+$$
+(\SO,\Omega) := (\SO(V),\Omega_V),
+$$
+and a compact open subgroup $\KK_0 \subseteq \SO(\AAf)$ defined as
+$$
+\KK_0 := \big\{ g \in \SO(\Lambda_0)(\ZZh) \mid g(\lambda_0) = \lambda_0 \big\}.
+$$
+\begin{lemma}\label{lem:tuples_same_genus}
+Let $x = (X,\lambda_{x},\omega_{[4],x})$ be a $\CC$-point of $\MMM$. Then the tuple 
+$$
+\left(\HHH^2(X,\ZZ(1)) \otimes \ZZh,\, b_X,\, c_1(\lambda_x),\, \omega_{\an,x}\right)
+$$
+is isomorphic to $(\Lambda_0 \otimes \ZZh, b_0, \lambda_0, \omega_0)$.
+\end{lemma}
+\begin{proof}
+This is a consequence of the connectedness of $\MMM$ and the fact that the BBF pairing on $\RRR^2 f_{\CC,*} \ZZ(1)$ and the isomorphism of sheaves $\omega_{\an}$ on $\MMM_{\CC}$ extend to morphisms of local systems on $\MMM_{\et}$ over $\QQ$, which is the content of Theorems~\ref{thm:mon_et_bbf} and~\ref{thm:hk_orientations}.
+\end{proof}
+
+On $\MMM_{\CC}$, we now have the following Hodge-theoretic data:
+\begin{itemize}
+\item a $\ZZ$-VHS $\RRR^2 f_{\CC,*} \ZZ(1)$,
+\item the BBF pairing $b_{\an}\colon \Sym^2 \RRR^2 f_{\CC,*} \ZZ(1) \rightarrow \ZZ(0)$, making the stalks of $\RRR^2 f_{\CC,*} \ZZ(1)$ K3-type Hodge lattices of signature $(3,n)$, by~Propositions~\ref{prop:bbf_k3_type} and~\ref{prop:bbbf_monodromy},
+\item $\lambda_{\an} := c_1\left(\lambda|_{\MMM_{\CC}}\right)$ is a positive global section of $\RRR^2 f_{\CC,*} \ZZ(1)$ of type $(0,0)$ by Remark~\ref{rk:positive_on_amples},
+\item the orientation $\omega_{\an}\colon \ZZ(0) \rightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)$ from Theorem~\ref{thm:hk_orientations}, which is an isomorphism of $\ZZ$-VHS.
+\end{itemize}
+By Lemma~\ref{lem:baily_borel}, Lemma~\ref{lem:moduli_vhs}, and Lemma~\ref{lem:tuples_same_genus}, these data gives rise to a morphism of complex Deligne-Mumford stacks
+$$
+\MMM_{\CC} \longrightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC},
+$$
+known as the {\bfseries period map}. Note that since the reflex field of $(\SO,\Omega)$ is $\QQ$ by Lemma~\ref{lem:reflex_field_SO}, $\Sh_{\KK_0}[\SO,\Omega]$ is a stack over $\QQ$. We will show that the period map descends to a morphism defined over $\QQ$.
+
+First note that the tuple $(\RRR^2 f_{\CC,*} \ZZh(1),\, b_{\an},\, \lambda_{\an},\, \omega_{\an})$ on $\MMM_{\CC,\et}$ extends uniquely to a tuple on $\MMM_{\et}$ over $\QQ$ consisting of
+\begin{itemize}
+\item the local $\ZZh$-system $\RRR^2_{\et} f_* \ZZh(1)$,
+\item the \'etale BBF form $b_{\et}\colon \Sym^2 \RRR^2_{\et} f_* \ZZh(1) \rightarrow \ZZh$ from Theorem~\ref{thm:mon_et_bbf},
+\item the polarization $\lambda_{\et} := c_1(\lambda) \in \HHH^0(\MMM,\RRR^2_{\et} f_* \ZZh(1))$,
+\item the orientation $\omega_{\et}\colon \ZZh \rightarrow \det \RRR^2 f_* \ZZh(1)$ from Theorem~\ref{thm:hk_orientations}.
+\end{itemize}
+This gives rise to a $\KK_0$-torsor
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \omega_0), (\RRR^2_{\et}f_* \ZZh(1),\, b_{\et},\,\, \lambda_{\et},\, \omega_{\et})\right)
+$$
+on $\MMM_{\et}$. Similarly, the $\SO(\AAf)$-action on $\Sh(\SO,\Omega)$ endows it with the structure of a $\KK_0$-torsor on $\Sh_{\KK_0}[\SO,\Omega]_{\et}$.
+
+\begin{theorem}\label{thm:main_theorem_1}
+The period map $\MMM_{\CC} \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$ defined by the tuple $(\RRR^2 f_{\CC,*} \ZZ(1),\, b_{\an},\, \lambda_{\an},\, \omega_{\an})$ descends to a morphism $\MMM \rightarrow \Sh_{\KK_0}[\SO,\Omega]$ defined over $\QQ$. This morphism is \'etale, and it pulls the $\KK_0$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK_0}[\SO,\Omega]_{\et}$ back to the $\KK_0$-torsor
+$$
+\Isom\!\left(\left(\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \omega_0\right), \left(\RRR^2_{\et}f_* \ZZh(1),\, b_{\et},\,\, \lambda_{\et},\, \omega_{\et}\right)\right)
+$$
+on $\MMM_{\et}$.
+\end{theorem}
+\begin{proof}
+Let $\KK \subseteq \KK_0$ be a normal neat open subgroup, so that $H = \KK_{0}/\KK$ is a finite group, $\Sh_{\KK}[\SO,\Omega] = \Sh_{\KK}(\SO,\Omega)$, and
+$$
+\Sh_{\KK_0}[\SO,\Omega] = \left[ \Sh_{\KK}(\SO,\Omega)/H \right].
+$$
+Now define $\MMM_{\KK}$ to be the stack of objects of $\MMM$ endowed with a level $\KK$-structure. That is, $\MMM_{\KK}$ is the $H$-torsor
+\begin{equation}\label{eq:def_mk}
+\Isom\!\left((\Lambda_0 \otimes \ZZh, b_0, \lambda_0, \omega_0),(\RRR^2_{\et} f_* \ZZh(1), b_{\et}, \lambda_{\et}, \omega_{\et})\right)/\KK
+\end{equation}
+on $\MMM_{\et}$. Then $\MMM_{\KK}$ is a smooth separated Deligne-Mumford stack. By Lemma~\ref{lem:moduli_vhs_k} and Lemma~\ref{lem:baily_borel}, the tuple $(\RRR^2f_{\CC,*},\, b_{\an},\, \lambda_{\an},\, \omega_{\an})$ restricted to $\MMM_{\KK,\CC}$, endowed with the canonical level-$\KK$ structure, yields an $H$-equivariant morphism of complex Deligne-Mumford stacks $\MMM_{\KK,\CC} \rightarrow \Sh_{\KK}(\SO,\Omega)_{\CC}$ for which the diagram
+\begin{equation}\label{eq:commu_diag_period}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \MMM_{\KK,\CC} & \Sh_{\KK}(\SO,\Omega)_{\CC}  \\
+             \MMM_{\CC} & \Sh_{\KK_0}[\SO,\Omega]_{\CC} \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge (m-2-2)
+                                 (m-1-2) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+commutes.
+
+We will show that the morphism $f\colon \MMM_{\KK,\CC} \rightarrow \Sh_{\KK}(\SO,\Omega)_{\CC}$ descends to $\QQ$. The commutative diagram~\eqref{eq:commu_diag_period} will then imply that $\MMM_{\CC} \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$ descends to $\QQ$ as well.
+
+    Let $P$ be the groupoid of tuples $(X,\lambda,\omega_{[4]},\alpha)$, where $x := (X,\lambda,\omega_{[4]})$ is a complex point of $\MMM$, and $\alpha\colon \Lambda_0 \otimes \ZZh \rightarrow \HHH^2(X,\ZZh(1))$ is an isometry mapping $\lambda_0$ to $c_1(\lambda)$, and $\omega_0$ to $\omega_{\an,x}$. This groupoid comes with a forgetful functor $P \rightarrow \MMM_{\KK}(\CC)$ mapping $(X,\lambda,\omega_{[4]},\alpha)$ to $(X,\lambda,\omega_{[4]},\alpha \mod \KK)$.
+
+Next, we construct a functor $f'\colon P \rightarrow \Sh(\SO,\Omega)(\CC)$. Let $(X,\lambda,\omega_{[4]},\alpha) \in P$. By an argument similar to that in the proofs of Lemma~\ref{lem:mot(SO)_ito_motives} and Lemma~\ref{lem:moduli_vhs}, there exists an isometry $\vphi\colon \HHH^2(X,\QQ(1)) \rightarrow \Lambda_0 \otimes \QQ$ mapping $c_1(\lambda)$ to $\lambda_0$ and $\omega_{\an}$ to $\omega_0$. Let $h$ be the image under $\vphi$ of the Hodge structure on $\QQ c_1(\lambda)^{\perp} \subseteq \HHH^2(X,\QQ(1))$, and define $g$ to be the composition $\vphi|_{\AAf c_1(\lambda)^{\perp}} \circ \alpha|_{V \otimes \AAf}$. Then $h \in X$ and $g \in \SO(\AAf)$, so this yields an element of $\Sh(\SO,\Omega)(\CC)$ which does not depend on the choice of $\vphi$. It can be checked that this gives a functor $f'\colon P \rightarrow \Sh(\SO,\Omega)(\CC)$.
+
+Now we have a commutative diagram of groupoids
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { P & \Sh(\SO,\Omega)(\CC)  \\
+             \MMM_{\KK}(\CC) & \Sh_{\KK}(\SO,\Omega)(\CC) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$f'$} (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge node[below]{$f(\CC)$} (m-2-2)
+                                 (m-1-2) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+
+If we show that $f'$ is $\Aut(\CC)$-equivariant in the sense that for every $\sigma \in \Aut(\CC)$ and every $(X,\lambda,\omega_{[4]},\alpha)$ in $P$ there holds
+$$
+f'\left(\sigma^* X,\, \sigma^* \lambda,\, \sigma^* \omega_{[4]},\, \sigma^* \alpha \right) = \sigma f\left(X,\, \lambda,\, \omega_{[4]},\, \alpha\right),
+$$
+    then it follows that $f(\CC)$ is $\Aut(\CC)$-equivariant in a similar sense, which implies that $f$ descends to a map $\MMM_{\KK} \rightarrow \Sh_{\KK}(\SO,\Omega)$.
+
+Corollary~\ref{cor:moduli_polarized_motives} gives an $\Aut(\CC)$-equivariant map $\Phi\colon \Sh(\SO,\Omega)(\CC) \rightarrow \Mot(\Lambda_0 \otimes \QQ,\lambda_0)$ where $\Mot(\Lambda_0 \otimes \QQ,\lambda_0)$ is as in Definition~\ref{def:moduli_polarized_motives}. Theorem~\ref{thm:deligne_big_result} and Example~\ref{rk:hk_motives_abelian} imply that the composition $P \rightarrow \Sh(\SO,\Omega)(\CC) \rightarrow \Mot(\Lambda_0 \otimes \QQ,\lambda_0)$ is given by mapping $(X,\lambda,\omega_{[4]},\alpha)$ to the tuple 
+$$
+\left(\h^2(X),\, b_{\an,x}\otimes \QQ,\, \lambda_{\an,x} \otimes \QQ,\, \omega_{\an,x} \otimes \QQ,\, \alpha \otimes \AAf\right),
+$$
+where $x$ denotes the $\CC$-point of $\MMM$ corresponding to $(X,\lambda,\omega_{[4]})$. The required $\Aut(\CC)$-equivariance of $f'$ now follows from the fact that $\sigma^* \h^2(X) = \h^2(\sigma^* X)$, and the existence of $b_{\et}$, $\lambda_{\et}$, and $\omega_{\et}$.
+
+We now show that the period map pulls the $\KK_0$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK_0}[\SO,\Omega]_{\et}$ back to the isomorphism sheaf
+$$
+I := \Isom\!\left(\left(\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \omega_0\right), \left(\RRR^2_{\et}f_* \ZZh(1),\, b_{\et},\,\, \lambda_{\et},\, \omega_{\et}\right)\right)
+$$
+on $\MMM_{\et}$. It follows from~\eqref{eq:def_mk} that $I$ is the inverse limit $\lim_{\KK} \MMM_{\KK}$, where $\KK$ ranges over all normal neat open subgroups of $\KK_0$. Since $\Sh(\SO,\Omega)$ is equal to the limit $\lim_{\KK} \Sh_{\KK}(\SO,\Omega)$, it follows from the cartesian squares
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \MMM_{\KK} & \Sh_{\KK}(\SO,\Omega)  \\
+             \MMM & \Sh_{\KK_0}[\SO,\Omega] \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge (m-2-2)
+                                 (m-1-2) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+that the period map pulls $\Sh(\SO,\Omega)$ back to $I$.
+
+To see that the period map $\MMM \rightarrow \Sh_{\KK_0}[\SO,\Omega]$ is \'etale, it suffices to show that $\MMM_{\CC} \rightarrow \Sh_{\KK_0}[\SO,\Omega]_{\CC}$ is \'etale. This is an immediate consequence of the local Torelli theorem (see~\cite[Proposition~3.3.1]{AndreTateShafarevich} and~\cite[Th\'eor\`eme~5]{Beauville}) and the decomposition of $\Sh_{\KK_0}[\SO,\Omega]_{\CC}$ given in~\eqref{eq:decomposition_shan} and~\cite[Lemma~5.13]{MilneShimura}.
+\end{proof}
+
+\begin{remark}
+The period map in Theorem~\ref{thm:main_theorem_1} is not in general an open immersion. In order for it to be an open immersion, it is necessary that it is fully faithful on $\CC$-points. An example where the period map is neither full nor faithful is when $\MMM$ is a moduli stack of polarized oriented generalized Kummer varieties (see Example~\ref{exa:hk_3}). The fact that the period map is not faithful in this case follows from~\cite[Corollary~3.3]{BoissiereNieperSartiEnriques}. The failure of fullness follows from the global Torelli theorem (Corollary~\ref{cor:global_torelli}) and the fact that not every Hodge isometry between generalized Kummers is a parallel transport operator by~\cite[Theorem~4.3]{Mongardi}.
+
+One result pertaining to the failure of faithfulness of the period map is the result of Hassett and Tschinkel which states that when $X$ is a complex hyperk\"ahler variety, then the kernel of $\Aut(X) \rightarrow \O(\HHH^2(X,\ZZ(1)))$ is a deformation invariant of $X$. See~\cite[Theorem~2.1]{HassettTschinkel} for a more precise statement. It implies that the relative inertia stack of $\MMM \rightarrow \Sh_{\KK_0}[\SO,\Omega]$ is a local system of finite groups on $\MMM$.
+
+In contrast with the period map for abelian varieties, the period map for hyperk\"ahler is not surjective. See~\cite{DebarreMacri} for a description of the image of the period map when $\MMM$ is a moduli stack of hyperk\"ahler varieties deformation equivalent to a Hilbert scheme of points on a K3 surface.
+\end{remark}
+
+%Pick a $\CC$-point of $\MMM$, corresponding to a complex hyperk\"ahler variety $X$ endowed with an ample line bundle $L$ and an isomorphism $\omega_{4,X}\colon \det \HHH^2(X,\mu_4) \rightarrow \ZZ/4\ZZ$. Let $\omega_X\colon \det \HHH^2(X,\ZZ(1)) \rightarrow \ZZ$ be restriction to $X$ of the isomorphism from Lemma~\ref{lem:hk_orientations}. Proposition~\ref{prop:bbf_k3_type} shows that the orthogonal complement $V$ of $L$ in $\HHH^2(X,\QQ(1))$, endowed with the BBF form $q_X$ is a quadratic space over $\QQ$ of signature $(2,b-3)$. The isomorphism $\omega_X$ induces an isomorphism $\omega_V\colon \det V \rightarrow \QQ$.
+%
+%As in Example {\color{red} reference}, $(V,q_V)$ gives rise to a Shimura datum $(G,X) = (\SO(V),\Omega_V)$ with reflex field $\QQ$. Moreover, we define $\KK$ to be the profinite group
+%$$
+%\left\{g \in \SO(\HHH^2(X,\ZZh(1))) \mid g L = L \right\}.
+%$$
+%The assignment $g \mapsto (g \otimes \AAf)|_{V \otimes \AAf}$ defines an injective continuous map $\KK \hookrightarrow G(\AAf)$ with open image, giving rise to a Shimura stack $\Sh_{\KK}[G,X]$ over $\QQ$.
+%
+%Let $\lambda \in \Pic_{\XXX/\MMM}(\MMM)$ be the universal polarization on $\XXX$, and $q$ the BBF form on $\RRR^2_{\et} f_* \ZZh(1)$. Moreover, pick a $\CC$-point $s$ of $\MMM$ lifting the chosen $\CC$-point $(X,\lambda)$ of $\MMM$. Then the isomorphism sheaf
+%$$
+%T := \Isom_{\MMM_{\ori,\et}}\!\left(\left(\HHH^2(X,\ZZh(1)),q_X,L,\omega_X\right)_{\MMM},\left(\RRR^2_{\et} f_* \ZZh(1), q, \lambda, \omega\right)\right)
+%$$
+%is a $\KK$-torsor on $\MMM_{\ori,\et}$.
+%
+%\begin{theorem}
+%    There is a unique morphism $P\colon \MMM \rightarrow \Sh_{\KK}[G,X]$, defined over $\QQ$, pulling the $\KK$-torsor $\Sh(G,X)$ on $\Sh_{\KK}[G,X]_{\et}$ back to $T$. The morphism $P$ is \'etale.
+%
+%{\color{red} More conditions are needed. Probably suffices to say something about $\CC$-points.}
+%\end{theorem}
+%\begin{proof}
+%Since $\Sh_{\KK}[G,X]$ is the stacky quotient of $\Sh(G,X)$ by $\KK$, it suffices to find a $\KK$-equivariant map $T \rightarrow \Sh(G,X)$.
+%\end{proof}
+%
+%\begin{remark}
+%    When $\MMM$ is a moduli space of polarized K3 surfaces (or more generally, polarized hyperk\"ahler varieties with odd second Betti number), there exists a morphism from $\MMM$ to a Shimura variety. See Section~\ref{sec:period_map_k3} {\color{red} This remark needs to be changed, since $\MMM$ is now a moduli space of \emph{oriented} hyperk\"ahlers.}
+%\end{remark}
+
+\section{K3 surfaces}\label{sec:period_map_k3}
+In this section we consider moduli stacks of polarized hyperk\"ahler varieties whose second Betti number is even (for example K3 surfaces). For such moduli stacks we can use Lemma~\ref{lem:moduli_vhs_even} to eliminate the orientations occurring in Theorem~\ref{thm:main_theorem_1}. This results in a period map from a connected component of $\HK$ to an orthogonal Shimura stack, see Theorem~\ref{thm:main_thm_even}. This section follows work on moduli stacks of K3 surfaces of Taelman in~\cite{TaelmanShimuraStacks}.
+
+Let $\MMM$ be a connected component of $\HK$ for which the hyperk\"ahler varieties parameterized by $\MMM$ have even second Betti number, let $f\colon \XXX \rightarrow \MMM$ be the universal hyperk\"ahler variety, and let $\lambda$ be the universal polarization on $\XXX$.
+
+Let $x_0 = (X_0,\lambda_{x_0})$ be a $\CC$-point of $\MMM$. Then $\Lambda_0 := \HHH^2(X_0,\ZZ(1))$ endowed with the BBF pairing $b_0$ is a $\ZZ$-lattice of signature $(3,n)$, with $n$ an odd and positive, and $\lambda_0 := c_1(\lambda_{x_0})$ is a positive element of $\Lambda_0$. Let $V$ be the orthogonal complement of $\lambda_0$ in $\Lambda_0 \otimes \QQ$. Then as in Section~\ref{sec:orthogonal_shimura_vhs}, the tuple $(\Lambda_0,b_0,\lambda_0)$ gives rise to an orthogonal Shimura datum
+$$
+(\SO,\Omega) := (\SO(V),\Omega_V),
+$$
+and a profinite group $\KK$ defined as in~\eqref{eq:lennys_group}, namely
+$$
+\KK := \left\{ g \in \O(\Lambda_0)(\ZZh) \mid g(\lambda_0) = \lambda_0\ \text{ and } \det(g) \in \{\pm 1\} \right\}.
+$$
+We endow $\KK$ with the continuous homomorphism $i\colon \KK \rightarrow \SO(\AAf)$ given by mapping $g \in \KK$ to $\det(g) g|_{V \otimes \AAf}$. Since the reflex field of $(\SO,\Omega)$ is $\QQ$ by Lemma~\ref{lem:reflex_field_SO}, this yields a Shimura stack $\Sh_{\KK}[\SO,\Omega]$ over $\QQ$.
+
+We will construct a $\KK$-torsor on $\MMM$ as follows. On $\MMM_{\et}$, we have
+\begin{itemize}
+\item the local $\ZZh$-system $\RRR^2_{\et} f_* \ZZh(1)$,
+\item the \'etale BBF form $b_{\et}\colon \Sym^2 \RRR^2_{\et} f_* \ZZh(1) \rightarrow \ZZh$,
+\item the polarization $\lambda_{\et} := c_1(\lambda) \in \HHH^0(\MMM,\RRR^2_{\et} f_* \ZZh(1))$.
+\end{itemize}
+In addition to this, Lemma~\ref{lem:d_lemma} gives a rank $1$ local $\ZZ$-system $D$ on $\MMM_{\et}$ endowed with an injective morphism of sheaves $D \rightarrow \det \RRR^2_{\et} f_* \ZZh(1)$ and an isomorphism of sheaves $D|_{\MMM_{\CC}} \rightarrow \det \RRR^2 f_{\CC,*} \ZZ(1)$ for which the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+             {  & \det \RRR^2 f_{\CC,*} \ZZ(1) \\
+             D|_{\MMM_{\CC}} &   \\
+            &  \det \RRR^2_{\et} f_{\CC,*} \ZZh(1) \\};
+
+           \path[>=angle 90, ->] (m-2-1) edge (m-1-2)
+                                         edge (m-3-2)
+                                 (m-1-2) edge node[right]{$\otimes \ZZh$} (m-3-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+commutes. Now the isomorphism sheaf
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \det \Lambda_0), (\RRR^2 f_* \ZZh(1),\, b_{\et},\, \lambda_{\et},\, D)\right)
+$$
+is a $\KK$-torsor on $\MMM_{\et}$.
+
+\begin{lemma}\label{lem:same_genus_even}
+Let $x = (X,\lambda_{x})$ be a $\CC$-point of $\MM$. Then there exists an isometry $\psi\colon \HHH^2(X,\ZZ(1)) \otimes \ZZh \rightarrow \Lambda_0 \otimes \ZZh$ mapping $c_1(\lambda_x)$ to $\lambda_0$, such that $\psi$ maps $\det \HHH^2(X,\ZZ(1))$ to $\det \Lambda_0$.
+\end{lemma}
+\begin{proof}
+This follows from the connectedness of the stack $\MMM$ over $\QQ$, and the existence of $b_{\et}$, $\lambda_{\et}$ and $D$.
+
+Let $\Lambda$ be the BBF lattice $\HHH^2(X,\ZZ(1))$, and let $\gamma$ be a path from $x$ to $x_0$ in $\MMM_{\et}$. Then the existence of the local $\ZZh$-system $\RRR_{\et}^2f_*\ZZh(1)$ implies that the path $\gamma$ induces an isomorphism $\psi\colon \Lambda \otimes \ZZh \rightarrow \Lambda_0 \otimes \ZZh$. It follows from the existence of $b_{\et}$ and $\lambda_{\et}$ that $\psi$ is an isometry, and that it maps $c_1(\lambda_x)$ to $\lambda_0$.
+
+To see that $\psi$ maps $\det \Lambda$ to $\det \Lambda_0$, we consider the local $\ZZ$-system $D$ on $\MMM_{\et}$. The equivalence between rank $1$ local $\ZZ$-systems on $\MMM_{\et}$ and $\ZZ^{\times}$-torsors on $\MMM_{\et}$ can be used to show that $\gamma$ induces a functorial isomorphism $\gamma_D\colon D_x \rightarrow D_{x_0}$. In particular, since $\psi$ is induced by $\gamma$, we have a commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { & D_x & \det \Lambda & \det \Lambda \otimes \ZZh &  \\
+            & D_{x_0} & \det \Lambda_0 & \det \Lambda_0 \otimes \ZZh &  \\ };
+
+
+           \path[>=angle 90, right hook->] (m-1-3) edge (m-1-4)
+                                           (m-2-3) edge (m-2-4);
+
+           \path[>=angle 90, ->] (m-1-2) edge node[above]{$\sim$} (m-1-3)
+                                 (m-2-2) edge node[below]{$\sim$} (m-2-3)
+                                 (m-1-4) edge node[right]{$\det \psi$} (m-2-4)
+                                 (m-1-2) edge node[left]{$\gamma_D$} (m-2-2);
+
+\end{tikzpicture}
+$$
+It follows from this diagram that $\psi$ maps $\det \Lambda$ into $\det \Lambda_0$, which was to be shown.
+\end{proof}
+
+On $\MM_{\CC}$, we have the following Hodge-theoretic data:
+\begin{itemize}
+\item a variation of $\ZZ$-Hodge structures $\RRR^2 f_{\CC,*} \ZZ(1)$,
+\item the BBF pairing $b_{\an}\colon \Sym^2 \RRR^2 f_{\CC,*} \ZZ(1) \rightarrow \ZZ(0)$, making the stalks of $\RRR^2 f_{\CC,*} \ZZ(1)$ K3-type Hodge lattices of signature $(3,n)$,
+\item a positive type $(0,0)$ global section $\lambda_{\an} := c_1(\lambda|_{\MMM_{\CC}})$ of $\RRR^2 f_{\CC,*}\ZZ(1)$.
+\end{itemize}
+It follows from Lemma~\ref{lem:same_genus_even}, Lemma~\ref{lem:moduli_vhs_even}, and Lemma~\ref{lem:baily_borel} that the tuple
+$$
+\left(\RRR^2 f_{\CC,*}\ZZ(1),\, b_{\an},\, \lambda_{\an}\right)
+$$
+gives rise to a morphism $\MMM_{\CC} \rightarrow \Sh_{\KK}[\SO,\Omega]_{\CC}$, known as the {\bfseries period map}. 
+
+The following theorem states that the period map descends to $\QQ$. Its proof is similar to that of Theorem~\ref{thm:main_theorem_1}, and is therefore omitted.
+\begin{theorem}\label{thm:main_thm_even}
+The period map $\MMM_{\CC} \rightarrow \Sh_{\KK}[\SO,\Omega]_{\CC}$ defined by the tuple 
+$$
+\left(\RRR^2 f_{\CC,*} \ZZ(1),\, b_{\an},\, \lambda_{\an}\right)
+$$
+descends to a morphism $\MMM \rightarrow \Sh_{\KK}[\SO,\Omega]$ defined over $\QQ$. This morphism is \'etale, and it pulls the $\KK$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK}[\SO,\Omega]_{\et}$ back to the $\KK$-torsor
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \det \Lambda_0), (\RRR^2 f_* \ZZh(1),\, b_{\et},\, \lambda_{\et},\, D)\right)
+$$
+on $\MMM_{\et}$.
+\end{theorem}
+
+We now apply Theorem~\ref{thm:main_thm_even} and the global Torelli theorem (Corollary~\ref{cor:global_torelli}) to K3 surfaces to show that the stack of primitively polarized K3 surfaces is an open substack of a Shimura stack. Let $\KKKK_{2d}$ be the moduli stack over $\QQ$ of primitively polarized K3 surfaces of degree $2d$, and $f\colon \XXX \rightarrow \KKKK_{2d}$ the universal K3 surface. Then $\KKKK_{2d}$ is a connected component of $\HK$ parametrizing hyperk\"ahler varieties with even second Betti number. We maintain the notations from earlier in the section. That is, $\Lambda_0$ is the BBF lattice of a $\CC$-point of $\KKKK_{2d}$, we denote by $(\SO,\Omega)$ the associated orthogonal Shimura datum, and so on.
+
+In this case, the lattice $\Lambda_0$ is the K3 lattice $\Lambda_{\KKKKK}$, which is the unique even self-dual lattice of signature $(3,19)$, and $\lambda_0$ is a primitive element of $\Lambda_{\KKKKK}$ of length $2d$.
+
+For polarized K3 surfaces, the global Torelli theorem (see Corollary~\ref{cor:global_torelli}) has the following form.
+\begin{theorem}[{\cite[Theorem~5.3 and Proposition~15.2.1]{HuybrechtsK3}}]\label{thm:globelli_k3}
+Let $(X_0,\lambda_0)$ and $(X_1,\lambda_1)$ be polarized K3 surfaces, and 
+$$
+\vphi\colon \HHH^2(X_1,\ZZ(1)) \longrightarrow \HHH^2(X_0,\ZZ(1))
+$$ 
+a Hodge isometry mapping $c_1(\lambda_1)$ to $c_1(\lambda_0)$. Then there exists a unique isomorphism $f\colon (X_0,\lambda_0) \rightarrow (X_1,\lambda_1)$ inducing $\vphi$.
+\end{theorem}
+
+Combining this with Theorem~\ref{thm:main_thm_even} yields the following theorem, which states that $\KKKK_{2d}$ is an open substack of an orthogonal Shimura stack.
+\begin{theorem}\label{thm:period_k3}
+The period map $\KKKK_{2d,\CC} \rightarrow \Sh_{\KK}[\SO,\Omega]_{\CC}$ defined by the tuple
+$$
+\left(\RRR^2 f_{\CC,*} \ZZ(1),\, b_{\an},\, \lambda_{\an}\right)
+$$
+descends to a morphism $\KKKK_{2d} \rightarrow \Sh_{\KK}[\SO,\Omega]$ defined over $\QQ$. This morphism is an open immersion, and it pulls the $\KK$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK}[\SO,\Omega]_{\et}$ back to the $\KK$-torsor
+$$
+\Isom\!\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \det \Lambda_0), (\RRR^2 f_* \ZZh(1),\, b_{\et},\, \lambda_{\et},\, D)\right)
+$$
+on $\KKKK_{2d,\et}$.
+\end{theorem}
+
+\begin{remark}
+The only other known examples of complex hyperk\"ahler varieties with even second Betti number are O'Grady's examples, see Example~\ref{exa:hk_3}. Let $\OG_6$ and $\OG_{10}$ be O'Grady's examples of dimension $6$ and $10$, respectively.
+
+By~\cite[Theorem~5.2]{MongardiWandel}, the kernel of $\Aut(\OG_6) \rightarrow \O(\HHH^2(\OG_6,\ZZ(1)))$ is isomorphic to $(\ZZ/2\ZZ)^{\oplus 8}$. It follows that the period map is not faithful. Since open immersions of stacks are representable, it follows that Theorem~\ref{thm:period_k3} does not extend to the moduli space of polarized hyperk\"ahler varieties deformation equivalent to $\OG_6$. However, the period map is full on $\CC$-points in this case by~\cite[Theorem~5.4]{MongardiRapagnetta}.
+
+For $\OG_{10}$ the map $\Aut(\OG_{10}) \rightarrow \O(\HHH^2(\OG_{10},\ZZ(1)))$ is injective, by~\cite[Theorem~3.1]{MongardiWandel}, so the period map in Theorem~\ref{thm:main_thm_even} is faithful. However, by~\cite[Theorem~5.3]{Mongardi}, the analogue of Theorem~\ref{thm:globelli_k3} with K3 surfaces replaced with varieties deformation equivalent to $\OG_{10}$ does not hold, which shows that the period map is not full, and hence not an open immersion.
+\end{remark}
+
+%Let $\Lambda_{\KKKKK}$ be the K3 lattice from Example~\ref{exa:bbf_k3}. Then if $S$ is a complex K3 surface, $\HHH^2(S,\ZZ(1))$ is isometric to $\Lambda_{\KKKKK}$. Let $\Lambda_{2d} \subseteq \Lambda_{\textnormal{K3}}$ be the orthogonal complement of a primitive element $\lambda \in \Lambda$ with $\lambda^2 = 2d$.% Note that~\cite[Corollary~14.1.9]{HuybrechtsK3} implies that the isometry class of $\Lambda_{2d}$ is completely determined by $d$.
+%
+%Let $(G,X) = (\SO(\Lambda_{2d,\QQ}),\Omega^{\pm}_{\Lambda_{2d}})$ be the associated orthogonal Shimura datum, and consider the profinite group
+%$$
+%\KK_{2d} := \left\{g \in \O(\Lambda_{\ZZh}) \mid \det(g) \in \{\pm 1\}, \ g\lambda = \lambda\right\}.
+%$$
+%The requirement that $\det g \in \{\pm 1\}$ says that for every prime $p$ the determinant $\det g_p$ is the same. That is, $\det g_p$ is either $1$ for all $p$ or $-1$ for all $p$.
+%We endow $\KK_{2d}$ with the homomorphism
+%$$
+%\KK_{2d} \longrightarrow G(\AAf), \ \ g \longmapsto \det(g) g|_{\Lambda_{2d,\AAf}},
+%$$
+%yielding a Shimura stack $\Sh_{\KK_{2d}}[G,X]$ over $\QQ$. %There is a natural $\KK_{2d}$-torsor $\Sh(G,X)$ on $\Sh_{\KK_{2d}}[G,X]_{\et}$.
+
+%Let $x$ be a geometric point of $\KKKK_{2d,\QQ}$. Then the homomorphism $\pi_1^{\et}(\KKKK_{2d,\QQ},x) \rightarrow \O(\HHH^2_{\et}(X_{x},\ZZh(1)))$ actually lands in the subgroup consisting of those $g$ with $\det(g) \in \{\pm 1\}$ (see Reference). In particular, $\KKKK_{2d,\QQ}$ is endowed with a natural $\KK_{2d}$-torsor. \\
+
+
+\section{The $\text{K3}^{[n]}$ deformation type}\label{sec:k3n}
+Throughout this section, $n$ is an integer greater than or equal to $2$. In this section we consider hyperk\"ahler varieties that are deformation equivalent to the Hilbert scheme of $n$ points on a K3 surface, known as {\bfseries $\KKKKK^{[n]}$-type} hyperk\"ahler varieties. In the first subsection we extend a theorem of Markman on the monodromy of such varieties over $\CC$ to such varieties over non-closed fields of characteristic $0$, see Theorem~\ref{thm:k3n_monodromy}. In the second subsection, we use this to give an open immersion from a connected component of the moduli stack of polarized oriented $\KKKK^{[n]}$-type hyperk\"ahler varieties to an orthogonal Shimura stack.
+
+\subsection{$\text{K3}^{[n]}$-type hyperk\"ahler varieties and their monodromy}
+\begin{definition}\label{def:k3n_1}
+A hyperk\"ahler variety $X$ over $\CC$ is said to be of {\bfseries $\KKKK^{[n]}$ type} if there exists a proper smooth morphism $\XXX \rightarrow T$ of complex analytic spaces, with $T$ connected, such that one of the fibers of $f$ is isomorphic to $X$, and another is isomorphic to $S^{[n]}$ for some projective K3 surface $S$ over $\CC$.
+\end{definition}
+
+By~\cite[Theorem~7.1.1]{HuybrechtsK3}, any two complex K3 surfaces are deformation equivalent in a complex analytic sense. The following lemma is an algebraic analogue of this result for projective complex K3 surfaces. The lemma is well known, but it is difficult to find an argument in the literature, so we sketch a proof.
+\begin{lemma}\label{lem:k3_defo_equiv}
+Let $S_1$ and $S_2$ be two projective complex K3 surfaces. Then there exists a smooth proper morphism of complex schemes $f\colon \SS \rightarrow T$ whose fibers are K3 surfaces, with $T$ connected, such that one fiber of $f$ is isomorphic to $S_1$, and another is isomorphic to $S_2$.
+\end{lemma}
+\begin{proof}[Proof sketch]
+Pick primitive polarizations on $S_1$ and $S_2$ of degrees $2d$ and $2e$, respectively. 
+
+%Consider the unique even self-dual $\ZZ$-lattice $\Lambda$ of signature $(1,9)$. Then by~\cite[Corollary~14.1.9]{HuybrechtsK3}, $\Lambda$ contains primitive elements $\lambda$ and $\mu$ of length $2d$ and $2e$, respectively. Let $\MM$ be the stack of complex K3 surfaces $S$ endowed with a primitive embedding $\Lambda \hookrightarrow \Pic(S)$, such that $\lambda$ is mapped to the class of an ample line bundle on $S$. Then $\MM$ is an irreducible Deligne-Mumford stack of finite type over $\CC$ by~\cite[Proposition~2.6]{BeauvilleFano}. By~\cite[Corollaire~9.6.4]{EGAIV} there is an open substack $\MM^0$ of $\MM$ parametrizing K3 surfaces $S$ endowed with $\Lambda \hookrightarrow \Pic(S)$ such that both $\lambda$ and $\mu$ are mapped to classes of ample line bundles on $S$. {\color{red} Might be empty, do have to think about $-2$ classes}
+
+    Let $N \subseteq \Lambda_{\KKKKK}$ be a signature $(1,1)$ lattice with primitive elements $\lambda$ and $\mu$ of length $2d$ and $2e$, respectively. Moreover, assume that the orthogonal complements of $\lambda$ and $\mu$ in $N$ do not contain any $\delta$ with $\delta^2 = -2$. Now consider the period domain
+$$
+\Omega := \left\{ [z] \in \Omega_{\Lambda_{\KKKKK}} \mid z N = 0\right\}.
+$$
+It parametrizes K3-type Hodge structures on $\Lambda_{\KKKKK}$ for which all of $N$ is of type $(0,0)$. Let $\Omega^0$ be the open subset
+$$
+    \Omega \left\backslash \ \bigcup_{\substack{\delta \in \Lambda_{\KKKKK} \\ \delta^2 = -2, \, \delta N = 0}} W_{\delta},\right.
+$$
+    where $W_{\delta}$ denotes the subset of $\Omega$ orthogonal to $\delta$. Then $\Omega^0$ is non-empty, because it is the complement of countably many hyperplanes. The surjectivity of the period map~\cite[Theorem~6.3.1]{HuybrechtsK3} implies that there exists a complex K3 surface $S$ with $N \subseteq \Pic(S)$ such that if $\delta \in \Pic(S)$ with $\delta^2 = -2$, then $\delta \lambda \neq 0$ and $\delta \mu \neq 0$.
+
+    Let $\CCC$ be the subset of $\{x \in \Pic(S) \otimes \RR \mid x^2 > 0\}$ containing the ample cone of $S$. By~\cite[Corollary 8.1.6]{HuybrechtsK3}, the ample cone of $S$ is a connected component of
+$$
+Y \, := \, \CCC \left\backslash \ \bigcup_{\substack{\delta \in \Pic(S) \\ \delta^2 = 0}} H_{\delta} \right.
+$$
+where $H_{\delta} \subseteq \Pic(S) \otimes \RR$ denotes the orthogonal complement in $\Pic(S) \otimes \RR$ of $\delta$. By construction, $\lambda$ and $\mu$ are elements of $Y$. By~\cite[Proposition~8.2.6]{HuybrechtsK3} there is a subgroup of $\O(\Pic(S))$ that acts transitively on the set of connected components of $Y$. It follows that there exist $\vphi,\psi \in \O(\Pic(S))$ such that $\vphi(\lambda)$ and $\psi(\mu)$ are ample. It follows that $S$ has primitive polarizations of degree $2d$ and $2e$.
+
+Let $\KKKK_{2d,\CC}$ and $\KKKK_{2e,\CC}$ be the moduli stacks of primitively polarized complex K3 surfaces of degree $2d$ and $2e$, respectively. These are irreducible Deligne-Mumford stacks of finite type over $\CC$. By~\cite[Proposition~4.14]{DeligneMumford}, there exist connected schemes $T_1$ and $T_2$ and surjective morphisms $T_1 \rightarrow \KKKK_{2d,\CC}$ and $T_2 \rightarrow \KKKK_{2e,\CC}$.
+
+    The polarizations on $S$ of degree $2d$ and $2e$ give rise to $\CC$-points $x_1$ and $x_2$ of $T_1$ and $T_2$. Let $t_1$ and $t_2$ be $\CC$-points of $T_1$ and $T_2$ lifting $x_1$ and $x_2$, respectively. Gluing $T_1$ and $T_2$ at the points $t_1$ and $t_2$ we obtain a scheme $T$. By pulling back the universal K3 surfaces on $\KKKK_{2d,\CC}$ and $\KKKK_{2e,\CC}$ to $T_1$ and $T_2$, and gluing them along the fibers over the points $f_1(t)$ and $f_2(t)$, we obtain the desired morphism $\SS \rightarrow T$ deforming $S_1$ to $S_2$.
+\end{proof}
+
+The following lemma shows that in the definition of $\KKKKK^{[n]}$-type hyperk\"ahler varieties, one can replace the complex analytic spaces by algebraic spaces over $\CC$.
+
+\begin{lemma}\label{lem:riess}
+Let $X$ be a hyperk\"ahler variety over $\CC$ of $\KKKKK^{[n]}$ type, and $S$ a projective complex K3 surface. Then there exists a smooth proper morphism of complex algebraic spaces $f\colon \XXX \rightarrow T$ whose fibers are hyperk\"ahler varieties, with $T$ connected, such that one fiber of $f$ is isomorphic to $X$, and another is isomorphic to $S^{[n]}$.
+\end{lemma}
+\begin{proof}
+In~\cite[Corollary~1.2]{MongardiPacienza}, Mongardi and Pacienza show that varieties \emph{birational} to the Hilbert scheme of points on a projective complex K3 surface are dense in the moduli space of polarized complex hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. It follows that there exists a projective complex K3 surface $S'$, a complex hyperk\"ahler variety $X'$ birational to $(S')^{[n]}$, and a smooth proper morphism of complex algebraic spaces $\XXX_1 \rightarrow T_1$, one of whose fibers is isomorphic to $X$, and another is isomorphic to $X'$.
+
+Since $X'$ and $(S')^{[n]}$ are birational complex hyperk\"ahler varieties, \cite[Proposition~2.1]{Riess} says that there exists a smooth proper morphism of complex algebraic spaces $\XXX_2 \rightarrow T_2$ whose fibers are hyperk\"ahler varieties, one of whose fibers is isomorphic to $X'$, and another isomorphic to $(S')^{[n]}$.
+
+By Lemma~\ref{lem:k3_defo_equiv}, there exists a smooth proper morphism of complex algebraic spaces $\SS \rightarrow T_3$ whose fibers are K3 surfaces, one of which is $S'$, and another is $S$. It follows that there is a smooth proper morphism of complex algebraic spaces $\XXX_3 \rightarrow T_3$ whose fibers are the Hilbert schemes of $n$ points on the fibers of $\SS \rightarrow T_3$.
+
+By gluing $\XXX_1 \rightarrow T_1$, $\XXX_2 \rightarrow T_2$, and $\XXX_3 \rightarrow T_3$ together along appropriate points, we obtain a smooth proper morphism of complex algebraic spaces whose fibers are hyperk\"ahler varieties, one of which is isomorphic to $X$, and another to $S^{[n]}$.
+\end{proof}
+
+\begin{lemma}\label{lem:pullback_k3n}
+    Let $X$ be a complex hyperk\"ahler variety of $\KKKKK^{[n]}$ type, and let $\sigma \in \Aut(\CC)$. Then the pullback $\sigma^* X$ of $X$ along $\sigma$ is a hyperk\"ahler variety of $\KKKKK^{[n]}$ type. Moreover, the BBF forms on $\HHH^2(X,\ZZ(1))$ and $\HHH^2(\sigma^* X,\ZZ(1))$ are isometric.
+\end{lemma}
+\begin{proof}
+    Let $S$, $T$, and $f\colon \XXX \rightarrow T$ be as in Lemma~\ref{lem:riess}. Then $\sigma^*f\colon \sigma^* \XXX \rightarrow \sigma^* T$ is a smooth proper morphism of algebraic spaces such that one of the fibers is isomorphic to $\sigma^* X$, and another is isomorphic to $\sigma^*(S^{[n]})$. Since $\sigma^*(S^{[n]}) = (\sigma^* S)^{[n]}$, and since $\sigma^* S$ is a K3 surface, it follows that $\sigma^* X$ is of $\KKKKK^{[n]}$ type. In particular, $X$ and $\sigma^* X$ have isometric BBF forms on singular cohomology by Proposition~\ref{prop:bbbf_monodromy}.
+\end{proof}
+
+\begin{definition}\label{def:k3n_2}
+    A hyperk\"ahler variety $X$ over a field $k$ of characteristic $0$ is said to be of {\bfseries $\KKKKK^{[n]}$ type} if $X$ descends to a hyperk\"ahler variety $X_K$ over a subfield $K$ of $\CC$ such that $X_{\CC}$ is of $\KKKKK^{[n]}$ type.
+\end{definition}
+
+\begin{remark}
+Lemma~\ref{lem:pullback_k3n} shows that when $k = \CC$, Definition~\ref{def:k3n_2} is equivalent to Definition~\ref{def:k3n_1}.
+\end{remark}
+
+\begin{lemma}\label{lem:riess_general}
+    Let $X$ be a hyperk\"ahler variety of $\KKKKK^{[n]}$ type over an algebraically closed field $k$ of characteristic $0$, and $S$ a K3 surface over $k$. Then there exists a smooth proper morphism of algebraic spaces $f\colon \XXX \rightarrow T$ over $k$ whose fibers are hyperk\"ahler varieties, with $T$ connected, such that one fiber of $f$ is isomorphic to $X$, and another is isomorphic to $S^{[n]}$.
+\end{lemma}
+\begin{proof}
+This follows from Lemma~\ref{lem:riess} by a spreading out argument.
+\end{proof}
+
+\begin{lemma}\label{lem:one_fiber_every_fiber}
+Let $S$ be a connected finite type $\QQ$-scheme, and $X/S$ a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties. If there exists a $\CC$-point $s_0$ of $S$ such that $X_{s_0}$ is of $\KKKKK^{[n]}$ type, then every fiber of $X/S$ is of $\KKKKK^{[n]}$ type.
+\end{lemma}
+\begin{proof}
+Let $s$ be a $\CC$-point of $S$. We will show that the fiber $X_s$ is of $\KKKKK^{[n]}$ type. By the connectedness of $S$, we can find a $\sigma \in \Aut(\CC)$ such that $\sigma s_0$ is in the same component of $S_{\CC}^{\an}$ as $s$. By Lemma~\ref{lem:pullback_k3n}, $X_{\sigma s_0} = \sigma^* X_{s_0}$ is of $\KKKKK^{[n]}$ type, so it follows that $X_s$ is of $\KKKKK^{[n]}$ type.
+
+Now let $k$ be a field of characteristic $0$, and $s \in S(k)$. Since $S$ is of finite type, we can find a finitely generated subfield $k' \subseteq k$ and a point $s' \in S(k')$ such that $s$ factors through $s'$. Next, we choose an embedding $k' \subseteq \CC$. By the above, $X_{s',\CC}$ is of $\KKKKK^{[n]}$ type, so by definition $X_s$ is of $\KKKKK^{[n]}$ type.
+\end{proof}
+
+Let $S$ be a $\QQ$-scheme, and $f\colon X \rightarrow S$ be a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. Consider the discriminant
+$$
+\Delta(X/S) := \Delta\!\left( \RRR^2_{\et}f_* \ZZh(1) \right),
+$$
+which is a local system of finite abelian groups on $S_{\et}$, with fibers isomorphic to $\ZZ/(2n-2)\ZZ$, see Example~\ref{exa:bbf_k3n}. Now let $F(X/S)$ be the local system of finite sets on $S_{\et}$ defined as the quotient of $\Delta(X/S)$ by the action of $\{\pm 1\}$, with $-1$ acting as $-\id_{\Delta(X/S)}$.
+
+\begin{theorem}[Markman]\label{thm:markman}
+    Let $S$ be a scheme over an algebraically closed field of characteristic $0$, and let $X/S$ be a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. Then the local system $F(X/S)$ on $S_{\et}$ is constant.
+\end{theorem}
+\begin{proof}
+For $S$ of finite type over $\CC$, this follows from~\cite[Lemma~9.2]{MarkmanSurvey} and~\cite[Corollaire~XII.5.2]{SGA1}. A spreading out argument shows that the result holds for any scheme $S$ over $\CC$. We obtain the result for general algebraically closed ground fields of characteristic $0$ via the Lefschetz principle.
+\end{proof}
+
+\begin{lemma}\label{lem:markman_lemma}
+Let $S$ be a K3 surface over a field $k$ of characteristic $0$. Then the local system $F(S^{[n]}/k)$ on $k_{\et}$ is constant.
+\end{lemma}
+\begin{proof}
+We will show that the local system $\Delta(S^{[n]}/k)$ is constant. A fortiori its quotient $F(S^{[n]}/k)$ is then also constant.
+
+As in Example~\ref{exa:bbf_k3n}, there is a natural morphism $S^{[n]} \rightarrow S^{(n)}$, and the inverse image of the singular locus defines a divisor $E$ on $S^{[n]}$. Then $\Delta(S^{[n]}/k)$ is generated by $\delta \in \HHH^2_{\et}(S^{[n]}_{\overline{k}},\ZZh(1))$ satisfying $2 \delta = E$. Since $E$ is $\gal_{k}$-invariant, and since $\HHH^2_{\et}(S^{[n]}_{\overline{k}},\ZZh(1))$ is a free $\ZZh$-module, it follows that $\delta$ is $\gal_{k}$-invariant. This shows that $\gal_{k}$ acts trivially on $\Delta(S^{[n]}/k)$.
+\end{proof}
+
+\begin{lemma}\label{lem:local_system_constant}
+    Let $k$ be a perfect field, let $\overline{k}$ be an algebraic closure of $k$, let $\MM$ be a stack on $(\Sch/k)_{\et}$, and let $\FF$ be a local system of finite sets on the big \'etale site $\MM_{\et}$ of $\MM$. If
+\begin{enumerate}
+    \item for any algebraically closed extension $\Omega$ of $\overline{k}$ and $y, z \in \MM_{\overline{k}}(\Omega)$ there exists a connected algebraic space $T$ over $\Omega$ and a morphism $T \rightarrow \MM_{\overline{k}}$ which has $y$ and $z$ in its image,
+\item the restriction of $\FF$ to $\MM_{\overline{k}}$ is constant, and
+\item there exists a point $x \in \MM(k)$ such that $x^*\! \FF$ is constant,
+\end{enumerate}
+then $\FF$ is constant.
+\end{lemma}
+\begin{proof}
+    Let $\LS(\MM_{\overline{k}})$ be the category of local systems of finite sets on $\MM_{\overline{k},\et}$. For an algebraically closed extension $\Omega$ of $\overline{k}$, a geometric point $x_0 \in \MM_{\overline{k}}(\Omega)$ induces a functor $x_0^*$ from $\LS(\MM_{\overline{k}})$ to the category $\fSet$ of finite sets, via pullback. For two geometric points $x_0$ and $x_1$ of $\MM_{\overline{k}}$, a path from $x_0$ to $x_1$ in $\MM_{\overline{k}}$ consists of an isomorphism of functors $x_0^* \rightarrow x_1^*$. Assumption~1 implies that we can find a path between any two geometric points of $\MM_{\overline{k}}$.
+
+%Suppose $\Omega_0$ and $\Omega_1$ are two algebraically closed extensions of $k$, and $x_0 \in \MM_{\overline{k}}(\Omega_0)$, and $x_1 \in \MM_{\overline{k}}(\Omega_1)$. Pick an algebraically closed extension $\Omega$ containing both $\Omega_0$ and $\Omega_2$. Then assumption 1 shows that we can find a path in $\MM_{\overline{k}}$ from the geometric point $\Spec(\Omega) \rightarrow \Spec(\Omega_0) \xrightarrow{x_0} \MM_{\overline{k}}$ to $\Spec(\Omega) \rightarrow \Spec(\Omega_1) \xrightarrow{x_1} \MM_{\overline{k}}$. This in turn induces a path from $x_0$ to $x_1$. In particular, we can find a path in $\MM_{\overline{k}}$ between any two geometric points.
+
+Let $\overline{x}$ be the $\overline{k}$-point of $\MM_{\overline{k}}$ corresponding to the $k$-point $x$ of $\MM$ in assumption~3. We define $F_0$ to be the finite set $\overline{x}^*\!\FF$. Let $\FF_0 \in \LS(\MM)$ be the constant sheaf of finite sets on $\MM_{\et}$ associated with $F_0$. We will show that $\FF$ is isomorphic to $\FF_0$.
+
+    By assumption~2, the sheaf $\FF|_{\MM_{\overline{k}}}$ is constant, so there exists an isomorphism $\beta\colon \FF|_{\MM_{\overline{k}}} \rightarrow \FF_0|_{\MM_{\overline{k}}}$ which satisfies $\overline{x}^*\beta = \id_{\overline{x}^*\!\FF}$.
+
+    We claim that the condition that $\overline{x}^*\beta = \id_{\overline{x}^*\!\FF}$ determines $\beta$ uniquely. To see this, first note that the big \'etale site of $\MM_{\overline{k}}$ has enough points by~\cite[Tag~06W4]{SP}, so $\beta$ is determined by the morphisms $y^*\beta\colon y^*\!\FF \rightarrow y^*\!\FF_0$, where $y$ ranges over all geometric points of $\MM_{\overline{k}}$. For a geometric point $y$ of $\MM_{\overline{k}}$, let $\gamma$ be a path from $\overline{x}$ to $y$. Then by the functoriality of $\gamma$ there is a commutative diagram of bijections
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \overline{x}^*\!\FF & \overline{x}^*\!\FF_0  \\
+             y^*\!\FF & y^*\!\FF_0 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\overline{x}^*\!\beta$} (m-1-2)
+                                         edge node[left]{$\gamma_{\FF}$} (m-2-1)
+                                 (m-2-1) edge node[below]{$y^*\!\beta$} (m-2-2)
+                                 (m-1-2) edge node[right]{$\gamma_{\FF_0}$} (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+    This shows that $y^*\!\beta$ is determined by $\overline{x}^*\!\beta$, so that the condition $\overline{x}^*\!\beta = \id_{\overline{x}^*\! \FF}$ uniquely determines $\beta$.
+
+    Let $\sigma \in \gal_{k}$. Then $\sigma$ acts trivially on $\overline{x}^*\!\FF_0$ because $\FF_0$ is constant, and it acts trivially on $\overline{x}^*\!\FF$ by assumption 3. It follows that $\sigma \beta\colon \FF|_{\MM_{\overline{k}}} \rightarrow \FF_0|_{\MM_{\overline{k}}}$ satisfies $\overline{x}^*(\sigma \beta) = \id$, so that $\sigma \beta = \beta$. It follows that $\beta$ induces an isomorphism $\FF \rightarrow \FF_0$, showing that $\FF$ is constant on $\MM_{\et}$.
+%In particular, given a $\CC$-point $y$ of $\KKKK^{[n]}$, and a path $\gamma$ from $y$ to $x$ in $\KKKK^{[n]}_{\et}$, the induced map from $\FF_{y}$ to $\FF_x = F_0$ is $\beta_y$.
+%
+%Now let $\sigma \in \Aut(\CC)$, and define a sheaf $\sigma^* (\FF_{\CC})$ on $\KKKK^{[n]}_{\CC,\et}$ by
+%$$
+%Y/S \longmapsto F(\sigma^* Y/ \sigma^* S)(\sigma^* S),
+%$$
+%where $\sigma^*Y$ and $\sigma^* S$ are as in~\eqref{eq:galois_pullback}. Note that~\eqref{eq:pullback_of_motives} gives us a morphism of sheaves $\sigma^*\colon \FF_{\CC} \rightarrow \sigma^*(\FF_{\CC})$ coming from the usual action of $\Aut(\CC)$ on \'etale cohomology.
+%
+%Let $Y/\CC$ be a hyperk\"ahler variety of $\KKKK^{[n]}$ type, corresponding to a $\CC$-point $y$ of $\KKKK^{[n]}$. We claim that the diagram
+%\begin{equation}\label{eq:beta_galois}
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { F(Y/\CC) & & F(\sigma^* Y/\CC) \\
+%             & F_0 & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\sigma^*$} (m-1-3)
+%                                         edge node[left] (U) {$\beta_y$} (m-2-2)
+%                                 (m-1-3) edge node[right] (V) {$\beta_{\sigma y}$} (m-2-2);
+%
+%
+%\end{tikzpicture}\end{matrix}
+%\end{equation}
+%commutes. For this, pick a path $\gamma$ in $\KKKK^{[n]}_{\CC}$ from $y$ to $x$, the existence of which follows from Lemma~\ref{lem:riess}. Note that the stalk of $\sigma^* \FF$ at $x$ is $\FF_x = F_0$, since $X$ is defined over $\QQ$. Moreover, the map $(\sigma^* \FF_{\CC})_y \rightarrow (\sigma^* \FF_{\CC})_{x}$ induced by $\gamma$ via monodromy is $\beta_{\sigma y}$. The functoriality of monodromy now implies that the diagram
+%$$
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+%           { F(Y/\CC) & F(\sigma^* Y/\CC) \\
+%             F(X_{\CC}/\CC)  & F(X_{\CC}/\CC) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\sigma^*$} (m-1-2)
+%                                         edge node[left] (U) {$\beta_y$} (m-2-1)
+%                                 (m-2-1) edge node[below] {$\sigma^*$} (m-2-2)
+%                                 (m-1-2) edge node[right] (V) {$\beta_{\sigma y}$} (m-2-2);
+%
+%\end{tikzpicture}\end{matrix}
+%$$
+%commutes. Lemma~\ref{lem:markman_lemma} states that the map $\sigma^* \colon F(X_{\CC}/\CC) \rightarrow F(X_{\CC}/\CC)$ is the identity, so it follows that~\eqref{eq:beta_galois} commutes.
+%
+%Descent theory now implies that the isomorphism $\beta\colon \FF_{\CC} \rightarrow \FF_{0,\CC}$ descends to an isomorphism from $\FF$ to $\FF_0$, showing that $\FF$ is constant.
+\end{proof}
+
+\begin{theorem}\label{thm:k3n_monodromy}
+    Let $S$ be a scheme over $\QQ$, and let $X/S$ be a smooth proper morphism of algebraic spaces whose fibers are hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. Then the local system $F(X/S)$ on $S_{\et}$ is constant.
+\end{theorem}
+%\begin{proof}
+%    Let $S_0$ be a K3 surface over $\QQ$, let $X_0 = S_0^{[n]}$, and define $F_0$ to be the set $F(X_0/\QQ)(\CC)$. Theorem~\ref{thm:markman} shows that for all hyperk\"ahler varieties $Y/\CC$ of $\KKKK^{[n]}$ type, we can find a bijection $\beta(Y/\CC)\colon F(Y/\CC) \rightarrow F_0$ satisfying the following condition. Let $T$ be a connected algebraic space over $\CC$, with distinguished points $0,1 \in T(\CC)$, let $\gamma$ be a path in $T_{\et}$ from $1$ to $0$, and let $f\colon \mathcal{Y} \rightarrow T$ be of $\KKKK^{[n]}$ type such that the fiber $\mathcal{Y}_0$ over $0$ is $X_{0,\CC}$. Then the bijection $F(\mathcal{Y}_1/\CC) \rightarrow F(\mathcal{Y}_0/\CC) = F_0$ induced by $\gamma$ is $\beta(\mathcal{Y}_1/\CC)$.
+%
+%Let $Y/\CC$ be of $\KKKK^{[n]}$ type, let $\sigma \in \Aut(\CC)$, and let $\sigma^* Y$ be the pullback of $Y$ along $\sigma$, as in~\eqref{eq:galois_pullback}. Then by Remark~\ref{rk:pullback_k3n}, $\sigma^* Y$ is also of $\KKKK^{[n]}$ type, and hence also comes with a bijection $\beta(\sigma^* Y/\CC)\colon F(\sigma^* Y/\CC) \rightarrow F_0$. The map on \'etale cohomology given by the morphism $\sigma^* Y \rightarrow Y$ preserves the \'etale BBF form by Remark~\ref{rk:pullback_bbf} and therefore induces a map $\sigma^*\colon F(Y/\CC) \rightarrow F(\sigma^* Y/\CC)$. We claim that the diagram
+%\begin{equation}\label{eq:beta_galois}
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { F(Y/\CC) & & F(\sigma^* Y/\CC) \\
+%             & F_0 & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\sigma^*$} (m-1-3)
+%                                         edge node[left] (U) {$\beta(Y/\CC)\ $} (m-2-2)
+%                                 (m-1-3) edge node[right] (V) {$\ \beta(\sigma^*Y/\CC)$} (m-2-2);
+%
+%
+%\end{tikzpicture}\end{matrix}
+%\end{equation}
+%commutes.
+%
+%Lemma~\ref{lem:riess} gives us a proper smooth morphism $\YY \rightarrow T$ of algebraic spaces, with $T$ connected, and points $0,1 \in T(\CC)$ such that the fiber over $1$ is $Y$, and the fiber over $0$ is $X_{0,\CC}$. Pick a path $\gamma$ in $T_{\et}$ from $1$ to $0$. Then the map $F(Y/\CC) \rightarrow F_0$ induced by $\gamma$ is $\beta(Y/\CC)$. 
+%
+%The pullback of $\YY \rightarrow T$ along $\sigma$ is a deformation from $\sigma^* Y$ to $\sigma^* X_{0,\CC}$. Since $X_{0,\CC}$ is defined over $\QQ$, we have $\sigma^* X_{0,\CC} = X_{0,\CC}$, so that the map $F(\sigma^* Y/\CC) \rightarrow F_0$ induced by the pullback of $\gamma$ along $\sigma$ is $\beta(\sigma^* Y/\CC)$. It follows that
+%$$
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+%           { F(Y/\CC) & F(\sigma^* Y/\CC) \\
+%             F_0  & F_0 \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\sigma^*$} (m-1-2)
+%                                         edge node[left] (U) {$\beta(Y/\CC)$} (m-2-1)
+%                                 (m-2-1) edge node[below] {$\sigma^*$} (m-2-2)
+%                                 (m-1-2) edge node[right] (V) {$\beta(\sigma^*Y/\CC)$} (m-2-2);
+%
+%
+%\end{tikzpicture}\end{matrix}
+%$$
+%commutes. This, combined with Lemma~\ref{lem:markman_lemma}, shows that~\eqref{eq:beta_galois} commutes.
+%\end{proof}
+
+\begin{proof}
+    Let $\KKKK^{[n]}$ be the groupoid fibration on $\Sch/\QQ$ whose objects are proper smooth morphisms of algebraic spaces $f\colon Y \rightarrow S$, where $S$ is a $\QQ$-scheme, such that all fibers of $f$ are hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. Then $\KKKK^{[n]}$ is a stack for the \'etale topology. The assignment
+$$
+Y/S \longmapsto F(Y/S)(S)
+$$
+defines a local system $\FF$ of finite sets on the big \'etale site $\KKKK^{[n]}_{\et}$ of $\KKKK^{[n]}$. The theorem is equivalent to $\FF$ being constant. Lemma~\ref{lem:riess_general}, Theorem~\ref{thm:markman}, and Lemma~\ref{lem:markman_lemma} show that $\KKKK^{[n]}$ and $\FF$ satisfy the hypotheses of Lemma~\ref{lem:local_system_constant}, so $\FF$ is constant.
+\end{proof}
+
+\begin{remark}\label{rk:kummer_varieties}
+The results proved in this section have analogues for generalized Kummer varieties (see Example~\ref{exa:hk_3}). 
+
+The main results used in proving that being of $\KKKKK^{[n]}$ type is an algebraic condition (see Lemma~\ref{lem:riess} and Lemma~\ref{lem:pullback_k3n}) are~\cite[Corollary~1.2]{MongardiPacienza} and~\cite[Proposition~2.1]{Riess}. These results hold for generalized Kummer varieties, and the arguments given here for $\KKKKK^{[n]}$-type varieties carry over almost verbatim to such varieties (with the complex K3 surface and its Hilbert scheme of points in Lemma~\ref{lem:riess} replaced by a complex abelian surface and the associated generalized Kummer variety).
+
+Let $S$ be a $\QQ$-scheme. For a smooth proper morphism $X \rightarrow S$ whose fibers are generalized Kummer varieties, we denote by $F(X/S)$ the quotient by $\{\pm 1\}$ of the sheaf of finite abelian groups
+$$
+\Delta(\RRR^2_{\et} f_* \ZZh(1))
+$$
+on $S_{\et}$. It follows from~\cite[Theorem~4.3]{Mongardi} that if $S$ is a scheme over an algebraically closed field of characteristic $0$, and if $X/S$ admits an orientation, then the local system of finite sets $F(X/S)$ is constant, giving an analogue of Theorem~\ref{thm:markman}.
+
+Suppose $X$ is the generalized Kummer variety associated with an abelian surface over a field $k$ of characteristic $0$. Then the description given in~\cite{Beauville} of the BBF lattice $\HHH^2_{\et}(X_{\overline{k}},\ZZh(1))$ shows that its discriminant is generated by an algebraic cycle on $X$, which allows one to prove an analogue of Lemma~\ref{lem:markman_lemma}. Ultimately this leads to an analogue of Theorem~\ref{thm:k3n_monodromy} for \emph{oriented} generalized Kummer varieties.
+\end{remark}
+
+\subsection{Period maps for $\text{K3}^{[n]}$-type hyperk\"ahler varieties}
+We will now apply the results of the preceding subsection to obtain a period map over $\QQ$ for oriented polarized hyperk\"ahler varieties of $\KKKKK^{[n]}$-type which is an open immersion.
+
+Let $\MMM$ be a connected component of $\HK_{\ori}$ such that one of the points of $\MMM$ is a $\KKKKK^{[n]}$-type hyperk\"ahler variety. We use the notation from Section~\ref{sec:period_maps}. In particular, we let $f\colon \XXX \rightarrow \MMM$ be the universal hyperk\"ahler variety, $\lambda$ the universal polarization, and $\omega_{[4]}$ the universal orientation on $\XXX$. By Lemma~\ref{lem:one_fiber_every_fiber}, every fiber of $\XXX/\MMM$ is of $\KKKKK^{[n]}$ type.
+
+The constructions in Section~\ref{sec:period_maps} yield a $\ZZ$-VHS $\RRR^2 f_{\CC,*} \ZZ(1)$ on $\MMM_{\CC}$, endowed with data $b_{\an}$, $\lambda_{\an}$, and $\omega_{\an}$, arising from the BBF form, the polarization, and the orientation on $\XXX$, respectively. They also yield a local $\ZZh$-system $\RRR_{\et}^2 f_* \ZZh(1)$ on $\MMM_{\et}$, endowed with data $b_{\et}$, $\lambda_{\et}$, and $\omega_{\et}$. Moreover, we pick a $\CC$-point $x_0 = (X_0,\lambda_{x_0},\omega_{[4],x_0})$, which gives rise to $\Lambda_0 := \HHH^2(X_0,\ZZ(1))$, endowed with the BBF form $b_0$, the polarization $\lambda_0 := \lambda_{\an,x_0}$, and the orientation $\omega_0 := \omega_{\an,x_0}$.
+
+Theorem~\ref{thm:k3n_monodromy} gives rise to extra structure on $\RRR^2 f_{\CC,*}\ZZ(1)$ and $\RRR^2_{\et} f_* \ZZh(1)$, as follows. As in the proof of Theorem~\ref{thm:k3n_monodromy}, let $\KKKK^{[n]}$ be the stack over $\QQ_{\et}$ whose objects are smooth proper morphisms of algebraic spaces $f\colon X \rightarrow S$, where $S$ is a $\QQ$-scheme, such that all fibers of $f$ afe hyperk\"ahler varieties of $\KKKKK^{[n]}$ type. The assignment
+$$
+Y/S \longmapsto F(Y/S)(S)
+$$
+defines a local system $\FF$ of finite sets on the big \'etale site of $\KKKK^{[n]}$. Let $F_0$ be the constant sheaf of finite sets associated with $F(X_0)$. Then Theorem~\ref{thm:k3n_monodromy} shows that we can pick an isomorphism of sheaves 
+\begin{equation}\label{eq:beta_k3n}
+\overline{\beta}\colon F_0 \longrightarrow \FF
+\end{equation}
+such that $\overline{\beta}$ is the identity over the point $X_0$ of $\KKKK^{[n]}$. Now $\XXX/\MMM$ yields a morphism $\MMM \rightarrow \KKKK^{[n]}$, which allows us to pull the isomorphism $\overline{\beta}$ back to give an isomorphism
+$$
+\overline{\alpha}\colon F_0 \longrightarrow F(\XXX/\MMM)
+$$
+of sheaves of finite sets on $\MMM_{\et}$. Note that $\overline{\alpha}_{x_0}$ is the identity.
+
+Since $F(\XXX/\MMM)$ is a constant local system of finite sets, there is an isomorphism of sheaves $\overline{\alpha}\colon F_0 \rightarrow F(\XXX/\MMM)$ such that $\overline{\alpha}_{x_0}$ is the identity.
+
+The proof of the following lemma is similar to that of Lemma~\ref{lem:tuples_same_genus}, and hence omitted.
+\begin{lemma}\label{lem:same_genus_k3n}
+    Let $x = (X,\lambda,\omega_{[4]})$ be a $\CC$-point of $\MMM$. Then there exists an isometry $\psi\colon \Lambda_0 \otimes \ZZh \rightarrow \HHH^2(X,\ZZ(1)) \otimes \ZZh$ mapping $\lambda_0$ and $\omega_0$ to $\lambda_{\an,x}$ and $\omega_{\an,x}$, and such that $\psi$ induces $\overline{\alpha}_{x}$.
+\end{lemma}
+
+Let $(\SO,\Omega)$ be the orthogonal Shimura datum associated with $(\Lambda_0,b_0,\lambda_0,\omega_0)$ as in Section~\ref{sec:period_maps}. Moreover, let $\KK_{F}$ be the profinite group
+$$
+\left\{g \in \KK_0 \mid \Delta(g) = \pm \id_{\Delta(\Lambda_0)}\right\},
+$$
+viewed as a compact open subgroup of $\SO(\AAf)$ by mapping $g \in \KK_F$ to $g|_{\AAf \lambda_0^{\perp}}$. Now Lemma~\ref{lem:same_genus_k3n}, Lemma~\ref{lem:moduli_vhs_k3n}, and Lemma~\ref{lem:baily_borel} show that the tuple 
+$$
+(\RRR^2f_{\CC,*} \ZZ(1),\, b_{\an},\, \lambda_{\an},\, \omega_{\an},\, \alpha)
+$$
+gives rise to a morphism of complex Deligne-Mumford stacks $\MMM_{\CC} \rightarrow \Sh_{\KK_F}[\SO,\Omega]_{\CC}$.
+
+Note that the isomorphism sheaf
+$$
+\Isom\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \omega_0,\, \id_{F(\Lambda_0)}),(\RRR^2_{\et}f_* \ZZh(1),\, b_{\et},\ \lambda_{\et},\, \omega_{\et})\right)
+$$
+is a $\KK_{F}$-torsor on $\MMM_{\et}$. Moreover, $\Sh(\SO,\Omega))$ is a $\KK_{F}$-torsor on $\Sh[\SO,\Omega]_{\et}$. The following theorem states that the period map $\MMM_{\CC} \rightarrow \Sh_{\KK_F}[\SO,\Omega]_{\CC}$ descends to $\QQ$. Its proof is similar to that of Theorem~\ref{thm:main_theorem_1}.
+\begin{theorem}\label{thm:main_thm_k3n}
+The period map $\MMM_{\CC} \rightarrow \Sh_{\KK_F}[\SO,\Omega]_{\CC}$ defined by the tuple
+$$
+(\RRR^2f_{\CC,*} \ZZ(1),\, b_{\an},\, \lambda_{\an},\, \omega_{\an},\, \alpha)
+$$
+descends to a morphism $\MMM \rightarrow \Sh_{\KK_F}[\SO,\Omega]$ defined over $\QQ$. This morphism is \'etale, and pulls the $\KK_F$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK_F}[\SO,\Omega]_{\et}$ back to the $\KK_F$-torsor.
+$$
+\Isom\left((\Lambda_0 \otimes \ZZh,\, b_0,\, \lambda_0,\, \omega_0,\, \id_{F(\Lambda_0)}),(\RRR^2_{\et}f_* \ZZh(1),\, b_{\et},\ \lambda_{\et},\, \omega_{\et})\right)
+$$
+on $\MMM_{\et}$.
+\end{theorem}
+
+We wish to show that this period map is an open immersion. For this, we need the following two lemmas. The first implies that the period map is faithful. The second is a consequence of characterization of parallel transport operators for $\KKKKK^{[n]}$-type hyperk\"ahler varieties, due to Markman. In conjunction with Verbitsky's global Torelli theorem (Corollary~\ref{cor:global_torelli}), this will allow us to show that the period map is full.
+
+\begin{lemma}[{\cite[Proposition~10]{BeauvilleRemarks} and~\cite[Theorem~2.1]{HassettTschinkel}}]\label{lem:faithful_k3n}
+Let $X$ be a complex hyperk\"ahler variety of $\KKKKK^{[n]}$ type. Then the natural homomorphism $\Aut(X) \rightarrow \O(\HHH^2(X,\ZZ(1)))$ is injective.
+\end{lemma}
+
+\begin{lemma}\label{lem:full_k3n}
+Let $x = (X,\lambda,\omega_{[4]})$ and $x' = (X',\lambda',\omega_{[4]}')$ be $\CC$-points of $\MMM$, and let $\vphi\colon \HHH^2(X',\ZZ(1)) \rightarrow \HHH^2(X,\ZZ(1))$ be a Hodge isometry mapping $\lambda_{\an,x'}$, $\omega_{\an,x'}$, and $\overline{\alpha}_{x'}$ to $\lambda_{\an,x}$, $\omega_{\an,x'}$, and $\overline{\alpha}_{x}$. Then $\vphi$ is induced by an isomorphism $x \rightarrow x'$ in $\MMM$.
+\end{lemma}
+\begin{proof}
+By the global Torelli theorem for polarized hyperk\"ahler manifolds, Corollary~\ref{cor:global_torelli}, it suffices to show that $\vphi$ is a parallel transport operator in the sense of Definition~\ref{def:pto}.
+
+By applying Lemma~\ref{lem:riess} to both $X$ and $X'$, we can find a smooth proper morphism of algebraic spaces $f\colon \YYY \rightarrow T$ whose fibers are hyperk\"ahler varieties, with $T$ connected, such that one fiber of $f$ (over $t \in T$, say) is isomorphic to $X$, and another (over $t' \in T$) is isomorphic to $X'$. 
+
+Pick a path $\gamma$ in $T^{\an}$ from $t$ to $t'$. Then $\gamma$ induces a parallel transport operator $\psi\colon \HHH^2(X,\ZZ(1)) \rightarrow \HHH^2(X',\ZZ(1))$. Since $f$ defines a morphism $T \rightarrow \KKKK^{[n]}$, it follows that $\psi \overline{\beta}_X = \overline{\beta}_{X'}$, where $\overline{\beta}$ is the isomorphism of sheaves on $\KKKK^{[n]}_{\et}$ given in~\eqref{eq:beta_k3n}.
+
+Now the composition $\vphi\psi$ is an element of $\O(\HHH^2(X,\ZZ(1)))$. Since $\overline{\alpha}_x = \overline{\beta}_X$ by definition of $\overline{\alpha}$, it follows that $\vphi \psi(\overline{\alpha}_x) = \overline{\alpha}_x$, so that $\vphi \psi$ acts as $\pm \id$ on $\Delta(\HHH^2(X,\ZZ(1)))$. By~\cite[Lemma~9.2]{MarkmanSurvey}, this implies that $\vphi \psi$ is a parallel transport operator. Since $\psi$ is a parallel transport operator, and since the composition of parallel transport operators is a parallel transport operator, it follows that $\vphi$ is a parallel transport operator.
+\end{proof}
+
+The following theorem is an immediate consequence of Lemma~\ref{lem:faithful_k3n} and Lemma~\ref{lem:full_k3n}.
+\begin{theorem}\label{thm:main_thm_k3n}
+The period map $\MMM \rightarrow \Sh_{\KK_F}[\SO,\Omega]$ from Theorem~\ref{thm:main_thm_k3n} is an open immersion.
+\end{theorem}
+
+\begin{remark}
+By Remark~\ref{rk:kummer_varieties}, we can prove a statement similar to Theorem~\ref{thm:main_thm_k3n} for moduli spaces of oriented polarized hyperk\"ahler varieties deformation equivalent to a generalized Kummer variety. The resulting period map is full by~\cite[Theorem~4.3]{Mongardi} and Corollary~\ref{cor:global_torelli}. However it is not an open immersion, since it is not faithful by~\cite[Corollary~3.3]{BoissiereNieperSartiEnriques}.
+\end{remark}

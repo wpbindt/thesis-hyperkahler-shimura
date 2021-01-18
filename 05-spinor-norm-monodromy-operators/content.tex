@@ -1,0 +1,1734 @@
+\chapter{The spinor norm of monodromy operators}\label{ch:spinor_norm}
+In this chapter, we will compute the spinor norm of monodromy operators on K3 surfaces.
+
+In the first section, we recall the definition and basic facts about the spinor norm. In the second section, we state the main result, and compare it to known results. The proof of the result makes use of a theorem of Deligne on the connected components of Shimura varieties, which is stated in the third section. The proof of the main result is given in the fourth section. In the final two sections, we apply the result to sharpen a theorem of Elsenhans and Jahnel on the zeta function of K3 surfaces over finite fields, and to give a necessary condition for a lattice to be the N\'eron-Severi lattice of a K3 surface over a non-closed field.
+
+\section{The spinor norm}\label{sec:spinor_norm}
+\subsection{Generalities}
+In this section we recall the definition of the spinor norm, and list some results which we will need in later sections. None of the results in this section are original, and proofs for most of them can be found in~\cite[Appendix~C]{ConradReductive},~\cite{Knus}, and~\cite{MirandaMorrison}. We provide proofs for the results which are harder to find in the literature.
+
+Throughout this section, $(V,q)$ will be a quadratic form of over a commutative ring $R$. That is, $V$ is a locally free $R$-module of constant finite rank, and $q$ is a map $V \rightarrow R$ such that $q(\lambda v) = \lambda^2 q(v)$ for all $\lambda \in R$ and $v \in V$, and such that the map $b_q\colon V \times V \rightarrow R$ given by
+$$
+(v,w) \longmapsto q(v + w) - q(v) - q(w)
+$$
+is a bilinear form. The map $b_q$ is known as the bilinear form associated with $q$.
+
+Moreover, in this section, we assume that $V$ is self-dual in the sense that $b_q$ induces an isomorphism $V \rightarrow V^{\vee}$. In case $2$ is \emph{not} invertible in $R$, we additionally assume that $V$ has even dimension.
+
+The reason for restricting our attention to quadratic forms satisfying these conditions is that for such quadratic forms, the group scheme $\O(V)$ admits a natural central extension in the fppf topology, namely
+\begin{equation}\label{eq:pin_ses}
+1 \longrightarrow \mu_2 \longrightarrow \Pin(V) \longrightarrow \O(V) \longrightarrow 1.
+\end{equation}
+The group $\Pin(V)$ is known as the {\bfseries Pin group of} $V$, and is constructed using the Clifford algebra of $V$. See~\cite[Appendix C.5]{ConradReductive}.
+
+\begin{definition}\label{def:spinor_norm}
+The connecting homomorphism $\O(V)(R) \rightarrow \HHH^1(R_{\fppf},\mu_2)$ coming from~\eqref{eq:pin_ses} is known as the {\bfseries spinor norm}, and will be denoted $\nu_V$. 
+\end{definition}
+
+
+\begin{remark}
+We denote by $-V$ the quadratic form $(V,-q)$. Note that $\O(V) = \O(-V)$. In general, $\nu_{-V}$ does \emph{not} coincide with $\nu_V$, see Lemma~\ref{lem:comparison_spinor_norm_huybrechts}. Some authors refer to $\nu_{-V}$ as the spinor norm, notably~\cite{HuybrechtsK3}.
+\end{remark}
+
+\begin{remark}
+In working with the spinor norm, we will frequently make use of the exact sequence
+$$
+1 \longrightarrow R^{\times}\!/2 \longrightarrow \HHH^1(R_{\fppf},\mu_2) \longrightarrow \Pic(R)[2] \longrightarrow 1
+$$
+    coming from the Kummer sequence. In particular, when $\Pic(R)$ is trivial, we will identify the spinor norm with a map $\O(V)(R) \rightarrow R^{\times}\!/2$.
+\end{remark}
+%\begin{remark}
+%It is possible to define spinor norms in more general settings. For instance, suppose $R$ is an integral domain of characteristic $\neq 2$ with field of fractions $k$, and $V$ any quadratic form over $R$ for which $V_{k}$ is self-dual. Then we can call the restriction of $\nu_{V \otimes k}\colon \O(V)(k) \rightarrow k^{\times}\!/2$ to $\O(V)(R)$ the spinor norm. A disadvantage of this approach is that the codomain of the spinor norm is no longer $\HHH^1(R_{\fppf},\mu_2)$. {\color{red} example?}
+%
+%
+%\end{remark}
+
+\begin{example}
+    In later sections, we will frequently consider self-dual \emph{even} $\ZZ$-lattices $\Lambda$. Such lattices arise as the associated bilinear form of a self-dual quadratic form over $\ZZ$. Moreover, these lattices have even rank by~\cite[Theorem~14.1.1]{HuybrechtsK3}, so we have a spinor norm $\nu_{\Lambda}\colon \O(\Lambda)(\ZZ) \rightarrow \ZZ^{\times}\!/2 = \{\pm 1\}$.
+\end{example}
+
+%\begin{example}
+%{\color{red} Add more examples as needed (specific BBF lattices most likely). Actually, aside from the K3 lattice, none of the known BBF lattices is self-dual. The situation is saved by the fact that monodromy is often contained in the discriminant kernel, on which we certainly can define a spinor norm. Except, in one of the O'Grady cases, I think we expect the monodromy to be the full special orthogonal group, so there's an issue there.}
+%\end{example}
+
+The following lemmas collect some basic identities for the spinor norm.
+\begin{lemma}\label{lem:spinor_direct_sum}
+    Let $V$ and $W$ be quadratic spaces over $R$. For $g \in \O(V)(R)$ and $h \in \O(W)(R)$, the direct sum $g \oplus h$ is an orthogonal transformation of $V \oplus W$, and
+$$
+    \nu_{V \oplus W}(g \oplus h) = \nu_{V}(g) \nu_{W}(h).
+$$
+\end{lemma}
+
+\begin{lemma}\label{lem:spinor_functorial}
+Let $V$ be a quadratic space over $R$, and $R \rightarrow R'$ a ring homomorphism. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \O(V)(R) & \O(V)(R') \\
+             \HHH^1(R_{\fppf},\mu_2)     & \HHH^1(R'_{\fppf},\mu_2) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                         (m-1-2) edge node[right]{$\nu$} (m-2-2)
+                         (m-2-1) edge (m-2-2)
+                         (m-1-1) edge node[left]{$\nu$}(m-2-1);
+
+\end{tikzpicture}
+$$
+commutes.
+\end{lemma}
+
+Similarly to~\eqref{eq:pin_ses}, the group $\O(V)$ also admits a natural central extension $\GPin(V)$ by $\GG_m$, constructed using the Clifford algebra of $V$, see~\cite[Appendix~C.4]{ConradReductive}. This group scheme comes with a morphism $N\colon \GPin(V) \rightarrow \GG_m$ known as the {\bfseries Clifford norm}, the kernel of which is $\Pin(V)$. The facts we need about $\GPin(V)$ and $\Pin(V)$ are summarized by the following commutative diagram:
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+   \matrix (m) [matrix of math nodes, row sep=2em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+              { & 1      & 1         &        &   \\
+              1 & \mu_2  & \Pin(V)  & \O(V) & 1 \\
+              1 & \GG_m  & \GPin(V) & \O(V) & 1 \\
+                & \GG_m  & \GG_m     &        &   \\
+                & 1      & 1         &        &   \\ };
+
+              \path[>=angle 90, ->] (m-1-3) edge (m-2-3)
+                              (m-2-3) edge (m-3-3)
+                              (m-3-3) edge node[right]{$N$} (m-4-3)
+                              (m-4-3) edge (m-5-3)
+                              (m-1-2) edge (m-2-2)
+                              (m-2-2) edge (m-3-2)
+                              (m-3-2) edge node[left]{$2$} (m-4-2)
+                              (m-4-2) edge (m-5-2)
+                              (m-2-1) edge (m-2-2)
+                              (m-2-4) edge node[right]{$\id$} (m-3-4)
+                              (m-2-2) edge (m-2-3)
+                              (m-2-3) edge (m-2-4)
+                              (m-2-4) edge (m-2-5)
+                              (m-3-1) edge (m-3-2)
+                              (m-3-2) edge (m-3-3)
+                              (m-3-3) edge (m-3-4)
+                              (m-3-4) edge (m-3-5)
+                              (m-4-2) edge node[below]{$\id$} (m-4-3);
+
+\end{tikzpicture}\textrm{.}
+$$
+
+The two columns on the left are fppf exact sequences, and the two top rows are central extensions. The top left square is cartesian. 
+
+The group scheme $\GPin(V)$ is related to the group scheme $\GSpin(V)$ of Section~\ref{sec:orthogonal_shimura_varieties} by the cartesian square
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \GSpin(V)    & \GPin(V) \\
+             \SO(V) & \O(V) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge (m-2-2);
+
+\end{tikzpicture}.
+$$
+
+The following lemma relates the spinor norm to the Clifford norm. This is useful because the Clifford norm is a morphism of group schemes, whereas the spinor norm is not.
+\begin{lemma}\label{lem:clifford_vs_spinor}
+Let $V$ be a quadratic space over $R$. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \GPin(V)(R)     & R^{\times} \\
+             \O(V)(R) & \HHH^1(R_{\fppf},\mu_2) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$N$} (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge node[below]{$\nu$} (m-2-2);
+
+\end{tikzpicture},
+$$
+    commutes, where the map $R^{\times} \rightarrow \HHH^1(R_{\fppf},\mu_2)$ is the connecting homomorphism coming from the Kummer sequence.
+    %If $V$ is signature $(2,n)$ quadratic space over $\RR$, with $n \geq 1$, then the spinor norm $\nu_{\RR}\colon \SO(V)(\RR) \rightarrow \RR^{\times}/2$ coincides with the action of $\SO(\RR)$ on $\pi_0(\Omega^{\pm}_V)$. {\color{red} I don't think I use this.}
+\end{lemma}
+\begin{proof}
+The short exact sequence
+$$
+1 \rightarrow \mu_2 \longrightarrow \GG_m \times \Pin(V) \longrightarrow \GPin(V) \rightarrow 1,
+$$
+gives rise to a connecting homomorphism $\delta\colon \GPin(V)(R) \rightarrow \HHH^1(R_{\fppf},\mu_2)$. The commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { 1     & \mu_2 & \GG_m \times \Pin(V) & \GPin(V) & 1 \\
+             1     & \mu_2 & \Pin(V) & \O(V) & 1 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                         (m-1-2) edge (m-2-2)
+                                 edge (m-1-3)
+                         (m-1-3) edge (m-2-3)
+                                 edge (m-1-4)
+                         (m-1-4) edge (m-2-4)
+                                 edge (m-1-5)
+                         (m-2-1) edge (m-2-2)
+                         (m-2-2) edge (m-2-3)
+                         (m-2-3) edge (m-2-4)
+                         (m-2-4) edge (m-2-5);
+
+\end{tikzpicture}
+$$
+shows that $\delta$ coincides with the composition $\GPin(V)(R) \rightarrow \O(V)(R) \xrightarrow{\nu} \HHH^1(R_{\fppf},\mu_2)$. Similarly, the commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { 1     & \mu_2 & \GG_m \times \Pin(V) & \GPin(V) & 1 \\
+             1     & \mu_2 & \GG_m & \GG_m & 1 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                         (m-1-2) edge (m-2-2)
+                                 edge (m-1-3)
+                         (m-1-3) edge (m-2-3)
+                                 edge (m-1-4)
+                         (m-1-4) edge node[right]{$N$} (m-2-4)
+                                 edge (m-1-5)
+                         (m-2-1) edge (m-2-2)
+                         (m-2-2) edge (m-2-3)
+                         (m-2-3) edge node[below]{$2$} (m-2-4)
+                         (m-2-4) edge (m-2-5);
+
+\end{tikzpicture}
+$$
+shows that $\delta$ coincides with the composition $\GPin(V)(R) \xrightarrow{N} R^{\times} \rightarrow \HHH^1(R_{\fppf},\mu_2)$. From this we conclude the lemma.
+\end{proof}
+Suppose $v \in V$ with $q(v) \in R^{\times}$. Then
+$$
+w \longmapsto w - \frac{b_q(v,w)}{q(v)}v
+$$
+defines an element $r_v \in \O(V)(R)$, called the reflection through $v$. The following lemma computes the spinor norm on reflections.
+\begin{lemma}\label{lem:spinor_norm_reflection}
+    Let $v \in V$ be such that $q(v) \in R^{\times}$. Then $\nu(r_v)$ is the image of $q(v)$ under the map $R^{\times}\!/2 \rightarrow \HHH^1(R_{\fppf},\mu_2)$ coming from the Kummer sequence.
+\end{lemma}
+
+\subsection{Quadratic forms over fields of characteristic $\neq 2$}
+In this subsection, we take $R$ to be a field $k$ of characteristic $\neq 2$.
+
+The Cartan-Dieudonn\'e theorem says that $\O(V)(k)$ is generated by reflections, so Lemma~\ref{lem:spinor_norm_reflection} allows us to compute the spinor norm of any orthogonal transformation. We can also use this to see how $\nu_V$ relates to $\nu_{-V}$.
+
+\begin{lemma}\label{lem:comparison_spinor_norm_huybrechts}
+Let $V$ be a quadratic form over a field $k$ of characteristic $\neq 2$. Then for all $g \in \O(V)(k)$,
+$$
+\nu_V(g) = \det(g) \nu_{-V}(g)
+$$
+in $k^{\times}\!/2$.
+\end{lemma}
+\begin{proof}
+By the Cartan-Dieudonn\'e theorem it suffices to check this on reflections, which can be done using Lemma~\ref{lem:spinor_norm_reflection} and the fact that the determinant of a reflection is $-1$.
+\end{proof}
+
+\begin{remark}\label{rk:comparison_spinor_norm_Huybrechts}
+This result holds for more general base rings. For instance, suppose $\Lambda$ is an even self-dual lattice. Then the injectivity of $\ZZ^{\times}\!/2 \rightarrow \RR^{\times}\!/2$ and Lemma~\ref{lem:comparison_spinor_norm_huybrechts} applied to $\Lambda \otimes \RR$ show that $\nu_{\Lambda} = \det \cdot \nu_{- \Lambda}$.
+\end{remark}
+
+Over fields of characteristic $\neq 2$ there is another convenient way to compute spinor norms, given by the Zassenhaus formula.
+\begin{lemma}[Zassenhaus formula, {\cite[Theorem~C.5.7]{ConradReductive}}]\label{lem:zassenhaus}
+    Let $V$ be a quadratic space over a field $k$ of characteristic $\neq 2$. For $g \in \O(V)(k)$, let $V_0 \subseteq V$ be the maximal subspace on which $1 + g$ is nilpotent, and let $V_1$ be its orthogonal complement. Then
+$$
+    \nu(g) = \disc(V_0) \det\left(\left.\frac{1 + g}{2}\right|_{V_1}\right) \ \ \textnormal{ in } k^{\times}\!/2,
+$$
+where $\disc(V_0)$ is defined to be the determinant of the Gram matrix of $V_0$ with respect to any basis of $V_0$.
+\end{lemma}
+
+By applying the Zassenhaus formula to $-\id_V$, we immediately obtain the following identity.
+
+\begin{lemma}\label{lem:spinor_norm_-id}
+If $V$ is a quadratic space over a field $k$ of characteristic $\neq 2$, then
+$$
+\nu(-\id_V) = \disc(V)
+$$
+holds in $k^{\times}\!/2$.
+\end{lemma}
+
+The Zassenhaus formula also has the following consequence, which we will use in Section~\ref{sec:elsenhans_jahnel}.
+\begin{lemma}\label{lem:determinant_orthogonal_transformation}
+Let $k$ be a field of characteristic $\neq 2$, let $V$ be a quadratic form over $k$, and $g \in \O(V)(k)$. If $g$ does not have $-1$ as an eigenvalue, then $\det(g)$ is a square in $k^{\times}$.
+\end{lemma}
+\begin{proof}
+Lemma~\ref{lem:zassenhaus}, applied to both $V$ and $-V$, says that
+$$
+\nu_{V}(g) = \det\left(\frac{1 + g}{2} \right) = \nu_{-V}(g)
+$$
+in $k^{\times}\!/2$. Combining this with Lemma~\ref{lem:comparison_spinor_norm_huybrechts}, which states that $\nu_{-V}(g) = \det(g) \nu_V(g)$, yields the result.
+\end{proof}
+
+
+\subsection{The image of the spinor norm over arithmetically interesting rings}\label{sec:img_spinor}
+In this subsection we collect some results on the image of the spinor norm.
+
+The first says that the spinor norm is surjective on adelic points and $\QQ$-points for indefinite quadratic spaces of rank $\geq 3$ over $\QQ$.
+
+
+\begin{lemma}\label{lem:surjectivity_spinor}
+    Let $V$ be an indefinite quadratic space over $\QQ$ of rank $\geq 3$. The Clifford norms $N_{\AA}\colon \GSpin(V)(\AA) \rightarrow \AA^{\times}$ and $N_{\QQ}\colon \GSpin(V)(\QQ) \rightarrow \QQ^{\times}$ are surjective. The spinor norms $\nu_{\AA}\colon \SO(V)(\AA) \rightarrow \AA^{\times}\hspace{-4pt}/2$ and $\nu_{\QQ}\colon \SO(V)(\QQ) \rightarrow \QQ^{\times} \hspace{-4pt}/2$ are surjective.
+\end{lemma}
+%\begin{remark}
+%    The assumption on the rank is there to guarantee that $\Spin$ is simply connected (see \cite[Section~C.4]{ConradSGA3}). The indefiniteness is needed for the surjectivity of $N_{\RR}$.
+%\end{remark}
+\begin{proof}
+We will use $\Spin$, $\GSpin$, and $\SO$ to denote $\Spin(V)$, $\GSpin(V)$, and $\SO(V)$, respectively.
+
+If $R$ is a $\QQ$-algebra with $\Pic(R) = 1$, then the map $\GSpin(R) \rightarrow \SO(R)$ is surjective. Therefore we can conclude from Lemma~\ref{lem:clifford_vs_spinor} that if $N_{R}$ is surjective, then $\nu_R$ is also surjective. As such, since $\AA$ and $\QQ$ have trivial Picard groups (see Lemma~\ref{lem:picard_adeles}), we only have to show the surjectivity of $N_{\AA}$ and $N_{\QQ}$.
+
+    By~\cite[Lemma~C.4.1, Proposition~C.4.10]{ConradReductive} $\Spin$ is simply connected, from which it follows that $\HHH^1(\QQ_{p,\et},\Spin) = 1$ for every prime $p$ (\cite[Theorem~6.4]{PlatonovRapinchuk}), and hence that $N_{\QQ_p}$ is surjective for all $p$. Let $\Lambda \subseteq V$ be a full $\ZZ$-lattice. This yields integral models $\GSpin(\Lambda)$ and $\Spin(\Lambda)$ of the group schemes $\GSpin$ and $\Spin$. Given the surjectivity of $N_{\QQ_p}$ for all $p$, to show that $N_{\AAf}$ is surjective, it suffices to show that $N_{\ZZ_p}\colon \GSpin(\Lambda)(\ZZ_p) \rightarrow \ZZ_p^{\times}$ is surjective for all but finitely many $p$.
+
+%Let $p$ be an odd prime number coprime to the discriminant of $\Lambda$, so that the group $\Spin_{\ZZ_p}$ is a smooth connected group scheme, according to \cite[Appendix~C]{ConradSGA3}. In particular, \cite[Corollary~4.33]{GeerMoonen} says that the smoothness of $\Spin$ implies that $N$ is smooth. Lang's theorem states that $\HHH^1(\FFF_{p,\et},\Spin)$ is trivial, so that $N_{\FFF_p}$ is surjective. Let $\lambda \in \ZZ_p^{\times}$, and let $\GSpin_{\lambda}$ be the fiber of $N$ over $\lambda$. Then $\GSpin_{\lambda}$ is smooth, so that Hensel's lemma implies that $\GSpin_{\lambda}(\ZZ_p) \rightarrow \GSpin_{\lambda}(\FFF_p)$ is surjective (\cite[Th\'eor\`eme~18.5.17]{EGAIV}). The surjectivity of $N_{\FFF_p}$ shows that $\GSpin_{\lambda}(\FFF_p)$ (and hence $\GSpin_{\lambda}(\ZZ_p)$) is non-empty, proving the surjectivity of $N_{\ZZ_p}$. Since $N_{\QQ_p}$ is surjective for all $p$, and $N_{\ZZ_p}$ is surjective for all but finitely many $p$, we conclude that $N_{\AAf}$ is surjective. \\ %{\color{red} Still need $N$ to be smooth, but this seems to follow from Corollary 4.33 in Ben and Gerard's notes, specifically the bit on fppf quotients. The argument is relatively easy, uses that $N$ is an fppf cover, and that $\GSpin \times_{\GG_m} \GSpin \cong \GSpin \times \Spin$, and the fact that smoothness is local in the fppf topology.}
+Let $p$ be an odd prime number coprime to the discriminant of $\Lambda$, so that $\Spin(\Lambda \otimes \ZZ_p)$ is a smooth connected group scheme, which follows from~\cite[Theorem~C.1.5]{ConradReductive}, the smoothness of $\mu_2$ over $\ZZ_p$, and the short exact sequence
+$$
+1 \rightarrow \mu_2 \longrightarrow \Spin(\Lambda \otimes \ZZ_p) \longrightarrow \SO(\Lambda \otimes \ZZ_p) \rightarrow 1.
+$$ 
+For $\lambda \in \ZZ_p^{\times}$, we wish to find an element of $\GSpin(\Lambda)(\ZZ_p)$ lifting $\lambda$. That is, we want to show the existence of the diagonal dashed arrow in the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \GSpin(\Lambda \otimes \ZZ_p)     & \GG_m \\
+             \Spec(\FFF_p) & \Spec(\ZZ_p) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$N$} (m-1-2)
+                                 (m-2-2) edge node[right]{$\lambda$} (m-1-2)
+                                 (m-2-1) edge (m-2-2);
+           \path[>=angle 90, ->,dashed] (m-2-1) edge (m-1-1)
+                                 (m-2-2) edge (m-1-1);
+
+\end{tikzpicture}
+$$
+Since the kernel $\Spin(\Lambda \otimes \FFF_p)$ of $N$ over $\FFF_p$ is connected, Lang's theorem~\cite[Theorem~6.1]{PlatonovRapinchuk} shows the existence of the dashed arrow on the left. The smoothness of the kernel $\Spin(\Lambda \otimes \ZZ_p)$ of $N$ implies the smoothness of $N$ itself~\cite[Corollary~4.33]{EGM}. This allows us to apply Hensel's lemma~\cite[Th\'eor\`eme~18.5.17]{EGAIV} to show the existence of the diagonal dashed arrow.
+
+    Let $e_1,e_2 \in V_{\RR}$ be orthogonal elements with $e_1^2 = -1$ and $e_2^2 = 1$, which exist because $V$ is indefinite. Then for $\lambda \in \RR$ we have $N_{\RR}(\lambda e_1 e_2) = - \lambda^2$ and $N_{\RR}(\lambda) = \lambda^2$, proving the surjectivity of $N_{\RR}$, which, combined with the surjectivity of $N_{\AAf}$, implies the surjectivity of $N_{\AA}$.
+%Since $V_{\RR}$ contains a hyperbolic plane, the spinor norm $\nu_{\RR}$ is surjective\footnote{If $U$ is the hyperbolic plane, and $e, f \in U$ with $ef = 1$ and $e^2 = f^2 = 0$, then the Zassenhaus formula shows that the orthogonal transformation which interchanges $e$ and $f$ has spinor norm $-1$ {\color{red} Still need to check if determinant is $1$}}. Since the composition $\GG_m \rightarrow \GSpin \xrightarrow{N} \GG_m$ is raising to the second power, we see that the image of $N_{\RR}$ contains $\RR^{\times}_{> 0}$. Let $g \in \SO(\RR)$ with $\nu(g) = -1$, and $\wtilde{g}$ a lift of $g$ to $\GSpin(\RR)$ (such $\wtilde{g}$ exists because of Hilbert 90). Then $N(\wtilde{g}) < 0$ by Lemma~\ref{lem:clifford_vs_spinor}, so we find that $N_{\RR}$ is surjective. Pairing this with the surjectivity of $\nu_{\AAf}$ and $N_{\AAf}$, we obtain the surjectivity of $\nu_{\AA}$ and $N_{\AA}$.
+
+To see that $N_{\QQ}$ is surjective, it suffices to show the triviality of the connecting homomorphism $\delta\colon \QQ^{\times} \rightarrow \HHH^1(\QQ_{\et},\Spin)$ derived from the short exact sequence
+$$
+1 \rightarrow \Spin \longrightarrow \GSpin \longrightarrow \GG_m \rightarrow 1.
+$$
+From the surjectivity of $N_{\RR}$ it follows that $\RR^{\times} \rightarrow \HHH^1(\RR_{\et},\Spin)$ is trivial, and in particular that the composition $\QQ^{\times} \rightarrow \HHH^1(\QQ_{\et},\Spin) \rightarrow \HHH^1(\RR_{\et},\Spin)$ is trivial. From the Hasse principle for simply connected groups (\cite[Theorem~6.6]{PlatonovRapinchuk}), which says that $\HHH^1(\QQ_{\et},\Spin) \rightarrow \HHH^1(\RR_{\et},\Spin)$ is a bijection, we obtain that $\delta$ is trivial.
+\end{proof}
+
+Let $\ell$ be a prime number, and $\Lambda$ a $\ZZ_{\ell}$-lattice. When $\ell = 2$ we require $\Lambda$ to be even, to ensure that it has an associated quadratic form. Note that $\Lambda$ is automatically even when $\ell$ is odd. We denote by $\Delta(\Lambda)$ the discriminant form of $\Lambda$, i.e., the group $\Lambda^{\vee}/\Lambda$ endowed with the natural quadratic form $\Lambda^{\vee}/\Lambda \rightarrow \QQ/\ZZ$ induced by the extension of the bilinear form on $\Lambda$ to $\Lambda^{\vee}$. Note that $\O(\Lambda)$ acts on $\Delta(\Lambda)$. We denote by $\wO(\Lambda)$ the group
+$$
+\left\{ g \in \O(\Lambda) \mid g|_{\Delta(\Lambda)} = \id_{\Delta(\Lambda)} \right\}.
+$$
+On this group, we can define a $\ZZ_{\ell}^{\times}\!/2$-valued spinor norm $\nu_{\Lambda}$, as the following lemma shows. 
+
+%We define $\nu_{\Lambda}$ to be the composition 
+%$$
+%\wO(\Lambda) \longrightarrow \O(\Lambda \otimes \QQ_{\ell}) \xrightarrow{\nu_{\Lambda\otimes{\QQ_{\ell}}}} \QQ_{\ell}^{\times}\!/2,
+%$$
+%where $\nu_{\Lambda \otimes \QQ_{\ell}}$ is the spinor norm from Definition~\ref{def:spinor_norm}, which applies because $\Lambda \otimes \QQ_{\ell}$ is self-dual, even though $\Lambda$ might not be. 
+
+\begin{lemma}\label{lem:img_spinor_norm_integral}
+Let $\Lambda$ be an even $\ZZ_{\ell}$-lattice. There is a unique homomorphism $\nu_{\Lambda}\colon \wO(\Lambda) \rightarrow \ZZ_{\ell}^{\times}\!/2$ for which the square
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \wO(\Lambda)    & \ZZ_{\ell}^{\times}\!/2 \\
+             \O(\Lambda \otimes \QQ_{\ell}) & \QQ_{\ell}^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\nu_{\Lambda}$} (m-1-2)
+                                           edge (m-2-1)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge node[below]{$\nu_{\Lambda \otimes \QQ_{\ell}}$} (m-2-2);
+
+\end{tikzpicture}.
+$$
+commutes.
+\end{lemma}
+\begin{proof}
+The uniqueness of $\nu_{\Lambda}$ follows from the injectivity of $\ZZ_{\ell}^{\times}\!/2 \rightarrow \QQ_{\ell}^{\times}\!/2$.
+
+    Note that even though $\Lambda$ need not be self-dual, $\Lambda \otimes \QQ_{\ell}$ is self-dual, so we have a spinor norm $\nu_{\Lambda \otimes \QQ_{\ell}} \colon \O(\Lambda \otimes \QQ_{\ell}) \rightarrow \QQ_{\ell}^{\times}\!/2$. We need to prove that the image of the composition
+$$
+\wO(\Lambda) \longrightarrow \O(\Lambda \otimes \QQ_{\ell}) \longrightarrow \QQ_{\ell}^{\times}\!/2
+$$
+is contained in $\ZZ_{\ell}^{\times}\!/2$.
+
+    Let $\Lambda'$ be a self-dual even $\ZZ_{\ell}$-lattice into which $\Lambda$ embeds. Then Definition~\ref{def:spinor_norm} gives a spinor norm $\nu\colon \O(\Lambda') \rightarrow \ZZ_{\ell}^{\times}\!/2$. Moreover, the map $\O(\Lambda \otimes \QQ_{\ell}) \rightarrow \O(\Lambda' \otimes \QQ_{\ell})$ given by $g \mapsto g \oplus \id_{\Lambda^{\perp}}$ restricts to an injective map $\wO(\Lambda) \rightarrow \O(\Lambda')$. Now the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \wO(\Lambda)     & \O(\Lambda') & \\
+             \O(\Lambda \otimes \QQ_{\ell})) & \O(\Lambda' \otimes \QQ_{\ell}) & \ZZ_{\ell}^{\times}\!/2 \\
+                &  \QQ_{\ell}^{\times}\!/2 & \\};
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-2) edge node[right]{$\nu$} (m-3-2)
+                                 (m-2-3) edge (m-3-2)
+                                 (m-1-2) edge (m-2-2)
+                                         edge node[above]{$\nu$} (m-2-3)
+                                 (m-2-1) edge (m-2-2)
+                                         edge node[below]{$\nu$} (m-3-2);
+
+\end{tikzpicture}
+$$
+which commutes by Lemma~\ref{lem:spinor_direct_sum} and Lemma~\ref{lem:spinor_functorial}, shows that $\nu_{\Lambda}$ lands in $\ZZ_{\ell}^{\times}\!/2$.
+\end{proof}
+
+%In \cite[Section VII.12]{MirandaMorrison} a characterization of this image in terms of $\Delta(\Lambda)$, $\rk(\Lambda)$, and $\disc(\Lambda)$ is given.
+
+%Assume that $\ell$ is odd. Then~\cite[Corollary~2.10]{MirandaMorrison} states that there are unique (up to isomorphism) quadratic forms $\Lambda_{1}$ and $\Lambda_2$ over $\ZZ_{\ell}$ with $\Lambda \cong \Lambda_1 \oplus \Lambda_2$ such that $\Lambda_{1}$ is self-dual, $\Delta(\Lambda_2) \cong \Delta(\Lambda)$, and $\rk \Lambda_2 = \length(\Delta(\Lambda))$. It is clear that $\disc(\Lambda_1) \in \ZZ_{\ell}^{\times}\!/2$ only depends on $\Delta(\Lambda)$. We will denote this invariant by $\inv(\Lambda)$.
+
+\begin{remark}
+When confusion is unlikely to arise, we will denote the map $\nu_{\Lambda}$ by $\nu$.
+\end{remark}
+
+We are interested in the image of $(\det,\nu)\colon \wO(\Lambda) \rightarrow \{\pm 1 \} \times \ZZ^{\times}_{\ell}\!/2$. We now define some invariants of $\Lambda$ in terms of which completely determine the image of $(\det, \nu)$.
+
+For a finite abelian group $A$, we denote by $\length(A)$ the minimal number of elements needed to generate $A$. Note that $\rk \Lambda \geq \length(\Delta(\Lambda))$.
+
+Let $\ell$ be an odd prime number, and $\Lambda$ an even $\ZZ_{\ell}$-lattice. Then by~\cite[Theorem~1.9.1]{Nikulin}, there exists a unique (up to isomorphism) $\ZZ_{\ell}$-lattice $\Lambda_1$ of rank $\length(\Delta(\Lambda))$ whose discriminant form is isomorphic to $\Delta(\Lambda)$. It is clear that $\disc(\Lambda_1) \in \ZZ_{\ell}^{\times}\!/2$ only depends on the discriminant form $\Delta(\Lambda)$.
+
+\begin{definition}\label{def:weirdly_specific_invariant}
+    For $\Lambda$ and $\Lambda_1$ as above, we denote the invariant $\disc(\Lambda_1) \in \ZZ_{\ell}^{\times}\!/2$ of $\Delta(\Lambda)$ with $\disc(\Delta(\Lambda))$.
+\end{definition}
+
+
+\begin{theorem}[{\cite[Theorem~VII.12.1]{MirandaMorrison}}]\label{thm:img_spinor_norm_MM}
+Let $\ell$ be an odd prime number, and $\Lambda$ an even $\ZZ_{\ell}$-lattice. Then
+$$
+(\det,\nu)\wO(\Lambda) = \begin{dcases}
+                            \{(1,1)\} &\textrm{if } \rk \Lambda = \length(\Delta(\Lambda)) \\
+                            \{(1,1),(-1,2 \disc(\Delta(\Lambda)))\} &\textrm{if } \rk \Lambda = \length(\Delta(\Lambda)) + 1 \\
+                            \{\pm 1\} \times \ZZ_{\ell}^{\times}\!/2 &\textrm{otherwise,}
+\end{dcases}
+$$
+as a subgroup of $\{\pm 1\} \times \ZZ_{\ell}^{\times}\!/2$.
+\end{theorem}
+
+\begin{remark}\label{rk:img_spinor_even_prime}
+For $\ell = 2$, the image of $(\det,\nu)$ is also completely determined by $\Delta(\Lambda)$ and $\rk \Lambda$, but the result is much more complicated than for odd $\ell$. The interested reader is referred to~\cite[Theorems~VII.12.2, VII.12.3, VII.12.4]{MirandaMorrison} for the full statement.
+\end{remark}
+
+For an even self-dual $\ZZ_{\ell}$-lattice $\Lambda'$ and a sublattice $\Lambda$ of $\Lambda'$, we denote by $\O(\Lambda',\Lambda)$ the group
+\begin{equation}\label{eq:bad_notation}
+\O(\Lambda',\Lambda) = \left\{g \in \O(\Lambda')\mid g|_{\Lambda} = \id_{\Lambda} \right\}.
+\end{equation}
+Consider the product $\det \cdot \nu\colon \O(\Lambda') \rightarrow \ZZ_{\ell}^{\times}/2$ of the spinor norm $\nu \colon \O(\Lambda') \rightarrow \ZZ_{\ell}^{\times}/2$ with the composition
+$$
+\O(\Lambda') \xrightarrow{\,\det\,} \mu_2(\ZZ_{\ell}) \longrightarrow \ZZ_{\ell}^{\times}/2.
+$$
+In Section~\ref{sec:ns}, it will be useful to know when the image of $\O(\Lambda',\Lambda)$ under $\det \cdot \nu$ is trivial. The following corollary of Theorem~\ref{thm:img_spinor_norm_MM} gives a necessary and sufficient criterion in terms of the ranks of $\Lambda'$ and $\Lambda$, the invariant $\disc(\Delta(\Lambda))$, and $\length(\Delta(\Lambda))$.
+
+\begin{corollary}\label{cor:ns_lattice_lemma}
+Let $\ell$ be an odd prime number, $\Lambda'$ a self-dual even $\ZZ_{\ell}$-lattice, and $\Lambda$ a primitive sublattice of $\Lambda'$. Then $\det \cdot \nu(\O(\Lambda',\Lambda)) = 1$ if and only if
+$$
+\rk \Lambda + \length(\Delta(\Lambda)) = \rk \Lambda' - 1
+$$
+and the product
+$$
+(-1)^{\rk \Lambda} 2 \disc(\Delta(\Lambda))
+$$
+is equal to $1$ in $\ZZ_{\ell}^{\times}/2$, or if
+$$
+\rk \Lambda + \length(\Delta(\Lambda)) = \rk \Lambda'.
+$$
+\end{corollary}
+\begin{proof}
+Let $\Lambda^{\perp}$ be the orthogonal complement of $\Lambda$ in $\Lambda'$. Since $\Lambda'$ is self-dual, there is an isomorphism $\O(\Lambda',\Lambda) \rightarrow \wtilde{\O}(\Lambda^{\perp})$ mapping $g$ to its restriction to $\Lambda^{\perp}$. Similarly to the proof of Lemma~\ref{lem:img_spinor_norm_integral}, there is a commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \O(\Lambda',\Lambda) & \wtilde{\O}(\Lambda^{\perp}) \\
+                                         & \ZZ_{\ell}^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\sim$} (m-1-2)
+                         (m-1-2) edge node[right]{$\det \cdot \nu$} (m-2-2)
+                         (m-1-1) edge node[below]{$\det \cdot \nu\ \ $} (m-2-2);
+
+\end{tikzpicture},
+$$
+so that $\det \cdot \nu(\O(\Lambda',\Lambda)) = \det \cdot \nu(\wtilde{\O}(\Lambda^{\perp}))$. It now follows from Theorem~\ref{thm:img_spinor_norm_MM} applied to $\Lambda^{\perp}$ that $\det \cdot \nu (\O(\Lambda,\Lambda'))$ is trivial if and only if
+$$
+\rk \Lambda^{\perp} = \length(\Delta(\Lambda^{\perp})) + 1
+$$
+    and $-2 \disc(\Delta(\Lambda^{\perp}))$ is a square in $\ZZ_{\ell}^{\times}$, or if $\rk \Lambda^{\perp} = \length(\Delta(\Lambda^{\perp}))$.
+
+    We will now restate these conditions in terms of invariants of $\Lambda$. Let $\Gamma$ be the unique even $\ZZ_{\ell}$-lattice of rank equal to $\length(\Delta(\Lambda))$ whose discriminant form is isomorphic to $\Delta(\Lambda)$ (see~\cite[Theorem~1.9.1]{Nikulin}). Then $\disc(\Delta(\Lambda))$ is equal to $\disc(\Gamma)$. Moreover, since $\Lambda^{\perp}$ is the orthogonal complement of $\Lambda$ in the self-dual lattice $\Lambda'$, we have $\Delta(\Lambda^{\perp}) \cong -\Delta(\Lambda)$. It follows that
+$$
+    \disc(\Delta(\Lambda^{\perp})) = \disc(-\Gamma) = (-1)^{\rk \Gamma} \disc(\Gamma) = (-1)^{\length(\Delta(\Lambda))} \disc(\Delta(\Lambda)).
+$$
+Moreover, $\length(\Delta(\Lambda^{\perp})) = \length(\Delta(\Lambda))$, and $\rk \Lambda^{\perp} = \rk \Lambda' - \rk \Lambda$. This finishes the proof of the corollary.
+\end{proof}
+%{\color{red} Give definitions of the scale of a discriminant form, and of $w_{2,2}^{\vep}$}
+%We need some more notation in order to state the result. For a $\ZZ_2$-lattice $b\colon \Lambda \times \Lambda \rightarrow \ZZ_2$ and $k \in \ZZ$, we say that $\scale(\Lambda) \geq k$ if $b(\Lambda,\Lambda) \subseteq 2^k \ZZ_2$. Similarly, we say that a finite quadratic form $q\colon A \rightarrow \left(\QQ/\ZZ\right)[2^{\infty}]$ has scale $\geq k$ if
+%$$
+%b_q(A,A) \subseteq \left\langle \frac{1}{2^n} \Big| n \geq k \right\rangle \subseteq \left(\QQ/\ZZ\right)[2^{\infty}],
+%$$
+%where $b_q\colon A \times A \rightarrow \QQ/\ZZ$ is the bilinear form associated with $q$.
+%
+%
+%\begin{theorem}
+%Let $\Lambda$ be an even $\ZZ_2$-lattice. Then $(\det,\nu) \wO(\Lambda) = \{(1,1)\}$ as a subgroup of $\{\pm 1\} \times \ZZ_{2}^{\times}\!/2$ if and only if $\rk \Lambda = \length(\Delta( \Lambda))$ and $\scale(\Delta(\Lambda)) \geq 3$ or if $\rk \Lambda = \length(\Delta(\Lambda)$ and $\Delta(\Lambda) \cong w_{2,2}^{\vep} \oplus q$, where $q$ is the discriminant form of an even $\ZZ_2$-lattice with scale $\geq 3$.
+%\end{theorem}
+%
+%\begin{theorem}
+%Let $\Lambda$ be an even $\ZZ_2$-lattice. If $\Delta(\Lambda) \cong w_{2,2}^{\vep} \oplus w_{2,2}^{\vphi} \oplus q$ with $q$ the discriminant form of an even $\ZZ_2$-lattice with scale $\geq 3$, then $(\det \cdot \nu) \wO(\Lambda) = \langle 5 \rangle$ as a subgroup of $\ZZ_2^{\times}\!/2$.
+%\end{theorem}
+
+%Let $\ell$ be a prime number. The next result, which can be found in~\cite{MirandaMorisson}, characterizes the image of the spinor norm for quadratic forms over $\ZZ_{\ell}$ in terms of the discriminant form. We will rephrase it in a way which is more convenient for our purposes.
+%
+%Let $\Lambda$ be an even self-dual $\ZZ_{\ell}$-lattice. For a primitive sublattice $\Gamma \subseteq \Lambda$, we are interested in the subgroup
+%$$
+%\O(\Lambda,\Gamma) := \left\{ g \in \O(\Lambda) \mid g|_{\Gamma} = \id_{\Gamma} \right\},
+%$$
+%of $\O(\Lambda)$, and in particular in its image under $(\det,\nu)\colon \O(\Lambda) \rightarrow \{\pm 1\} \times \ZZ_{\ell}^{\times}\!/2$.
+%
+%Let $\Gamma^{\perp}$ be the orthogonal complement of $\Gamma$ in $\Lambda$. Consider the discriminant kernel of $\Gamma^{\perp}$, i.e., the subgroup
+%$$
+%\O^{\Delta}(\Gamma^{\perp}) = \{g \in \O(\Gamma^{\perp}) \mid g|_{\Delta(\Gamma^{\perp})} = \id_{\Delta(\Gamma^{\perp})}\},
+%$$
+%of $\O(\Gamma^{\perp})$, where $\Delta(\Gamma^{\perp}) := (\Gamma^{\perp})^{\vee}\!/\Gamma^{\perp}$ is the discriminant group of $\Gamma^{\perp}$. Then restriction yields an isomorphism $\O(\Lambda, \Gamma) \rightarrow \O^{\Delta}(\Gamma^{\perp})$ compatible with the determinant. Its inverse is given by
+%$$
+%g \longmapsto \left.\left(g_{\QQ_{\ell}} \oplus \id_{\Gamma \otimes \QQ_{\ell}}\right)\!\right|_{\Lambda}.
+%$$
+%We can use this to extend the notion of spinor norm to $\O^{\Delta}(\Gamma^{\perp})$. We define $\nu_{\Gamma^{\perp}}\colon \O^{\Delta}(\Gamma^{\perp}) \rightarrow \ZZ_{\ell}^{\times}\!/2$ to be the composition
+%$$
+%\O^{\Delta}(\Gamma^{\perp}) \longrightarrow \O(\Lambda) \xrightarrow{ \ \nu_{\Lambda} \ } \ZZ_{\ell}^{\times}\!/2.
+%$$
+%If $g \in \O^{\Delta}(\Gamma^{\perp})$, then by definition
+%$$
+%\nu_{\Gamma^{\perp}}(g) = \nu_{\Lambda}\left(\left.\left(g_{\QQ_{\ell}} \oplus \id_{\Gamma \otimes \QQ_{\ell}}\right)\!\right|_{\Lambda}\right),
+%$$
+%which is equal to $\nu_{\Gamma^{\perp} \otimes \QQ_{\ell}}(g_{\QQ_{\ell}})$ by Lemma~\ref{lem:spinor_functorial} and Lemma~\ref{lem:spinor_direct_sum}. This shows that our definition of $\nu_{\Gamma^{\perp}}$ coincides with that used in~\cite{MirandaMorrison}.
+%
+%%\begin{lemma}
+%%Let $\Lambda$ be a self-dual even $\ZZ_{\ell}$-lattice, and $\Gamma \subseteq \Lambda$ a sublattice. Then restriction yields an isomorphism $\O(\Lambda, \Gamma) \rightarrow \O^{\Delta}(\Gamma^{\perp})$ compatible with the determinant. Its inverse is given by
+%%$$
+%%g \longmapsto \left.\left(g_{\QQ_{\ell}} \oplus \id_{\Gamma \otimes \QQ_{\ell}}\right)\!\right|_{\Lambda}.
+%%$$
+%%\end{lemma}
+%
+%
+%For a finite abelian group $A$, we denote by $\length(A)$ the minimal number of generators of $A$. Note that $\length(\Delta(\Gamma))$ is at most $\rk \Gamma^{\perp} = \rk \Lambda - \rk \Gamma$, since $\Delta(\Gamma)$ is isomorphic to $\Delta(\Gamma^{\perp})$.
+%
+%Assume that $\ell$ is odd. The classification of quadratic forms over $\ZZ_{\ell}$ {\color{red} reference} shows that there are unique quadratice forms $\Gamma_{1}$ and $\Gamma_2$ over $\ZZ_{\ell}$ with $\Gamma \cong \Gamma_1 \oplus \Gamma_2$ such that $\Gamma_{1}$ is self-dual, $\Delta(\Gamma_2) \cong \Delta(\Gamma)$, and $\rk \Gamma_2 = \length(\Delta(\Gamma))$. It is clear that $\disc(\Gamma_1) \in \ZZ_{\ell}^{\times}\!/2$ only depends on $\Gamma$. We will denote this invariant by $\delta(\Gamma)$.
+%%For a prime $p$, we denote by $A[p^{\infty}]$ the $p$-primary part of $A$, i.e.,
+%%$$
+%%A[p^{\infty}] = \{a \in A \mid \exists k \in \ZZ_{\geq 1} p^k a = 0\}.
+%%$$
+%\begin{proposition}
+%    Let $\ell$ be an odd prime number, $\Lambda$ an even self-dual $\ZZ_{\ell}$-lattice, and $\Gamma \subseteq \Lambda$ a sublattice. Then
+%$$
+%    (\det, \nu)\O(\Lambda,\Gamma) = \begin{dcases}
+%        \{1\} &\textrm{if }  \length(\Delta(\Gamma)) = \rk \Lambda - \rk \Gamma \\
+%                                                        \langle (-1, 2\delta(\Gamma) \disc(\Lambda)) \rangle &\textrm{if } \length(\Delta(\Gamma)) = \rk \Lambda - \rk \Gamma - 1\\
+%                                                        \{\pm 1\} \times \ZZ_{\ell}^{\times}\!/2 &\textrm{otherwise,}
+%    \end{dcases}
+%$$
+%as subgroups of $\{\pm 1\} \times \ZZ_{\ell}^{\times}\!/2$.
+%\end{proposition}
+%\begin{proof}
+%    Combine the lemma above with Theorem~VII.12.1 in Miranda and Morrison's notes. {\color{red} To relate their statement to $\delta(\Gamma)$, use (2.10.3) in their notes.}
+%\end{proof}
+%
+%{\color{red} Find a good statement for $\ell = 2$. We care only about when the image is small, so should be of the form:
+%
+%\begin{theorem}
+%Let $\Lambda$ be an even $\ZZ_2$-lattice. Then
+%$$
+%    \det \cdot \nu(\O^{\Delta}(\Lambda)) \subseteq \begin{dcases}
+%                                1 & \textrm{if } \\
+%                                \langle 3 \rangle & \textrm{if } \\
+%                                \langle 5 \rangle & \textrm{if } \\
+%                                \langle 7 \rangle & \textrm{otherwise.}
+%    \end{dcases}
+%$$
+%\end{theorem}
+%    The ifs should be followed by something in terms of the discriminant form of $\Lambda$, and we may need to swap the lines around to make the "otherwise" part more reasonable. Similarly, the theorem for odd $\ell$ should be something saying that $\nu(\O^{\Delta}(\Lambda)) = 1$ if and only if some condition is met by the discriminant form.
+%
+%    The following is true, and gives the link with Galois theory.
+%\begin{theorem}
+%    Let $F$ be a field of characteristic $\neq 2$. Then
+%$$
+%    \textrm{if } \ \chi_2(\gal_F) \subseteq \begin{dcases}
+%        1, & \textrm{then } i, \sqrt{2} \in F \\
+%                                \langle 3 \rangle & \textrm{then } i \sqrt{2} \in F \\
+%                                \langle 5 \rangle & \textrm{then } i \in F \\
+%                                \langle 7 \rangle & \textrm{then } \sqrt{2} \in F
+%    \end{dcases}
+%$$
+%\end{theorem}
+
+%\begin{definition}
+%Let $R$ be a ring, and $(V,q)$ a quadratic form over $R$. Then $(V,q)$ is called {\bfseries ordinary {\color{red} (regular? run-of-the-mill? we're going for regular, it seems to be commonplace)}} if\\
+%In~\cite[Appendix~C]{Conrad}, ((ordinary)) forms are known as non-degenerate, and in~\cite{Knus} as ((regular)). \\
+%    {\color{red} PROBLEM: Conrad defines spinor norms in a more restrictive setting. See page 349 of his notes. So, first thought is to replace him with Knus as the main reference, but the disadvantage of Knus is that he does not even mention the link to group cohomology, which we desperately need. The setting in which Conrad defines the spinor norm is that of self-dual quadratic forms, except over $\ZZ[1/2]$, where he requires the form to have even dimension.}
+%\end{definition}
+
+%Throughout the rest of this section, $(V,q)$ will be an ordinary quadratic form over a ring $R$. We will abusively use $V$ to refer to $(V,q)$.
+
+%\begin{example}
+%If $V$ is a quadratic form over a field $k$ of characteristic $\neq 2$, then regularity is equivalent to non-degeneracy. \\
+%    If $k$ has characteristic $2$, then the situation is more complicated. In case $V$ has even dimension, then regularity is again equivalent to non-degeneracy. If $V$ has odd dimension then regularity is equivalent to $V^{\perp}$ being $1$-dimensional and $q|_{V^{\perp}} \neq 0$.
+%\end{example}
+
+\section{Statement of the result}
+%For an odd prime $\ell$, a scheme $S$ over $\ZZ[\tfrac{1}{\ell}]$, and a geometric point $\overline{s}$ of $S$, we denote by $\chi_{\ell}$ the quadratic character $\pi^{\et}_1(S,\overline{s}) \rightarrow \ZZ_{\ell}^{\times} \! /2$ associated with the degree $2$ \'etale covering of $S$ given by adjoining a square root of $\ell^* := (-1)^{\tfrac{\ell - 1}{2}} \ell$ to $\OO_S$:
+%\begin{equation}\label{eq:standard_torsor}
+%\underline{\Spec}_S\left(\OO_S[U]/(U^2 - \ell^*)\right) \longrightarrow S.
+%\end{equation}
+%
+%Similarly, for a scheme $S$ over $\ZZ[\tfrac{1}{2}]$ endowed with a geometrict point $\overline{s}$, the $S$-scheme
+%\begin{equation}\label{eq:standard_torsor_2}
+%\underline{\Spec}_S\left(\OO_S[U_1,U_2]/(U_1^2 + 1, U_2^2 - 2)\right)
+%\end{equation}
+%is a $\ZZ_2^{\times}\!/2$-torsor on $S_{\et}$, giving rise to a homomorphism $\pi^{\et}_1(S,\overline{s}) \rightarrow \ZZ_2^{\times}\!/2$ which we denote $\chi_2$. The $\ZZ_2\!/2$-action is given by
+%$$
+%\ZZ_2^{\times}\!/2 \ni \overline{-1} \colon \begin{dcases}
+%                                               U_1 \longmapsto -U_1 \\
+%                                               U_2 \longmapsto U_2
+%                                            \end{dcases}
+%$$
+%and
+%$$
+%\ZZ_2^{\times}\!/2 \ni \overline{5} \colon \begin{dcases}
+%                                               U_1 \longmapsto U_1 \\
+%                                               U_2 \longmapsto -U_2.
+%                                            \end{dcases}
+%$$
+%The following is the main result of this chapter. It is proved in section~\ref{sec:prf_galois_spinor}.
+In this section we state the main result of this chapter, which computes the spinor norm of monodromy operators on K3 surfaces. We also give some corollaries of the main theorem which are proved in later sections.
+
+Before stating the main theorem, we introduce some notation. 
+
+Recall that the Kronecker-Weber theorem identifies $\gal^{\ab}_{\QQ}$ with $\ZZh^{\times}$. Let $\ell$ be a prime number. The surjection $\ZZh^{\times} \rightarrow \ZZ_{\ell}^{\times}\!/2$ gives rise to a number field $K$. For $\ell = 2$, the ring of integers $\OOO_{K}$ is $\ZZ[\zeta_8]$, where $\zeta_8$ is a primitive $8$th root of unity, and for odd $\ell$ the ring of integers is $\ZZ\!\left[\tfrac{1 + \sqrt{\ell^{\ast}}}{2}\right]$, where $\ell^{*} = (-1)^{\tfrac{\ell - 1}{2}} \ell$. Since $K$ is unramified away from $\ell$, the ring $\OO_{K}\!\left[ \tfrac{1}{\ell} \right]$ is \'etale over $\ZZ[\tfrac{1}{\ell}]$. Moreover, the action of $\gal(K/\QQ) \cong \ZZ_{\ell}^{\times}\!/2$ on $K$ extends to an action on $\OO_{K}\!\left[\tfrac{1}{\ell}\right]$, making $T_{\ell} := \Spec(\OO_{K}[\tfrac{1}{\ell}])$ a $\ZZ_{\ell}^{\times}\!/2$-torsor on $\ZZ[\tfrac{1}{\ell}]_{\et}$. In particular, $T_{\ell}$ has degree $2$ over $\ZZ[\tfrac{1}{\ell}]$ when $\ell$ is odd, and degree $4$ when $\ell = 2$. 
+
+For a $\ZZ[\tfrac{1}{\ell}]$-scheme $S$, we denote by $T_{\ell,S}$ the $(\ZZ_{\ell}^{\times}\hspace{-5pt}/2)$-torsor on $S_{\et}$ defined by the cartesian diagram
+\begin{equation}\label{eq:torsor_odd}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=4.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { T_{\ell,S} & T_{\ell} \\
+                                   S     & \Spec\!\left(\ZZ\!\left[\frac{1}{\ell}\right]\right) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge (m-2-2)
+                         (m-1-1) edge (m-2-1);
+
+\end{tikzpicture}.\end{matrix}
+\end{equation}
+Given a geometric point $\overline{s}$ of $S$, we denote the homomorphism $\pi_1^{\et}(S,\overline{s}) \rightarrow \ZZ^{\times}_{\ell}\hspace{-5pt}/2$ associated with $T_{\ell,S}$ by $\chi_{\ell}$. \\
+%Before stating the main theorem of this chapter, we first introduce some notation.\\
+%Let $\QQ^{\ab}$ be the maximal abelian extension of $\QQ$. The Kronecker-Weber theorem naturally identifies $\gal_{\QQ}(\QQ^{\ab}/\QQ) = \gal_{\QQ}^{\ab}$ with $\ZZh^{\times}$. As such, for any prime $\ell$, the projection $\ZZh^{\times} \rightarrow \ZZ_{\ell}^{\times}\hspace{-5pt}/2$ defines a number field $K_{\ell}$. The field $K_{\ell}$ is unramified away from $\ell$, so if $\OO_{K_{\ell}}$ denotes its ring of integers, then $T_{\ell} := \Spec(\OO_{K_{\ell}}[\tfrac{1}{\ell}])$ is a $(\ZZ_{\ell}^{\times}\hspace{-5pt}/2)$-torsor on $\Spec(\ZZ[\tfrac{1}{\ell}])_{\et}$. 
+%
+%For a $\ZZ[\tfrac{1}{\ell}]$-scheme $S$, we denote by $T_{\ell,S}$ the $(\ZZ_{\ell}^{\times}\hspace{-5pt}/2)$-torsor on $S_{\et}$ defined by the cartesian diagram
+%\begin{equation}\label{eq:torsor_odd}
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=4.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { T_{\ell,S} & T_{\ell} \\
+%                                   S     & \Spec\!\left(\ZZ\!\left[\frac{1}{\ell}\right]\right) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                         (m-1-2) edge (m-2-2)
+%                         (m-2-1) edge (m-2-2)
+%                         (m-1-1) edge (m-2-1);
+%
+%\end{tikzpicture}.\end{matrix}
+%\end{equation}
+%Given a geometric point $\overline{s}$ of $S$, we denote the homomorphism $\pi_1^{\et}(S,\overline{s}) \rightarrow \ZZ^{\times}_{\ell}\hspace{-5pt}/2$ associated with $T_{\ell,S}$ by $\chi_{\ell}$. \\
+%
+%%For an odd prime $\ell$ and a scheme $S$ over $\ZZ[\tfrac{1}{2 \ell}]$, we denote by $T_{\ell,S}$ the $\ZZ_{\ell}^{\times}\!/2$-torsor on $S_{\et}$ defined by the cartesian square
+%%\begin{equation}\label{eq:torsor_odd}
+%%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%%\matrix (m) [matrix of math nodes, row sep=4.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%%           { T_{\ell,S} & \Spec\!\left(\ZZ\!\left[\frac{1}{2\ell},\sqrt{\ell^*}\right]\right) \\
+%%                                   S     & \Spec\!\left(\ZZ\!\left[\frac{1}{2\ell}\right]\right) \\ };
+%%
+%%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%%                         (m-1-2) + (0,-0.5) edge (m-2-2)
+%%                         (m-2-1) edge (m-2-2)
+%%                         (m-1-1) edge (m-2-1);
+%%
+%%\end{tikzpicture},\end{matrix}
+%%\end{equation}
+%%where $\ell^* = (-1)^{\tfrac{\ell-1}{2}} \ell$. For a geometric point $\overline{s}$ of $S$, this gives rise to a quadratic character $\pi^{\et}_1(S,\overline{s}) \rightarrow \ZZ_{\ell}^{\times} \! /2$ which we denote by $\chi_{\ell}$. \\
+%%Note that $\ZZ_{2}^{\times}\!/2$ is isomorphic to $(\ZZ\!/2\ZZ)^{2}$ and generated by $\alpha = -1$ and $\beta = 5$. It acts on $\ZZ[\tfrac{1}{2},\sqrt{2},i]$ by $\alpha i = -i$, $\alpha \sqrt{2} = \sqrt{2}$, $\beta i = i$, and $\beta \sqrt{2} = -\sqrt{2}$. For a scheme $S$ over $\ZZ[\tfrac{1}{2}]$, we denote by $T_{2,S}$ the $\ZZ_2^{\times}\!/2$-torsor on $S_{\et}$ defined by the cartesian square
+%%\begin{equation}\label{eq:torsor_even}
+%%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%%\matrix (m) [matrix of math nodes, row sep=4.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%%           { T_{2,S} & \Spec\!\left(\ZZ\!\left[\frac{1}{2},\sqrt{2},i\right]\right) \\
+%%                                   S     & \Spec\!\left(\ZZ\!\left[\frac{1}{2}\right]\right) \\ };
+%%
+%%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%%                         (m-1-2) + (0,-0.35) edge (m-2-2)
+%%                         (m-2-1) edge (m-2-2)
+%%                         (m-1-1) edge (m-2-1);
+%%
+%%\end{tikzpicture}.\end{matrix}
+%%\end{equation}
+%%For a geometric point $\overline{s}$ of $S$, we denote by $\chi_2$ the resulting homomorphism $\pi_1^{\et}(S,\overline{s}) \rightarrow \ZZ_2^{\times}\!/2$.
+%\begin{remark}\label{rem:galois_quad}
+%    Let $\QQ^{\textnormal{quad}} = \QQ(\sqrt{d} \mid d \in \ZZ)$, and let $S$ be a scheme over $\QQ$. Then $\QQ^{\textnormal{quad}}$ is a Galois extension of $\QQ$ with Galois group $\ZZh^{\times}\hspace{-5pt}/2$, so that $S_{\QQ^{\textnormal{quad}}}$ is a $(\ZZh^{\times}\hspace{-5pt}/2)$-torsor on $S_{\et}$. For an odd prime $\ell$, we write $\ell^{*} = (-1)^{\tfrac{p - 1}{2}} \ell$. Then $K_{\ell} = \QQ(\sqrt{\ell^*})$ for odd $\ell$, and $K_2 = \QQ(i,\sqrt{2})$. The diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+%             {       \phantom{.} &       & \QQ^{\textnormal{quad}} &                    \\
+%                       &        \QQ(i,\sqrt{2}) &             & \QQ(\sqrt{\ell^*}) \\
+%                     \phantom{.} &  \phantom{.}  & \QQ & \phantom{.} \\ };
+%
+%           \path[>=angle 90, -] (m-3-3) edge (m-2-2)
+%                                        edge (m-2-4)
+%                         (m-2-2) edge (m-1-3)
+%                         (m-2-4) edge (m-1-3);
+%
+%                         \path[white] (m-1-1) edge node[left]{${\color{black}\ZZh^{\times}\hspace{-6pt}/2 \ }$} (m-3-1);
+%                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-1-1.center) -- (m-3-1.center);
+%                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-2-2) -- (m-3-2.center);
+%                         \path[white] (m-2-2) edge node[left]{${\color{black}\ZZ_2^{\times}\hspace{-4pt}/2 \ }$} (m-3-2.center);
+%                         \draw[decorate, decoration={brace,amplitude=5pt}] (m-2-4) -- (m-3-4.center);
+%                         \path[white] (m-2-4) edge node[right]{$ \ {\color{black}\ZZ_{\ell}^{\times}\hspace{-4pt}/2}$} (m-3-4.center);
+%
+%\end{tikzpicture}
+%$$
+%    shows that $T_{\ell,S}$ is obtained by changing the structure group of $S_{\QQ^{\textnormal{quad}}}$ to $\ZZ_{\ell}^{\times}\!/2$.
+%\end{remark}
+
+The following is the main result of this chapter. It is proved in Section~\ref{sec:prf_galois_spinor}.
+
+
+\begin{theorem}\label{thm:galois_spinor}
+Let $\ell$ be a prime number, $d \in \ZZ_{> 0}$, $S$ a scheme over $\ZZ\!\left[\tfrac{1}{2d \ell}\right]$, and $\overline{s}$ a geometric point of $S$. For a projective K3 surface $f\colon X \rightarrow S$ of degree $2d$, the following diagram commutes:
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=8.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}(S,\overline{s}) & \O(\HHH^2_{\et}(X_{\overline{s}},\ZZ_{\ell}(1))) \\
+                                         & \ZZ_{\ell}^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                         (m-1-2) edge node[right]{$\det \cdot \nu$} (m-2-2)
+                         (m-1-1) edge node[below]{$\chi_{\ell}$} (m-2-2);
+
+\end{tikzpicture},
+$$
+where $\nu$ denotes the spinor norm.
+\end{theorem}
+
+Using the triviality of $\chi_{\ell}$ when $S = \Spec(F)$, with $F$ an algebraically closed field, we immediately obtain the following corollary.
+\begin{corollary}\label{cor:galois_spinor_geometric}
+Let $S$ be a scheme over an algebraically closed field $F$ of characteristic $p$, let $\ell$ be a prime number distinct from $p$, $s \in S(F)$, and $X$ a projective K3 surface over $S$, of degree coprime to $p$. Then the composition $\pi^{\et}_1(S,s) \rightarrow \O(\HHH_{\et}^2(X_s,\ZZ_{\ell}(1))) \xrightarrow{\det \cdot \nu} \ZZ_{\ell}^{\times}\!/2$ is trivial.
+\end{corollary}
+As a corollary, we obtain~\cite[Proposition~7.5.5]{HuybrechtsK3}, which states the same result for complex K3 surfaces. Note that if $X$ is a complex K3 surface,~\cite{HuybrechtsK3} works with $\nu_{-\HHH^2(X,\ZZ(1))}$ instead of $\nu_{\HHH^2(X,\ZZ(1))}$. As is shown in remark~\ref{rk:comparison_spinor_norm_Huybrechts},
+$$
+\nu_{-\HHH^2(X,\ZZ(1))} = \det \cdot \nu_{\HHH^2(X,\ZZ(1))}.
+$$
+
+\begin{corollary}
+    Let $S$ be a scheme over $\CC$, $s \in S(\CC)$, and $X$ a projective K3 surface over $S$. Then the composition $\pi_1(S,s) \rightarrow \O(\HHH^2(X_s,\ZZ(1))) \xrightarrow{\det \cdot \nu} \ZZ^{\times}\!/2$ is trivial.
+\end{corollary}
+\begin{proof}
+    This follows by applying Corollary~\ref{cor:galois_spinor_geometric} and using the injectivity of $\ZZ^{\times}\!/2 \rightarrow \ZZ_{\ell}^{\times}\!/2$ for $\ell \equiv 3 (4)$.
+\end{proof}
+
+The result also allows us to compute the spinor norm of the Frobenius operator acting on the second cohomology of a K3 surface over a finite field. The proof is contained in Section~\ref{sec:elsenhans_jahnel}. The corollary also gives rise to a restriction on the zeta function of a K3 surface over a finite field, see Corollary~\ref{cor:zeta_fn_k3}
+\begin{corollary}\label{cor:spinor_frobenius}
+Let $\FFF_{q}$ be a finite field, $X$ a K3 surface over $\FFF_q$ of degree coprime to $q$, and $\ell$ a prime number coprime to $q$. Then
+$$
+ \nu\left(\Frob_q\!\big|_{\HHH^2_{\et}\left(X_{\overline{\FFF}_q},\ZZ_{\ell}(1)\right)}\right) = q \cdot \det\left(\Frob_q\!\big|_{\HHH^2_{\et}\left(X_{\overline{\FFF}_q},\ZZ_{\ell}(1)\right)}\right)
+$$
+    in $\ZZ_{\ell}^{\times}\!/2$.
+\end{corollary}
+
+The theorem also gives rise to a necessary condition for the realizability of sublattices of the K3 lattice as N\'eron-Severi groups of K3 surfaces over a given field, as the following corollary shows. See Theorem~\ref{thm:main_thm_ns} for a slightly stronger statement.
+
+\begin{corollary}
+Let $k$ be a field, let $\ell$ be an odd prime number, and let $X/k$ be a K3 surface of degree coprime to the characteristic of $k$. If
+$$
+\rk(\Pic(X)) + \length(\Delta(\Pic(X) \otimes \ZZ_{\ell})) = 22
+$$
+then $\ell^*$ is a square in $k$.
+\end{corollary}
+
+
+\section{The reciprocity law for Shimura stacks}
+This section contains some Shimura-theoretic preliminaries necessary for the proof of Theorem~\ref{thm:galois_spinor}. The first subsection is about Deligne's reciprocity law for the connected components of a Shimura variety. In the second subsection we apply Deligne's reciporicity law to orthogonal Shimura stacks.
+
+\subsection{The reciprocity law for Shimura stacks}\label{sec:reciprocity_law_shimura_stacks}
+In this subsection we recall a result of Deligne on the structure of the set of connected components of a Shimura varieties and the Galois action on it, known as Deligne's reciprocity law. All of these results can be found in~\cite{Deligne79}. We work in the slightly more general setting of Shimura stacks, but the results carry over to our setting with minimal modifications.
+
+If $G$ is a reductive group over a number field $E$, we denote by $\wtilde{G}$ the universal covering of the derived subgroup of $G$. We then define $\pi(G)$ to be the quotient set
+$$
+\pi(G) = G(\AA_E)/G(E)\wtilde{G}(\AA_E).
+$$
+\begin{lemma}[{\cite[Corollaire~2.0.8, (2.4.0.1)]{Deligne79}}]
+Let $E$ be a number field, and $G$ a reductive group over $E$. Then $G(E)\wtilde{G}(\AA_E) \subseteq G(\AA_E)$ is a normal subgroup, and the quotient $\pi(G)$ is a locally compact Hausdorff abelian group. This construction defines a functor
+$$
+\pi\colon \Big( \textnormal{reductive } E\textnormal{-groups} \Big) \longrightarrow \binom{ \textnormal{locally compact Hausdorff}}{\textnormal{ abelian groups}}
+$$
+\end{lemma}
+
+\begin{remark}
+If $E'/E$ is a finite extension, and $G_E$ a reductive $E$-group, Deligne constructs a natural homomorphism
+$$
+N_{E'/E}\colon \pi(G_{E'}) \longrightarrow \pi(G_E),
+$$
+called the norm, see~\cite[(2.4.0.1)]{Deligne79}. This homomorphism is needed to state Deligne's reciprocity law in full generality. In all Shimura data we will deal with outside this section the reflex field is $\QQ$, so all norms we encounter are the identity.
+\end{remark}
+
+\begin{example}
+    If $G = \GL_2$ over $\QQ$, then $\wtilde{G} = \SL_2$, so the determinant yields an isomorphism $\pi(G) \cong \QQ^{\times} \backslash \AA^{\times}$. In the next subsection we will see that when $G = \SO(V)$, where $V$ is a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$, then the spinor norm yields an isomorphism $\pi(\SO(V)) \cong \QQ^{\times} \backslash \AA^{\times}\hspace{-5pt}/2$.
+\end{example}
+
+\begin{example}\label{exa:reciprocity_law_pi_gm}
+If $E$ is a number field, and $G = \GG_{m,E}$, then $\pi(G) = E^{\times} \backslash \AA_{E}^{\times}$. Artin's reciprocity law is a homomorphism $\pi(\GG_{m,E}) \rightarrow \gal^{\ab}_{E}$ inducing an isomorphism $\pi_0 \pi(\GG_{m,E}) \rightarrow \gal_{E}^{\ab}$. We will denote its reciprocal by
+    $$
+    \art_E\colon \pi_0 \pi(\GG_{m,E}) \longrightarrow \gal_E^{\ab}.
+    $$
+\end{example}
+
+We now restrict our attention to reductive $\QQ$-groups $G$. Let $G^{\ad}$ be the adjoint group of $G$. We use $G(\RR)_+$ to denote the inverse image of the identity component of $G^{\ad}(\RR)$ under $G(\RR) \rightarrow G^{\ad}(\RR)$. By $\overline{\pi}_0 \pi(G)$ we denote the quotient group
+$$
+\overline{\pi}_0 \pi (G) = \big(\pi_0 \pi(G)\big)/\pi_0(G(\RR)_+).
+$$
+This construction is relevant to us because of the following result.
+\begin{lemma}[{\cite[Proposition~1.2.7, R\'esum\'e~2.1.16]{Deligne79}}]\label{lem:connected_components_shimura}
+    Let $(G,X)$ be a Shimura datum with reflex field $E$, and $\pi_0 \Sh(G,X)$ the $E$-scheme of connected components of $\Sh(G,X)$. Then $\overline{\pi}_0 \pi(G)$ is profinite, and the $G(\AAf)$-action on $\pi_0 \Sh(G,X)$ factors through $G(\AAf) \rightarrow \overline{\pi}_0 \pi(G)$, endowing $\pi_0 \Sh(G,X)$ with the structure of a $\overline{\pi}_0 \pi(G)$-torsor on $E$. Moreover, $\pi_0(X)$ is a $G(\RR)/G(\RR)_+$-torsor.
+\end{lemma}
+
+\begin{example}\label{exa:gl2_reciprocity}
+Consider the Siegel Shimura datum $(G,X)$ associated with a symplectic $\QQ$-vector space of dimension $2$, as in Example~\ref{exa:siegel_shimura}. That is, $(G,X) = (\GL_2,\HH)$, where $\HH$ is the double half plane, which parametrizes Hodge structures on $\RR^{2}$ of type $(0,1) + (1,0)$. The reflex field of $(G,X)$ is $\QQ$. It is easy to see that $\GL_2(\RR)_+$ is connected, so that $\overline{\pi}_0 \pi(G) = \pi_0 \pi(G)$. The determinant and Artin reciprocity therefore yield an isomorphism
+\begin{equation}\label{eq:det_gl2}
+    \overline{\pi}_0 \pi(G) \xrightarrow{\det} \pi_0(\QQ^{\times} \backslash \AA^{\times}) \xrightarrow{\art_{\QQ}} \gal_{\QQ}^{\ab}.
+\end{equation}
+Lemma~\ref{lem:connected_components_shimura} gives a $\gal_{\QQ}^{\ab}$-action on the source, and $\gal_{\QQ}^{\ab}$ acts on the target by translation. We will see in Example~\ref{exa:final_gl2} that Deligne's reciprocity law implies that the isomorphism above is $\gal_{\QQ}^{\ab}$-equivariant.
+\end{example}
+
+%\begin{example}
+%{\color{red} Possible example: $\overline{\pi}_0  \pi(\GG_m)$. Should be $\gal(\QQ^{\ab} \cap \RR / \QQ)$, under Artin reciprocity.}
+%\end{example}
+
+
+%\begin{proposition}
+%    Let $(G,X)$ be a Shimura datum with reflex field $E$.
+%\begin{itemize}
+%    \item $\pi(G)$ and $\overline{\pi}_0 \pi G$ are commutative groups.
+%    \item $G(\RR)_+$ is the stabilizer of a connected component in $X$.
+%    \item The right $G(\AAf)$-action on $\Sh(G,X)$ endows $\pi_0(\Sh(G,X))$ with the structure of a $\overline{\pi}_0 \pi(G)$-torsor on $E$.
+%\end{itemize}
+%\end{proposition}
+%Since $\overline{\pi}_0 \pi(G)$ is a commutative group, this yields a well-defined continuous homomorphism $\gal_{E} \rightarrow \overline{\pi}_0 \pi(G)$, which we denote by $r_{(G,X)}$. Deligne gives the following alternative description of $r_{(G,X)}$. \\
+For a commutative $\CC$-algebra $A$, the map $A \otimes_{\RR} \CC \rightarrow A \times A$, $a \otimes z \mapsto (za,\overline{z}a)$ is an isomorphism of rings. This yields an isomorphism $\GG_{m,\CC} \times \GG_{m,\CC} \rightarrow \SSS_{\CC}$, which we will use to identify these two group schemes. Let $(G,X)$ be a Shimura datum. For $h \in X$, we define $\mu_h\colon \GG_{m,\CC} \rightarrow G_{\CC}$ as $z \mapsto h_{\CC}(z,1)$. The reflex field $E$ of $(G,X)$ is by definition the unique smallest subfield of $\CC$ such that the $G(\CC)$-conjugacy class of $\mu_h$ is defined over $E$. Then $E$ is a number field. It can be shown that $\mu_h$ induces a continuous group homomorphism $\pi(\GG_{m,E}) \rightarrow \pi(G_E)$, which we denote with $\pi \mu_h$, see~\cite[\S 2.4]{Deligne79}.
+
+We now define a continuous homomorphism
+\begin{equation}\label{eq:reciprocity_law}
+r_{(G,X)}\colon \gal_{E} \longrightarrow \overline{\pi}_0 \pi(G),
+\end{equation}
+as the following composition
+$$
+ \gal_E \rightarrow \gal_E^{\ab} \xrightarrow{\art_E^{-1}} \pi_0 \pi(\GG_{m,E}) \xrightarrow{\pi_0 \pi(\mu_h)} \pi_0 \pi(G_E) \xrightarrow{\pi_0 N_{E/\QQ}} \pi_0 \pi(G) \rightarrow \overline{\pi}_0 \pi(G).
+$$
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3em, column sep=4em, text height=1.5ex, text depth=0.25ex]
+%           { \gal_{E} & \gal^{\ab}_E & & \overline{\pi}_0 \pi(G) \\
+%                      & \pi_0 \pi(\GG_{m,E}) & \pi_0 \pi(G_E) & \pi_0 \pi(G) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                         (m-1-2) edge (m-1-4)
+%                         (m-1-2) edge node[right]{$\art^{-1}_E$} (m-2-2)
+%                         (m-2-2) edge node[below]{$\pi_0 \pi(\mu_h)$} (m-2-3)
+%                         (m-2-3) edge node[below]{$\pi_0 N_{E/\QQ}$} (m-2-4)
+%                         (m-2-4) edge (m-1-4);
+%
+%\end{tikzpicture}.
+%$$
+We now have two $\overline{\pi}_0 \pi(G)$-torsors on $E$, namely $\pi_0 \Sh(G,X)$, and the one defined by~\eqref{eq:reciprocity_law}. The following theorem of Deligne says that these two torsors are isomorphic.
+
+\begin{theorem}[{Deligne's reciprocity law, \cite[Th\'eor\`eme~2.6.3]{Deligne79}}]\label{thm:deligne_reciprocity}
+Let $(G,X)$ be a Shimura datum with reflex field $E$. Then the $\overline{\pi}_0 \pi(G)$-torsor $\pi_0 \Sh(G,X)$ on $E$ is isomorphic to the one defined by~\eqref{eq:reciprocity_law}.
+\end{theorem}
+
+\begin{example}\label{exa:final_gl2}
+    We again consider the Shimura datum $(G,X) = (\GL_2,\HH)$, as in Example~\ref{exa:gl2_reciprocity}. Let $h\colon \SSS \rightarrow G_{\RR}$ be an element of $\HH$. Then the composition $\det h$ corresponds to the Tate Hodge structure $\QQ(-1)$, so that $\det \mu_h\colon \GG_{m,\CC} \rightarrow \GG_{m,\CC}$ is the identity. From Deligne's reciprocity law it now follows that~\eqref{eq:det_gl2} is $\gal_{\QQ}$-equivariant.
+\end{example}
+
+We will rephrase~\ref{thm:deligne_reciprocity} in a way which is more convenient for our purposes. Let $(G,X)$ be a Shimura datum with reflex field $E$, and $\KK$ a profinite group endowed with a continuous homomorphism $\KK \rightarrow G(\AAf)$ with finite kernel and open image. The $G(\AAf)$-action on $\Sh(G,X)$ turns $\Sh(G,X)$ into a $\KK$-torsor on $\Sh_{\KK}[G,X]_{\et}$. For a geometric point $\overline{s}$ of $\Sh_{\KK}[G,X]$, and a geometric point $\wtilde{s}$ of $\Sh(G,X)$ lying over $\overline{s}$, this $\KK$-torsor gives rise to a homomorphism $\pi_1^{\et}(\Sh_{\KK}[G,X],\overline{s}) \rightarrow \KK$.
+
+
+%The $\overline{\pi}_0 \pi(G)$-torsor on $\Sh_K[G,X]_{\et}$ obtained by changing the structure group of this torsor using $\theta_K$ is denoted by $\theta_{K,*} \Sh(G,X)$.
+
+
+%\begin{proposition}[{\cite[Th\'eor\`eme~2.6.3]{Deligne79}}]
+%    Identifying $\pi_0(E^{\times} \backslash \AA_E^{\times})$ with $\gal_E^{\ab}$ using $\art_{E}$, the maps $r'_{(G,X)}$ and $r_{(G,X)}$ from $\gal_{E}$ to $\overline{\pi}_0 \pi(G)$ coincide.
+%\end{proposition}
+%
+%\begin{lemma}
+%    For a Shimura triple $(G,X,K)$, denote by $\nu_K$ the map $K \rightarrow G(\AAf) \rightarrow \overline{\pi}_0 \pi(G)$. Then $\nu_{K,*}\Sh(G,X)$ is isomorphic to $\pi_0(\Sh(G,X))_{\Sh_K[G,X]}$ as $\overline{\pi}_0\pi(G)$-torsors on $\Sh_K[G,X]$.
+%\end{lemma}
+
+\begin{lemma}\label{lem:deligne_reciprocity}
+    Let $\wtilde{s}$ be a geometric point of $\Sh(G,X)$, $\overline{s}$ its image in $\Sh_{\KK}[G,X]$, and $\rho\colon \pi_1^{\et}(\Sh_{\KK}[G,X],\overline{s}) \rightarrow \KK$ the resulting homomorphism. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=1.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}\!\left(\Sh_{\KK}[G,X],\overline{s}\right)  &   \KK \\
+            &  G(\AAf) \\
+             \gal_{E} & \overline{\pi}_0 \pi(G) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\rho$} (m-1-2)
+                                         edge (m-3-1)
+                                 (m-3-1) edge node[below]{$r_{(G,X)}$} (m-3-2)
+                                 (m-1-2) edge (m-2-2)
+                                 (m-2-2) edge (m-3-2);
+
+\end{tikzpicture}
+$$
+commutes, where $r_{(G,X)}$ is defined by~\eqref{eq:reciprocity_law}.
+\end{lemma}
+\begin{proof}
+    Let $\theta$ be the composition $\KK \rightarrow G(\AAf) \rightarrow \overline{\pi}_0 \pi(G)$. Using $\theta$ to change the structure group of the $\KK$-torsor $\Sh(G,X)$ gives rise to a $\overline{\pi}_0 \pi(G)$-torsor on $\Sh_{\KK}[G,X]_{\et}$, which we denote $\theta_* \Sh(G,X)$. By Theorem~\ref{thm:deligne_reciprocity}, it suffices to show that $\theta_{*} \Sh(G,X)$ is isomorphic to the pullback of $\pi_0 \Sh(G,X)$ to $\Sh_{\KK}[G,X]$. 
+
+Consider the commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \Sh(G,X)     & \pi_0(\Sh(G,X)) \\
+             \Sh_{\KK}[G,X] & \Spec(E) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge (m-2-2);
+
+\end{tikzpicture}.
+$$
+Here, $\KK$ acts on $\pi_0(\Sh(G,X))$ via $\theta$, and the map $\Sh(G,X) \rightarrow \pi_0(\Sh(G,X))$ is $\KK$-equivariant. This proves the lemma.
+\end{proof}
+
+\begin{example}
+    As in Example~\ref{exa:final_gl2}, consider the Shimura datum $(\GL_2,\HH)$. Let $\KK$ be the compact open subgroup $\GL_2(\ZZh)$ of $\GL_2(\AAf)$, and $\overline{s}$ a geometric point of $\Sh_{\KK}[\GL_2,\HH]$. Then Lemma~\ref{lem:deligne_reciprocity} and Example~\ref{exa:final_gl2} can be used to show that the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}(\Sh_{\KK}[\GL_2,\HH],\overline{s}) & \KK \\
+             \gal_{\QQ} & \ZZh^{\times} \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge node[right]{$\det$} (m-2-2)
+                         (m-2-1) edge node[below]{$\chi$} (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes. Here, $\chi\colon \gal_{\QQ} \rightarrow \ZZh^{\times}$ is the cyclotomic character, that is, it is the composition of $\gal_{\QQ} \rightarrow \gal_{\QQ}^{\ab}$ with the isomorphism $\gal_{\QQ}^{\ab} \rightarrow \ZZh^{\times}$ given by the Kronecker-Weber theorem. Note that $\Sh_{\KK}[\GL_2,\HH]$ is the moduli stack of elliptic curves over $\QQ$. This can be used to show that for any scheme $S$ over $\QQ$ with geometric point $\overline{s}$, and any family $E$ of elliptic curves over $S$, the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}(S,\overline{s}) & \GL(\HHH^1(E_{\overline{s}},\ZZh)) \\
+             \gal_{\QQ} & \ZZh^{\times} \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge node[right]{$\det$} (m-2-2)
+                         (m-2-1) edge node[below]{$\chi^{-1}$} (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes.
+\end{example}
+
+\subsection{Orthogonal Shimura stacks}\label{sec:deligne_orhtogonal}
+In this section, we apply Deligne's reciprocity law to orthogonal Shimura stacks. Before stating the main result, we need to introduce some notation.
+
+Throughout this section, $V$ is a quadratic space over $\QQ$ of signature $(2,n)$, with $n \geq 1$. We denote by $(\SO,\Omega)$ the associated Shimura datum as in Section~\ref{sec:orthogonal_shimura_varieties}. That is, $\SO = \SO(V)$ is the special orthogonal group, and $\Omega = \Omega_V$ is the period domain of Hodge structures of K3 type on $V \otimes_{\QQ} \RR$. By Lemma~\ref{lem:reflex_field_SO}, the reflex field of $(\SO,\Omega)$ is $\QQ$. In addition, we let $\KK$ be a profinite group endowed with a continuous homomorphism $\KK \rightarrow \SO(\AAf)$ with open image and finite kernel. As we saw in Section~\ref{sec:shimura_stacks}, this gives rise to a Shimura stack $\Sh_{\KK}[\SO,\Omega]$, which is a smooth separated Deligne-Mumford stack over $\QQ$.
+
+\begin{remark}
+Artin reciprocity yields a map
+$$
+    \gal_{\QQ} \longrightarrow \gal_{\QQ}^{\ab}/2 \longrightarrow \pi_0(\QQ^{\times}\!\backslash\!\AA^{\times}\!/2) = \QQ^{\times}\!\backslash\!\AA^{\times}\!/2
+$$
+    which we denote $\textsc{cft}$. Moreover, note that since $\QQ^{\times}\!\backslash\!\AA^{\times}\!/2$ is $2$-torsion, it does not matter whether we use Artin's reciprocity law or its reciprocal $\art_{\QQ}$ to define this map.
+\end{remark}
+
+The following is the main result of this section.
+
+%\begin{remark}\label{rk:cft_explicit}
+%Define a map $\psi\colon \AAf^{\hspace{-5pt}\times} \rightarrow \ZZh^{\times}$ as the composition
+%$$
+%\AAf^{\hspace{-5pt}\times} \longrightarrow \AA^{\times} \xrightarrow{ \art_{\QQ} } \gal_{\QQ}^{\ab} \longrightarrow \ZZh^{\times}
+%$$
+%where $\gal^{\ab}_{\QQ} \rightarrow \ZZh^{\times}$ is the isomorphism coming from the Kronecker-Weber theorem. Then $\psi$ is given by
+%$$
+%(a_p)_p \longmapsto \left( \frac{\prod_q q^{\ord_q(a_q)}}{a_p} \right)_p,
+%$$
+%as is shown in~\cite[Example on page~175]{Milne}. Using this, it is easy to verify that $\psi$ fits in the short exact sequence
+%$$
+%1 \rightarrow \QQ^{\times}_{> 0} \longrightarrow \AAf^{\hspace{-5pt}\times} \xrightarrow{\ \psi \ } \ZZh^{\times} \rightarrow 1,
+%$$
+%which is split by the reciprocal of the inclusion $\ZZh^{\times} \rightarrow \AAf^{\hspace{-5pt}\times}$. In particular, $\psi(-1) = -1$.
+%\end{remark}
+
+\begin{proposition}\label{prop:reciprocity_orth}
+%Let $(\SO,\Omega,K)$ be a Shimura triple associated with a quadratic space of signature $(2,n)$ over $\QQ$, with $n \geq 1$. We denote by $\xi_K\colon K \rightarrow \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2$ the map obtained by composing $K \rightarrow \SO(\AAf)$ with the spinor norm $\SO(\AAf) \rightarrow \AAf^{\hspace{-5pt} \times}\hspace{-4pt}/2$ and the map $\psi\colon \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2 \rightarrow \ZZh^{\times}\hspace{-5pt}/2$. Then
+%$$
+%\xi_{K,*} \Sh(\SO,\Omega) \cong \Spec(\QQ^{\textnormal{quad}}) \times {\Sh_K[\SO,\Omega]}
+%$$
+%as $(\ZZh^{\times}\hspace{-5pt}/2)$-torsors on $\Sh_K[\SO,\Omega]_{\et}$.
+    Let $\wtilde{s}$ be a geometric point of $\Sh(\SO,\Omega)$, and $\overline{s}$ its image in $\Sh_{\KK}[\SO,\Omega]$. Define $\xi_{\KK}\colon \KK \rightarrow\QQ^{\times}\!\backslash\!\AA^{\!\times}\!/2$ to be the composition
+$$
+    \KK \longrightarrow \SO(\AAf) \xrightarrow{\ \nu \ } \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2 \longrightarrow \QQ^{\times}\!\backslash\!\AA^{\!\times}\!/2,
+$$
+    where $\nu$ denotes the spinor norm, see Section~\ref{sec:spinor_norm}. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}\!\left(\Sh_{\KK}[\SO,\Omega],\overline{s}\right)  &   {\KK} \\
+             \gal_{\QQ} & \QQ^{\times}\!\backslash\!\AA^{\!\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge node[below]{\textsc{cft}} (m-2-2)
+                                 (m-1-2) edge node[right]{$\xi_{\KK}$} (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes.
+\end{proposition}
+
+\begin{remark}
+Let $\GSpin = \GSpin(V)$ be the Clifford group of $V$, and $N\colon \GSpin \rightarrow \GG_m$ the Clifford norm (see Section~\ref{sec:orthogonal_shimura_varieties}). The proof will show that a similar statement involving $\GSpin(\AAf) \xrightarrow{N} \AA^{\times} \rightarrow \QQ^{\times}\!\backslash\AA^{\!\times}$ and the composition
+$$
+\gal_{\QQ} \longrightarrow \gal^{\ab}_{\QQ} \xrightarrow{\art_{\QQ}^{-1}} \pi_0 \left(\QQ^{\times}\!\backslash\AA^{\!\times} \right)
+$$
+holds for the Shimura datum $(\GSpin,\Omega)$ 
+\end{remark}
+
+The proof will make use of the morphisms of Shimura data from~\eqref{eq:kuga_satake}, namely
+$$
+(\SO,\Omega) \longleftarrow (\GSpin,\Omega) \xrightarrow{\ N \ } (\GG_m,\{\QQ(-1)\}),
+$$
+and the relation of the spinor norm to the Clifford norm given by Lemma~\ref{lem:clifford_vs_spinor}. Note that by Lemma~\ref{lem:reflex_field_SO}, the reflex fields of each of these Shimura data is $\QQ$.
+
+
+%\begin{remark}\label{rk:cft_explicit}
+%    The map $\psi$ in the proposition comes from the following. The Artin reciprocity map for $\QQ$ is given explicitly by the composition $\AA^{\times} \rightarrow \ZZh^{\times} \rightarrow \gal_{\QQ}^{\ab}$, with the first map being
+%$$
+%    (a_p)_p \longmapsto \left( \frac{\prod_q q^{\ord_q(a_q)}}{a_p} \right)_p,
+%$$
+%    and the second one is given by having $u \in (\ZZ/N\ZZ)^{\times}$ act on $\QQ(\zeta_N)$ by $u\zeta_N := \zeta_N^u$, and taking the limit over $N$ (see~\cite[The example on page 175]{MilneCFT}). It is easy to see that $\psi|_{\ZZh^{\times}\hspace{-5pt}/2} = \id_{\ZZh^{\times}\hspace{-5pt}/2}$, and that $\QQ^{\times}\hspace{-5pt}/2 \subseteq \ker(\psi)$.
+%\end{remark}
+
+%\begin{remark}
+%If we replace $\nu_K$ with the composition
+%$$
+%    K \longrightarrow \SO(\AAf) \xrightarrow{\ \nu \ } \AAf^{\hspace{-5pt} \times}\hspace{-4pt}/2 \longrightarrow \ZZh^{\times}\hspace{-5pt}/2,
+%$$
+%    where the map $\AAf^{\hspace{-5pt} \times}\hspace{-4pt}/2 \rightarrow \ZZh^{\times}\hspace{-5pt}/2$ is given by
+%$$
+%(a_p)_p \longmapsto \left( \frac{a_p}{\prod_q q^{\ord_q(a_q)}} \right)_p,
+%$$
+%then the statement also holds for $K$ for which $\nu_K(K)$ is not contained in $\ZZh^{\times}\hspace{-5pt}/2$.
+%\end{remark}
+%
+%\begin{remark}
+%The assumption $\nu_K(K) \subseteq \ZZh^{\times}\hspace{-5pt}/2$ is satisfied in the cases we are primarily interested in. For instance, if we are given a $\ZZ$-lattice $\Lambda$ of signature $(3,n)$ with $n$ odd, and an element $\lambda \in \Lambda$ of positive length, then we set $V = \lambda^{\perp} \otimes {\QQ}$, and
+%$$
+%K = \left\{g \in \O(\Lambda)(\ZZh) \left| g(\lambda) = \lambda \textnormal{ and } \det g \in \mu_2(\ZZ) \subsetneq \mu_2(\ZZh)\right.\right\},
+%$$
+%    and we define a homomorphism $i\colon K \rightarrow \SO(V)(\AAf)$ by $g \mapsto \det(g) g|_{V_{\AAf}}$. Then $i$ lands in $\SO(\lambda^{\perp})(\ZZh)$, {\color{red} so} $\nu_K(K) \subseteq \ZZh^{\times}\hspace{-5pt}/2$.
+%\end{remark}
+
+\begin{lemma}\label{lem:connectedness_stabilizer}
+Let $V$ be a quadratic space over $\RR$ of signature $(2,n)$, with $n \geq 1$. Both $\SO(\RR)_+$ and $\GSpin(\RR)_+$ are connected.
+\end{lemma}
+\begin{proof}
+%For the first assertion, note that the action of $\SO(\RR)$ on $\pi_0(\Omega^{\pm})$ is given by the spinor norm by Lemma~\ref{lem:clifford_vs_spinor}, so that $\SO(\RR)_+$ consists of the elements of spinor norm~$1$. It is well known that the identity component of $\SO(\RR)$ consists of the elements of spinor norm $1$, proving the connectedness of $\SO(\RR)_+$. \\
+It is well known that $\SO(\RR)$ has two connected components. Moreover, by the last part of Lemma~\ref{lem:connected_components_shimura}, $[\SO(\RR):\SO(\RR)_+] = |\pi_0(\Omega^{\pm})| = 2$, proving the first assertion. \\
+For the second assertion, note that $[\GSpin(\RR):\GSpin(\RR)_+] = 2$ by Lemma~\ref{lem:connected_components_shimura}, so it suffices to show that $\pi_0(\GSpin(\RR)) \cong \{\pm 1\}$. For this, we use that if $G$ is a Lie group with closed subgroup $H$, then the sequence
+$$
+\pi_0(H) \rightarrow \pi_0(G) \rightarrow \pi_0(G/H) \rightarrow 1
+$$
+is exact and functorial in $(G,H)$. We apply this to the exact sequences $1 \rightarrow \{\pm 1\} \rightarrow \Spin(\RR) \rightarrow \SO(\RR)_+ \rightarrow 1$ and $1 \rightarrow \RR^{\times} \rightarrow \GSpin(\RR) \rightarrow \SO(\RR) \rightarrow 1$, and use the connectedness of $\Spin(\RR)$ (\cite[Proposition~7.6]{PlatonovRapinchuk}) to conclude that $\pi_0(\GSpin(\RR)) \cong \pi_0(\SO(\RR)) \cong \{\pm 1\}$.
+\end{proof}
+
+\begin{corollary}\label{cor:connectedness_stabilizer}
+Let $V$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$. Then $\overline{\pi}_0 \pi \SO = \pi_0 \pi \SO$ and $\overline{\pi}_0 \pi \GSpin = \pi_0 \pi \GSpin$.
+\end{corollary}
+
+Note that $\SO(\AAf) \xrightarrow{\nu} \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2 \rightarrow \QQ^{\times}\!\backslash \AA^{\!\times}\!/2$ factors through $\pi_0 \pi (\SO)$, yielding a morphism $\pi_0 \pi(\SO) \rightarrow \QQ^{\times}\!\backslash\AA^{\!\times}\!/2$ which we also denote with $\nu$. Moreover, Corollary~\ref{cor:connectedness_stabilizer} identifies $\overline{\pi}_0 \pi(\SO)$ with $\pi_0 \pi(\SO)$, so Deligne's reciprocity law results in a homomorphism
+$$
+\gal_{\QQ} \xrightarrow{r_{(\SO,\Omega)}} \overline{\pi}_0 \pi(\SO) = \pi_0 \pi(\SO) \xrightarrow{\ \nu \ } \QQ^{\times}\!\backslash \AA^{\!\times}\!/2.
+$$
+The following lemma states that this homomorphism coincides with the one coming from class field theory.
+
+\begin{proposition}\label{prop:gal_equivariance_clifford}
+Let $V$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$. The diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=8.5em, text height=1.5ex, text depth=0.25ex]
+           { \gal_{\QQ} & \pi_0 \pi(\SO) \\
+                                         & \QQ^{\times}\!\backslash \AA^{\!\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$r_{(\SO,\Omega)}$} (m-1-2)
+                         (m-1-2) edge node[right]{$\nu$} (m-2-2)
+                         (m-1-1) edge node[below]{\textsc{cft} } (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes.
+%    The Clifford norm $N\colon \GSpin \rightarrow \GG_m$ and the spinor norm $\nu\colon \SO(\AA) \rightarrow \AA^{\times}\hspace{-4pt}/2$ induce $\gal_{\QQ}$-equivariant group isomorphisms
+%$$
+%\overline{\pi}_0 \pi(\GSpin) \xrightarrow{\phantom{a}\sim\phantom{a}} \pi_0(\QQ^{\times} \backslash \AA^{\times}) \xrightarrow{\art_{\QQ}} \gal_{\QQ}^{\ab}
+%$$
+%and
+%$$
+%\overline{\pi}_0 \pi(\SO) \xrightarrow{\phantom{a}\sim\phantom{a}} \pi_0(\QQ^{\times} \backslash \AA^{\times}\hspace{-5pt}/2) \xrightarrow{\art_{\QQ}} \gal(\QQ^{\textnormal{quad}}/\QQ),
+%$$
+%where the $\gal_{\QQ}$-actions on the left-hand sides come from the theory of canonical models of Shimura varieties.
+\end{proposition}
+\begin{proof}
+Recall that Lemma~\ref{lem:clifford_vs_spinor} gives a commutative diagram relating the spinor norm to the Clifford norm. If we apply $\pi_0 \pi$ to this commutative diagram, and factor out $\QQ^{\times}$ in the bottom right corner, we obtain
+\begin{equation}\label{eq:spinor_clifford}
+    \begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_0 \pi(\GSpin)     & \pi_0 \pi(\GG_m) \\
+             \pi_0\pi(\SO) & \QQ^{\times}\!\backslash\!\AA^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$N$} (m-1-2)
+           edge (m-2-1)
+                         (m-1-2) edge (m-2-2)
+                         (m-2-1) edge node[below]{$\nu$} (m-2-2);
+
+    \end{tikzpicture}\end{matrix}
+\end{equation}
+On the other hand, let $h\colon \SSS \rightarrow \SO_{\RR}$ be an element of $\Omega$, and $\wtilde{h}\colon \SSS \rightarrow \GSpin$ the unique lift of $h$ to $\GSpin$ for which $N \circ \wtilde{h}\colon \SSS \rightarrow \GG_{m,\RR}$ corresponds to the Lefschetz Hodge structure $\QQ(-1)$, cf~\cite[4.2]{DeligneK3}. Since the reflex field of $(\SO,\Omega)$, $(\GSpin,\Omega)$, and $(\GG_m,\{\QQ(-1)\})$ is $\QQ$, we obtain a commutative diagram
+\begin{equation}\label{eq:mu_commu_diag}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=6.5em, text height=1.5ex, text depth=0.25ex]
+           {                  &                    \pi_0 \pi(\SO) \\
+             \pi_0 \pi(\GG_m)  &  \pi_0 \pi(\GSpin)                 \\
+                              &                    \pi_0 \pi(\GG_m) \\ };
+
+           \path[>=angle 90, ->] (m-2-1) edge node[below]{$\ \ \pi_0 \pi(\mu_{\wtilde{h}})$} (m-2-2)
+                                 (m-2-1) edge node[above]{$\pi_0 \pi(\mu_{h})\hspace{30pt}$} (m-1-2)
+                                 (m-2-1) edge node[below]{$\pi_0 \pi(\mu_{N \wtilde{h}}) \hspace{40pt} $} (m-3-2)
+                         (m-2-2) edge (m-1-2)
+                         (m-2-2) edge node[right]{$ \pi_0 \pi(N)$} (m-3-2);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+Note that since $N \wtilde{h}$ corresponds to $\QQ(-1)$, there holds $\mu_{N \wtilde{h}} = \id_{\GG_{m,\QQ}}$, so the bottom map in the commutative diagram is the identity.
+
+    By combining~\eqref{eq:mu_commu_diag} and~\eqref{eq:spinor_clifford} with the definition of $r_{(\SO,\Omega)}$, we find that
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \gal_{\QQ} & \pi_0 \pi (\GG_m) & & \\ 
+             & & \pi_0 \pi(\GSpin)     & \pi_0 \pi(\GG_m) \\
+            & &  \pi_0\pi(\SO) & \QQ^{\times}\!\backslash\!\AA^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\textsc{cft}$} (m-1-2)
+                                         edge[bend right=20] node[below]{$r_{(\SO,\Omega)} \quad $} (m-3-3)
+                         (m-1-2) edge[bend right=20] node[below]{$\mu_h \ $} (m-3-3)
+                                 edge (m-2-3)
+                                 edge[bend left=20] node[above]{$\id$} (m-2-4)
+                                 
+                         (m-2-3) edge node[below]{$N$} (m-2-4)
+                                 edge (m-3-3)
+                         (m-3-3) edge node[below]{$\nu$} (m-3-4)
+                         (m-2-4) edge (m-3-4);
+
+\end{tikzpicture}\end{matrix}
+$$   
+commutes. Since the map $\gal_{\QQ} \rightarrow \QQ^{\times}\!\backslash\!\AA^{\times}\!/2$ given by composing the maps along the top of the diagram is precisely the one coming from class field theory, we obtain the desired result.
+%In particular, the composition
+%$$
+%    \gal_{\QQ} \longrightarrow \gal_{\QQ}^{\ab} \xrightarrow{\art_{\QQ}^{-1}} \pi_0\pi(\GG_m) \xrightarrow{\mu_{N \wtilde{h}}} \pi_0 \pi(\GG_m) \longrightarrow \QQ^{\times}\!\backslash \AA^{\!\times}\!/2
+%$$
+%    is the map $\textsc{cft}\colon \gal_{\QQ} \rightarrow \QQ^{\times}\!\backslash\AA^{\!\times}\!/2$. The lemma follows by combining this with~\eqref{eq:mu_commu_diag} and~\eqref{eq:spinor_clifford}, and the definition of $r_{(\SO,\Omega)}$.
+\end{proof}
+
+
+%The fact that $\nu$ and $N$ induce group isomorphisms follows from Lemma~\ref{lem:surjectivity_spinor} and Lemma~\ref{lem:connectedness_stabilizer}. \\
+%    We will use Deligne's reciprocity law to prove $\gal_{\QQ}$-equivariance of the first isomorphism, and then deduce the $\gal_{\QQ}$-equivariance for the second isomorphism using Lemma~\ref{lem:clifford_vs_spinor}. Let $h\colon \SSS \rightarrow \GSpin_{\RR}$ be an element of $\Omega^{\pm}$. Then $N h\colon \SSS \rightarrow \GG_{m,\RR}$ corresponds to the Tate Hodge structure $\QQ(-1)$, so $N \mu_h = \mu_{N h}\colon \GG_m \rightarrow \GG_m$ is the identity. The $\gal_{\QQ}$-equivariance of $\overline{\pi}_0 \pi(\GSpin) \rightarrow \gal_{\QQ}^{\ab}$ now follows from Deligne's reciprocity law. Lemma~\ref{lem:clifford_vs_spinor} yields a commutative diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { \overline{\pi}_0 \pi(\GSpin)     & \pi_0(\QQ^{\times} \backslash \AA^{\times}) & \gal_{\QQ}^{\ab} \\
+%             \overline{\pi}_0 \pi(\SO) & \pi_0(\QQ^{\times} \backslash \AA^{\times}/2) & \gal(\QQ^{\textnormal{quad}}/\QQ) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above]{$N$} (m-1-2)
+%           edge (m-2-1)
+%                         (m-1-2) edge (m-2-2)
+%                                 edge (m-1-3)
+%                         (m-1-3) edge (m-2-3)
+%                         (m-2-1) edge node[below]{$\nu$} (m-2-2)
+%                         (m-2-2) edge (m-2-3);
+%
+%\end{tikzpicture}.
+%$$
+%The leftmost morphism is surjective by the surjectivity of $\GSpin(\AA) \rightarrow \SO(\AA)$, which is a consequence of $\HHH^1(\AA_{\et},\GG_m) = 1$. It follows that the $\gal_{\QQ}$-equivariance of the top row implies the $\gal_{\QQ}$-equivariance of the bottom row.
+
+Finally, we are able to prove Proposition~\ref{prop:reciprocity_orth}.
+
+\begin{proof}[Proof of Proposition~\ref{prop:reciprocity_orth}]
+Note that $\overline{\pi}_0 \pi(\SO) = \pi_0 \pi(\SO)$ by Lemma~\ref{lem:connectedness_stabilizer}. Therefore Lemma~\ref{lem:deligne_reciprocity} and Proposition~\ref{prop:gal_equivariance_clifford} yield a commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}\!\left(\Sh_{\KK}[\SO,\Omega],\overline{s}\right)  &   {\KK} \\
+             \gal_{\QQ} & \pi_0 \pi(\SO) \\
+                        & \QQ^{\times}\!\backslash\!\AA^{\!\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge node[above]{$r_{(\SO,\Omega)}$} (m-2-2)
+                                 (m-1-2) edge (m-2-2)
+                                 (m-2-1) edge node[below]{\textsc{cft} \ \ } (m-3-2)
+                                 (m-2-2) edge node[right]{$\nu$} (m-3-2);
+
+\end{tikzpicture}
+$$
+proving the proposition.
+\end{proof}
+%Let $\overline{s}$ be a geometric point of $\Sh_K[\SO,\Omega]$. Then the $K$-torsor $\Sh(\SO,\Omega)$ on $\Sh_K[\SO,\Omega]$ yields a homomorphism $\pi_1^{\et}(\Sh_K[\SO,\Omega],\overline{s}) \rightarrow K$, and Proposition~\ref{prop:reciprocity_orth} reduces to the commutativity of the diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { \pi_1^{\et}(\Sh_K[\SO,\Omega],\overline{s}) & \gal_{\QQ}     &  &  \\
+%             K & \overline{\pi}_0 \pi(\SO) & \QQ^{\times}\!\backslash\!\AA^{\times}\hspace{-4pt}/2 & \gal(\QQ^{\textnormal{quad}}/\QQ) \\
+%             & \SO(\AAf) & \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2 & \ZZh^{\times}\hspace{-5pt}/2 \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                                 edge (m-2-1)
+%                         (m-1-2) edge (m-2-2)
+%                                 edge (m-2-4)
+%                         (m-2-3) edge node[below]{$\art_{\QQ}$} (m-2-4)
+%                         (m-3-2) edge (m-2-2)
+%                                 edge node[below]{$\nu$} (m-3-3)
+%                         (m-3-3) edge (m-2-3)
+%                                 edge node[below]{$\psi$} (m-3-4)
+%                         (m-2-1) edge (m-2-2)
+%                                 edge node[below]{$i$} (m-3-2)
+%                         (m-3-4) + (0,0.4) edge (m-2-4)
+%                         (m-2-2) edge node[below]{$\nu$} (m-2-3);
+%
+%\end{tikzpicture},
+%$$
+%since the map $\pi_1^{\et}(\Sh_K[\SO,\Omega],\overline{s}) \rightarrow \ZZh^{\times}\hspace{-5pt}/2$ defined by the upper edge of the diagram corresponds to the $(\ZZh^{\times}\hspace{-5pt}/2)$-torsor $\Sh_K[\SO,\Omega] \times \Spec(\QQ^{\textnormal{quad}})$, and the one defined by the lower edge corresponds to the $(\ZZh^{\times}\hspace{-5pt}/2)$-torsor $\xi_{K,*}\Sh(\SO,\Omega)$. The upper left square of the diagram commutes by Lemma~\ref{lem:deligne_reciprocity}, the upper right triangle commutes by Proposition~\ref{prop:gal_equivariance_clifford}, and the lower right square commutes by Remark~\ref{rk:cft_explicit}.
+%\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:surjectivity_spinor} shows that the spinor norm induces an isomorphism $\pi_0 \pi(\SO) \rightarrow \QQ^{\times}\!\backslash \AA^{\!\times}\!/2$. Combining this with Proposition~\ref{prop:gal_equivariance_clifford} and the fact that the scheme of connected components of $\Sh(\SO,\Omega)$ is a $\pi_0 \pi(\SO)$-torsor on $\QQ_{\et}$ shows that $\pi_0(\Sh(\SO,\Omega)) \cong \Spec(\QQ^{\text{quad}})$. Similarly, $\pi_0(\Sh(\GSpin,\Omega)) \cong \Spec(\QQ^{\ab})$, where $\QQ^{\ab}$ is the maximal abelian extension of $\QQ$.
+\end{remark}
+%\begin{remark}
+%A possible alternative proof of Proposition~\ref{prop:reciprocity_orth} proceeds by considering the morphism $N\colon (\GSpin,\Omega) \rightarrow (\GG_m,\{\QQ(-1)\})$, and then computing Deligne's reciprocity law for the latter Shimura datum. However, 
+%$$
+%    \pi_0\Sh(\GG_m,\{\QQ(-1)\}) \cong \Spec(\QQ^{\textnormal{quad}} \cap \RR),
+%$$
+%so {\color{red} we get stuck? what to say here?}
+%\end{remark}
+
+We end this section by making Proposition~\ref{prop:reciprocity_orth} more explicit in the case that is most relevant to our purposes.
+
+Let $\Lambda$ be a self-dual even $\ZZ$-lattice of signature $(3,n)$, with $n$ odd, and $\lambda \in \Lambda$ a primitive vector of positive length. By setting $V = \lambda^{\perp} \otimes \QQ$, this gives rise to an orthogonal Shimura datum $(\SO,\Omega):= (\SO(V),\Omega_V)$. Let $\KK$ be the profinite group defined in~\eqref{eq:lennys_group}. That is,
+$$
+{\KK} = \left\{g \in \O(\Lambda \otimes \ZZh) \left| g \lambda = \lambda \textnormal{ and } \det g \in \mu_2(\ZZ) \subsetneq \mu_2(\ZZh)\right.\right\}.
+$$
+We endow $\KK$ with the homomorphism $i\colon {\KK} \rightarrow \SO(\AAf)$, $g \mapsto \det(g) g|_{V_{\AAf}}$, yielding a Shimura stack $\Sh_{\KK}[\SO,\Omega]$ over $\QQ$.
+
+Note that the fact that $\Lambda$ is self-dual and of even rank implies that we have a spinor norm $\nu\colon \O(\Lambda \otimes \ZZh) \rightarrow \ZZh^{\times}\hspace{-5pt}/2$, see Definition~\ref{def:spinor_norm}. Combining this with the determinant $\det\colon \O(\Lambda \otimes \ZZh) \rightarrow \mu_2(\ZZh)$, we obtain a map $\det \cdot \nu\colon {\KK} \rightarrow \ZZh^{\times}\hspace{-5pt}/2$, sending $g \in {\KK}$ to $\det(g)\nu(g)$. We can use this map to change the structure group of the ${\KK}$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK}[\SO,\Omega]_{\et}$, yielding a $\ZZh^{\times}\hspace{-5pt}/2$-torsor which we denote $(\det \cdot \nu)_* \Sh(\SO,\Omega)$. Aside from this we have another $\ZZh^{\times}\hspace{-5pt}/2$-torsor, namely $\Spec(\QQ^{\text{quad}}) \times \Sh_{{\KK}}[\SO,\Omega]$.
+
+\begin{proposition}\label{prop:reciprocity_orth_special}
+    Let $(\SO,\Omega,{\KK})$ and $\nu$ be as above. Then
+$$
+    (\det \cdot \nu)_*\Sh(\SO,\Omega) \cong \Spec(\QQ^{\textnormal{quad}}) \times \Sh_{\KK}[\SO,\Omega]
+$$
+    as $\ZZh^{\times}\hspace{-5pt}/2$-torsors on $\Sh_{\KK}[\SO,\Omega]_{\et}$.
+\end{proposition}
+\begin{proof}
+Define a map $\psi\colon \QQ^{\times}\!\backslash\AA^{\!\times}\!/2 \rightarrow \ZZh^{\times}\hspace{-5pt}/2$ to be the composition
+$$
+\QQ^{\times}\!\backslash\AA^{\!\times}\!/2  \xrightarrow{\art_{\QQ}} \gal(\QQ^{\text{quad}}/\QQ) \longrightarrow \ZZh^{\times}\hspace{-5pt}/2,
+$$
+where the second map is the isomorphism given by the Kronecker-Weber theorem. It can be shown that $\psi$ is given explicitly by
+$$
+(a_v)_v \longmapsto \left( a_p \, \text{sgn}(a_{\infty}) \prod_q q^{\ord_q(a_q)} \right)_p.
+$$
+In particular, 
+    \begin{equation}\label{eq:psi_identity_one}
+        \psi(1_{\RR},-1,-1,\ldots) = -1,
+\end{equation}
+and 
+\begin{equation}\label{eq:psi_identity_two}
+    \psi((a_v)_v) = (a_v)_v, \ \text{ for } (a_v)_v \in \ZZh^{\times}\!/2 \subseteq \AA^{\times}\!/2.
+\end{equation}
+The composition $\gal_{\QQ} \xrightarrow{\textsc{cft}} \QQ^{\times}\!\backslash\!\AA^{\!\times}\!/2 \xrightarrow{\psi} \ZZh^{\times}\hspace{-5pt}/2$ corresponds to the $\ZZh^{\times}\hspace{-5pt}/2$-torsor $\Spec(\QQ^{\text{quad}})$ on $\QQ_{\et}$. It now follows from Proposition~\ref{prop:reciprocity_orth} that it suffices to show that 
+$$
+    {\KK} \xrightarrow{\ \, i \, \ } \SO(\AAf) \xrightarrow{ \ \nu \ } \QQ^{\times}\!\backslash\AA^{\!\times}\!/2 \xrightarrow{\ \psi \ } \ZZh^{\times}\hspace{-5pt}/2
+$$
+is equal to $\det \cdot \nu$. 
+
+%Let $\Lambda$ be a self-dual $\ZZh$-lattice of even rank, and let $\lambda \in \Lambda$ be such that $\lambda^2 \in \ZZ\setminus 0$. Then the exact sequence $1 \rightarrow \mu_2 \rightarrow \textnormal{Pin}(\Lambda) \rightarrow \O(\Lambda) \rightarrow 1$ yields the spinor norm $\O(\Lambda)(\ZZh) \rightarrow \ZZh^{\times}\!/2$. We define $K$ to be the group
+%$$
+%\left\{g \in \O(\Lambda) \left| g(\lambda) = \lambda \textnormal{ and } \det(g) \in \mu_2(\ZZ) \subsetneq \mu_2(\ZZh)\right.\right\},
+%$$
+%    and $i\colon K \rightarrow \SO(\lambda^{\perp}_{\AAf})$ the map given by $g \mapsto \det(g)g|_{\lambda^{\perp}_{\AAf}}$.
+%\begin{lemma}
+%Let $\Lambda$ be a $\ZZh$-lattice which is ordinary in the sense of~\cite[Chapitre~XII]{SGA7} {\color{red} SGA7}, and let $\nu\colon \O(\Lambda)(\AAf) \rightarrow \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2$ be the spinor norm. Then $\nu(\O(\Lambda)) \subseteq \ZZh^{\times}\hspace{-5pt}/2$.
+%\end{lemma}
+%\begin{proof}
+%One proof is that the spinor norm is defined for ordinary quadratic forms (see Conrad's SGA3 notes). We have to go for this proof because we need to be able to define the spinor norm over $\ZZh$ in order to even state the main theorem. \\
+%The case we care about is where $\Lambda$ has even rank, in which case ordinariness is equivalent to self-duality. If we add the condition that $\rk \Lambda \geq 5$, we can apply a result of Kneser which says that $\O(\Lambda)$ is generated by reflections in order to compute the spinor norm explicitly. The added value of this proof is that it might yield an integer-valued spinor norm in cases where the quadratic form is not ordinary, which might be the case for higher-dimensional hyperk\"ahlers. \\
+%\end{proof}
+%\begin{proposition}
+%The diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+%           { K & & \SO(\lambda^{\perp}_{\AAf}) \\
+%                                   \O(\Lambda)  &  & \AAf^{\hspace{-5pt}\times}\hspace{-4pt}/2 \\
+%                                   & \ZZh^{\times}\hspace{-6pt}/2 &  \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above]{$i$} (m-1-3)
+%                         (m-1-3) edge node[right]{$\nu$} (m-2-3)
+%                         (m-2-1) edge node[left]{$\nu$} (m-3-2)
+%                         (m-2-3) edge node[right]{$\psi$} (m-3-2)
+%                         (m-1-1) edge (m-2-1);
+%
+%\end{tikzpicture}
+%$$
+%commutes, where $\psi$ is given by
+%$$
+%(a_p)_p \longmapsto \left( \prod_q q^{\ord_q(a_q)} a_p\right)_p.
+%$$
+%\end{proposition}
+%\begin{proof}
+    Let $g \in {\KK}$. First, note that by applying the identities in Lemma~\ref{lem:spinor_direct_sum} and Lemma~\ref{lem:spinor_norm_-id} to $V_{\QQ_p}$ and $V_{\QQ_p} \oplus \QQ_p \lambda = \Lambda_{\QQ_p}$ for all $p$, and using that $\det(v) \in \{\pm 1\}$, we obtain
+$$
+    \nu i (g) = \nu(\det(g) g|_{V_{\AAf}}) = \disc(V_{\AAf})^{\tfrac{1 - \det(g)}{2}} \nu(g_{\AAf}).
+$$
+    Note that since $\Lambda$ is self-dual and of even rank, we have $\nu(g_{\AAf}) = \nu(g) \in \ZZh^{\times}\hspace{-5pt}/2$. Write $\lambda^2 = 2d$, with $d \in \ZZ_{> 0}$, so that $\disc(V_{\AAf}) = -2d < 0$. Combining this with $\nu(g) \in \ZZh^{\times}\hspace{-5pt}$ and~\eqref{eq:psi_identity_one} and~\eqref{eq:psi_identity_two}, we find that applying $\psi$ to the equation above yields $\psi \nu i(g) = \det(g) \nu(g)$, which was to be shown.
+\end{proof}
+
+The following remark relates the proposition to the $\ZZ_{\ell}^{\times}\!/2$-torsors $T_{\ell}$ defined in~\eqref{eq:torsor_odd}, and hence to the maps $\chi_{\ell}$ occurring in Theorem~\ref{thm:galois_spinor}.
+\begin{remark}\label{rem:galois_quad}
+    Note that $\QQ^{\textnormal{quad}}$ is a Galois extension of $\QQ$ with Galois group $\ZZh^{\times}\hspace{-5pt}/2$, so that $\Spec(\QQ^{\textnormal{quad}})$ is a $(\ZZh^{\times}\hspace{-5pt}/2)$-torsor on $\QQ_{\et}$. We denote by $\zeta_8$ a primitive 8th root of unity, and for an odd prime $\ell$, we define $\ell^{\ast} = (-1)^{\tfrac{\ell-1}{2}} \ell$. The diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+             {       \phantom{.} &       & \QQ^{\textnormal{quad}} &                    \\
+                       &        \QQ(\zeta_8) &             & \QQ(\sqrt{\ell^*}) \\
+                     \phantom{.} &  \phantom{.}  & \QQ & \phantom{.} \\ };
+
+           \path[>=angle 90, -] (m-3-3) edge (m-2-2)
+                                        edge (m-2-4)
+                         (m-2-2) edge (m-1-3)
+                         (m-2-4) edge (m-1-3);
+
+                         \path[white] (m-1-1) edge node[left]{${\color{black}\ZZh^{\times}\hspace{-6pt}/2 \ }$} (m-3-1);
+                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-1-1.center) -- (m-3-1.center);
+                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-2-2) -- (m-3-2.center);
+                         \path[white] (m-2-2) edge node[left]{${\color{black}\ZZ_2^{\times}\hspace{-4pt}/2 \ }$} (m-3-2.center);
+                         \draw[decorate, decoration={brace,amplitude=5pt}] (m-2-4) -- (m-3-4.center);
+                         \path[white] (m-2-4) edge node[right]{$ \ {\color{black}\ZZ_{\ell}^{\times}\hspace{-4pt}/2}$} (m-3-4.center);
+
+\end{tikzpicture}
+$$
+shows that $T_{\ell,\QQ}$ is obtained by changing the structure group of $\Spec(\QQ^{\textnormal{quad}})$ to $\ZZ_{\ell}^{\times}\!/2$.
+\end{remark}
+\section{Proof of Theorem \ref{thm:galois_spinor}}\label{sec:prf_galois_spinor}
+%Here, it could be useful to use the existence of quasi-canonical lifts for K3 surfaces of finite height in characteristic $p > 3$. For K3 surfaces of infinite height (i.e., supersingular ones), some other argument may be possible. Maybe the Olsson-Bragg work extends to $p \leq 3$.
+We use the notation of Theorem~\ref{thm:galois_spinor}. In particular, $S$ is a $\ZZ[\tfrac{1}{2d \ell}]$-scheme, and $f\colon X \rightarrow S$ a projective K3 surface of degree $2d$. Recall the $\ZZ_{\ell}^{\times}\hspace{-5pt}/2$-torsor $T_{\ell,S}$ on $S_{\et}$ defined in~\eqref{eq:torsor_odd}. The K3 surface $f\colon X \rightarrow S$ gives rise to an $\O(\Lambda_{\textnormal{K3}} \otimes \ZZ_{\ell})$-torsor on $S_{\et}$, namely
+$$
+\Isom_S\left(\underline{\Lambda_{\textnormal{K3}}}\otimes \ZZ_{\ell}, \RRR_{\et}^2\!f_* \ZZ_{\ell}(1)\right),
+$$
+where $\Lambda_{\textnormal{K3}}$ denotes an even self-dual lattice over $\ZZ$ of signature $(3,19)$, and $\RRR^2_{\et}f_* \ZZ_{\ell}(1)$ is endowed with the cup product pairing. By changing the structure group of this torsor using the map $\det \cdot \nu\colon \O(\Lambda_{\textnormal{K3}} \otimes \ZZ_{\ell}) \rightarrow \ZZ_{\ell}^{\times}\!/2$, we obtain a $\ZZ_{\ell}^{\times}\!/2$-torsor on $S_{\et}$, which we denote $(\det \cdot \nu)_{\ell,X/S}$. Now Theorem~\ref{thm:galois_spinor} is equivalent to $(\det \cdot \nu)_{\ell,X/S}$ and $T_{\ell,S}$ being isomorphic as torsors on $S_{\et}$. Note that these torsors are stable under base change along morphisms $S' \rightarrow S$.
+
+Let $\KKKK_{2d}$ be the moduli stack over $\ZZ[1/2d\ell]$ of polarized K3 surfaces of degree $2d$, and $f\colon \XXX \rightarrow \KKKK_{2d}$ the universal K3 surface. Then it suffices to show that $(\det \cdot \nu)_{\ell,\XXX/\KKKK_{2d}}$ and $T_{\ell,\KKKK_{2d}}$ are isomorphic. We will obtain the characteristic $0$ case using Shimura-theoretic methods, and later deduce the general case.
+
+%{\bfseries Period map.} Let $\Lambda_{2d} \subseteq \Lambda_{\textnormal{K3}}$ be the orthogonal complement of a primitive element $\lambda \in \Lambda$ with $\lambda^2 = 2d$. Let $(G,X) = (\SO(\Lambda_{2d,\QQ}),\Omega_{\Lambda_{2d}})$ be the associated Shimura datum, and consider the profinite group
+%$$
+%\KK_{2d} := \{g \in \O(\Lambda_{\ZZh}) \mid \det(g) \in \{\pm 1\}, \ g\lambda = \lambda\}.
+%$$
+%The requirement that $\det g \in \{\pm 1\}$ says that for every prime $p$ the determinant $\det g_p$ is the same. That is, $\det g_p$ is either $1$ for all $p$ or $-1$ for all $p$.
+%We endow $\KK_{2d}$ with the homomorphism
+%$$
+%\KK_{2d} \longrightarrow G(\AAf), \ \ g \longmapsto \det(g) g|_{\Lambda_{2d,\AAf}},
+%$$
+%yielding a Shimura stack $\Sh_{\KK_{2d}}[G,X]$ over $\QQ$. There is a natural $\KK_{2d}$-torsor $\Sh(G,X)$ on $\Sh_{\KK_{2d}}[G,X]_{\et}$.
+%
+%The relevance of $\KK_{2d}$ is explained by the following lemma. See also~\cite[Lemma~3.2]{Saito}.
+%\begin{lemma}\label{lem:saito}
+%    Let $f\colon X \rightarrow S$ be a K3 surface, $\overline{s}$ a geometric point of $S$. For every prime number $\ell$ invertible in $\Gamma(S,\OO_S)$, consider the map
+%$$
+%    \pi^{\et}_1(S,\overline{s}) \xrightarrow{\, \rho_{\ell} \, } \O(\HHH^2_{\et}(X_{\overline{s}},\ZZ_{\ell}(1)) \xrightarrow{\det} \{\pm 1\}.
+%$$
+%Then $\det \rho_{\ell}$ is independent of $\ell$.
+%\end{lemma}
+%\begin{proof}
+%    A spreading out argument and Chebotarev density reduce us to the case $S = \Spec(\FFF_q)$, so we need to show that $\det \rho_{\ell}(\Frob_q)$ is $\ell$-independent. The Weil conjectures~\cite{DeligneWeilK3} imply that
+%$$
+%\det(1 - \Frob_q T \mid \HHH^2_{\et}(X_{\overline{\FFF_q}},\QQ_{\ell}(1))) = \left( Z(X,q^{-1}T) (1 - q^{-1}T)(1 - qT)\right)^{-1},
+%$$
+%where $Z(X,T)$ is the zeta function of $X$. The right-hand side is $\ell$-independent, and the coefficient of $T^{22}$ on the left-hand side is $\det \rho_{\ell}(\Frob_q)$, proving the lemma.
+%\end{proof}
+%%Let $x$ be a geometric point of $\KKKK_{2d,\QQ}$. Then the homomorphism $\pi_1^{\et}(\KKKK_{2d,\QQ},x) \rightarrow \O(\HHH^2_{\et}(X_{x},\ZZh(1)))$ actually lands in the subgroup consisting of those $g$ with $\det(g) \in \{\pm 1\}$ (see Reference). In particular, $\KKKK_{2d,\QQ}$ is endowed with a natural $\KK_{2d}$-torsor. \\
+%The $\ZZh$-local system $\RRR^2\!f_* \ZZh(1)$ on $\KKKK_{2d,\QQ,\et}$ comes with a symmetric bilinear form, and a distinguished primitive positive element $\lambda$ (the first Chern class of the polarization on $\XXX$). Lemma~\ref{lem:saito} yields additional structure on $\RRR^2\!f_* \ZZh(1)$. 
+%Let $\overline{s}$ be a geometric point of $\KKKK_{2d,\QQ}$. The map $\chi\colon \pi_1^{\et}(\KKKK_{2d,\QQ},\overline{s}) \rightarrow \{\pm 1\}$ given in Lemma~\ref{lem:saito} defines a $\ZZ$-local system $D$ of rank $1$ on $S_{\et}$. The lemma states that the map
+%$$
+%\pi_1^{\et}(\KKKK_{2d,\QQ,\et},\overline{s}) \longrightarrow \O(\HHH^2(\XXX_{\overline{s}},\ZZh(1))) \xrightarrow{\det} \mu_2(\ZZh)
+%$$
+%factors through $\chi$, which implies that there exists an injective map $D \rightarrow \det \RRR^2\!f_*\ZZh(1)$, defined up to automorphisms of $\det \RRR^2\!f_* \ZZh(1)$.
+%This gives rise to a $\KK_{2d}$-torsor
+%$$
+%\Isom_{\KKKK_{2d,\QQ,\et}}\left(\left(\Lambda_{\textnormal{K3},\ZZh},\lambda,\det \Lambda_{\textnormal{K3}}\right),\left(\RRR^2\!f_* \ZZh(1),\lambda,D\right)\right)
+%$$
+%on $\KKKK_{2d,\QQ,\et}$. \\
+%Recall the following result of Rizov, Madapusi-Pera, and Taelman. {\color{red} insert back reference here}
+
+
+Let $\lambda \in \Lambda_{\KKKKK}$ be a primitive element of length $2d$, and define $V$ to be the orthogonal complement of $\lambda$ in $\Lambda_{\KKKKK} \otimes \QQ$. Let $(\SO,\Omega)$ be the Shimura datum associated with $V$ as in Section~\ref{sec:orthogonal_shimura_varieties}, and let $\KK$ be the profinite group defined in~\eqref{eq:lennys_group}, namely
+$$
+\KK := \left\{ g \in \O(\Lambda_{\KKKKK})(\ZZh) \mid g(\lambda) = \lambda\ \text{ and } \det(g) \in \{\pm 1\} \right\}.
+$$
+We endow $\KK$ with the continuous homomorphism $i\colon \KK \rightarrow \SO(\AAf)$ given by mapping $g \in \KK$ to $\det(g) g|_{V \otimes \AAf}$, yielding a Shimura stack $\Sh_{\KK}[\SO,\Omega]$ over $\QQ$. Theorem~\ref{thm:period_k3} gives a morphism $P\colon \KKKK_{2d,\QQ} \rightarrow \Sh_{\KK}[\SO,\Omega]$, defined over $\QQ$.
+
+Lemma~\ref{lem:d_lemma} gives a rank $1$ local $\ZZ$-system $D$ on $\KKKK_{2d,\QQ}$, endowed with an injective map $D \rightarrow \det \RRR_{\et}^2 f_{\QQ,*} \ZZh(1)$. This gives rise to a $\KK$-torsor
+$$
+I := \Isom\Big((\Lambda_{\KKKKK},\lambda,\det\Lambda_{\KKKKK}),\left(\RRR^2_{\et} f_{\QQ,*}\ZZh(1),b,\lambda,D\right)\Big)
+$$
+on $\KKKK_{2d,\QQ,\et}$, where $b$ is the pairing coming from the cup product. Consider the composition
+$$
+\KK \xrightarrow{\det \cdot \nu} \ZZh^{\times}\hspace{-5pt}/2 \longrightarrow \ZZ_{\ell}^{\times}\!/2.
+$$
+Then changing the structure group of $I$ using this homomorphism is precisely the restriction to $\KKKK_{2d,\QQ,\et}$ of the torsor $(\det \cdot \nu)_{\ell,\XXX/\KKKK_{2d}}$. Theorem~\ref{thm:period_k3} says that $P$ pulls the $\KK$-torsor $\Sh(\SO,\Omega)$ on $\Sh_{\KK}[\SO,\Omega]_{\et}$ back to $I$, so combining this with Proposition~\ref{prop:reciprocity_orth_special} and Remark~\ref{rem:galois_quad} proves that 
+\begin{equation}\label{eq:torsors_isom_Q}
+    T_{\ell,\KKKK_{2d,\QQ}} \cong (\det \cdot \nu)_{\ell,\XXX/\KKKK_{2d,\QQ}}.
+\end{equation}
+
+The following lemma will allow us to deduce the general case from the characteristic $0$ case.
+\begin{lemma}\label{lem:fundamental_group}
+Let $S$ be a normal locally Noetherian scheme, and $G$ a finite group acting on $S$. If $x$ is a geometric point of $[S/G]_{\QQ}$, then
+$$
+\pi_1^{\et}([S/G]_{\QQ},x) \longrightarrow \pi_1^{\et}([S/G],x)
+$$
+is surjective.
+\end{lemma}
+\begin{proof}
+Without loss of generality, $[S/G]$ is connected. Let $T$ be a connected component of $S$, and $H$ the subgroup $\{ g \in G \mid g T \subseteq T\}$ of $G$. Then $T$ is a connected $H$-torsor on $[S/G]$, and the resulting map $\pi_1^{\et}([S/G],x) \rightarrow H$ is surjective.
+%Note that $S \rightarrow [S/G]$ is a $G$-torsor, yielding a map $\pi_1^{\et}([S/G],x) \rightarrow G$. Let $H$ be the image of this map. Then $\pi_1^{\et}([S/G],x) \rightarrow H$ gives rise to an $H$-torsor $T$ over $[S/G]$ such that if we change the structure group using $H \subseteq G$, we obtain $S$. {\color{red} In particular, $T$ is an algebraic space (scheme?), and since it is an $H$-torsor over the normal and connected stack $[S/G]$, it is normal and connected.} This reduces us to the case where $S$ is connected {\color{red} (algebraic space?)} and $\pi_1^{\et}([S/G],x) \rightarrow G$ surjective. \\
+Now let $\eta$ be the generic point of $T$, and $y$ a geometric point of $T_{\QQ}$ lying over $x$. Then by~\cite[Proposition~V.8.2]{SGA1}, $\pi_1^{\et}(\eta,y) \rightarrow \pi_1^{\et}(T,y)$ is surjective. Moreover, $\eta \rightarrow T$ factors through $T_{\QQ}$, so 
+$$
+\pi_1^{\et}(T_{\QQ},y) \longrightarrow \pi_1^{\et}(T,y)
+$$
+is surjective. The diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           {1 & \pi_1^{\et}(T,y) & \pi_1^{\et}([S/G],x) & H & 1 \\
+           1 & \pi_1^{\et}(T_{\QQ},y) & \pi_1^{\et}([S/G]_{\QQ},x) & H & 1 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+           (m-1-2) edge (m-1-3)
+           (m-1-3) edge (m-1-4)
+           (m-1-4) edge (m-1-5)
+           (m-2-1) edge (m-2-2)
+           (m-2-2) edge (m-2-3)
+           (m-2-3) edge (m-2-4)
+           (m-2-4) edge (m-2-5)
+           (m-2-3) edge (m-1-3)
+           (m-2-4) edge node[right]{$\id$} (m-1-4)
+           (m-2-2) edge (m-1-2);
+
+\end{tikzpicture}
+$$
+now shows the surjectivity of $\pi_1^{\et}([S/G]_{\QQ},x) \rightarrow \pi_1^{\et}([S/G],x)$.
+\end{proof}
+
+\begin{lemma}\label{lem:fundamental_group_as}
+Let $S$ be a quasi-separated normal Noetherian algebraic space, and $G$ a finite group acting on $S$. If $x$ is a geometric point of $[S/G]_{\QQ}$, then
+$$
+\pi^{\et}_1([S/G]_{\QQ},x) \longrightarrow \pi_1^{\et}([S/G],x)
+$$
+is surjective.
+\end{lemma}
+\begin{proof}
+Let $y$ be a geometric point of $S_{\QQ}$ lying over $x$. We will show that the map
+$$
+\pi_1^{\et}(S_{\QQ},y) \longrightarrow \pi_1^{\et}(S,y)
+$$
+is surjective. Given the surjectivity of this map, the rest of the proof proceeds exactly as the proof of Lemma~\ref{lem:fundamental_group}, and is therefore omitted.
+
+Since $S$ is quasi-separated, normal, and Noetherian,~\cite[Corollaire~16.6.2]{LMB} shows that there exists a normal scheme $S'$ and a finite group $G'$ acting on $S'$ such that $S$ is isomorphic to the quotient $S'/G'$. Note that $S$ is the coarse moduli space of $[S'/G']$, so we have a canonical morphism $[S'/G'] \rightarrow S$. Let $z$ be a geometric point of $[S'/G']_{\QQ}$ lying over $y$, and consider the commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \pi_1^{\et}([S'/G']_{\QQ},z)  &   \pi_1^{\et}(S_{\QQ},y) \\
+             \pi_1^{\et}([S'/G'],z)  & \pi_1^{\et}(S,y) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-1-2) edge (m-2-2)
+                                 (m-2-1) edge (m-2-2);
+
+\end{tikzpicture}
+$$
+By Lemma~\ref{lem:fundamental_group}, the map $\pi_1^{\et}([S'/G']_{\QQ},z) \rightarrow \pi_1^{\et}([S'/G'],z)$ is surjective, and by~\cite[Theorem~7.11]{Noohi}, the horizontal maps in the diagram are surjective. It follows that $\pi_1^{\et}(S_{\QQ},y) \rightarrow \pi_1^{\et}(S,y)$ is surjective.
+\end{proof}
+
+We now finish the proof of Theorem~\ref{thm:galois_spinor}. Consider the sheaf of isometries
+$$
+\KKKK_{2d,4} := \Isom\left((\Lambda_{\KKKKK} \otimes \ZZ/4 \ZZ,\lambda), (\RRR^2_{\et} f_* \mu_4,b,\lambda)\right)
+$$
+on $\KKKK_{2d,\et}$, where $b$ is the cup product pairing. Since $\KKKK_{2d}$ is a smooth separated Deligne-Mumford stack over $\ZZ[1/2d]$ by~\cite[Theorem~4.3.3, Proposition~4.3.11]{RizovModuli}, it follows that $\KKKK_{2d,4}$ is a smooth separated Deligne-Mumford stack over $\ZZ[1/2d]$. An argument similar to that in the proof of~\cite[Lemma~6.1.3]{RizovModuli} shows that the automorphism groups in $\KKKK_{2d,4}$ are trivial, so that $\KKKK_{2d,4}$ is an algebraic space.
+
+The finite group $\O(\Lambda_{\KKKKK} \otimes \ZZ/4\ZZ)$ acts on $\KKKK_{2d,4}$. It is clear that $\KKKK_{2d}$ is isomorphic to the quotient stack $[\KKKK_{2d,4}/\O(\Lambda_{\KKKKK} \otimes \ZZ/4\ZZ)]$. It now follows from Lemma~\ref{lem:fundamental_group_as} and~\eqref{eq:torsors_isom_Q} that 
+$$
+T_{\ell,\KKKK_{2d}} \cong (\det\cdot\nu)_{\ell,\XXX/\KKKK_{2d}},
+$$
+which was to be shown.\qed
+
+%{\color{red} \bfseries BLA}
+%
+%Before stating the main result of this section, we introduce some notation. 
+
+%Recall that the Kronecker-Weber theorem identifies $\gal_{\QQ}$ with $\ZZh^{\times}$. For a prime $\ell$, the projection $\ZZh^{\times} \rightarrow \ZZ_{\ell}^{\times}\!/2$ therefore gives rise to a number field $K_{\ell}$. For $\ell = 2$, the ring of integers $\OOO_{K_{\ell}}$ is $\ZZ[i,\sqrt{2}]$, and for odd $\ell$ the ring of integers is $\ZZ\!\left[\tfrac{1 + \sqrt{\ell^{\ast}}}{2}\right]$, where $\ell^{*} = (-1)^{\tfrac{\ell - 1}{2}} \ell$. Since $K_{\ell}$ is unramified away from $\ell$, the ring $\OO_{K_{\ell}}\!\left[ \tfrac{1}{\ell} \right]$ is \'etale over $\ZZ[\tfrac{1}{\ell}]$. Moreover, the action of $\gal(K_{\ell}/\QQ) \cong \ZZ_{\ell}^{\times}\!/2$ on $K_{\ell}$ extends to an action on $\OO_{K_{\ell}}\!\left[\tfrac{1}{\ell}\right]$, making $T_{\ell} := \Spec(\OO_{K_{\ell}})$ a $\ZZ_{\ell}^{\times}\!/2$-torsor on $\ZZ[\tfrac{1}{\ell}]_{\et}$. In particular, $T_{\ell}$ has degree $2$ over $\ZZ[\tfrac{1}{\ell}]$ when $\ell$ is odd, and degree $4$ when $\ell$ is even. 
+%
+%For a $\ZZ[\tfrac{1}{\ell}]$-scheme $S$, we denote by $T_{\ell,S}$ the $(\ZZ_{\ell}^{\times}\hspace{-5pt}/2)$-torsor on $S_{\et}$ defined by the cartesian diagram
+%\begin{equation}\label{eq:torsor_odd}
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=4.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { T_{\ell,S} & T_{\ell} \\
+%                                   S     & \Spec\!\left(\ZZ\!\left[\frac{1}{\ell}\right]\right) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                         (m-1-2) edge (m-2-2)
+%                         (m-2-1) edge (m-2-2)
+%                         (m-1-1) edge (m-2-1);
+%
+%\end{tikzpicture}.\end{matrix}
+%\end{equation}
+%Given a geometric point $\overline{s}$ of $S$, we denote the homomorphism $\pi_1^{\et}(S,\overline{s}) \rightarrow \ZZ^{\times}_{\ell}\hspace{-5pt}/2$ associated with $T_{\ell,S}$ by $\chi_{\ell}$. \\
+%\begin{remark}\label{rem:galois_quad}
+%    Let $\QQ^{\textnormal{quad}} = \QQ(\sqrt{d} \mid d \in \ZZ)$. Then $\QQ^{\textnormal{quad}}$ is a Galois extension of $\QQ$ with Galois group $\ZZh^{\times}\hspace{-5pt}/2$, so that $\Spec(\QQ^{\textnormal{quad}})$ is a $(\ZZh^{\times}\hspace{-5pt}/2)$-torsor on $\QQ_{\et}$. The diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+%             {       \phantom{.} &       & \QQ^{\textnormal{quad}} &                    \\
+%                       &        \QQ(i,\sqrt{2}) &             & \QQ(\sqrt{\ell^*}) \\
+%                     \phantom{.} &  \phantom{.}  & \QQ & \phantom{.} \\ };
+%
+%           \path[>=angle 90, -] (m-3-3) edge (m-2-2)
+%                                        edge (m-2-4)
+%                         (m-2-2) edge (m-1-3)
+%                         (m-2-4) edge (m-1-3);
+%
+%                         \path[white] (m-1-1) edge node[left]{${\color{black}\ZZh^{\times}\hspace{-6pt}/2 \ }$} (m-3-1);
+%                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-1-1.center) -- (m-3-1.center);
+%                         \draw[decorate, decoration={brace,amplitude=5pt,mirror}] (m-2-2) -- (m-3-2.center);
+%                         \path[white] (m-2-2) edge node[left]{${\color{black}\ZZ_2^{\times}\hspace{-4pt}/2 \ }$} (m-3-2.center);
+%                         \draw[decorate, decoration={brace,amplitude=5pt}] (m-2-4) -- (m-3-4.center);
+%                         \path[white] (m-2-4) edge node[right]{$ \ {\color{black}\ZZ_{\ell}^{\times}\hspace{-4pt}/2}$} (m-3-4.center);
+%
+%\end{tikzpicture}
+%$$
+%    shows that $T_{\ell,\QQ}$ is obtained by changing the structure group of $\Spec(\QQ^{\textnormal{quad}})$ to $\ZZ_{\ell}^{\times}\!/2$.
+%\end{remark}
+%{\color{red} \bfseries BLA}
+
+\section{The spinor norm of the Frobenius}\label{sec:elsenhans_jahnel}
+%To prove the corollary, we first need the following elementary consequence of quadratic reciprocity.
+%\begin{lemma}\label{lem:quadratic_reciprocity}
+%    Let $p$ and $\ell$ be distinct odd prime numbers, let $r \in \ZZ_{\geq 1}$, and set $q = p^r$. Then $\ell^{*}$ has a square root in $\FFF_q$ if and only if $q$ has a square root in $\ZZ_{\ell}$.
+%\end{lemma}
+%\begin{proof}
+%    By Hensel's lemma it suffices to prove that $\ell^*$ has a square root in $\FFF_q$ if and only if $q$ has a square root in $\FFF_{\ell}$. \\
+%    First, we assume that $\ell^*$ has a square root in $\FFF_p$, so that $\left( \tfrac{\ell^*}{p} \right) = 1$. Then $\ell^{*}$ certainly has a square root in $\FFF_q$, so we need to show that $q$ has a square root in $\FFF_{\ell}$. Quadratic reciprocity and multiplicativity of the Legendre symbol imply
+%    $$
+%    \left( \frac{q}{\ell} \right) = \left( \frac{p}{\ell} \right)^r = \left( \frac{\ell^*}{p} \right)^r = 1,
+%    $$
+%    showing that $q$ has a square root in $\FFF_{\ell}$. \\
+%    Now we assume $\ell^*$ does not have a square root in $\FFF_p$, i.e., $\left( \tfrac{\ell^*}{p} \right) = -1$. This means that $\FFF_p(\sqrt{\ell^*})$ has degree $2$ over $\FFF_p$, so in particular, $\ell^*$ has a square root in $\FFF_q$ if and only if $r$ is even. As such, we need to show that $q$ has a square root in $\FFF_{\ell}$ if and only if $r$ is even. Again, quadratic reciprocity and multiplicativity of the Legendre symbol imply
+%    $$
+%    \left( \frac{q}{\ell} \right) = \left( \frac{\ell^*}{p} \right)^r = (-1)^r,
+%    $$
+%which proves the desired result.
+%\end{proof}
+
+In this section we apply our result to K3 surfaces over a finite field $\FFF_q$ of characteristic $p$ to compute the spinor norm of the Frobenius acting on the second cohomology. As a corollary, we obtain a special case of a theorem of Elsenhans and Jahnel. 
+
+We first compute the value of $\chi_{\ell}$ on $\Frob_{q}$, where $\chi_{\ell}\colon \gal_{\FFF_q} \rightarrow \ZZ^{\times}_{\ell}\hspace{-5pt}/2$ is defined by~\eqref{eq:torsor_odd}.
+\begin{lemma}\label{lem:galois_theoretic_lemma}
+Assume that $p$ is an odd prime, and let $\ell$ be a prime distinct from $p$. Then $\chi_{\ell}(\Frob_q) = q$ in $\ZZ_{\ell}^{\times}\!/2$.
+\end{lemma}
+\begin{proof}
+Let $r \in \ZZ_{> 0}$ be such that $q = p^r$. If $r$ is even, then $q = 1$ in $\ZZ_{\ell}^{\times}\!/2$. Moreover, all elements of $\FFF_p$ are squares in $\FFF_{q}$. In particular, $\ell^*$, $-1$, and $2$ are all squares in $\FFF_q$, so that $\chi_{\ell}(\Frob_q) = 1$. If $r$ is odd, then $q = p$ in $\ZZ_{\ell}^{\times}\!/2$. Moreover, every element of $\FFF_p$ is a square in $\FFF_p$ if and only if it is a square in $\FFF_q$, so we may assume $r = 1$.
+
+If $\ell$ is odd, then quadratic reciprocity states that $\ell^*$ has a square root in $\FFF_p$ if and only if $p$ has a square root in $\FFF_{\ell}$. By Hensel's lemma the latter statement is equivalent to $p$ having a square root in $\ZZ_{\ell}$. We conclude that $\chi_{\ell}(\Frob_p) = p$.
+
+If $\ell = 2$, then it follows from $\left(\tfrac{-1}{p}\right) = (-1)^{\tfrac{p - 1}{2}}$ and $\left(\tfrac{2}{p}\right) = (-1)^{\tfrac{p^2 - 1}{8}}$ that we need to show that if $p = m \mod 8$, then $p = m \in \ZZ_2^{\times}\!/2$, where $m \in \{\pm 1, \pm 5\}$. This follows immediately from the fact that reduction modulo $8$ induces an isomorphism $\ZZ_2^{\times}\!/2 \rightarrow \left(\ZZ/8\ZZ\right)^{\times}$.
+%Suppose $p = m + 8k$, and consider the polynomial
+%$$
+%    f = \frac{1}{4} \left( m(2 X + 1)^2 - p\right) = m X^2 + mX - 2k \in \ZZ_2[X],
+%$$
+%    Then Hensel's lemma yields a root $\alpha \in \ZZ_2$ of $f$, which satisfies $m (2 \alpha + 1)^2 = p$, proving that $p = m$ in $\ZZ_2^{\times}\!/2$.
+\end{proof}
+
+We are now able to prove Corollary~\ref{cor:spinor_frobenius}, which gives an expression for the spinor norm of $\Frob_q$ acting on the second cohomology of a K3 surface. For the remainder of the section, $X$ denotes a K3 surface over $\FFF_q$.
+\begin{proof}[Proof of Corollary \ref{cor:spinor_frobenius}]
+    Assume that $X$ admits a polarization of degree coprime to $p$, and let $\ell$ be a prime distinct from $p$. By Theorem~\ref{thm:galois_spinor} and Lemma~\ref{lem:galois_theoretic_lemma},
+$$
+    \det\!\left(\Frob_q\!\big|_{\HHH^2_{\et}\left(X_{\overline{\FFF}_q},\ZZ_{\ell}(1)\right)}\right) \cdot \nu\!\left(\Frob_q\!\big|_{\HHH^2_{\et}\left(X_{\overline{\FFF}_q},\ZZ_{\ell}(1)\right)}\right) = \chi_{\ell}\left(\Frob_q\right) = q \in \ZZ_{\ell}^\times\!/2.
+$$
+\end{proof}
+
+Let $\ell$ be a prime distinct from $p$, and $\Phi$ the characteristic polynomial of $\Frob_q$ acting on $\HHH^2_{\et}(X_{\overline{\FFF_q}},\QQ_{\ell}(1))$. Then $\Phi$ has coefficients in $\QQ$, and does not depend on $\ell$. We will use~Corollary~\ref{cor:spinor_frobenius} to compute $\Phi(-1)$ up to squares in case $\Phi(-1) \neq 0$. First, we need the following lemma on K3 surfaces satisfying $\Phi(-1) \neq 0$.
+
+\begin{lemma}\label{lem:det_k3_eigenvalues}
+Let $\ell$ be a prime distinct from $p$. If $\Phi(-1) \neq 0$, then
+$$
+\det \HHH^2_{\et}(X_{\overline{\FFF_q}},\QQ_{\ell}(1)) \cong \QQ_{\ell}(0)
+$$
+as $\gal_{\FFF_q}$-representations.
+\end{lemma}
+\begin{proof}
+We need to show that $\det \Frob_{q} = 1$. If $\ell \equiv 3 (4)$, then $\det \Frob_q = 1$ follows from Lemma~\ref{lem:determinant_orthogonal_transformation}. For other $\ell$, we use that $\det \Frob_q$ is $\ell$-independent (this follows from the Weil conjectures, proved for K3 surfaces in~\cite{DeligneK3}) to reduce to the case where $\ell \equiv 3 (4)$.
+\end{proof}
+
+\begin{corollary}\label{cor:zeta_fn_k3}
+    Let $X$ be a K3 surface over $\FFF_q$ of degree coprime to $q$, let $\ell$ be a prime coprime to $q$, and assume that $\Phi(-1) \neq 0$. Then 
+$$
+    \Phi(-1) = q
+$$
+    holds in $\QQ_{\ell}^{\times}/2$.
+\end{corollary}
+\begin{proof}
+Let $F$ denote $\Frob_q$ acting on $\HHH^2_{\et}(X_{\overline{\FFF_q}},\QQ_{\ell}(1))$. Combining Lemma~\ref{lem:det_k3_eigenvalues} and Corollary~\ref{cor:spinor_frobenius} yields $\nu(F) = q$ as elements of $\QQ_{\ell}^{\times}\!/2$. Since $\Phi(-1) \neq 0$, the Zassenhaus formula (Lemma~\ref{lem:zassenhaus}) says that
+$$
+    \nu(F) = \det\left(\frac{1 + F}{2}\right) = (-2)^{22} \det(-1-F)
+$$
+    which is equal to $\Phi(-1)$ by the definition of $\Phi$ and the fact that $(-2)^{22}$ is a square. This proves the corollary.
+\end{proof}
+
+\begin{remark}
+    In~\cite[Proposition~3.11]{ElsenhansJahnel}, Elsenhans and Jahnel obtain the same result using different methods.
+\end{remark}
+
+%\begin{remark}
+%    {\color{red} Discuss limits of result, sloganize the points where EJ is stronger. In particular, note that there's no good formula for $X = \PP^2$ or something (actually $\PP^2$ is not a great example because the second betti number is $1$, so that the special orthogonal group is trivial, so there's not much to say about spinor norms). Maybe a product of curves?}
+%\end{remark}
+
+\section{N\'eron-Severi lattices over non-closed fields}\label{sec:ns}
+%\begin{corollary}
+%Let $F$ be a field, and $X/F$ a K3 surface of degree coprime to the characteristic of $F$, and $p$ an odd prime coprime to the characteristic of $F$. If 
+%$$
+%\ell(\Delta(\NS(X))[p^{\infty}]) = 22 - \rho(X),
+%$$
+%or if
+%$$
+%\ell(\Delta(\NS(X))[p^{\infty}]) = 21 - \rho(X), \ \textnormal{and  } - 2 \disc(\NS(X)^{\perp}) \disc(\Delta(\NS(X))[p^{\infty}]) \in (\ZZ_p^{\times})^2,
+%$$
+%then $\sqrt{p^*} \in F$.
+%\end{corollary}
+%
+%{\color{red} Idea: do examples of descending Picard rank. Picard rank $22$ is almost trivial, and is the supersingular case. Then 21, which is interesting, as the proposition shows. Then 20, where Shioda-Inose stuff probably yields the same result. Then 19, which is new.}
+%{\bfseries $\rho = 22$}
+%\begin{proposition}
+%    Let $k$ be a field of characteristic $p > 0$, and $X$ a K3 surface over $k$ of degree coprime to $p$. Then $\sqrt{\ell^*} \in k$ for every 
+%\end{proposition}
+%
+%{\bfseries $\rho = 21$}
+%\begin{proposition}
+%    Let $k$ be a field of characteristic $p > 0$, and $X$ a K3 surface over $k$ of degree coprime to $p$. If $\rk \Pic_{X/k}(k) = 21$, and
+%    \begin{enumerate}
+%        \item[(i)] there exists an odd prime $\ell \neq p$ such that $\Delta(\Pic_{X/k}(k))[\ell^{\infty}] \neq 0$, or
+%        \item[(ii)] $\Delta(\Pic_{X/k}(k))[2^{\infty}]$ has scale $\geq 3$ or is isomorphic to $w_{2,2}^{\vep}$,
+%    \end{enumerate}
+%    then $\sqrt{\ell^{*}} \in k$ for every odd prime $\ell$.
+%\end{proposition}
+%\begin{proof}
+%    For a prime $\ell \neq p$, we denote by $\mon_{\ell}$ the monodromy representation $\gal_k \rightarrow \O(\HHH^2_{\et}(X_{\overline{k}},\ZZ_{\ell}(1)))$. Let $\ell_0$ be an odd prime with $\Delta(\Pic_{X/k}(k))[\ell_0^{\infty}] \neq 0$ if (i) is satisfied (respectively $\ell_0 = 2$ if (ii) is satisfied). Note that the self-duality of $\HHH^2_{\et}(X_{\overline{k}},\ZZ_{\ell}(1))$ implies that $\Delta(\Pic_{X/k}(k) \otimes \ZZ_{\ell_0}) \cong \Delta(\Pic_{X/k}(k)^{\perp} \otimes \ZZ_{\ell_0})$. {\color{red} Maybe use "respectively" construction to differentiate between $\ell_0$ odd and $\ell_0 = 2$.}
+%\end{proof}
+%
+In this section we apply Theorem~\ref{thm:galois_spinor} to give a necessary condition for a lattice to be the N\'eron-Severi lattice of a K3 surface over a non-closed field. 
+
+For a finite abelian group $A$ and a prime number $\ell$, we denote by $A[\ell^{\infty}]$ the subgroup of those $a \in A$ for which there exists an $r \in \ZZ_{\geq 0}$ with $\ell^r a = 0$. For a $\ZZ$-lattice $\Lambda$ we have $\Delta(\Lambda)[\ell^{\infty}] = \Delta(\Lambda \otimes \ZZ_{\ell})$. In particular, Definition~\ref{def:weirdly_specific_invariant} gives an invariant 
+$$
+\disc\Big(\Delta(\Lambda)[\ell^{\infty}]\Big) \in \ZZ_{\ell}^{\times}\!/2
+$$
+of $\Lambda$.
+
+The following theorem is the main result of this section.
+\begin{theorem}\label{thm:main_thm_ns}
+Let $k$ be a field, let $\ell$ be an odd prime number, and let $X/k$ be a K3 surface of degree coprime to the characteristic of $k$. We denote by $\rho(X)$ the rank of $\Pic(X)$, and 
+$$
+r_{\ell}(X) := \length\Big(\Delta\big(\Pic(X)\big)[\ell^{\infty}]\Big).
+$$
+If $r_{\ell}(X) + \rho(X) = 21$ and the product
+$$
+    (-1)^{r_{\ell}(X)+1} 2 \disc\Big(\Delta\Big(\Pic(X)[\ell^{\infty}]\Big)\Big)
+$$
+    is equal to $1$ in $\ZZ_{\ell}^{\times}\!/2$, or if $r_{\ell}(X) + \rho(X) = 22$, then $\ell^*$ is a square in $k$.
+\end{theorem}
+\begin{proof}
+If $\ell$ is equal to the characteristic of $k$, then $\ell^*$ is trivially a square in $k$.
+
+Suppose that $\ell$ is coprime to the characteristic of $k$. Then $\ell^*$ is a square in $k$ if and only if the image of $\chi_{\ell}\colon \gal_k \rightarrow \ZZ_{\ell}^{\times}\!/2$ is trivial, where $\chi_{\ell}$ is the quadratic character defined by~\eqref{eq:torsor_odd}. Therefore we need to prove that when the conditions of the theorem are satisfied, then $\chi_{\ell}$ has trivial image. 
+
+By Theorem~\ref{thm:galois_spinor}, $\chi_{\ell}$ is equal to the composition
+$$
+\gal_k \longrightarrow \O(\HHH_{\et}(X_{\overline{k}}, \ZZ_{\ell}(1))) \xrightarrow{\det \cdot \nu} \ZZ_{\ell}^{\times}\!/2.
+$$
+The image of $\Pic(X)$ under $c_1$ in $\HHH_{\et}(X_{\overline{k}}, \ZZ_{\ell}(1))$ is invariant under the $\gal_k$-action. That is, each of its elements is $\gal_k$-stable. It follows that the image of $\chi_{\ell}$ is contained in
+$$
+\det \cdot \nu\left(\O\!\left(\HHH_{\et}(X_{\overline{k}}, \ZZ_{\ell}(1)),\, c_1\!\Pic(X)\right)\right)
+$$
+where we use the notation from~\eqref{eq:bad_notation}. Corollary~\ref{cor:ns_lattice_lemma} states that this is trivial if and only if the conditions of the theorem are satisfied, completing the proof.
+\end{proof}
+
+\begin{remark}\label{rk:extension_to_even_primes}
+The main lattice-theoretic input into Theorem~\ref{thm:main_thm_ns} is Theorem~\ref{thm:img_spinor_norm_MM}. As was noted in Remark~\ref{rk:img_spinor_even_prime}, this theorem has a more complicated analogue for $\ell = 2$. One can use this to prove a version of Theorem~\ref{thm:main_thm_ns} for even primes.
+\end{remark}
+
+\begin{example}
+    Let $\ell$ be an odd prime, and $\Lambda$ a lattice of signature $(1,10)$ whose discriminant form is $\ell$-primary and has length $11$. By \cite[Remark~2.11]{MorrisonLarge}, there exists a complex projective K3 surface whose Picard lattice is isomorphic to $\Lambda$. However, since $\rk \Lambda + \length(\Delta(\Lambda)) = 22$, it follows from Theorem~\ref{thm:main_thm_ns} that there is no K3 surface over $\QQ$ whose Picard lattice is isomorphic to $\Lambda$ (or indeed over any field of characteristic $0$ not containing $\sqrt{\ell^*}$).
+\end{example}
+
+
+%\section{Spinor norms}
+%Let $\Lambda$ be a $\ZZ$-lattice, and $v$ a place of $\QQ$. Then we can define a spinor norm $\nu_v\colon \O(\Lambda) \rightarrow \QQ_{v}^{\times}\!/2$ as the composition
+%$$
+%\O(\Lambda) \longrightarrow \O(\Lambda_{\QQ_v}) \xrightarrow{ \ \nu \ } \QQ_v^{\times}\!/2
+%$$
+%where $\nu$ is the connecting homomorphism associated with $1 \rightarrow \mu_2 \rightarrow \Spin(\Lambda_{\QQ_v}) \rightarrow \O(\Lambda_{\QQ_v}) \rightarrow 1$. Similarly, we define $\nu_{-v}$ as the composition
+%$$
+%\O(\Lambda) = \O(-\Lambda) \longrightarrow \O(-\Lambda_{\QQ_v}) \longrightarrow \QQ_v^{\times}\!/2.
+%$$
+%\begin{proposition}
+%Let $\Lambda$ and $v$ be as above. Then $\nu_{-v} = \det \cdot \nu_v$. For $\delta \in \Lambda$ with $\delta^2 = \pm 2$, we have $\nu_{\pm v}(s_{\delta}) = \pm \delta^2$, where $s_{\delta}$ is the reflection in $\delta^{\perp}$.
+%\end{proposition}
+%\begin{proof}
+%This follows immediately from the Zassenhaus formula.
+%\end{proof}
+%
+%\begin{proposition}
+%Suppose that $\Lambda$ is self-dual, even, and contains a copy of $U$. Then
+%$$
+%    \im \nu_{\pm v} = \langle \pm 2 \rangle = \begin{dcases}
+%                                                1 &{v = p = 1(8)} \\
+%                                                \ZZ_p^{\times}\!/2 &{v = p \neq 1 (8), p = 1(2)}\\
+%                                                \RR^{\times}\!/2 &{v = \infty} \\
+%                                                V_4 &{v = 2},
+%    \end{dcases}
+%$$
+%where $V_4$ is some Klein Viergruppe not contained in $\ZZ_2^{\times}\!/2$.                        
+%\end{proposition}
+%\begin{proof}
+%A result of Kneser says that $\O(\Lambda)$ is generated by $s_{\delta}$ with $\delta^2 = \pm2$, see Huybrechts, 14.2.2. The proposition immediately follows. The copy of $U$ is there to guarantee surjectivity.
+%\end{proof}
+%
+%\begin{corollary}
+%Let $\Lambda$ be an even self-dual lattice containing a copy of $U$, and $p$ an odd prime congruent to $1$ modulo $8$. Then $\nu_{\pm p}$ is trivial.
+%\end{corollary}
+%
+%\begin{proposition}
+%    Let $X \rightarrow S$ be a family of complex K3 surfaces, and $s \in S$. Then the composition $\pi_1(S,s) \rightarrow \O(\HHH^2(X_s,\ZZ(1))) \xrightarrow{\nu_{-\infty}} \RR^{\times}\!/2$ is trivial.
+%\end{proposition}
+%
+%\begin{proposition}
+%    Let $X/\FFF_q$ be a K3 surface. Then the composition $\gal_{\FFF_q} \rightarrow \O(\HHH_{\et}^2(X_{\overline{\FFF_q}},\QQ_{\ell}(1))) \rightarrow \QQ_{\ell}^{\times}\!/2$ is given by some specific cyclotomic character.
+%\end{proposition}
+%
+%For $\Lambda$ a self-dual $\ZZ$-lattice, we set $\Lambda_p = \Lambda \otimes \ZZ_p$, and define $\nu\colon \O(\Lambda_p) \rightarrow \ZZ_p^{\times}\!/2$ as the composition $\O(\Lambda_p) \rightarrow \O(\Lambda_{\QQ_p}) \rightarrow \QQ_p^{\times}\!/2 \rightarrow \ZZ_p^{\times}\!/2$, with the final map being $u p^r \mapsto u$. Kneser's result and the Zassenhaus formula show that this is actually just the restriction of $\nu_{\QQ_p}$ to $\O(\Lambda_p)$.

@@ -1,0 +1,147 @@
+\chapter{Introduction}
+%Let $S$ be a K3 surface over a field $k$ of characteristic $0$, and let $\ell$ be a prime number. For simplicity, we assume $\ell$ to be odd. Let $\ZZ_{\ell}$ denote the ring of $\ell$-adic integers. Then the cohomology group $\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1))$ comes equipped with a natural quadratic form, coming from the cup product. Moreover, the absolute Galois group $\gal_{k}$ of $k$ acts on $\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1))$, and this action preserves the quadratic form, yielding a homomorphism $\gal_k \rightarrow \O(\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1)))$.
+%
+%Consider the spinor norm $\nu\colon \O(\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1)) \rightarrow \ZZ_{\ell}^{\times}\!/2$. It is natural to ask what the spinor norm of an element $\sigma$ of $\gal_k$ acting on $\HHH^2_{\et}(X_{\overline{k}},\ZZ_{\ell}(1))$ is. The following theorem partially answers this question, by relating the spinor norm of $\sigma$ to its determinant via elementary field theory.
+%
+%Let $\ell^*$ denote $(-1)^{\tfrac{\ell - 1}{2}} \ell$. Note that $\gal(\QQ(\sqrt{\ell^*})/\QQ)$ and $\ZZ_{\ell}^{\times}\!/2$ have order $2$, so there is a unique isomorphism $\gal(\QQ(\sqrt{\ell^*})/\QQ)\rightarrow \ZZ_{\ell}^{\times}\!/2$. 
+%\begin{theorem*}
+%The diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { \gal_{k}  & & \O(\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1))) \\
+%             \gal_{\QQ} &     \gal(\QQ(\sqrt{\ell^*})/\QQ)                & \ZZ_{\ell}^{\times}\!/2 \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-3)
+%                         (m-1-3) edge node[right]{$\det \cdot \nu$} (m-2-3)
+%                         (m-1-1) edge (m-2-1)
+%                         (m-2-1) edge (m-2-2)
+%                         (m-2-2) edge node[below]{$\sim$} (m-2-3);
+%
+%\end{tikzpicture},
+%$$
+%commutes.
+%\end{theorem*}
+%
+%We prove a stronger version of this theorem in Chapter~5, see Theorem~\ref{thm:galois_spinor}. This introduction will list the ingredients of its proof.
+%
+%{\color{red} From here: hyperk\"ahlers, moduli, hk motives abelian, shimura varieties, period maps}
+
+\section{The spinor norm and determinant of monodromy operators on K3 surfaces and elliptic curves}\label{sec:intro_first}
+Let $n \geq 3$ be an integer. There are no elliptic curves over $\QQ$ whose $\QQ$-rational $n$-torsion points are isomorphic to $(\ZZ\!/n\!\ZZ)^{\oplus 2}$. More precisely, the following result holds.
+\begin{proposition}\label{prop:ell_intro_1}
+Let $E$ be an elliptic curve over a field $k$ of characteristic $0$, and $n \geq 3$ an integer. If $E$ has maximal $n$-torsion, that is, if $E[n](k) \cong (\ZZ\!/n\!\ZZ)^{\oplus 2}$, then $k$ contains a primitive $n$th root of unity.
+\end{proposition}
+
+In this thesis we prove, among other things, the following analogue of Proposition~\ref{prop:ell_intro_1} for K3 surfaces.
+
+\begin{proposition}\label{prop:k3_intro_1}
+Let $S$ be a K3 surface over a field $k$ of characteristic $0$, and let $\ell$ be an odd prime number. If the lattice $\Lambda := \Pic(S)$ has rank $11$, and if the $\ell$-part of its discriminant $\Lambda^{\vee}/\Lambda$ has length $11$, then $k$ contains a square root of $(-1)^{\tfrac{\ell - 1}{2}} \ell$.
+\end{proposition}
+
+We prove a stronger version of this proposition in Chapter~\ref{ch:spinor_norm}, namely Theorem~\ref{thm:main_thm_ns}. Moreover, it is possible to prove a similar theorem for $\ell = 2$, involving the biquadratic field $\QQ(i,\sqrt{2})$, see Remark~\ref{rk:extension_to_even_primes}.
+
+Proposition~\ref{prop:ell_intro_1} follows from the following more general theorem.
+
+\begin{theorem}\label{thm:ell_intro_1}
+Let $E$ be an elliptic curve over a field $k$ of characteristic $0$, and $\ell$ a prime number. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \gal_{k} & \GL(\HHH^1_{\et}(E_{\overline{k}},\ZZ_{\ell})) \\
+                      & \ZZ_{\ell}^{\times} \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\rho$} (m-1-2)
+           edge node[below]{$\chi_{\ell}^{-1}\, $} (m-2-2)
+                         (m-1-2) edge node[right]{$\det$} (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes, where $\chi_{\ell}\colon \gal_k \rightarrow \ZZ_{\ell}^{\times}$ denotes the cyclotomic character, and $\rho$ is the natural action of $\gal_k$ on $\HHH_{\et}^1(E_{\overline{k}},\ZZ_{\ell})$.
+\end{theorem}
+
+Proposition~\ref{prop:ell_intro_1} is derived from this as follows. For convenience, we take $n = \ell$. When $E[\ell](k) \cong (\ZZ\!/\ell\!\ZZ)^{\oplus 2}$, then $\gal_k$ acts trivially on $\HHH^1_{\et}(E_{\overline{k}},\ZZ\!/\ell\!\ZZ)$. It is easy to see that the image of
+$$
+\left\{g \in \GL(\HHH^1_{\et}(E_{\overline{k}},\ZZ_{\ell}))\mid g \otimes \ZZ\!/\!\ell\ZZ = \id\right\} 
+$$
+under $\det\colon \GL(\HHH^1_{\et}(E_{\overline{k}}, \ZZ_{\ell})) \rightarrow \ZZ_{\ell}^{\times}$ is trivial. It follows from Theorem~\ref{thm:ell_intro_1} that the cyclotomic character $\chi_{\ell}$ has trivial image, which implies that $k$ contains a primitive root of unity.
+
+One of the main results of this thesis is the following analogue of Theorem~\ref{thm:ell_intro_1} for K3 surfaces, see Theorem~\ref{thm:galois_spinor}. It can be used to prove Proposition~\ref{prop:k3_intro_1} via an argument similar to the derivation of Proposition~\ref{prop:ell_intro_1} from Theorem~\ref{thm:ell_intro_1}. It makes use of a description of the image of the spinor norm for $\ZZ_{\ell}$-lattices, which can be found in Section~\ref{sec:img_spinor}
+
+\begin{theorem}\label{thm:k3_intro_1}
+Let $S$ be a K3 surface over a field $k$ of characteristic $0$. Then the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \gal_{k} & \O(\HHH^2_{\et}(S_{\overline{k}},\ZZ_{\ell}(1))) \\
+                      & \ZZ_{\ell}^{\times}\!/2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\rho$} (m-1-2)
+           edge node[below]{$\chi_{\ell}$} (m-2-2)
+                         (m-1-2) edge node[right]{$\nu \cdot \det$} (m-2-2);
+
+\end{tikzpicture}
+$$
+commutes, where $\chi_{\ell}\colon \gal_k \rightarrow \ZZ_{\ell}^{\times}$ denotes the cyclotomic character, $\rho$ is the natural action of $\gal_k$ on $\HHH_{\et}^2(S_{\overline{k}},\ZZ_{\ell}(1))$, and $\nu$ denotes the spinor norm.
+\end{theorem}
+
+It may not be immediately clear how the spinor norm in Theorem~\ref{thm:k3_intro_1} is related to the determinant in Theorem~\ref{thm:ell_intro_1}. The theory of Shimura stacks provides us with a link.
+
+\section{Shimura stacks and moduli spaces}\label{sec:intro_second}
+The moduli space of complex elliptic curves is isomorphic to the quotient of the upper half plane $\HH^+$ by an action of $\SL_2(\ZZ)$. The global Torelli theorem for complex K3 surfaces gives a similar description of the moduli space of polarized K3 surfaces.
+
+Let $(S,\lambda)$ be a complex polarized K3 surface of degree $2d$, and let $\Lambda$ be its primitive second cohomology group. That is, $\Lambda$ is the orthogonal complement of $c_1(\lambda)$ in $\HHH^2(S,\ZZ(1))$. Then $\Lambda$ is a $\ZZ$-lattice of signature $(2,19)$. Up to isomorphism, $\Lambda$ does not depend on $(S,\lambda)$. Let $\Omega$ be the Hermitian symmetric domain parametrizing the Hodge structures of K3 type on $\Lambda$ (see Section~\ref{sec:orthogonal_shimura_varieties} for a definition). The complex structure of $S$ induces a Hodge structure on $\Lambda$, which yields a point of $\Omega$. Mapping a polarized K3 surface of degree $2d$ to its primitive degree $2$ cohomology group defines an open immersion from the moduli space of complex polarized K3 surfaces to the quotient of $\Omega$ by the action of some arithmetic group $\Gamma$.
+
+The theory of Shimura varieties permits us to extend these descriptions to the moduli spaces of elliptic curves and polarized K3 surfaces over $\QQ$.
+
+Let $\AAf$ be the ring of finite ad\`eles, let $G$ be the algebraic group $\GL_2$ over $\QQ$, let $\KK$ be the compact open subgroup $\GL_2(\ZZh)$ of $G(\AAf)$, and let $\HH$ be the double half-plane $\CC \setminus \RR$. Then there is an isomorphism of complex Deligne-Mumford stacks
+$$
+  [\SL_2(\ZZ) \backslash \HH^+] \xrightarrow{\ \sim \ } \Sh_{\KK}[G, \HH]_{\CC} := \left[ G(\QQ) \backslash \HH \times G(\AAf) / \KK\right],
+$$
+where the square brackets indicate that the quotients are taken stackily (or orbifoldily). The stack $\Sh_{\KK}[G,\HH]_{\CC}$ is known as a Shimura stack. Let $\Ell$ be the moduli stack of elliptic curves over $\QQ$. We have an isomorphism
+\begin{equation}\label{eq:period_map_ell}
+\Ell_{\CC} \xrightarrow{\ \sim \ } \Sh_{\KK}[G, \HH]_{\CC}.
+\end{equation}
+The theory of canonical models of Shimura varieties shows that $\Sh_{\KK}[G,\HH]_{\CC}$ descends to a Deligne-Mumford stack over $\QQ$, and that the morphism in~\eqref{eq:period_map_ell} descends to an isomorphism over $\QQ$.
+
+Work of Rizov and Madapusi-Pera (see~\cite{RizovCM} and~\cite{MadapusiPera}), refined in~\cite{TaelmanShimuraStacks}, shows that a similar statement holds for the moduli stack $\KKKK_{2d}$ of degree $2d$ polarized K3 surfaces over $\QQ$. That is, the open immersion $\KKKK_{2d,\CC} \hookrightarrow [\Gamma \backslash \Omega]$ descends to an open immersion of Deligne-Mumford stacks
+\begin{equation}\label{eq:intro_period_k3}
+\KKKK_{2d} \longhookrightarrow \Sh_{\KK}[G,\Omega]
+\end{equation}
+over $\QQ$, where $G$ is the special orthogonal group $\SO(\Lambda \otimes \QQ)$.
+
+In this thesis, we give a detailed exposition of the descent of~\eqref{eq:intro_period_k3}, and generalize it to moduli spaces of polarized hyperk\"ahler varieties. These are higher-dimensional analogues of K3 surfaces, also referred to as irreducible holomorphic symplectic manifolds. One of our results is the following theorem (see Theorem~\ref{thm:main_theorem_1}).
+\begin{theorem}\label{thm:intro_main_thm}
+Let $\MMM_{\ori}$ be a connected component of the moduli stack of polarized oriented hyperk\"ahler varieties over $\QQ$. There exists an orthogonal Shimura stack $\Sh_{\KK}[G,\Omega]$ and an \'etale morphism 
+$$
+\MMM_{\ori} \longrightarrow \Sh_{\KK}[G,\Omega],
+$$
+defined over $\QQ$.
+\end{theorem}
+
+A key ingredient of the proof of Theorem~\ref{thm:intro_main_thm} is a theorem of Deligne and Milne which states that many Shimura varieties are moduli spaces of abelian motives (see~\cite{MilneShimuraMotives}). In order to effectively use this result, we give a more Tannakian approach to the statement and proof of the result of Deligne and Milne.
+
+Note that Theorem~\ref{thm:intro_main_thm} is weaker than the analogous statement for K3 surfaces in two ways.
+
+The first difference is that it is a result about a moduli stack of polarized \emph{oriented} hyperk\"ahler varieties (see Section~\ref{sec:oriented_hks}). This is a degree $2$ \'etale covering of the moduli stack of polarized hyperk\"ahler varieties. For hyperk\"ahler varieties with even second Betti number (for example, K3 surfaces), we can follow the arguments in~\cite{TaelmanShimuraStacks} to refine Theorem~\ref{thm:intro_main_thm} to get rid of the orientations. See Theorem~\ref{thm:main_thm_even}.
+
+The second difference is that the morphism $\MMM_{\ori} \rightarrow \Sh_{\KK}[G,\Omega]$ is an \'etale morphism, rather than an open immersion. For hyperk\"ahler varieties of $\KKKKK^{[n]}$-type, we are able to refine Theorem~\ref{thm:intro_main_thm} to obtain an open immersion, for suitably chosen $\KK$ (see Theorem~\ref{thm:main_thm_k3n}). The existence of such $\KK$ is a priori not obvious. We prove its existence by extending a result of Markman on the monodromy of complex $\KKKKK^{[n]}$-type hyperk\"ahler varieties to $\KKKKK^{[n]}$-type hyperk\"ahler varieties over $\QQ$. This result may be of independent interest, see Theorem~\ref{thm:k3n_monodromy}.
+
+
+\section{Deligne's reciprocity law}
+To link the results in Section~\ref{sec:intro_second} to the ones in Section~\ref{sec:intro_first}, we use a result of Deligne on the connected components of Shimura varieties. 
+
+Let $(G,X)$ be a Shimura datum with reflex field $E$. When $(G,X)$ is either $(\GL_2,\HH)$ or $(\SO(\Lambda \otimes \QQ), \Omega)$, then $E = \QQ$. Consider the projective system of Shimura varieties $\Sh(G,X) = (\Sh_{\KK}(G,X))_{\KK}$, where $\KK$ ranges over all compact open subgroups of $G(\AAf)$, and let $\pi_0(\Sh(G,X)_{\overline{E}})$ be the limit $\lim_{\KK} \pi_0(\Sh_{\KK}(G,X)_{\overline{E}})$. Then Deligne gives an expression of the profinite set $\pi_0(\Sh(G,X)_{\overline{E}})$ as a quotient of $G(\AAf)$. Moreover, he gives an explicit description of the $\gal_{E}$-action on $\pi_0(\Sh(G,X)_{\overline{E}})$ in terms of the group $G(\AAf)$ and the class field theory of $E$. The full statement of Deligne's result can be found in Section~\ref{sec:reciprocity_law_shimura_stacks}.
+
+When $(G,X) = (\GL_2, \HH)$, it can be shown that the determinant $\det\colon G(\AAf) \rightarrow \AAf^{\times}$ induces an isomorphism from $\pi_0(\Sh(G,X)_{\overline{\QQ}})$ to $\ZZh^{\times}$. Moreover, if we endow $\ZZh^{\times}$ with the natural $\gal_{\QQ}$-action coming from the Kronecker-Weber theorem, this isomorphism is $\gal_{\QQ}$-equivariant.
+
+In the orthogonal case, the \emph{spinor norm} $G(\AAf) \rightarrow \AAf^{\times}\hspace{-5pt}/2$ induces an isomorphism from the $\gal_{\QQ}$-set $\pi_0(\Sh(G,X)_{\overline{\QQ}})$ to $\ZZh^{\times}\hspace{-5pt}/2$, endowed with the $\gal_{\QQ}$-action coming from the Kronecker-Weber theorem. A proof of this fact can be found in Section~\ref{sec:deligne_orhtogonal}.
+
+A more careful analysis, which combines these results with the ones in Section~\ref{sec:intro_second}, yields Theorem~\ref{thm:ell_intro_1} and Theorem~\ref{thm:k3_intro_1}.
+
+We have not been able to generalize Theorem~\ref{thm:k3_intro_1} to higher-dimensional hyperk\"ahler varieties. It seems plausible that this can be approached with similar methods. However, our proof of Theorem~\ref{thm:k3_intro_1} uses that we can get rid of the orientations in Theorem~\ref{thm:intro_main_thm} for K3 surfaces, and that the second cohomology group of K3 surfaces is self-dual. 
+
+\section{Overview}
+In this section, we give a brief overview of the chapters in this thesis. More detailed descriptions of each chapters' contents can be found in their respective introductions.
+
+In Chapter~2, we recall the basic theory of Shimura varieties and motives, and we give a Tannakian exposition of Milne's results relating the canonical models of Shimura varieties to moduli spaces of abelian motives. In Chapter~3, we prove that the moduli stack of polarized hyperk\"ahler varieties is, among other things, a Deligne-Mumford stack. The next chapter contains various generalizations of~\eqref{eq:intro_period_k3} to hyperk\"ahler varieties of higher dimension. Finally, in Chapter~5, we apply the existence of~\eqref{eq:intro_period_k3} and Deligne's results on the connected components of a Shimura stack to prove Theorem~\ref{thm:k3_intro_1}.

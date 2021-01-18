@@ -1,0 +1,1275 @@
+\chapter{Shimura varieties and motives}\label{cha:shimura_varieties}
+This chapter is an exposition of the fact that certain Shimura varieties are moduli spaces of abelian motives. This was originally proved in~\cite{DeligneShimura} and~\cite{MilneShimuraMotives}. We focus in particular on Shimura varieties of orthogonal type, as these play an important role in the moduli theory of hyperk\"ahler varieties, which we will see in Chapter~\ref{cha:period_map}.
+
+
+In the first section we briefly go over the basics of the theory of Shimura varieties, primarily to set up notation. Then, in Section~\ref{sec:motives}, we collect the features of Andr\'e's category of motives~\cite{AndreInconditionnelle} which we need. The two main facts we will need in the sequel are Deligne's result that Hodge cycles on abelian varieties are motivated (Theorem~\ref{thm:deligne_big_result}), and Milne's theorem that the Hodge structures parametrized by Shimura varieties of Hodge and orthogonal type come from abelian motives (Proposition~\ref{prop:motivic_lift_hodge_type}).
+
+In Section~\ref{sec:orthogonal_shimura_varieties}, we give the main result of this chapter, namely a description of the complex points of an orthogonal Shimura variety in terms of abelian motives endowed with a symmetric bilinear form and a trivialization of the determinant, Theorem~\ref{thm:orthogonal_shimura_moduli_motives}. In particular we will show that this description is compatible with the action of $\Aut(\CC)$. We prove this theorem by describing the complex points of a Hodge type Shimura variety $\Sh(G,X)$ in terms of tensor functors from the category of $G$-representations to the category of abelian motives, in Theorem~\ref{thm:gal_equivariance_mot(G)}. The reader familiar with~\cite{DeligneShimura} and~\cite{MilneShimura} will note that all results in this section go back to Deligne and Milne, with the possible exception of our more Tannakian treatment of the proof and statement of the theorem.
+
+\section{Shimura varieties}\label{sec:shimura_varieties}
+In this section we establish basic notation regarding Shimura varieties, and in particular about orthogonal Shimura varieties. See also~\cite{MilneShimura} and~\cite{DeligneShimura} for a more detailed account. For the part about orthogonal Shimura varieties,~\cite{MadapusiPeraIntegralModels},~\cite{DeligneK3}, and~\cite{AndreTateShafarevich} are excellent references.
+\subsection{Generalities}
+Let $(G,X)$ be a Shimura datum, see~\cite[Definition~5.5]{MilneShimura}. In particular, $G$ is a connected reductive group over $\QQ$, and $X \subseteq \Hom(\SSS,G_{\RR})$ is a $G(\RR)$-conjugacy class, where $\SSS = \Res_{\CC/\RR} \GG_m$ denotes the Deligne torus. Let $Z$ be the center of $G$. We assume throughout this thesis that $(G,X)$ satisfies condition SV5 in~\cite{MilneShimura}. That is, we assume that $Z(\QQ)$ is discrete in $G(\AAf)$, where $\AAf$ is the ring of finite ad\`eles.
+
+%\begin{remark}
+%The topology on $G(\RR)$ induces one on the set $X$. The connected components of $X$ admit a unique structure of a complex manifold such that if $\rho\colon G \rightarrow \GL(V)$ is a representation, then $(V,\rho \circ h)_{h \in X}$ defines a polarizable variation of $\QQ$-Hodge structures on $X$.
+%\end{remark}
+
+For a commutative $\CC$-algebra $A$, the map $A \otimes_{\RR} \CC \rightarrow A \times A$, $a \otimes z \mapsto (za,\overline{z}a)$ is an isomorphism of rings. This yields an isomorphism $\GG_{m,\CC} \times \GG_{m,\CC} \rightarrow \SSS_{\CC}$, which we will use to identify these two group schemes. For $h \in X$, we define $\mu_h\colon \GG_{m,\CC} \rightarrow G_{\CC}$ as $z \mapsto h_{\CC}(z,1)$. The reflex field $E$ of $(G,X)$ is by definition the unique smallest subfield of $\CC$ such that the $G(\CC)$-conjugacy class of $\mu_h$ is defined over $E$.
+
+There is an inverse system $(\Sh_{\KK}(G,X))_{\KK}$ of varieties over $E$ associated with $(G,X)$, where $\KK$ ranges over all compact open subgroups of $G(\AAf)$. The varieties $\Sh_{\KK}(G,X)$ are called {\bfseries Shimura varieties}. The set of $\CC$-points of $\Sh_{\KK}(G,X)$ is the double coset
+$$
+G(\QQ) \backslash X \times G(\AAf) / \KK.
+$$
+Here, $G(\QQ)$ acts on $X$ by conjugation, and on $G(\AAf)$ by left multiplication. The group $\KK$ acts trivially on $X$, and on $G(\AAf)$ by right multiplication.
+
+The limit of the inverse system $(\Sh_{\KK}(G,X))_{\KK}$ is denoted $\Sh(G,X)$. Proposition~2.1.10 in~\cite{Deligne79}, combined with the fact that $Z(\QQ)$ is discrete in $G(\AAf)$, implies that the set of $\CC$-points of $\Sh(G,X)$ is
+$$
+\Sh(G,X)(\CC) = G(\QQ) \backslash X \times G(\AAf).
+$$
+The action of $G(\AAf)$ on $\Sh(G,X)(\CC)$ via right multiplication descends to an action of $G(\AAf)$ on $\Sh(G,X)$ defined over $E$.
+
+\begin{example}\label{exa:siegel_shimura}
+Let $(V,\psi)$ be a symplectic $\QQ$-vector space of dimension $2d$. The group of symplectic similitudes associated with $V$ is defined to be the algebraic group
+$$
+\GSp(V) = \big\{ (g, c) \in \GL(V) \times \GG_m \mid \forall v, w \in V\, \ \psi(gv,gw) = c \psi(v,w)\big\}.
+$$
+    We define $\HH_V$ to be the complex manifold consisting of $h\colon \SSS \rightarrow \GSp(V)_{\RR}$ such that $h$ endows $V$ with a Hodge structure of type $d(0,1) + d(1,0)$. Now $(\GSp(V),\HH_V)$ is a Shimura datum with reflex field $\QQ$, known as a {\bfseries Siegel Shimura datum}. When there is no possibility for confusion to arise, we use $\GSp$ and $\HH$ to denote $\GSp(V)$ and $\HH_V$, respectively. The Shimura varieties associated with $(\GSp,\HH)$ are moduli spaces for polarized abelian varieties of dimension $d$ with level structure, as is shown in~\cite[\S~4]{DeligneShimura}.
+\end{example}
+
+\begin{definition}
+A Shimura datum $(G,X)$ is said to be of {\bfseries Hodge type} if there exists a Siegel Shimura datum $(\GSp,\HH)$ as in Example~\ref{exa:siegel_shimura} and a morphism of Shimura data $(G,X) \rightarrow (\GSp,\HH)$ such that $G \rightarrow \GSp$ is a closed immersion.
+\end{definition}
+
+
+%Note to self: use $\Omega'$ to denote the HSD in $(\GSpin,\Omega)$.
+
+%Introduce the notations $\omega_G$ and $\Rep_G$ somewhere.
+
+
+\subsection{Orthogonal Shimura varieties}\label{sec:orthogonal_shimura_varieties}
+In this section we go over the basics of Shimura varieties associated with certain quadratic spaces. 
+
+Let $V$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$. To $V$ we can associate a Shimura datum $(\SO(V),\Omega_V)$, known as a Shimura datum {\bfseries of orthogonal type}, as follows. We let $\SO(V)$ be the group of orthogonal transformations of $V$ with determinant $1$. The Hermitian symmetric domain $\Omega_V \subseteq \Hom_{\RR\Grp}(\SSS,\SO(V)_{\RR})$ is defined to be the set of Hodge structures of K3 type on $V$. That is, it consists of those Hodge structures on $V$ for which
+\begin{itemize}
+    \item $V$ has type $(1,-1)$, $(0,0)$, $(-1,1)$,
+    \item $V^{1,-1}$ and $V^{-1,1}$ are one-dimensional and orthogonal to $V^{0,0}$,
+    \item the space $(V \otimes \RR) \cap (V^{1,-1} \oplus V^{-1,1})$ is positive-definite.
+\end{itemize}
+The space $\Omega_V$ has two connected components, interchanged by mapping a Hodge structure on $V \otimes \RR$ to the one whose $(1,-1)$, $(0,0)$, and $(-1,1)$ parts are $V^{-1,1}$, $V^{0,0}$, and $V^{1,-1}$, respectively. When there is no possibility for confusion to arise, we will use $\SO$ and $\Omega$ to denote $\SO(V)$ and $\Omega_V$, respectively.
+
+There is a natural central extension $\GSpin(V)$ of $\SO(V)$, called the {\bfseries Clifford group} of $V$, which is constructed using the even Clifford algebra of $V$. It fits in a short exact sequence
+$$
+1 \rightarrow \GG_m \longrightarrow \GSpin(V) \longrightarrow \SO(V) \rightarrow 1,
+$$
+and comes endowed with a homomorphism $N\colon \GSpin(V) \rightarrow \GG_m$ whose kernel is the {\bfseries spin group} $\Spin(V)$. Again, when there is no possibility of confusion, we will use $\GSpin$ and $\Spin$ to denote $\GSpin(V)$ and $\Spin(V)$, respectively.
+
+For each $h\colon \SSS \rightarrow \SO_{\RR}$ in $\Omega$, there exists a unique $h'\colon \SSS \rightarrow \GSpin_{\RR}$ making the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \SSS  & \SO_{\RR} \\
+             \GG_{m,\RR} & \GSpin_{\RR} \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$h$} (m-1-2)
+                                 (m-2-2) edge (m-1-2)
+                                 (m-2-1) edge (m-2-2)
+                                         edge node[left]{$w$} (m-1-1);
+           \path[>=angle 90, ->,dashed] (m-1-1) edge node[below]{$h' \ $} (m-2-2);
+
+\end{tikzpicture}
+$$
+commute, where $w\colon \GG_{m,\RR} \rightarrow \SSS$ is the weight homomorphism. The set of such $h'$ is a $\GSpin(\RR)$-conjugacy class $\Omega'$ in $\Hom(\SSS,\GSpin_{\RR})$. The pair $(\GSpin,\Omega')$ is a Shimura datum, and the homomorphisms $\GSpin \rightarrow \SO$ and $N\colon \GSpin \rightarrow \GG_m$ induce morphisms of Shimura data
+\begin{equation}\label{eq:kuga_satake}
+(\SO,\Omega) \longleftarrow (\GSpin,\Omega') \longrightarrow (\GG_m,\{\QQ(-1)\}).
+\end{equation}
+Note that the map $\Omega' \rightarrow \Omega$ is a bijection. As can be seen in~\cite[Lemma~3.6]{MadapusiPeraIntegralModels}, the Shimura datum $(\GSpin,\Omega')$ is of Hodge type.
+
+\begin{lemma}\label{lem:reflex_field_SO}
+The Shimura data $(\GSpin,\Omega')$ and $(\SO,\Omega)$ have reflex field $\QQ$.
+\end{lemma}
+\begin{proof}
+The fact that $(\GSpin,\Omega')$ has reflex field $\QQ$ can be found in~\cite{Shih}. Applying~\cite[2.2.1]{Deligne79} to the morphism $(\GSpin,\Omega') \rightarrow (\SO,\Omega)$ now shows that the reflex field of $(\SO,\Omega)$ is $\QQ$.
+\end{proof}
+
+
+\section{Motives}\label{sec:motives}
+We will work with the category of motives as constructed by Andr\'e in~\cite{AndreInconditionnelle}. In this section we summarize its salient features.
+
+\subsection{Generalities}
+Let $k$ be a field of characteristic $0$. Let $\SmPr_{k}$ be the category of smooth projective varieties over $k$, and let $\Mot_{k}$ be the category of motives over $k$ defined using motivated cycles. Then $\Mot_{k}$ is a $\QQ$-linear semisimple neutral Tannakian category endowed with a functor $\h\colon \SmPr_{k}^{\opp} \rightarrow \Mot_{k}$, sending a variety to its associated motive. We use $\1$ to denote the unit motive, and for a motive $M$ and $n \in \ZZ$, we denote by $M(n)$ its $n$th Tate twist.
+
+Let $\sigma$ be an embedding of fields $k_0 \rightarrow k_1$. Then pullback of schemes yields a covariant functor from $\SmPr_{k_0}$ to $\SmPr_{k_1}$, mapping a smooth projective variety $X$ over $k_0$ to $\sigma^* X$, defined by the cartesian diagram
+\begin{equation}\label{eq:galois_pullback}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \sigma^* X & X  \\
+             \Spec(k_1) & \Spec(k_0)  \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge node[below]{$\Spec(\sigma)$} (m-2-2)
+                                 (m-1-2) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+This extends uniquely to the category of motives. That is, for each motive $M \in \Mot_{k_0}$ we have a motive $\sigma^* M$ over $k_1$ such that $\h(\sigma^* X) = \sigma^* \h(X)$ for each $X \in \SmPr_{k_0}$.
+
+Singular cohomology with coefficients in $\QQ$ induces a fiber functor $\HHH_{\B}\colon \Mot_{\CC} \rightarrow \QQ\Vect$, known as the Betti realization functor. For an embedding $\sigma\colon k \hookrightarrow \CC$, this gives rise to a fiber functor $\HHH_{\sigma}\colon \Mot_k \rightarrow \QQ\Vect$, defined as the composition
+$$
+\Mot_{k} \xrightarrow{\, \sigma^* \,} \Mot_{\CC} \xrightarrow{\, \HHH_{\B} \,} \QQ\Vect.
+$$
+Similarly, when $k$ is algebraically closed, \'etale cohomology with coefficients in the ring of finite ad\`eles $\AAf$ induces a fiber functor $\HHH_{\et}\colon \Mot_{k} \rightarrow \AAf\Mod$, known as the \'etale realization functor. We use $M_{\sigma}$ and $M_{\et}$ as shorthands for the images of a motive $M$ under $\HHH_{\sigma}$ and $\HHH_{\et}$, respectively. Artin's comparison isomorphism~\cite[Th\'eor\`eme~XI.4.4]{SGA4} between \'etale and singular cohomology allows us to identify $\HHH_{\et}$ with $\HHH_{\sigma} \otimes \AAf$ as functors from $\Mot_k$ to $\AAf\Mod$.
+
+For a smooth projective variety $X$ over $\CC$, the cohomology groups $\HHH^i(X,\QQ)$ are canonically endowed with a polarizable Hodge structure. This extends to the Betti realization of motives, leading to a tensor functor which we abusively denote $\HHH_{\sigma}\colon \Mot_{k} \rightarrow \QQ\HS$, where $\sigma$ is an embedding $k \hookrightarrow \CC$, and $\QQ\HS$ is the category of polarizable $\QQ$-Hodge structures.
+
+Let $k_0$ and $k_1$ be algebraically closed fields of characteristic $0$, and let $\sigma\colon k_0 \rightarrow k_1$ be an embedding of fields. For a smooth projective variety $X$ over $k_0$, this induces a functorial isomorphism on \'etale cohomology $\overline{\sigma}^*\colon \HHH^i_{\et}(X,\AAf) \rightarrow \HHH^i_{\et}(\sigma^* X,\AAf)$. This extends to the category of motives to give a functorial isomorphism 
+\begin{equation}\label{eq:pullback_motives_bla}
+\overline{\sigma}^*\colon \HHH_{\et}(M) \longrightarrow \HHH_{\et}(\sigma^* M)
+\end{equation}
+for motives $M$ over $k_0$.
+
+%In particular, if we take $k_0 = k_1 = k$, it follows that the \'etale realization functor $\HHH_{\et}\colon \Mot_{k} \rightarrow \AAf\Mod$ lifts to a functor $\Mot_{k} \rightarrow \gal_{k}\Rep_{\AAf}$, where $\gal_{k}\Rep_{\AAf}$ denotes the category of $\AAf$-modules endowed with a continuous $\gal_k$-action. We will abusively use $\HHH_{\et}$ to denote this functor.
+
+For later use, it is convenient to phrase the case $k_0 = k_1 = \CC$ in terms of the following $2$-commutative diagram:
+\begin{equation}\label{eq:pullback_of_motives}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { \Mot_{\CC} & & \Mot_{\CC} \\
+             & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\sigma^*$} (m-1-3)
+                                         edge node[left] (U) {$\HHH_{\et}$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\HHH_{\et}$} (m-2-2);
+
+            \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\sigma^{*}$} (V);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+That is, $\sigma^*$ is an isomorphism of tensor functors $\HHH_{\et} \rightarrow \HHH_{\et} \sigma^*$ from $\Mot_{\CC}$ to $\AAf\Mod$.
+
+\subsection{Abelian motives}
+Let $\Mot_{\ab,k}$ be the Tannakian subcategory of $\Mot_{k}$ generated by the motives of abelian varieties. The objects of $\Mot_{\ab,k}$ are called abelian motives.
+\begin{example}\label{rk:hk_motives_abelian}
+Using the Kuga-Satake construction, Andr\'e has shown that if $X$ is a hyperk\"ahler variety with $b_2(X) > 3$, then $\h^2(X)$ is an abelian motive. In particular, the motive of a K3 surface is abelian. See~\cite[Theorem~1.5.1]{AndreTateShafarevich}.
+\end{example}
+
+For the remainder of the chapter, we only consider motives over $\CC$.
+
+The Betti realization functor restricts to a fiber functor $\HHH_{\B}\colon \Mot_{\ab,\CC} \rightarrow \QQ\Vect$. Let $\Gab = \Aut^{\otimes}(\HHH_{\B})$, so that $\HHH_{\B}$ identifies $\Mot_{\ab,\CC}$ with $\Gab\Rep$. Similarly, we use $\GHdg$ to denote the Tannakian fundamental group associated with the forgetful functor $\QQ\HS \rightarrow \QQ\Vect$. The functor $\Mot_{\ab,\CC} \rightarrow \QQ\HS$ yields a homomorphism $\GHdg \rightarrow \Gab$. We denote its restriction to $\SSS \subseteq \GHdg_{,\RR}$ by $h_{\ab}\colon \SSS \rightarrow \Gab_{,\RR}$.
+
+The following is a restatement of a fundamental result of Deligne, which says that Hodge cycles on complex abelian varieties are motivated.
+
+\begin{theorem}[{\cite[Th\'eor\`eme~0.6.2]{AndreInconditionnelle}}]\label{thm:deligne_big_result}
+The Betti realization functor restricts to a fully faithful functor $\HHH_{\B}\colon \Mot_{\ab,\CC} \rightarrow \QQ\HS$.
+\end{theorem}
+
+\begin{corollary}\label{cor:gab_hodge_generic}
+The homomorphism $\GHdg \rightarrow \Gab$ is surjective.
+\end{corollary}
+\begin{proof}
+    According to Theorem~\ref{thm:deligne_big_result}, the functor $\HHH_{\B}\colon \Mot_{\ab,\CC} \rightarrow \QQ\HS$ is fully faithful. Moreover, when $M$ is an abelian motive, then every subobject of $\HHH_{\B}(M)$ is isomorphic to the image of a subobject of $M$, by the semisimplicity of $\QQ\HS$. This implies that the corresponding homomorphism $\GHdg \rightarrow \Gab$ is surjective.
+\end{proof}
+
+Milne has shown for a large class of Shimura varieties of abelian type that the Hodge structures they parameterize are the Betti realizations of abelian motives, see~\cite[Theorem~1.34]{MilneShimuraMotives}. We will only need the following specific instance.
+\begin{proposition}\label{prop:motivic_lift_hodge_type}
+Let $(G,X)$ be a Shimura datum of Hodge or of orthogonal type, and let $h \in X$. Then there exists a unique homomorphism $\wtilde{h}\colon \Gab \rightarrow G$ such that the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+           { \SSS & G_{\RR} \\
+             \Gab_{,\RR} & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$h$} (m-1-2)
+                                         edge node[left]  {$h_{\ab}$} (m-2-1)
+                                 (m-2-1) edge node[below]  {$\ \wtilde{h}_{\RR}$} (m-1-2);
+
+
+\end{tikzpicture}\end{matrix}
+$$
+commutes.
+\end{proposition}
+\begin{proof}
+The uniqueness is an immediate consequence of Corollary~\ref{cor:gab_hodge_generic}.
+
+    We first prove the existence part of the proposition for $(G,X)$ of the form $(\GSp(V), \HH)$. Let $h\colon \SSS \rightarrow \GSp(V)_{\RR}$ be an element of $\HH$. Then Riemann's theorem~\cite[Th\'eor\`eme~4.7]{DeligneShimura} shows that there exists an abelian variety $A$ with $\HHH^1(A,\QQ)$ isomorphic to $(V,h)$ as a $\QQ$-Hodge structure. Moreover, the symplectic form $\psi$ is a morphism of $\QQ$-Hodge structures $\bigwedge^2 V \rightarrow \QQ(-1)$. By Theorem~\ref{thm:deligne_big_result}, $\psi$ yields a morphism of motives $\bigwedge^2 \h^1(A) \rightarrow \1(-1)$. It follows that $h\colon \SSS \rightarrow \GSp(V)_{\RR}$ lifts to a morphism $\Gab \rightarrow \GSp(V)$.
+
+For general $(G,X)$ of Hodge type, pick an embedding $(G,X) \hookrightarrow (\GSp,\HH)$. Then by the preceding argument, the composition $\GHdg \rightarrow G \rightarrow \GSp$ factors through $\Gab$. Since $\GHdg \rightarrow \Gab$ is surjective by Corollary~\ref{cor:gab_hodge_generic}, the image of $\Gab \rightarrow \GSp$ is contained in $G$, yielding the desired lift $\wtilde{h}\colon \Gab \rightarrow G$ of $h$.
+
+Now let $(\SO,\Omega)$ be a Shimura datum of orthogonal type. Consider the morphism of Shimura data $(\GSpin,\Omega') \rightarrow (\SO,\Omega)$ as in~\eqref{eq:kuga_satake}, and let $h'\colon \SSS \rightarrow \GSpin_{\RR}$ be the unique element of $\Omega'$ lifting $h$. Since $(\GSpin,\Omega')$ is of Hodge type, there exists a homomorphism $\wtilde{h}' \colon \Gab \rightarrow \GSpin$ with $h' = \wtilde{h}' \circ h_{\ab}$. The composition $\Gab \xrightarrow{\wtilde{h}'} \GSpin \rightarrow \SO$ is the desired lift of $h$.
+\end{proof}
+
+%\begin{proposition}\label{prop:motivic_lift_orthogonal_type}
+%Let $V$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$, let $(\SO,\Omega)$ be the associated Shimura datum, and let $h \in \Omega$. Then there exists a unique $\wtilde{h}\colon \Gab \rightarrow \SO$ such that the diagram
+%$$
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=3.5em, text height=1.5ex, text depth=0.25ex]
+%           { \SSS & \SO_{\RR} \\
+%             \Gab_{,\RR} & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$h$} (m-1-2)
+%                                         edge node[left]  {$h_{\ab}$} (m-2-1)
+%                                 (m-2-1) edge node[below]  {$\ \wtilde{h}_{\RR}$} (m-1-2);
+%
+%
+%\end{tikzpicture}\end{matrix}
+%$$
+%    commutes. {\color{red} merge with preceding proposition, making use of the term orthogonal type}
+%\end{proposition}
+%\begin{proof}
+%The uniqueness is an immediate consequence of Theorem~\ref{thm:gab_hodge_generic}.
+%
+%Consider the morphism of Shimura data $(\GSpin,\Omega') \rightarrow (\SO,\Omega)$ as in Example {\color{red} reference}, and let $h'\colon \SSS \rightarrow \GSpin_{\RR}$ be the unique element of $\Omega'$ lifting $h$. Since $(\GSpin,\Omega')$ is of Hodge type, Proposition~\ref{prop:motivic_lift_hodge_type} implies that there exists a homomorphism $\wtilde{h}' \colon \Gab \rightarrow \GSpin$ with $h' = \wtilde{h}' \circ h_{\ab}$. Now defining $\wtilde{h}$ to be the composition $\Gab \rightarrow \GSpin \rightarrow \SO$ proves the existence part of the proposition.
+%\end{proof}
+
+
+%Let $\gal_k$ be the absolute Galois group of $k$. The functor sending a variety $X$ to the $\gal_k$-representation $\HHH^*_{\et}(X_{\overline{k}},\AAf)$ extends to a fiber functor $\omega_{\et}\colon \Mot_k \rightarrow \gal_k\Rep_{\AAf}$.
+
+%\subsection{Mumford-Tate groups}
+%Let $G$ be a group scheme over $\QQ$ endowed with a homomorphism $h\colon \SSS \rightarrow G_{\RR}$. Then the Mumford-Tate group $\MT(G,h)$ of $(G,h)$ is by definition the smallest subgroup of $G$ defined over $\QQ$ through which $h$ factors. The Mumford-Tate group is functorial in the sense that given pairs $(G_1,h_1)$ and $(G_2,h_2)$ with a homomorphism $\vphi\colon G_1 \rightarrow G_2$ such that
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { G_{1,\RR} & & G_{2,\RR} \\
+%              & \SSS      & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi$} (m-1-3)
+%                                 (m-2-2) edge node[left]{$h_1$} (m-1-1)
+%                                         edge node[right]{$h_2$} (m-1-3);
+%
+%\end{tikzpicture}
+%$$
+%commutes, then $\vphi$ restricts to a homomorphism $\MT(G_1,h_1) \rightarrow \MT(G_2,h_2)$.
+%
+%Alternatively, we can characterize the Mumford-Tate group of a pair $(G,h)$ as follows. Let $\omega$ be the forgetful functor $\QQ\HS \rightarrow \QQ\Vect$, and set $\GHdg = \Aut^{\otimes}(\omega)$. Then $\omega$ identifies $\QQ\HS$ with $\GHdg\Rep$. It is clear that the functor $G\Rep \rightarrow \RR\HS$ given by $h$ lifts to a functor $G\Rep \rightarrow \QQ\HS$, and hence yields a homomorphism $\wtilde{h}\colon \GHdg \rightarrow G$. Now $\MT(G,h)$ is the image of $\wtilde{h}$.
+%
+\section{Orthogonal Shimura varieties as moduli of motives}\label{sec:orthogonal_shimura_varieties}
+This section contains the main theorem of this chapter, which gives a description of the complex points of a Shimura variety of orthogonal type in terms of motives endowed with a motivic bilinear form and a motivic trivialization of its determinant.
+
+Let $(V,b_V)$ be a quadratic space over $\QQ$ of signature $(2,n)$, with $n \geq 1$, and let $\omega_V\colon \QQ \rightarrow \det V$ be an isomorphism of vector spaces.
+
+As in Section~\ref{sec:orthogonal_shimura_varieties} we associate with $(V,b_V)$ a Shimura datum $(\SO,\Omega)$ with reflex field $\QQ$. In particular, we have a set $\Sh(\SO,\Omega)(\CC)$ endowed with a left $\Aut(\CC)$-action and a right $\SO(\AAf)$-action which commute, an $(\Aut(\CC),\SO(\AAf))$-set, for short.
+
+\begin{definition}\label{def:orthogonal_motives}
+Let $\Mot(V)$ be the set of isomorphism classes of tuples $(M,b,\omega,\alpha)$, where
+\begin{itemize}
+\item $M$ is an abelian motive over $\CC$,
+\item $b$ is a morphism $\Sym^2 M \rightarrow \1$,
+\item $\omega$ is an isomorphism $\1 \rightarrow \det M$,
+\item $\alpha$ is an isomorphism of $\AAf$-modules $V \otimes \AAf \rightarrow M_{\et}$ mapping $b_V$ to $b_{\et}$ and $\omega_V$ to $\omega_{\et}$.
+\end{itemize}
+Two tuples $(M_1,b_1,\omega_1,\alpha_1)$ and $(M_2,b_2,\omega_2,\alpha_2)$ are said to be isomorphic if there is an isomorphism of motives $\vphi\colon M_1 \rightarrow M_2$ mapping $b_1$ and $\omega_1$ to $b_2$ and $\omega_2$ and such that the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { M_{1,\et} & & M_{2,\et} \\
+              & V \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi_{\et}$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\alpha_1 \ $} (m-1-1)
+                                         edge node[right]{$\alpha_2$} (m-1-3);
+
+\end{tikzpicture}
+$$
+of $\AAf$-modules commutes.
+\end{definition}
+
+Pullback of motives as in~\eqref{eq:pullback_of_motives} defines a left $\Aut(\CC)$-action on $\Mot(V)$. Moreover, by precomposing $\alpha$ with $g \in \SO(\AAf)$, we obtain a right $\SO(\AAf)$-action. It is easy to verify that these two actions commute, making $\Mot(V,b_V,\omega_{V})$ an $(\Aut(\CC),\SO(\AAf))$-set.
+
+\begin{definition}\label{def:mot(SO,O)}
+Let $\Mot(V,\Omega)$ be the subset of $\Mot(V)$ consisting of those tuples $(M,b,\omega,\alpha)$ such that there exists an isomorphism
+\begin{equation}\label{eq:alphaB}
+\alpha^{\B}\colon V \longrightarrow M_{\B}
+\end{equation}
+mapping $b_V$ and $\omega_V$ to $b_{\B}$ and $\omega_{\B}$, and such that the Hodge structure on $V$ induced by $\alpha^{\B}$ is an element of $\Omega$.
+\end{definition}
+
+It is clear that the $\SO(\AAf)$-action on $\Mot(V)$ restricts to one on $\Mot(V,\Omega)$. The following theorem shows that the $\Aut(\CC)$-action restricts to one on $\Mot(V,\Omega)$ as well.
+
+%By Proposition~\ref{prop:motivic_lift_hodge_type}, any $h \in \Omega$ lifts uniquely to $\wtilde{h}\colon \Gab \rightarrow \SO$. The resulting $\Gab$-representation $(V,\wtilde{h})$ defines an abelian motive over $\CC$.
+
+For $h \in \Omega$, we denote by $\wtilde{h}$ the unique lift of $h$ to a homomorphism $\Gab \rightarrow \SO$, as in Proposition~\ref{prop:motivic_lift_hodge_type}.
+
+\begin{theorem}\label{thm:orthogonal_shimura_moduli_motives}
+The map $\Sh(\SO,\Omega)(\CC) \rightarrow \Mot(V)$ given by 
+$$
+[h,g] \longmapsto ((V,\wtilde{h}),\, b_V,\, \omega_V,g)
+$$ 
+is $(\Aut(\CC),\SO(\AAf))$-equivariant, and defines a bijection from $\Sh(\SO,\Omega)(\CC)$ to $\Mot(V,\Omega)$.
+\end{theorem}
+
+The proof of this theorem will be given in subsection~\ref{subsec:orthogonal_shimura}. The $\Aut(\CC)$-equivariance will be deduced from the Shimura-Taniyama formula~\cite[Th\'eor\`eme~4.19]{DeligneShimura} for abelian varieties of CM type.
+
+We will now give a corollary of Theorem~\ref{thm:orthogonal_shimura_moduli_motives} which will be more convenient in our treatment of moduli stacks of polarized hyperk\"ahler varieties.
+
+Let $(W,b_W)$ be a quadratic space over $\QQ$ of signature $(3,n)$, with $n \geq 1$, let $\lambda_W \in W$ be an element of positive length, and let $\omega_W\colon \QQ \rightarrow \det W$ be an isomorphism of vector spaces. 
+
+\begin{definition}\label{def:moduli_polarized_motives}
+Let $\Mot(W,\lambda_W)$ be the set of isomorphism classes of tuples $(M,b,\lambda,\omega,\alpha)$, where
+\begin{itemize}
+\item $M$ is an abelian motive over $\CC$,
+\item $b$ is a morphism $\Sym^2 M \rightarrow \1$,
+\item $\lambda$ is a morphism $\1 \rightarrow M$,
+\item $\omega$ is an isomorphism $\1 \rightarrow \det M$,
+\item $\alpha$ is an isomorphism of $\AAf$-modules $W \otimes \AAf \rightarrow M_{\et}$ mapping $b_W$, $\lambda_W$, and $\omega_W$ to $b_{\et}$, $\lambda_{\et}$, and $\omega_{\et}$, respectively.
+\end{itemize}
+Two tuples $(M_1,b_1,\omega_1,\lambda_1,\alpha_1)$ and $(M_2,b_2,\lambda_2,\omega_2,\alpha_2)$ are said to be isomorphic if there is an isomorphism of motives $\vphi\colon M_1 \rightarrow M_2$ mapping $b_1$, $\lambda_1$, and $\omega_1$ to $b_2$, $\lambda_2$, and $\omega_2$, respectively, and such that the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { M_{1,\et} & & M_{2,\et} \\
+              & W \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi_{\et}$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\alpha_1 \ $} (m-1-1)
+                                         edge node[right]{$\alpha_2$} (m-1-3);
+
+\end{tikzpicture}
+$$
+of $\AAf$-modules commutes.
+\end{definition}
+
+Define $V$ to be the orthogonal complement of $\lambda_W$ in $W$, and $b_V$ the pairing on $V$ induced by $b_W$. Then $V$ is a quadratic space of signature $(2,n)$, and hence gives rise to an orthogonal Shimura datum $(\SO,\Omega)$. Let $\rho\colon \SO \rightarrow \SO(W)$ be the homomorphism sending $g$ to $g \oplus \id_{\QQ\lambda_W}$. Note that similarly to $\Mot(V)$, the set $\Mot(W,\lambda_W)$ comes with an $\Aut(\CC)$-action, and $\rho$ induces a right $\SO(\AAf)$-action on $\Mot(W,\lambda_W)$.
+
+The following corollary follows immediately from Theorem~\ref{thm:orthogonal_shimura_moduli_motives}.
+
+\begin{corollary}\label{cor:moduli_polarized_motives}
+The map $\Sh(\SO,\Omega)(\CC) \rightarrow \Mot(W,\lambda_W)$ given by
+$$
+[h,g] \longmapsto ((W,\rho \wtilde{h}),\, b_W,\, \lambda_W,\, \omega_W,g)
+$$ 
+is $(\Aut(\CC),\SO(\AAf))$-equivariant.
+\end{corollary}
+
+%Moreover, the isomorphism $\omega_W$ induces an isomorphism $\omega_V\colon \QQ \rightarrow \det V$ as follows. There is an isomorphism $\det(V) \otimes \QQ \lambda_W \rightarrow \det(W)$ given by mapping $v_1 \wedge \cdots \wedge v_{n + 2} \otimes \lambda_W$ to $v_1 \wedge \cdots \wedge v_{n + 2} \wedge \lambda_W$. Now let $\omega_V$ be the composition
+%$$
+%\QQ \xrightarrow{\, \omega_W\, } \det(W) \longrightarrow \det(V) \otimes \QQ \lambda_W \longrightarrow \det(V),
+%$$
+%where the final map is given by mapping $x \otimes \lambda_W$ to $x$.
+
+
+
+\subsection{$\Mot(G)$}
+Before we start with the proof of Theorem~\ref{thm:orthogonal_shimura_moduli_motives}, it will be useful to put the construction of $\Mot(V)$ and $\Mot(V,\Omega)$ in a more Tannakian framework.
+
+Let $G$ be an affine group scheme over $\QQ$. We denote by $G\Rep$ the category of finite-dimensional representations of $G$, and by $\omega_G\colon G\Rep \rightarrow \QQ\Vect$ the forgetful functor.
+
+\begin{definition}
+Let $G$ be an affine group scheme over $\QQ$. Then we denote by $\Mot(G)$ the set of isomorphism classes of pairs $(F,\eta)$, where $F$ is a tensor functor from $G\Rep$ to $\Mot_{\ab,\CC}$, and $\eta\colon \omega_G \otimes \AAf \rightarrow \HHH_{\et} F$ is an isomorphism of tensor functors from $G\Rep$ to $\AAf\Mod$. It will be convenient to represent such a pair $(F,\eta)$ as the $2$-commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & & \Mot_{\ab,\CC} \\
+             & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$F$} (m-1-3)
+                                         edge node[left] (U) {$\omega_G \otimes \AAf$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\HHH_{\et}$} (m-2-2);
+
+            \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\eta$} (V);
+
+\end{tikzpicture}
+$$
+Here, two pairs $(F_1,\eta_1)$ and $(F_2,\eta_2)$ are said to be isomorphic if there exists an isomorphism of tensor functors $\vphi\colon F_1 \rightarrow F_2$ from $G\Rep$ to $\Mot_{\ab,\CC}$ for which the diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { \HHH_{\et} F_1 & & \HHH_{\et} F_2 \\
+              & \omega_G \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\HHH_{\et}(\vphi)$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\eta_1 \ $} (m-1-1)
+                                         edge node[right]{$\eta_2$} (m-1-3);
+
+\end{tikzpicture}
+$$
+of functors $G\Rep \rightarrow \AAf\Mod$ commutes.
+\end{definition}
+
+\begin{remark}\label{rk:F_exact}
+For $(F,\eta) \in \Mot(G)$, the exactness of fiber functors implies that $F$ is exact.
+\end{remark}
+
+There is an alternative description of $\Mot(G)$ in terms of $G$-torsors on $\QQ_{\et}$, which we now give.
+
+\begin{definition}
+We define $\Mot'(G)$ to be the set of isomorphism classes of tuples $(T,h,\alpha)$, where
+\begin{itemize}
+\item $T$ is a $G$-torsor on $\QQ_{\et}$,
+\item $h\colon \Gab \rightarrow \underline{\Aut}_G(T)$ is a homomorphism of group schemes,
+\item $\alpha \in T(\AAf)$.
+\end{itemize}
+Two tuples $(T_1,h_1,\alpha_1)$ and $(T_2,h_2,\alpha_2)$ are said to be isomorphic if there exists an isomorphism of $G$-torsors $T_1 \rightarrow T_2$ mapping $h_1$ and $\alpha_1$ to $h_2$ and $\alpha_2$, respectively.
+\end{definition}
+
+\begin{remark}
+Note that the automorphism scheme $\underline{\Aut}_G(T)$ is a pure inner form of $G$, which is isomorphic to $G$ if $T$ has a $\QQ$-valued point.
+\end{remark}
+
+We define a map $f\colon \Mot(G) \rightarrow \Mot'(G)$. Let $(F,\eta) \in \Mot(G)$. The isomorphism sheaf $T \coloneqq \underline{\Isom}^{\otimes}(\omega_G,\HHH_{\B} \circ F)$ is a $G$-torsor on $\QQ_{\et}$, satisfying $\underline{\Aut}_G(T) = \underline{\Aut}^{\otimes}(\HHH_{\B} \circ F)$ by the equivalence between $G$-torsors and fiber functors on $G\Rep$ (see~\cite[Proposition~III.3.2.5.3]{SaavedraRivano}). 
+%From the commutative diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { G\Rep & & \Mot_{\ab,\CC} \\
+%             & \QQ\Vect & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$F$} (m-1-3)
+%                                         edge node[left] (U) {$\HHH_{\B} \circ F \ $} (m-2-2)
+%                                 (m-1-3) edge node[right] (V) {$\HHH_{\B}$} (m-2-2);
+%
+%\end{tikzpicture}
+%$$
+Consider the canonical homomorphism $\underline{\Aut}^{\otimes}(\HHH_{\B}) \rightarrow \underline{\Aut}^{\otimes}(\HHH_{\B} \circ F)$. Since $\underline{\Aut}^{\otimes}(\HHH_{\B}) = \Gab$ and $\underline{\Aut}^{\otimes}(\HHH_{\B} \circ F) = \underline{\Aut}_G(T)$, this gives a homomorphism $h\colon \Gab \rightarrow \underline{\Aut}_G(T)$. By definition of $T$, the isomorphism of tensor functors $\eta$ is an $\AAf$-valued point of $T$. We now set $f(F,\eta) = (T,h,\eta)$.
+
+\begin{lemma}\label{lem:mot(G)_ito_torsors}
+The map $f\colon \Mot(G) \rightarrow \Mot'(G)$ is a bijection.
+\end{lemma}
+\begin{proof}
+Let $\Mot''(G)$ be the set of isomorphism classes of tuples $(\omega,h,\alpha)$, where
+\begin{itemize}
+\item $\omega\colon G\Rep \rightarrow \QQ\Vect$ is a fiber functor,
+\item $h\colon \Gab \rightarrow \underline{\Aut}^{\otimes}(\omega)$ is a homomorphism of group schemes,
+\item $\alpha\colon \omega_G \otimes \AAf \rightarrow \omega \otimes \AAf$ is an isomorphism of tensor functors from $G\Rep$ to $\AAf\Mod$.
+\end{itemize}
+    From a fiber functor $\omega\colon G\Rep \rightarrow \QQ\Vect$ we obtain a $G$-torsor $\underline{\Isom}^{\otimes}(\omega_{G},\omega)$, which yields an equivalence between the stack of fiber functors on $G\Rep$ and the stack of $G$-torsors, see~\cite[Proposition~III.3.2.5.3]{SaavedraRivano} for more details. This equivalence yields a bijection $\Mot''(G) \rightarrow \Mot'(G)$.
+
+    It follows that we need to show that the map $\Mot(G) \rightarrow \Mot''(G)$ given by
+$$
+(F,\eta) \longmapsto \left( \HHH_{\B} \circ F, \ h\colon \Gab \rightarrow \underline{\Aut}^{\otimes}(\HHH_{\B} \circ F), \ \eta\right)
+$$
+is a bijection.
+
+    For the surjectivity, consider a tuple $(\omega,h,\alpha) \in \Mot''(G)$. Then $\omega$ lifts to an equivalence $\omega\colon G\Rep \rightarrow \underline{\Aut}^{\otimes}(\omega)$, and $\alpha$ fits in the $2$-commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & & \underline{\Aut}^{\otimes}(\omega)\Rep \\
+             & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\omega$} (m-1-3)
+                                         edge node[left] (U) {$\omega_G \otimes \AAf$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\, \omega_{\underline{\Aut}^{\otimes}(\omega)} \otimes \AAf$} (m-2-2);
+
+            \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\alpha$} (V);
+
+\end{tikzpicture}
+$$
+Moreover, $h\colon \Gab \rightarrow \underline{\Aut}^{\otimes}(\omega)$ gives rise to a functor $h^*\colon \underline{\Aut}^{\otimes}(\omega) \rightarrow \Mot_{\ab,\CC}$ compatible with the natural fiber functors. It is easily checked that the outer triangle in the diagram
+$$
+\begin{matrix}
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=4em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & \underline{\Aut}^{\otimes}(\omega)\Rep & \Mot_{\ab,\CC} \\
+               & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[left] (W) {$\omega_G \otimes \AAf$} (m-2-2)
+                                         edge node[above] {$\omega$} (m-1-2)
+                                 (m-1-3) edge node[right] (V) {$\ \HHH_{\et}$} (m-2-2)
+                                 (m-1-2) edge node[right] (U) {} (m-2-2)
+                                         edge node[above]{$h^*$} (m-1-3);
+
+
+           \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=0pt] (U) -- node[above]{$\id \phantom{f}$} (V);
+
+           \draw[double,double equal sign distance,-implies,shorten >=5pt, shorten <=10pt] (W) -- node[above]{$\alpha$} (U);
+
+\end{tikzpicture}
+\end{matrix}
+$$
+defines an element of $\Mot(G)$ mapping to the tuple $(\omega,h,\alpha)$.
+
+For the injectivity, let $(F_1,\eta_1), (F_2,\eta_2) \in \Mot(G)$, and assume that the associated tuples $(\HHH_{\B} \circ F_1, h_1, \eta_1)$ and $(\HHH_{\B} \circ F_2, h_2, \eta_2)$ are isomorphic. That is, assume there is an isomorphism of tensor functors $\vphi\colon \HHH_{\B}\circ F_1 \rightarrow \HHH_{\B} \circ F_2$ such that the diagram of group schemes
+\begin{equation}\label{eq:mot(G)_ito_torsors_1}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { \underline{\Aut}^{\otimes}(\HHH_{\B} \circ F_1) & & \underline{\Aut}^{\otimes}(\HHH_{\B} \circ F_2) \\
+              & \Gab      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi$} (m-1-3)
+                                 (m-2-2) edge node[left]{$h_1 \ $} (m-1-1)
+                                         edge node[right]{$\ h_2$} (m-1-3);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+and the diagram of tensor functors from $G\Rep$ to $\AAf\Mod$
+\begin{equation}\label{eq:mot(G)_ito_torsors_2}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { (\HHH_{\B} \circ F_1)\otimes \AAf & & (\HHH_{\B} \circ F_2) \otimes \AAf \\
+              & \omega_G \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi \otimes \AAf$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\eta_1 \ $} (m-1-1)
+                                         edge node[right]{$\eta_2$} (m-1-3);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+commute. From~\eqref{eq:mot(G)_ito_torsors_1} we obtain that for any $V \in G\Rep$, the homomorphism of vector spaces $\vphi_V\colon \HHH_{\B} \circ F_1(V) \rightarrow \HHH_{\B}\circ F_2(V)$ is $\Gab$-equivariant. This implies that $\vphi$ lifts to an isomorphism of tensor functors $\vphi\colon F_1 \rightarrow F_2$ from $G\Rep$ to $\Mot_{\ab,\CC}$. Since $\HHH_{\et} = \AAf \otimes \HHH_{\B}$, Equation~\eqref{eq:mot(G)_ito_torsors_2} says that $\vphi$ is compatible with $\eta_1$ and $\eta_2$, and hence that $\vphi$ defines an isomorphism from $(F_1,\eta_1)$ to $(F_2,\eta_2)$.
+\end{proof}
+
+
+%\begin{remark}\label{rk:mot(G)_ito_fiber_functors}
+%An alternative description of $\Mot(G)$ is the following. Consider the set $S$ of isomorphism classes of tuples $(\omega,h,\eta^{\et})$, where
+%\begin{itemize}
+%    \item $\omega\colon G\Rep \rightarrow \QQ\Vect$ is a fiber functor,
+%    \item $h\colon \Gab \rightarrow \underline{\Aut}^{\otimes}(\omega)$ is a homomorphism of group schemes,
+%    \item $\eta^{\et}\colon \omega_G \otimes \AAf \rightarrow \omega \otimes \AAf$ is an isomorphism of tensor functors.
+%\end{itemize}
+%Here two tuples $(\omega_1,h_1,\eta_1^{\et})$ and $(\omega_2,h_2,\eta_2^{\et})$ are said to be isomorphic if there exists an isomorphism of tensor functors $\vphi\colon \omega_1 \rightarrow \omega_2$ such that the diagrams
+%    
+%commute. 
+%
+%Define $\Psi\colon \Mot(G) \rightarrow S$ by mapping $(F,\eta^{\et})$ to the tuple consisting of $\omega_{\B} \circ F$, the obvious homomorphism $\Gab \rightarrow \underline{\Aut}^{\otimes}(\omega_{\B}\circ F)$, and $\eta^{\et}$.
+%\end{remark}
+%
+%\begin{remark}\label{rk:mot(G)_ito_torsors}
+%Using the equivalence between $G$-torsors and fiber functors on $G\Rep$ {\color{red} reference}, we obtain another alternative description of $\Mot(G)$. For a $G$-torsor $T$ on $\QQ_{\et}$, we denote by ${}_TG$ the automorphism scheme of $T$, which is a pure inner form of $G$. Then we can consider the set $S'$ of isomorphism classes of tuples $(T,h,\alpha^{\et})$, where
+%\begin{itemize}
+%    \item $T$ is a $G$-torsor on $\QQ$,
+%    \item $h\colon \Gab \rightarrow {}_TG$ is a homomorphism of group schemes,
+%    \item $\alpha^{\et}$ is an $\AAf$-valued point of $T$.
+%\end{itemize}
+%It follows from Remark~\ref{rk:mot(G)_ito_fiber_functors} that
+%$$
+%(F,\eta^{\et}) \longmapsto \left( \underline{\Isom}^{\otimes}(\omega_G,\omega_{\B}\circ F), \Gab \rightarrow \underline{\Aut}^{\otimes}(\omega_{\B} \circ F), \eta^{\et}\right)
+%$$
+%Defines a bijection $\Mot(G) \rightarrow S'$.
+%\end{remark}
+
+Let $(V,b_V)$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$, and $\omega_V\colon \QQ \rightarrow \det V$ an isomorphism of vector spaces. We now relate $\Mot(\SO(V))$ to the set $\Mot(V)$ defined in Definition~\ref{def:orthogonal_motives}. Note that if we endow $\QQ$ with the trivial $\SO(V)$-action, then $b_V\colon \Sym^2 V \rightarrow \QQ$ and $\omega_V\colon \QQ \rightarrow \det V$ are both morphisms in $\SO(V)\Rep$. As such, we obtain a map $\Psi\colon \Mot(\SO(V)) \rightarrow \Mot(V)$ given by
+$$
+(F,\eta) \longmapsto (F(V), F(b_V), F(\omega_V), \eta_V).
+$$
+
+\begin{lemma}\label{lem:mot(SO)_ito_motives}
+The map $\Psi\colon \Mot(\SO(V)) \rightarrow \Mot(V)$ is a bijection.
+\end{lemma}
+\begin{proof}
+Let $(V',b')$ be a quadratic space over $\QQ$ of dimension $2 + n$, let $\omega'\colon \QQ \rightarrow \det V'$ be an isomorphism of vector spaces, and let $\alpha\colon V \otimes \AAf \rightarrow V' \otimes \AAf$ be an isometry which maps $\omega_V$ to $\omega'$. We will show that the isomorphism sheaf $\Isom((V,b_V,\omega_V),(V',b',\omega'))$ is an $\SO(V)$-torsor on $\QQ_{\et}$. To do this, it suffices to show that there is an isomorphism $V \otimes \overline{\QQ} \rightarrow V' \otimes \overline{\QQ}$ mapping $b_V$ to $b'$ and $\omega_V$ to $\omega'$.
+
+First we assign an invariant to the tuple $(V,b_V,\omega_V)$. Let $\det(b_V)\colon (\det V)^{\otimes 2} \rightarrow \QQ$ be the isomorphism of vector spaces given by mapping $(v_1 \wedge \ldots \wedge v_{2 + n}) \otimes (w_1 \wedge \ldots \wedge w_{2 + n})$ to the determinant of the matrix $(b_V(v_i,w_j))_{i,j}$. Now composing the isomorphism $\omega^{\otimes 2}_V\colon \QQ \rightarrow (\det V)^{\otimes 2}$ with $\det(b_V)$ yields an element of $\QQ^{\times}$ which we denote with $\lambda$. Similarly one defines $\det(b')\colon (\det V')^{\otimes 2} \rightarrow \QQ$ and $\lambda'\in \QQ^{\times}$ using $b'$ and $\omega'$. Note that the existence of the isomorphism $\alpha$ and the injectivity of $\QQ^{\times} \rightarrow \AAf^{\times}$ imply that $\lambda = \lambda'$.
+
+    Any two quadratic spaces of the same dimension over an algebraically closed field are isometric, so there exists an isometry $\vphi\colon V \otimes \overline{\QQ} \rightarrow V' \otimes \overline{\QQ}$. Let $\rho \in \QQ^{\times}$ be such that $\vphi(\omega) = \rho \omega'$. Taking the tensor square and composing with $\det(b')$ yields the equality $\det(b')\vphi(\omega^{\otimes 2}) = \rho^2 \det(b')(\omega')^{\otimes 2}$. The right-hand side is equal to $\rho^2 \lambda'$, and since $\det(b') = \det(\vphi(b'))$, the left-hand side is equal to $\lambda$. From the fact that $\lambda = \lambda'$, it follows that $\rho^2 = 1$ and hence that $\rho = \pm 1$. Composing $\vphi$ with an element of $\O(V')$ with determinant $-1$ if necessary, we obtain an isomorphism $V \otimes \overline{\QQ} \rightarrow V' \otimes \overline{\QQ}$ mapping $b_V$ to $b'$ and $\omega_V$ to $\omega'$. This proves that $\Isom((V,b_V,\omega_V),(V',b',\omega'))$ is an $\SO(V)$-torsor on $\QQ_{\et}$.
+
+This yields an equivalence between tuples $(V',b',\omega')$ endowed with an isomorphism $\alpha\colon V \otimes \AAf \rightarrow V' \otimes \AAf$ and $\SO(V)$-torsors $T$ endowed with an $\AAf$ point $\alpha \in T(\AAf)$. Since an element of $\Mot(V)$ consists of such a tuple $(V',b',\omega')$ endowed with a homomorphism $\Gab \rightarrow \SO(V')$, this equivalence gives a bijection $f'\colon \Mot(V) \rightarrow \Mot'(\SO(V))$.
+
+It is now easily verified that the composition $f' \Psi$ is the bijection $f\colon \Mot(\SO(V)) \rightarrow \Mot'(\SO(V))$  from Lemma~\ref{lem:mot(G)_ito_torsors}, proving that $\Psi$ is itself a bijection. For example, for $(F,\eta) \in \Mot(\SO(V))$, we have an $\SO(V)$-equivariant map
+$$
+\underline{\Isom}^{\otimes}(\omega_{\SO(V)},\HHH_{\B} \circ F) \longrightarrow \Isom((V,b_V,\omega_V),(F(V),F(b_V),F(\omega_V))
+$$
+given by $\vep \mapsto \vep_{V}$. This is an isomorphism since the source and target are $\SO(V)$-torsors.
+\end{proof}
+
+The set $\Mot(G)$ comes with a right $G(\AAf)$-action, which we now define. An element $g \in G(\AAf)$ yields an automorphism of $\omega_G \otimes \AAf$, which we also denote by $g$. Such $g$ then acts on a pair $(F,\eta) \in \Mot(G)$ by $(F,\eta)g \coloneqq (F,\eta g)$, that is, $g$ maps $(F,\eta)$ to the outer triangle in the diagram
+$$
+%\begin{matrix}
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { G\Rep & & \Mot_{\ab,\CC} \\
+%             & \AAf\Mod & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$F$} (m-1-3)
+%                                         edge node[left] (U) {} node[right] (X) {} (m-2-2)
+%                                         edge[bend right=65] node[left] (W) {} (m-2-2)
+%                                 (m-1-3) edge node[right] (V) {} (m-2-2);
+%
+%
+%           \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\eta^{\et}$} (V);
+%
+%           \draw[double,double equal sign distance,-implies,shorten >=0pt, shorten <=2pt] (W) -- node[above]{$g \ $} (X);
+%
+%\end{tikzpicture}
+%\end{matrix}
+\begin{matrix}
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=4em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & G\Rep & \Mot_{\ab,\CC} \\
+               & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[left] (W) {} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {} (m-2-2)
+                                 (m-1-2) edge node[right] (U) {} (m-2-2)
+                                         edge node[above]{$F$} (m-1-3);
+
+           \path[] (m-1-1) edge[double equal sign distance,=] (m-1-2);
+
+           \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=0pt] (U) -- node[above]{$\eta \phantom{f}$} (V);
+
+           \draw[double,double equal sign distance,-implies,shorten >=5pt, shorten <=10pt] (W) -- node[above]{$g$} (U);
+
+\end{tikzpicture}
+\end{matrix}
+$$
+
+Let $(G,X)$ be a Shimura datum of Hodge or of orthogonal type. According to Proposition~\ref{prop:motivic_lift_hodge_type}, every $h \in X$ lifts to a unique homomorphism $\wtilde{h}\colon \Gab \rightarrow G$. We denote the associated tensor functor $G\Rep \rightarrow \Mot_{\ab,\CC}$ with $\wtilde{h}^*$.
+
+\begin{lemma}\label{lem:map_to_mot(G)}
+The assignment
+$$
+[h,g] \longmapsto
+\begin{matrix}
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & & \Mot_{\ab,\CC} \\
+             & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$\wtilde{h}^{*}$} (m-1-3)
+                                         edge node[left] (U) {} node[right] (X) {} (m-2-2)
+                                         edge[bend right=65] node[left] (W) {} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {} (m-2-2);
+
+
+           \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\id$} (V);
+
+           \draw[double,double equal sign distance,-implies,shorten >=0pt, shorten <=2pt] (W) -- node[above]{$g \ $} (X);
+
+\end{tikzpicture}
+\end{matrix}
+$$
+defines a $G(\AAf)$-equivariant injective map 
+$$
+\Phi\colon \Sh(G,X)(\CC) \longrightarrow \Mot(G),
+$$
+functorial in $(G,X)$.
+\end{lemma}
+\begin{proof}
+Let $(h_1,g_1) \in X \times G(\AAf)$, let $\gamma \in G(\QQ)$, and define $(h_2,g_2) \coloneqq \gamma (h_1,g_1)$. Since $\gamma$ induces an isomorphism of tensor functors $\wtilde{h}_1^* \rightarrow \wtilde{h}_2^*$, and since $g_2 = \gamma g_1$, the map $\Phi$ is well-defined.
+
+For the injectivity, suppose we are given $(h_1,g_1), (h_2,g_2) \in X \times G(\AAf)$ and an isomorphism $\vphi\colon (\wtilde{h}_1^*,g_1) \rightarrow (\wtilde{h}_2^*,g_2)$. Then from the compatibility of $\vphi$ with $g_1$ and $g_2$ we find that for $(V,\rho\colon G \rightarrow \GL(V))$ in $G\Rep$, the map $\vphi_{(V,\rho)}\colon V \rightarrow V$ is $\rho(g_2 g_1^{-1})$. By taking $(V,\rho)$ to be a faithful representation we obtain that $\gamma \coloneqq g_2 g_1^{-1}$ is an element of $G(\QQ)$, and that $\gamma h_1 = h_2$, proving the injectivity.
+\end{proof}
+
+%{\color{red} I'm leaving this here for now, because I'm not sure if it is used in later chapters. If it is not, simply remove, and make the next remark (which \emph{is} used in this chapter) the definition. Otherwise, a proof needs to be added for the equivalence of the remark and the definition.
+%\begin{definition}
+%    We denote by $\Mot(G,X)$ the subset of $\Mot(G)$ consisting of those pairs $(F,\eta)$ for which there exists $h\colon \SSS \rightarrow G_{\RR}$ in $X$ such that there exists an isomorphism of tensor functors $(\RR \otimes \HHH_{\B}) \circ F \cong h^*$. It is clear that $\Mot(G,X)$ is $G(\AAf)$-stable.
+%\end{definition}
+%}
+
+\begin{remark}
+We denote by $\Mot(G,X)$ the subset of $\Mot(G)$ consisting of those pairs $(F,\eta)$ for which there exists an isomorphism of tensor functors $\eta^{\B}\colon \omega_G \rightarrow \HHH_{\B} \circ F$, that is,
+\begin{equation}\label{eq:eta_betti}
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & & \Mot_{\ab,\CC} \\
+             & \QQ\Vect & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above] {$F$} (m-1-3)
+                                         edge node[left] (U) {$\omega_G$} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {$\ \HHH_{\B}$} (m-2-2);
+
+            \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\eta^{\B}$} (V);
+
+\end{tikzpicture}\end{matrix}
+\end{equation}
+such that if $\psi\colon \Gab \rightarrow G$ is the homomorphism corresponding to $(F,\eta^{\B})$, then $\psi h_{\ab}\colon \SSS \rightarrow G_{\RR}$ is an element of $X$.
+\end{remark}
+
+%From a diagram
+%\begin{equation}\label{eq:eta_betti}
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { G\Rep & & \Mot_{\ab,\CC} \\
+%             & \QQ\Vect & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above] {$F$} (m-1-3)
+%                                         edge node[left] (U) {$\omega_G$} (m-2-2)
+%                                 (m-1-3) edge node[right] (V) {$\omega_{\B}$} (m-2-2);
+%
+%            \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=10pt] (U) -- node[above]{$\eta^{\B}$} (V);
+%
+%\end{tikzpicture}\end{matrix}
+%\end{equation}
+%we obtain a homomorphism $\Aut^{\otimes}(\omega_{\B}) \rightarrow \Aut^{\otimes}(\omega_G)$, and hence a homomorphism $\psi\colon \Gab \rightarrow G$. This homomorphism has the property that $\eta^{\B}$ lifts to an isomorphism of tensor functors $\psi^* \rightarrow F$. We now define $\Mot(G,X)$ to be the set of $(F,\eta^{\et}) \in \Mot(G)$ for which there exists $\eta^{\B}$ as in~\eqref{eq:eta_betti} such that the composition $\psi_{\RR} h_{\ab}\colon \SSS \rightarrow G_{\RR}$ is an element of $X$. It is clear that $\Mot(G,X)$ is $G(\AAf)$-stable.
+
+\begin{proposition}
+    Let $(G,X)$ be a Shimura datum of Hodge or of orthogonal type. The map $\Phi\colon \Sh(G,X)(\CC) \rightarrow \Mot(G)$ from Lemma~\ref{lem:map_to_mot(G)} has $\Mot(G,X)$ as its image.
+\end{proposition}
+\begin{proof}
+If $[h,g] \in \Sh(G,X)(\CC)$, then $\HHH_{\B} \wtilde{h}^* = \omega_G$. Therefore we can take $\eta^{\B}\colon \omega_G \rightarrow \HHH_{\B} \wtilde{h}^*$ to be the identity. This shows that $\Phi([h,g]) \in \Mot(G,X)$.
+
+To prove that $\Phi$ has $\Mot(G,X)$ as its image, let $(F,\eta) \in \Mot(G,X)$, and let $\eta^{\B}\colon \omega_G \rightarrow \HHH_{\B}$ be an isomorphism of tensor functors as in~\eqref{eq:eta_betti}. Then the pair $(F,\eta^{\B})$ gives rise to a unique homomorphism $\psi\colon \Gab \rightarrow G$ such that $\eta^{\B}$ lifts to an isomorphism of tensor functors $\vep\colon \psi^* \rightarrow F$. Now the composition $h \coloneqq \psi_{\RR} h_{\ab}\colon \SSS \rightarrow G_{\RR}$ is an element of $X$ satisfying $\wtilde{h} = \psi$. Now since $\HHH_{\et} \psi^* = \omega_G \otimes \AAf$, the composition
+$$
+\omega_G \otimes \AAf \xrightarrow{\ \eta \ } \HHH_{\et} F \xrightarrow{\ \HHH_{\et}(\vep)^{-1} \ } \HHH_{\et} \psi^*
+$$
+defines an automorphism of $\omega_G \otimes \AAf$ and hence an element $g \in G(\AAf)$. It is easy to verify that $\vep$ is an isomorphism from $\Phi([h,g])$ to $(F,\eta)$, proving that $\Phi$ surjects onto $\Mot(G,X)$.
+\end{proof}
+
+%\begin{example}\label{exa:mot(SO)}
+%Let $(V,b_V)$ be a quadratic space over $\QQ$ of signature $(2,n)$, with $n \geq 1$, and let $\omega_V\colon \QQ \rightarrow \det V$ be an isomorphism. Note that if we endow $\QQ$ with the trivial $\SO(V)$-action, then $b_V\colon \Sym^2 V \rightarrow \QQ$ and $\omega_V\colon \QQ \rightarrow \det V$ are both morphisms in $\SO(V)\Rep$. We define a map $\Psi\colon \Mot(\SO(V)) \rightarrow \Mot(V,b_V,\omega_V)$ by
+%$$
+%(F,\eta^{\et}) \longmapsto (F(V), F(b_V), F(\omega_V), \eta^{\et}_V).
+%$$
+%This map is clearly well-defined and $G(\AAf)$-equivariant. 
+%    
+%Let $(F,\eta^{\et}) \in \Mot(\SO(V),\Omega)$, and suppose $\eta^{\B}\colon \omega_{\SO(V)} \rightarrow \omega_{\B} F$ is as in the definition of $\Mot(\SO(V),\Omega)$. Then the isomorphism $\eta^{\B}_V\colon V \rightarrow F(V)$, which preserves the bilinear forms and orientations because $\eta^{\B}$ is a natural transformation, shows that $\Psi(F,\eta^{\et}) \in \Mot(V,b_V,\omega_V,\Omega)$. The resulting map $\Mot(\SO(V),\Omega) \rightarrow \Mot(V,b_V,\omega_V,\Omega)$ is a $G(\AAf)$-equivariant bijection. We give a description of its inverse.
+%
+%Let $(M,b,\omega,\alpha^{\et}) \in \Mot(V,b_V,\omega_V,\Omega)$, and let $\alpha^{\B}\colon V \rightarrow M^{\B}$ be an isomorphism preserving the bilinear form and orientation. Then $\alpha^{\B}$ induces an isomorphism $\SO(M^{\B}) \rightarrow \SO(V)$. Composing this with the representation $\Gab \rightarrow \SO(M^{\B})$, we obtain a homomorphism $\rho\colon \Gab \rightarrow \SO(V)$, and hence a functor $\rho^*\colon \SO\Rep \rightarrow \Mot_{\ab,\CC}$. Now define $g$ to be the composition $(\alpha^{\B})^{-1} \alpha^{\et} \in \SO(V)(\AAf)$. The assignment $(M,b,\omega,\alpha^{\et}) \mapsto (\rho^*,g)$ defines an inverse of $\Mot(\SO(V),\Omega) \rightarrow \Mot(V,b_V,\omega_V,\Omega)$.
+%
+%In particular, by combining this with Lemma~\ref{lem:map_to_mot(G)}, we find that the map $\Sh(\SO(V),\Omega)(\CC) \rightarrow \Mot(V,b_V,\omega_V,\Omega)$ in Theorem~\ref{thm:orthogonal_shimura_moduli_motives} is an $\SO(V)(\AAf)$-equivariant bijection.
+%\end{example}
+
+Similarly to Lemma~\ref{lem:mot(SO)_ito_motives}, we now relate the set $\Mot(V,\Omega)$ from Definition~\ref{def:mot(SO,O)}.
+
+\begin{lemma}\label{lem:mot(SO,O)}
+Let $(V,b_V)$ be a quadratic space over $\QQ$ of signature $(2,n)$ with $n \geq 1$, and $\omega_V\colon \QQ \rightarrow \det V$ an isomorphism of vector spaces, and let $(\SO(V),\Omega)$ be the associated Shimura datum. The bijection $\Psi\colon \Mot(\SO(V)) \rightarrow \Mot(V)$ given in Lemma~\ref{lem:mot(SO)_ito_motives} maps $\Mot(SO(V),\Omega)$ onto $\Mot(V,\Omega)$.
+\end{lemma}
+\begin{proof}
+    Given $(F,\eta) \in \Mot(\SO(V), \Omega)$ and $\eta^{\B}\colon \omega_{\SO(V)} \rightarrow \HHH_{\B} F$ an isomorphism of tensor functors as in~\eqref{eq:eta_betti}, then setting $\alpha^{\B} \coloneqq \eta^{\B}_V\colon V \rightarrow F(V)_{\B}$ shows that $(F(V),F(b_V),F(\omega_V),\eta_V)$ is an element of $\Mot(V,\Omega)$.
+
+Conversely, let $(M,b,\omega,\alpha) \in \Mot(V,\Omega)$, and let $\alpha^{\B}\colon V \rightarrow M_{\B}$ be an isomorphism as in~\eqref{eq:alphaB}. Then there exists an $h \in \Omega$ for which the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { \SO(V) & & \SO(M_{\B}) \\
+              & \Gab      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\alpha^{\B}$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\wtilde{h} \ $} (m-1-1)
+                                         edge node[right]{} (m-1-3);
+
+\end{tikzpicture}\end{matrix}
+$$
+commutes. Moreover, if we set $g = (\alpha^{\B})^{-1} \alpha \in \SO(V)(\AAf)$, then $\alpha^{\B}$ is an isomorphism from $((V,\wtilde{h}),b_V,\omega_V,g)$ to $(M,b,\omega,\alpha)$. It follows that $\Psi$ maps $\Phi([h,g])$ to $(M,b,\omega,\alpha)$.
+%Conversely, let $(M,b,\omega,\alpha^{\et}) \in \Mot(V,b_V,\omega_V,\Omega)$, and let $\alpha^{\B}\colon V \rightarrow M^{\B}$ be as in {\color{red} todo: rewrite definition of $\Mot(\ldots,\Omega)$}. Then $\alpha^{\B}$ gives rise to an isomorphism $\SO(M^{\B}) \rightarrow \SO(V)$, which we can precompose with $\Gab \rightarrow \SO(M^{\B})$ to obtain $h\colon \Gab \rightarrow \SO(V)$ satisfying $h \circ h_{\ab} \in \Omega$. Moreover, define $g \in \SO(V)(\AAf)$ to be the composition $(\alpha^{\B})^{-1} \alpha^{\et}$. Then $(h^*,g)$ {\color{red} REWRITE THIS EXAMPLE IN SUCH A WAY AS TO MAKE BETTER USE OF THE PRECEDING LEMMA}
+\end{proof}
+
+Using pullback of motives as in~\eqref{eq:pullback_of_motives} we can define a left $\Aut(\CC)$-action on $\Mot(G)$ by having $\sigma \in \Aut(\CC)$ act on a pair $(F,\eta) \in \Mot(G)$ as
+$$
+\sigma (F,\eta) \ \ \coloneqq
+\begin{matrix}
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=5em, column sep=4em, text height=1.5ex, text depth=0.25ex]
+           { G\Rep & \Mot_{\ab,\CC} & \Mot_{\ab,\CC} \\
+               & \AAf\Mod & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$F$} (m-1-2)
+                                         edge node[left] (W) {} (m-2-2)
+                                 (m-1-3) edge node[right] (V) {} (m-2-2)
+                                 (m-1-2) edge node[right] (U) {} (m-2-2)
+                                         edge node[above]{$\sigma^*$} (m-1-3);
+
+           \draw[double,double equal sign distance,-implies,shorten >=10pt, shorten <=0pt] (U) -- node[above]{$\sigma^* \phantom{f}$} (V);
+
+           \draw[double,double equal sign distance,-implies,shorten >=5pt, shorten <=10pt] (W) -- node[above]{$\eta$} (U);
+
+\end{tikzpicture}
+\end{matrix}
+$$
+It is clear that the $G(\AAf)$-action and $\Aut(\CC)$-action commute.
+
+The subset $\Mot(G,X)$ is not necessarily $\Aut(\CC)$-stable. However, in the next three subsections we will prove the following result.
+
+\begin{theorem}\label{thm:gal_equivariance_mot(G)}
+    Let $(G,X)$ be a Shimura datum of Hodge or of orthogonal type with reflex field $E$. Then $\Mot(G,X)$ is an $\Aut(\CC/E)$-stable subset of $\Mot(G)$, and the bijection $\Sh(G,X)(\CC) \rightarrow \Mot(G,X)$ is $\Aut(\CC/E)$-equivariant.
+\end{theorem}
+
+\begin{remark}\label{rk:final_rk_mot(G)}
+Since the map $\Mot(\SO(V)) \rightarrow \Mot(V)$ given in Lemma~\ref{lem:mot(SO)_ito_motives} is $\Aut(\CC)$-equivariant, Theorem~\ref{thm:orthogonal_shimura_moduli_motives} is a corollary of Theorem~\ref{thm:gal_equivariance_mot(G)} and Lemma~\ref{lem:mot(SO,O)}.
+\end{remark}
+
+%
+%\begin{lemma}
+%The construction $G \mapsto \Mot(G)$ defines a functor from the category of affine group schemes over $\QQ$ to the category of $\Aut(\CC)$-sets. This functor maps monomorphisms to monomorphisms.
+%\end{lemma}
+%\begin{proof}
+%
+%\end{proof}
+%
+%Note that since we identify $\Mot_{\ab,\CC}$ with $\Gab\Rep$, we have a bijection between $\Hom(\Gab,G)$ and the set of tensor functors $F\colon G\Rep \rightarrow \Mot_{\ab,\CC}$ for which $\omega_{\et} F = \omega_G$ (see~\cite[Corollary~2.9]{DeligneMilneTannakianCategories}). For a homomorphism $h\colon \Gab \rightarrow G$, we denote with $h^*$ the associated functor $G\Rep \rightarrow \Mot_{\ab,\CC}$. This functor is given by mapping a representation $(V,\rho\colon G \rightarrow \GL(V))$ to $(V,\rho \circ h)$.
+%\begin{proof}
+%
+%\end{proof}
+%
+%
+%
+%\begin{lemma}
+%For a Shimura datum $(G,X)$ of Hodge type or orthogonal type, the map $\Sh(G,X)(\CC) \rightarrow \Mot(G)$ defines a $G(\AAf)$-equivariant bijection $\Sh(G,X)(\CC) \rightarrow \Mot(G,X)$.
+%\end{lemma}
+%\begin{proof}
+%
+%\end{proof}
+%
+%The remainder of this section is devoted to proving the following theorem.
+%\begin{theorem}\label{thm:aut(C)_equivariance}
+%For a Shimura datum $(G,X)$ of Hodge or orthogonal type with reflex field $E$, the bijection $\Sh(G,X)(\CC) \rightarrow \Mot(G,X)$ is $(\Aut(\CC/E),G(\AAf))$-equivariant.
+%\end{theorem}
+%
+%\begin{remark}
+%    One particular consequence of Theorem~\ref{thm:aut(C)_equivariance} is that $\Mot(G,X)$ is $\Aut(\CC/E)$-stable.
+%\end{remark}
+%
+
+\subsection{Siegel Shimura data}\label{sec:siegel_equivariance}
+Let $(V,\psi_V)$ be a symplectic vector space over $\QQ$, and let $(\GSp,\HH)$ be the associated Shimura datum as in Example~\ref{exa:siegel_shimura}.
+
+\begin{definition}
+Let $R$ be a $\QQ$-algebra, and consider $R$-modules $V_1,V_2,L_1,$ and $L_2$ endowed with homomorphisms $\psi_1\colon \bigwedge^2 V_1 \rightarrow L_1$ and $\psi_2\colon \bigwedge^2 V_2 \rightarrow L_2$. A {\bfseries similitude} from the tuple $(V_1,L_1)$ to the tuple $(V_2,L_2)$ is a pair of isomorphisms
+$$
+(\vphi\colon V_1 \xrightarrow{\ \sim \ } V_2,\ \lambda\colon L_1 \xrightarrow{\ \sim \ } L_2)
+$$
+for which the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \bigwedge^2 V_1 & L_1 \\
+             \bigwedge^2 V_2 & L_2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\psi_1$} (m-1-2)
+                                         edge node[left]{$\vphi$} (m-2-1)
+                                 (m-1-2) edge node[right]{$\lambda$} (m-2-2)
+                                 (m-2-1) edge node[below]{$\psi_2$} (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+commutes.
+\end{definition}
+
+\begin{definition}
+We define the set $\Mot(V,\psi_V)$ as the set of isomorphism classes of tuples $(M,L,\psi,\alpha,\beta)$, where
+\begin{itemize}
+\item $M$ and $L$ are abelian motives over $\CC$,
+\item $\psi\colon \bigwedge^{2} M \rightarrow L$ is a morphism of motives,
+\item $(\alpha,\beta)\colon (V \otimes \AAf,\AAf) \rightarrow (M_{\et},L_{\et})$ is a similitude.
+\end{itemize}
+Here, two tuples $(M_1,L_1,\psi_1,\alpha_1,\beta_1)$ and $(M_2,L_2,\psi_2,\alpha_2,\beta_2)$ are said to be isomorphic if there exists a pair of isomorphisms $\vphi\colon M_1 \rightarrow M_2$ and $\lambda\colon L_1 \rightarrow L_2$ for which the diagrams
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { \bigwedge^2 M_1 & L_1 \\
+             \bigwedge^2 M_2 & L_2 \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\psi_1$} (m-1-2)
+                                         edge node[left]{$\vphi$} (m-2-1)
+                                 (m-1-2) edge node[right]{$\lambda$} (m-2-2)
+                                 (m-2-1) edge node[below]{$\psi_2$} (m-2-2);
+
+\end{tikzpicture}\end{matrix}, \ 
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { M_{1,\et} & & M_{2,\et} \\
+              & V \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi_{\et}$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\alpha_1 \ $} (m-1-1)
+                                         edge node[right]{$\alpha_2$} (m-1-3);
+
+\end{tikzpicture}\end{matrix},
+$$
+and
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { L_{1,\et} & & L_{2,\et} \\
+              & V \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\lambda_{\et}$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\beta_1 \ $} (m-1-1)
+                                         edge node[right]{$\beta_2$} (m-1-3);
+
+\end{tikzpicture}\end{matrix}
+$$
+commute. Pullback of motives gives a left $\Aut(\CC)$-action on $\Mot(V,\psi_V)$.
+\end{definition}
+
+\begin{definition}
+We define $\AV(V,\psi_V)$ to be the set of isogeny classes of tuples $(A,\lambda,\alpha)$, where
+\begin{itemize}
+\item $A$ is an abelian variety over $\CC$,
+\item $\lambda$ is a polarization on $A$,
+\item $\alpha\colon V \otimes \AAf \rightarrow \HHH^1_{\et}(A,\AAf)$ is a similitude, where $\HHH^1_{\et}(A,\AAf)$ is endowed with the symplectic form induced by $\lambda$.
+\end{itemize}
+    Two tuples $(A_1,\lambda_1,\alpha_1)$ and $(A_2,\lambda_2,\alpha_2)$ are said to be isogenic if there is an isogeny $\vphi \in \Hom(A_1, A_2) \otimes \QQ$ making the diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+           { \HHH_{\et}^1(A_2,\AAf) & & \HHH^1_{\et}(A_1,\AAf) \\
+              & V \otimes \AAf      & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi^*$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\alpha_2 \ $} (m-1-1)
+                                         edge node[right]{$\alpha_1$} (m-1-3);
+
+\end{tikzpicture}\end{matrix},
+$$
+commute. Pullback of schemes gives a left $\Aut(\CC)$-action on $\AV(V,\psi_V)$.
+\end{definition}
+
+\begin{proposition}\label{prop:main_thm_siegel}
+    The map $\Sh(\GSp,\HH)(\CC) \rightarrow \Mot(\GSp)$ given in Lemma~\ref{lem:map_to_mot(G)} is $\Aut(\CC)$-equivariant.
+\end{proposition}
+\begin{proof}
+In~\cite[{\S 4}]{DeligneShimura}, Deligne defines a bijection $\Sh(\GSp,\HH)(\CC) \rightarrow \AV(V,\psi_V)$, as follows. Let $(h,g)$ be an element of $\Sh(\GSp,\HH)(\CC)$. Fix a lattice $\Lambda \subseteq V$ such that $\psi_V$ restricts to a perfect pairing on $\Lambda$. Then $(\Lambda,h)$ is a $\ZZ$-Hodge structure of type $d(1,0) + d(0,1)$, where $2d$ is the dimension of $V$, and $\psi_V|_{\Lambda}$ is a polarization on $(\Lambda,h)$. This gives rise to a polarized abelian variety $(A,\lambda)$ (unique up to isomorphism) such that $\HHH^1(A,\ZZ)$ is isomorphic to $\Lambda$ as a polarized $\ZZ$-Hodge structure. Pick such an isomorphism $f\colon \Lambda \rightarrow \HHH^1(A,\ZZ)$. Now we define $\alpha$ to be the composition
+$$
+V \otimes \AAf \xrightarrow{ \ g \ } V \otimes \AAf \xrightarrow{ f \otimes \AAf} \HHH^1(A,\AAf).
+$$
+The pair $(h,g)$ is mapped to $(A,\lambda,\alpha)$.
+    As a consequence of the Shimura-Taniyama formula~\cite[Th\'eor\`eme~4.19]{DeligneShimura}, this map is $\Aut(\CC)$-equivariant.
+
+    Next, there is a map from $\AV(V,\psi_V)$ to $\Mot(V,\psi_V)$, given by mapping $(A,\lambda,\alpha)$ to the tuple $(\h^1(A), \1(-1), \psi_{\lambda}, \alpha,\beta)$, where $\psi_{\lambda}$ is the symplectic form associated with $\lambda$, and $\beta$ is the factor of similitude of $\alpha$. This map is clearly $\Aut(\CC)$-equivariant.
+
+We now define a map $\Mot(\GSp) \rightarrow \Mot(V,\psi_V)$. Denote by $\chi$ the $1$-dimensional representation of $\GSp$ given by the similitude character. Then we map $(F,\eta) \in \Mot(\GSp)$ to $(F(V),F(\chi),\psi_V,\eta_{V},\eta_{\chi})$. This map is clearly $\Aut(\CC)$-equivariant, and similarly to Lemma~\ref{lem:mot(SO)_ito_motives}, one can show that this map is a bijection.
+
+We now have a diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \Sh(\GSp,\HH)(\CC)       & \Mot(\GSp) \\
+              \AV(V,\psi_V) & \Mot(V,\psi_V) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$x$} (m-1-2)
+                                         edge node[left]{$z$} (m-2-1)
+                                 (m-2-1) edge node[below]{$w$} (m-2-2);
+
+           \path[>=angle 90,right hook ->] (m-1-2) edge node[right]{$y$} (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+    From the constructions of the maps $x, y, z,$ and $w$ it can be seen that for $(h,g) \in \Sh(\GSp,\HH)(\CC)$, the tuples $yx(h,g)$ and $wz(h,g)$ have the same Betti realization, and are therefore isomorphic by Theorem~\ref{thm:deligne_big_result}. It follows that the diagram commutes. Since $y,z,$ and $w$ are $\Aut(\CC)$-equivariant, and since $y$ is injective, we conclude that $x$ is $\Aut(\CC)$-equivariant.
+\end{proof}
+
+\begin{remark}
+Note that this proves Theorem~\ref{thm:gal_equivariance_mot(G)} for Siegel Shimura data.
+\end{remark}
+
+%Let $(V,\psi)$ be a symplectic vector space over $\QQ$ of dimension $g$. Input from literature will probably be that some map from moduli of abelian varieties to a Shimura is $\Aut(\CC)$-equivariant. As such, we want to find some set of motives $S$ with a commutative diagram
+%$$
+%\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=3em, column sep=1.5em, text height=1.5ex, text depth=0.25ex]
+%           { \mathcal{A}_{g,\infty} & \Sh(\GSp,\HH)(\CC) \\
+%              S                     & \Mot(\GSp)         \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                                         edge (m-2-1)
+%                                 (m-1-2) edge (m-2-2)
+%                                 (m-2-2) edge (m-2-1);
+%
+%\end{tikzpicture}\end{matrix}
+%$$
+%in which each map except possibly $\Sh(\GSp,\HHH)(\CC) \rightarrow \Mot(\GSp)$ is clearly $\Aut(\CC)$-equivariant. Note that the factor of similitude $N\colon \GSp \rightarrow \GG_m$ defines a $1$-dimensional $\GSp$-representation, which we denote $L$. Then $\psi\colon \bigwedge^2 V \rightarrow L$ is a morphism in $\GSp\Rep$. As such, the map from $\Mot(\GSp)$ to $S$ should be given by
+%$$
+%(F,\eta^{\et}) \longmapsto (F(V),F(\psi),\eta^{\et}_{V}).
+%$$
+%This should help to define $S$. One obvious question is what the image of $L$ is under $F$ (it is a rank $1$ abelian motive of weight $\pm 2$, which fixes its isomorphism class to be $\1(\pm 1)$, but this motive has automorphisms, namely all of $\QQ^{\times}$, so it is not canonically isomorphic to $\1(\pm 1)$, which could lead to problems). If this is an issue, a possible resolution is to include a rank $1$ weight $\pm 2$ motive in the data in $S$.
+%
+%\begin{remark}
+%For a morphism $h\colon \Gab \rightarrow \SO(V)$, it is clear what happens to the target of $b\colon \Sym^2 V \rightarrow \QQ$, because the morphism $\SO(V) \rightarrow \GG_m$ is trivial, so that the composition $\Gab \rightarrow \SO(V) \rightarrow \GG_m$ is so as well. For a morphism $h\colon \Gab \rightarrow \GSp(V,\psi)$, the situation is more complicated. The representation of $\GSp$ on the target of $\psi\colon \bigwedge^2 V \rightarrow \QQ$ is non-trivial, so it is not a priori clear what happens when we pull it back under $h$. Ideally, it will be isomorphic to $\1(-1)$ (we do not need a canonical isomorphism).
+%\end{remark}
+%
+%\begin{remark}
+%Possible idea: use the interpretation of $\Mot(G)$ in terms of torsors, fiber functors, or pure inner forms of $G$ to figure things out.
+%\end{remark}
+
+\subsection{Shimura data of Hodge type}
+Before proving Theorem~\ref{thm:gal_equivariance_mot(G)} for Shimura data of Hodge type, we need the following lemma.
+
+\begin{lemma}\label{lem:mot(mono)}
+Let $\iota\colon G \rightarrow G'$ be a homomorphism of affine group schemes over $\QQ$. If $\iota$ is a closed immersion, then the induced map $\Mot(G) \rightarrow \Mot(G')$ is injective.
+\end{lemma}
+\begin{proof}
+In this proof, we will identify $\Mot_{\ab,\CC}$ with $\Gab\Rep$. That is, we think of an abelian motive $M$ as the vector space $\HHH_{\B}(M)$ endowed with a $\Gab$-action.
+
+Let $(F_1,\eta_1^{}),(F_2,\eta_2^{}) \in \Mot(G)$, and suppose they have the same image under the map $\Mot(G) \rightarrow \Mot(G')$. That is, assume we have an isomorphism $\vphi\colon F_1 \iota^* \rightarrow F_2 \iota^*$ of tensor functors from $G'\Rep$ to $\Mot_{\ab,\CC}$ such that for every $W \in G'\Rep$, the diagram of $\AAf$-modules
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+           { \HHH_{\et} F_1(W) & & \HHH_{\et} F_2(W) \\
+              & W \otimes \AAf & \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\HHH_{\et}(\vphi_W)$} (m-1-3)
+                                 (m-2-2) edge node[left]{$\eta^{}_{1,W} \ $} (m-1-1)
+                                         edge node[right]{$\ \eta_{2,W}^{}$} (m-1-3);
+
+\end{tikzpicture}
+$$
+commutes. We wish to show that $(F_1,\eta_1^{})$ is isomorphic to $(F_2,\eta_2^{})$. This amounts to showing that for $V \in G\Rep$, the functorial isomorphism of $\AAf$-modules
+$$
+\eta_{2,V} \eta_{1,V}^{-1}\colon \AAf \otimes F_1V \longrightarrow \AAf \otimes F_2 V
+$$ 
+restricts to a $\GGG_{\ab}$-equivariant map $\vphi_{V}\colon F_1V \rightarrow F_2V$.
+
+    Since $\iota$ is a closed immersion,~\cite[Proposition~2.21]{DeligneMilneTannakian} implies that there exist $W \in G'\Rep$, $\wtilde{V} \in G\Rep$, an injective $G$-equivariant map $\wtilde{V} \rightarrow W$, and a surjective $G$-equivariant map $\wtilde{V} \rightarrow V$.
+
+We first show that $\eta_{2,V} \eta_{1,V}^{-1}(F_1 V) = F_2 V$. From $\eta_{2,\iota^* W} \eta^{-1}_{1,\iota^* W} = \AAf \otimes \vphi_{W}$, it follows that $\eta_{2,\iota^* W} \eta^{-1}_{1,\iota^* W}(F_1 W) = F_2 W$. Therefore,
+$$
+\eta_{2,\wtilde{V}} \eta^{-1}_{1,\wtilde{V}}(F_1 \wtilde{V}) =(\AAf \otimes F_2 \wtilde{V}) \cap F_2 W = F_2(\wtilde{V}).
+$$
+    This and the surjectivity of $F_1 \wtilde{V} \rightarrow F_1 V$ (which follows from Remark~\ref{rk:F_exact}) imply that $\eta_{2,V} \eta^{-1}_{1,V}(F_1 V) = F_2 V$. We denote the resulting isomorphisms of vector spaces $\vphi_{\wtilde{V}}\colon F_1 \wtilde{V} \rightarrow F_2 \wtilde{V}$ and $\vphi_V\colon F_1 V \rightarrow F_2 V$.
+
+We now show that $\vphi_V$ is $\GGG_{\ab}$-equivariant. Consider the commutative diagram
+$$
+\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=3em, text height=1.5ex, text depth=0.25ex]
+           { & F_1 W & F_1 \wtilde{V} & F_1 V  \\
+             & F_2 W & F_2 \wtilde{V} & F_2 V \\ };
+
+           %\path[>=angle 90,right hook ->] (m-2-1) edge (m-2-2);
+
+           \path[>=angle 90,left hook ->] (m-1-3) edge (m-1-2)
+                                          (m-2-3) edge (m-2-2);
+
+           \path[>=angle 90, ->>] (m-1-3) edge (m-1-4)
+                                  (m-2-3) edge (m-2-4);
+
+           \path[>=angle 90, ->] (m-1-2) edge node[left]{$\vphi_{W}$} (m-2-2)
+                                 (m-1-3) edge node[left]{$\vphi_{\wtilde{V}}$} (m-2-3)
+                                 (m-1-4) edge node[left]{$\vphi_{V}$} (m-2-4);
+
+\end{tikzpicture}
+$$
+The horizontal maps are injective and surjective because $F$ is exact, cf.\ Remark~\ref{rk:F_exact}. A diagram chase combined with the fact that $\vphi_W$ is $\GGG_{\ab}$-equivariant shows that $\vphi_V$ is $\GGG_{\ab}$-equivariant, completing the proof.
+\end{proof}
+
+
+\begin{proposition}\label{prop:main_thm_hodge}
+Let $(G,X)$ be a Hodge type Shimura datum. The map $\Sh(G,X)(\CC) \rightarrow \Mot(G)$ given in Lemma~\ref{lem:map_to_mot(G)} is $\Aut(\CC)$-equivariant.
+\end{proposition}
+\begin{proof}
+Let $(G,X)$ be a Shimura datum of Hodge type with reflex field $E$, and let $(G,X) \hookrightarrow (\GSp,\HH)$ be an embedding into a Siegel Shimura datum. Then there is a commutative diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \Sh(G,X)(\CC)       & \Mot(G) \\
+              \Sh(\GSp,\HH)(\CC) & \Mot(\GSp) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                         edge (m-2-1)
+                                 (m-2-1) edge (m-2-2);
+
+           \path[>=angle 90,right hook ->] (m-1-2) edge (m-2-2);
+
+\end{tikzpicture}\end{matrix}
+$$
+    It is clear from the definitions that the map $\Mot(G) \rightarrow \Mot(\GSp)$ is $\Aut(\CC)$-equivariant, and it is injective by Lemma~\ref{lem:mot(mono)}. Moreover, by Proposition~\ref{prop:main_thm_siegel} the map $\Sh(\GSp,\HH)(\CC) \rightarrow \Mot(\GSp)$ is $\Aut(\CC)$-equivariant, and $\Sh(G,X)(\CC) \rightarrow \Sh(\GSp,\HH)(\CC)$ is $\Aut(\CC/E)$-equivariant since $(G,X) \rightarrow (\GSp,\HH)$ induces a morphism $\Sh(G,X) \rightarrow \Sh(\GSp,\HH)_E$. It follows that the map $\Sh(G,X)(\CC) \rightarrow \Mot(G)$ is $\Aut(\CC/E)$-equivariant.
+\end{proof}
+
+\begin{remark}
+Note that this proves Theorem~\ref{thm:gal_equivariance_mot(G)} for Shimura data of Hodge type.
+\end{remark}
+
+\subsection{Shimura data of orthogonal type}\label{subsec:orthogonal_shimura}
+We will need that the Picard group of $\AAf$ is trivial, and later for Lemma~\ref{lem:surjectivity_spinor} we will also need that the Picard group of $\AA$ is trivial, where where $\AA$ denotes the ring of ad\`eles of $\QQ$. This is unsurprising, but it is difficult to find a proof in the literature, so we include it here.
+
+\begin{lemma}\label{lem:picard_adeles}
+The Picard groups of $\AA$ and $\AAf$ are trivial.
+\end{lemma}
+\begin{proof}
+Note that since $\AA = \RR \times \AAf$, we have $\Pic(\AA) \cong \Pic(\AAf)$, so it suffices to show that $\Pic(\AA) = 1$.
+
+For a finite set of primes $S$, define
+$$
+R_S = \RR \times \prod_{p \in S} \QQ_p \times \prod_{p \not\in S} \ZZ_p.
+$$
+By definition, $\AA$ is the colimit $\colim_S R_S$. Therefore~\cite[Tag~01ZL]{SP} says that for every line bundle $\LLL$ on $\Spec(\AA)$, there exists an $S$ and a line bundle $\LLL_S$ on $\Spec(R_S)$ such that $\LLL$ is the pullback of $\LLL_S$ to $\Spec(\AA)$. It follows that it suffices to show that $\Pic(R_S)$ is trivial.
+
+More generally, suppose that we are given a set of rings $\{R_i\}_{i \in I}$ with $\Pic(R_i) = 1$ for all $i$, and set $R = \prod_{i \in I} R_i$. If $P$ is a $\GG_m$-torsor on $\Spec(R)_{\textnormal{Zariski}}$, then $P$ is affine, since affineness is Zariski-local on the target. Therefore
+$$
+P(R) = \prod_{i \in I} P(R_i),
+$$
+which is non-empty since $P(R_i)$ is non-empty for every $i \in I$ by $\Pic(R_i) = 1$. This shows that $P$ is the trivial torsor, and hence that $\Pic(R) = 1$. Since the Picard groups of $\RR$, $\QQ_p$, and $\ZZ_p$ are trivial, this proves the lemma.
+\end{proof}
+\begin{proposition}
+Let $(\SO,\Omega)$ be a Shimura datum of orthogonal type. The map $\Sh(\SO,\Omega)(\CC) \rightarrow \Mot(\SO)$ given in Lemma~\ref{lem:map_to_mot(G)} is $\Aut(\CC)$-equivariant.
+\end{proposition}
+\begin{proof}
+As in~\eqref{eq:kuga_satake} , we have a Shimura datum $(\GSpin,\Omega')$ of Hodge type and a morphism $(\GSpin,\Omega') \rightarrow (\SO,\Omega)$. Since the map $\GSpin \rightarrow \SO$ fits in a short exact sequence
+$$
+1 \rightarrow \GG_m \longrightarrow \GSpin \longrightarrow \SO \rightarrow 1,
+$$
+and since $\HHH^1(\AAf_{,\et},\GG_m) = \Pic(\AAf) = 1$ by Lemma~\ref{lem:picard_adeles}, the map $\GSpin(\AAf) \rightarrow \SO(\AAf)$ is surjective. Moreover, the map $\Omega' \rightarrow \Omega$ is a bijection, so the map $\Sh(\GSpin,\Omega')(\CC) \rightarrow \Sh(\SO,\Omega)(\CC)$ is surjective. There is a commutative diagram
+$$
+\begin{matrix}\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+           { \Sh(\GSpin,\Omega')(\CC)       & \Mot(\GSpin) \\
+              \Sh(\SO,\Omega)(\CC) & \Mot(\SO) \\ };
+
+           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+                                 (m-1-2) edge (m-2-2)
+                                 (m-2-1) edge (m-2-2);
+
+           \path[>=angle 90,->>] (m-1-1) edge (m-2-1);
+
+\end{tikzpicture}\end{matrix}
+$$
+Because $(\GSpin,\Omega')$ is of Hodge type, Proposition~\ref{prop:main_thm_hodge} states that the map $\Sh(\GSpin,\Omega')(\CC) \rightarrow \Mot(\GSpin)$ is $\Aut(\CC)$-equivariant. In addition to this, $\Mot(\GSpin) \rightarrow \Mot(\SO)$ and $\Sh(\GSpin,\Omega')(\CC) \rightarrow \Sh(\SO,\Omega)(\CC)$ are clearly $\Aut(\CC)$-equivariant. It follows that $\Sh(\SO,\Omega)(\CC) \rightarrow \Mot(\SO)$ is $\Aut(\CC)$-equivariant, wich was to be shown.
+\end{proof}
+
+\begin{remark}
+This concludes the proof of Theorem~\ref{thm:gal_equivariance_mot(G)}. By Remark~\ref{rk:final_rk_mot(G)}, this also finishes the proof of Theorem~\ref{thm:orthogonal_shimura_moduli_motives}.
+\end{remark}
+%\section{Orthogonal Shimura varieties as moduli of motives}
+%\subsubsection{Notation and linear algebra}
+%Let $C$ be a semisimple $k$-linear Tannakian category, for example the category of finite-dimensional representations of a reductive group over a field of characteristic $0$, or Andr\'e's category of motives with coefficients in $\QQ$. For an object $V$ of $C$, we denote by $TV$ the $k$-vector space
+%$$
+%\bigcup_{m,n,m^{\vee},n^{\vee} \in \ZZ_{\geq 0}} \Hom_C(V^{\otimes n} \otimes (V^{\vee})^{\otimes n^{\vee}}, V^{\otimes m} \otimes (V^{\vee})^{\otimes m^{\vee}}) \cup \bigcup_{d \in \ZZ_{\geq 0}} \bigcup_{m_1,\ldots,m_d \in \ZZ_{\geq 0}} \End_C\left(\bigoplus_{i = 1}^d (V \oplus V^{\vee})^{\otimes m_i}\right)
+%$$
+%For $a,b \in \ZZ_{\geq 0}$, there is an obvious inclusion
+%$$
+%T(V^{\otimes a} \otimes (V^{\vee})^{\otimes b}) \subseteq TV.
+%$$
+%Moreover, for an idempotent endomorphism $e\colon V \rightarrow V$, the image $eV$ exists in $C$ since $V$ is semisimple, and there is a surjection
+%$$
+%TV \rightarrow TeV
+%$$
+%given by mapping $\vphi$ to $e \vphi e$.
+%
+%Let $G$ be an algebraic group over $\QQ$, $\rho\colon G \rightarrow \GL(V)$ a finite-dimensional representation of $G$, and $\alpha = \{\alpha_i\}_{i \in I} \subseteq TV$ a set of $G$-invariant tensors on $V$. We will consider tuples $(M,s,\eta_{\et})$, where $M$ is an abelian motive over $\CC$, $s = \{s_i\}_{i \in I} \subseteq TM$ is a set of tensors on $M$, and $\eta_{\et}\colon M^{\et} \rightarrow V \otimes \AAf$ an isomorphism mapping $s_i^{\et}$ to $\alpha_i$ for each $i \in I$. Two such tuples $(M_1,s^1,\eta_{\et}^1)$ and $(M_2,s^2,\eta_{\et}^2)$ are said to be isomorphic if there exists an isomorphism of motives $\vphi\colon M_1 \rightarrow M_2$ mapping $s^1_i$ to $s^2_i$ for each $i \in I$, and such that the diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { M_1^{\et} & & M_2^{\et} \\
+%              & V \otimes \AAf      & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi^{\et}$} (m-1-3)
+%                                         edge node[below]{$\eta_{\et}^1$} (m-2-2)
+%                                 (m-1-3) edge node[below]{$\eta_{\et}^2$} (m-2-2);
+%
+%\end{tikzpicture}
+%$$
+%commutes. We denote by $\Mot(\rho,\alpha)$ (or $\Mot(V,\alpha)$ if no confusion is possible) the set of isomorphism classes of such tuples. Pullback of motives yields a left action of $\Aut(\CC)$ on $\Mot(\rho,\alpha)$, and for $g \in G(\AAf)$, the assignment $(M,s,\eta_{\et}) g = (M,s,g^{-1}\eta_{\et})$ defines a right action of $G(\AAf)$ on $\Mot(\rho,\alpha)$. These actions commute.
+%
+%{\color{red} The following lemma may move to the section on motives (if the section on Shimura stacks precedes that on motives), as it's just a consequence or restatement of Hodge implies absolute Hodge. Means we get to the main theorem a bit quicker, which is nice.}
+%\begin{lemma}
+%Let $(G,X)$ be a Shimura datum of Hodge type, and let $h \in X$. Then there exists a unique $\wtilde{h}\colon \Gab \rightarrow G$ making the diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { \SSS & & \Gab_{,\RR} \\
+%              & G_{\RR}      & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-3)
+%                                         edge node[below]{$h$} (m-2-2)
+%                                 (m-1-3) edge node[below]{$\wtilde{h}$} (m-2-2);
+%
+%\end{tikzpicture}
+%$$
+%commute.
+%\end{lemma}
+%We can now state the main theorem of this section.
+%
+%\begin{theorem}\label{thm:hodge_type_shimura_motives}
+%    Let $(G,X)$ be a Shimura datum of Hodge type with reflex field $E$, let $\sigma\colon G \rightarrow \GL(W)$ be a finite-dimensional representation, and $\beta \subseteq TW$ a set of $G$-invariant tensors. Then there is a unique $G(\AAf)$-equivariant map $\Sh(G,X)(\CC) \rightarrow \Mot(\sigma,\beta)$ sending $[h,e]$ to $((W,\sigma \wtilde{h}),\beta,\id_{W \otimes \AAf})$ for each $h \in X$. Moreover, this map is $\Aut(\CC/E)$-equivariant.
+%\end{theorem}
+%
+%A similar statement holds for Shimura data associated with quadratic forms over $\QQ$ of signature $(2,n)$, see Subsection {\color{red} reference}.
+%
+%%Let $G$ be an algebraic group over $\QQ$, let $\rho\colon G \rightarrow \GL(V)$ be a finite dimensional representation, and let $\alpha = \{\alpha_i\}_{i \in I} \subseteq T^{*,*}V$ be a set of $G$-invariant tensors. Then we define $\Mot(\rho,\alpha)$ to be the set of isomorphism classes of tuples $(M,\eta_{\et},s)$, where $M$ is an abelian motive over $\CC$, $\eta_{\et}\colon M^{\et} \rightarrow V \otimes \AAf$ is an isomorphism, and $s = \{s_i\}_{i \in I} \subseteq \Hom(\1,T^{*,*}M)$ is a set of tensors such that $\eta_{\et}(s_i^{\et}) = \alpha_i$ for every $i \in I$. It is clear that base change of motives {\color{red} reference} induces a left $\Aut(\CC)$-action on $\Mot(\rho,\alpha)$. Moreover, there is a right $G(\AAf)$-action on $\Mot(\rho,\alpha)$ given by $(M,s,\eta_{\et})g = (M,s,g^{-1} \eta_{\et})$. It is clear that these actions commute. \\
+%%Suppose $G$ is part of a Shimura datum $(G,X)$. Then we define $\Mot(\rho,\alpha,X) \subseteq \Mot(\rho,\alpha)$ to be the subset of tuples $(M,s,\eta_{\et})$ for which there exists an $h \in X$ and an isomorphism of Hodge structures $\eta_{\B}\colon M^{\B} \rightarrow (V,\rho \circ h)$ mapping $s_i^{\B}$ to $\alpha_i$ for each $i \in I$. 
+%%Moreover, we assume that there exists $h \in X$ making the diagram
+%%$$
+%%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%%           { \SSS & \GL(M^{\B})_{\RR} \\
+%%             G_{\RR}      & \GL(V)_{\RR} \\ };
+%%
+%%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%%                                         edge node[left]{$h$} (m-2-1)
+%%                                 (m-2-1) edge node[below]{$\rho$} (m-2-2)
+%%                                 (m-1-2) edge node[right]{$\eta_{\B}$} (m-2-2);
+%%
+%%\end{tikzpicture}
+%%$$
+%%commute. 
+%%It is clear that the $G(\AAf)$-action on $\Mot(\rho,\alpha)$ restricts to one on $\Mot(\rho,\alpha,X)$. We will see later that when $(G,X)$ is of Hodge type, then the $\Aut(\CC)$-action on $\Mot(\rho,\alpha)$ restricts to an $\Aut(\CC/E)$-action on $\Mot(\rho,\alpha,X)$, where $E$ is the reflex field of $(G,X)$.
+%\subsection{Moduli spaces of abelian varieties}
+%\begin{proposition}\label{prop:autc_equivariant_gsp}
+%The map $\Sh(\GSp,\HH)(\CC) \rightarrow \Mot(\GSp,V)$ is injective, $\Aut(\CC)$-equivariant, and $\GSp(\AAf)$-equivariant.
+%\end{proposition}
+%
+%
+%
+%\subsection{Hodge type Shimura varieties}
+%Let $(G,X)$ be a Shimura datum of Hodge type. Then there exists a symplectic vector space $(V,\psi)$ and an inclusion of Shimura data $\rho\colon (G,X) \rightarrow (\GSp(V),\HH)$. Let $\alpha = \{\alpha_i\}_{i \in I} \subseteq TV$ be a collection of $G$-invariant tensors including the symplectic form $\psi$. We first prove the following special case of Theorem~\ref{thm:hodge_type_shimura_motives}.
+%
+%%\begin{lemma}\label{lem:motivic_hodge_structures}
+%%    Let $(G,X)$ be a Shimura datum of Hodge type, and let $h\colon \SSS \rightarrow G_{\RR}$ be an element of $X$. Then there exists a unique homomorphism $\wtilde{h}\colon G_{\ab} \rightarrow G$ satisfying $\wtilde{h}|_{\SSS} = h$. {\color{red} Uniqueness follows from fully faithfulness of the Betti realization on the category of abelian motives (in other words, there is at most one abelian motive underlying a $\QQ$HS).}
+%%\end{lemma}
+%%\begin{proof}
+%%    For $(G,X) = (\GSp,\HH^{\pm})$, the lemma reduces to the well-known fact that every pure polarized $\QQ$-Hodge structure of weight $1$ arises as the first cohomology group of a principally polarized abelian variety over $\CC$ {\color{red} Reference}. \\
+%%    For general $(G,X)$, let $i\colon (G,X) \rightarrow (\GSp,\HH)$ be an inclusion of Shimura data. Then the composition $h' = i h$ lifts to a homomorphism $\wtilde{h'}\colon G_{\ab} \rightarrow \GSp$. The functoriality of Mumford-Tate groups results in a homomorphism $\MT(h_{\ab}) \rightarrow \MT(h')$. Since $\MT(h_{\ab}) = G_{\ab}$ by Theorem~\ref{thm:gab_hodge_generic}, and since $\MT(h') \subseteq G$, we obtain a homomorphism $\wtilde{h}\colon G_{\ab} \rightarrow G$ lifting $h$.
+%%\end{proof}
+%
+%%The lemma allows us to define a map $\Sh(G,X)(\CC) \rightarrow \Mot(G,V)$ as follows. Given $[h,g] \in \Sh(G,X)(\CC)$, let $\wtilde{h}\colon G_{\ab} \rightarrow G$ be a lift of $h$. Then the representation of $G$ on $V$ restricts to a representation of $G_{\ab}$ on $V$, yielding an abelian motive $M$ with $M^{\et} = V \otimes \AAf$ and $M^{\B} = V$. The $G$-invariant (and hence $G_{\ab}$-invariant) elements $\beta_i$ of $T^{*,*}V$ then give rise to sections $\alpha_i\colon \1 \rightarrow T^{*,*}M$ with $\alpha_i^{\B} = \beta_i$ and $\alpha_i^{\et} = \beta_i$. Next, we set $\eta^{\et} = g^{-1}\colon M^{\et} \rightarrow V \otimes \AAf$, which defines an element $(M,\{\alpha_i\}_{i \in I},\eta^{\et}) \in \Mot(G,V)$. It is easily checked that this map is well-defined.
+%%
+%%Note that base change of motives defines a left $\Aut(\CC)$-action on $\Mot(G,V)$. Moreover, by setting $(M,\{\alpha_i\},\eta^{\et})g = (M,\{\alpha_i\},g^{-1} \eta^{\et})$, we obtain a right $G(\AAf)$-action on $\Mot(G,V)$. Let $E$ be the reflex field of $(G,X)$.
+%%
+%\begin{proposition}
+%There is a unique $G(\AAf)$-equivariant map $\Sh(G,X)(\CC) \rightarrow \Mot(G,V)$ sending $[h,e]$ to $((V,\rho \wtilde{h}),\alpha,\id_{V \otimes \AAf})$ for each $h \in X$. Moreover, this map is $\Aut(\CC/E)$-equivariant.
+%\end{proposition}
+%\begin{proof}
+%There is a commutative diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+%           { \Sh(\GSp,\HH)(\CC) & \Mot(\GSp,V) \\
+%             \Sh(G,X)(\CC)      & \Mot(G,V) \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge (m-1-2)
+%                         (m-2-2) edge (m-1-2)
+%                         (m-2-1) edge (m-2-2)
+%                         (m-2-1) edge (m-1-1);
+%
+%\end{tikzpicture}
+%$$
+%where the vertical map on the right is the one forgetting all tensors but the polarization. This map is clearly $\Aut(\CC)$-equivariant. The top horizontal map is $\Aut(\CC)$-equivariant by Proposition~\ref{prop:autc_equivariant_gsp}. Since the vertical map on the left comes from a morphism $\Sh(G,X) \rightarrow \Sh(\GSp,\HH)$ defined over $E$, it is $\Aut(\CC/E)$-equivariant. It follows that in order to show the $\Aut(\CC/E)$-equivariance of $\Sh(G,X)(\CC) \rightarrow \Mot(G,V)$, it suffices to show that the forgetful map $\Mot(G,V) \rightarrow \Mot(\GSp,V)$ is injective.
+%
+%Let $(M_1,\{\alpha_i^1\},\eta^{\et}_1)$ and $(M_2,\{\alpha_i^2\},\eta^{\et}_2)$ be elements of $\Mot(G,V)$. We need to show that if there exists an isomorphism $\vphi\colon M_1 \rightarrow M_2$ preserving the polarization, and such that the diagram
+%$$
+%\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+%\matrix (m) [matrix of math nodes, row sep=2.5em, column sep=2em, text height=1.5ex, text depth=0.25ex]
+%           { M_1^{\et} & & M_2^{\et} \\
+%              & V \otimes \AAf      & \\ };
+%
+%           \path[>=angle 90, ->] (m-1-1) edge node[above]{$\vphi^{\et}$} (m-1-3)
+%                                         edge node[below]{$\eta^{\et}_1$} (m-2-2)
+%                                 (m-1-3) edge node[below]{$\eta^{\et}_2$} (m-2-2);
+%
+%\end{tikzpicture}
+%$$
+%commutes, then $\vphi$ maps $\alpha^1_i$ to $\alpha^2_i$ for every $i$. That is, we need to show that $\vphi$ is an isomorphism $(M_1,\{\alpha_i^1\},\eta^{\et}_1) \rightarrow (M_2,\{\alpha_i^2\},\eta^{\et}_2)$. Since the \'etale realization is faithful on the category of abelian motives, it suffices to show that $\vphi^{\et}(\alpha_i^{1,\et}) = \alpha_2^{i,\et}$. But
+%$$
+%\vphi^{\et}(\alpha^{1,\et}_i) = \eta_2^{\et,-1} \eta_1^{\et}(\alpha^{1,\et}_i) = \eta_2^{\et,-1}(\beta_i) = \alpha_i^{2,\et},
+%$$
+%showing the injectivity of $\Mot(G,V) \rightarrow \Mot(\GSp,V)$, hence completing the proof.
+%\end{proof}
+%
+%{\color{red} Introduce $\Mot(G,X,V)$, prove bijectivity statement. Make it very clear that it is not a priori obvious that $\Mot(G,X,V)$ comes with an $\Aut(\CC/E)$-action.}
+%
+%{\color{red} Here an expository choice needs to be made: either we prove a more general statement with $V$ replaced by an arbitrary representation (using the fact that the category of representations is generated by any faithful representation), or we immediately specialize to $\SO$, and work explicitly with some Kuga-Satake stuff.}
+%
+%Let $\rho\colon G \rightarrow \GL(W)$ be a finite-dimensional representation of $G$, and $\{\beta_i\}_{i \in I}$ a collection of $G$-invariant elements of $T^{*,*}W$. Let $\Mot(\rho,\{\beta_i\})$ be the set of isomorphism classes of tuples $(M,\{\alpha_i\colon \1 \rightarrow T^{*,*} M\}_{i \in I}, \eta^{\et})$, where $M$ is an abelian motive over $\CC$, and $\eta^{\et}$ an isomorphism $M^{\et} \rightarrow W \otimes \AAf$ mapping $\alpha_i^{\et}$ to $\beta_i$ for each $i \in I$.
+%\begin{theorem}
+%    There is a unique $G(\AAf)$-equivariant map $\Sh(G,X)(\CC) \rightarrow \Mot(\rho,\{\beta_i\})$ mapping $[h,e]$ to the tuple $((W,\rho \circ \wtilde{h}), \{\beta_i\}_{i \in I}, \id_{W \otimes \AAf})$, where $\wtilde{h}\colon G_{\ab} \rightarrow G$ is {\color{red} the?} lift of $h$ given by Lemma~\ref{lem:motivic_hodge_structures}. Moreover, this map is $\Aut(\CC/E)$-equivariant.
+%\end{theorem}
+%\begin{proof}
+%\begin{lemma}
+%    Let $G$ be a reductive group over a field $k$ of characteristic $0$, and $V$ a faithful finite-dimensional representation of $G$ over $k$, and $W$ a finite-dimensional representation of $G$ over $k$. Then there exists an idempotent $e \in \End_G(T^{*,*}V)$ with $e T^{*,*}V \cong W$ as representations of $G$.
+%\end{lemma}
+%\begin{proof}
+%    First use that every finite-dimensional representation of $G$ is a subquotient of $T^{*,*} V$ (see \cite[Theorem~4.12]{MilneAG}), and then that the category of finite-dimensional representations of a reductive group in characteristic $0$ is semisimple (see~\cite[Theorem~22.138]{MilneAG}).
+%\end{proof}
+%    View $W$ as a subrepresentation of $T^{*,*}V$, so we can just extend the collection of $G$-invariant tensors on $V$ to include those on $W$. Then the map basically becomes a forgetful one. Possibly replace $V$ by $V^{\otimes(m,-m)}$ for some suitable $m$, see the full statement of Theorem~4.12 in Milne. Then the proof becomes a matter of having written the section on motives carefully enough.
+%\end{proof}
+%
+%\subsection{Orthogonal Shimura varieties}
+%
+%\begin{lemma}\label{lem:motivic_hodge_structure_orthogonal}
+%Let $h\colon \SSS \rightarrow \SO_{\RR}$ be an element of $\Omega^{\pm}$. Then there exists a homomorphism $\wtilde{h}\colon G_{\ab} \rightarrow \SO$ satisfying $\wtilde{h}|_{\SSS} = h$.
+%\end{lemma}
+%\begin{proof}
+%Let $h'\colon \SSS \rightarrow \GSpin_{\RR}$ be a lift of $h$ such that $h' \in \Omega^{\pm}$. Since $(\GSpin,\Omega^{\pm})$ is of Hodge type, Lemma~\ref{lem:motivic_hodge_structures} yields a lift $\wtilde{h'}\colon G_{\ab} \rightarrow \GSpin$ of $h'$. Now the composition $G_{\ab} \rightarrow \GSpin \rightarrow \SO$ lifts $h$, proving the lemma.
+%\end{proof}
+%
+%\begin{lemma}
+%The map $\Sh(\GSpin,\Omega^{\pm})(\CC) \rightarrow \Sh(\SO,\Omega^{\pm})(\CC)$ is surjective.
+%\end{lemma}
+%\begin{proof}
+%    This follows from the central extension $1 \rightarrow \GG_m \rightarrow \GSpin \rightarrow \SO \rightarrow 1$ and the fact that $\Pic(\AAf) = 1$.
+%\end{proof}
+%
+%
+%\begin{theorem}
+%There is a unique $\SO(\AAf)$-equivariant map $\Sh(\SO,\Omega)(\CC) \rightarrow \Mot(V,b,\omega)$ mapping $[h,e]$ to the tuple $((V,\wtilde{h}),b,\omega,\id_{V \otimes \AAf})$, where $\wtilde{h}\colon G_{\ab} \rightarrow \SO$ is the lift of $h$ given in Lemma~\ref{lem:motivic_hodge_structure_orthogonal}. Moreover, this map is $\Aut(\CC)$-equivariant.
+%\end{theorem}
+%\begin{proof}
+%    Let $\rho$ denote the representation of $\GSpin$ on $V$. Then $\Mot(V,b,\omega) = \Mot(\rho,b,\omega)$. Then the theorem follows from the surjectivity of $\Sh(\GSpin,\Omega)(\CC) \rightarrow \Sh(\SO,\Omega)(\CC)$ and {\color{red} the final theorem of the previous subsection} applied to $\rho$, $b$, and $\omega$.
+%\end{proof}

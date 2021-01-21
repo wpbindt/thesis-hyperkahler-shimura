@@ -520,8 +520,10 @@ pdfauthor   = {Wessel Pieter Bindt}
 
 
 \begin{document}
-\hypersetup{pageanchor=false}
 \frontmatter
+\includepdf[pages=-,fitpaper=true]{cover/thesis-cover-170x240-spine7mm}
+\pagenumbering{roman}
+\hypersetup{pageanchor=false}
 \includepdf[pages=-]{assets/title-page.pdf}
 \include{copyright/copyright}
 \tableofcontents

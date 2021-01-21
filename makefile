@@ -16,4 +16,4 @@ ref:
 
 # clean temporary files
 clean:
-	rm -f *.{aux,blg,out,toc,log}
+	find . -type f -regex '.*\.\(aux\|blg\|log\|out\|toc\)' -delete
